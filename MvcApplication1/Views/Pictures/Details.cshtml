@@ -1,0 +1,23 @@
+﻿@model MvcApplication1.Models.Picture
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Test</h2>
+<img src="@Model.PictureUrl" />
+
+<fieldset>
+    <legend>Picture</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Test)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Test)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

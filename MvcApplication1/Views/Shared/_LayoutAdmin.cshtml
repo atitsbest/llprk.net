@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+@{
+    var controllerName = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+}
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title>llprk - @ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="scripts/innershiv.min.js"></script>
+        <![endif]-->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                @Html.ActionLink("llprk", "Index", "Home", new { @class = "brand" })
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div id="sidebar">
+        <ul class="unstyled">
+            <li class="@(controllerName=="home"?"active":"")">
+                <a href="@Url.Action("index", "home")">
+                    <img src="@Url.Content("~/Images/sidebar/house.png")" />
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="@(controllerName=="categories"?"active":"")">
+                <a href="@Url.Action("index", "categories")">
+                    <img src="@Url.Content("~/Images/sidebar/tags.png")" />
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li class="@(controllerName=="pictures"?"active":"")">
+                <a href="@Url.Action("index", "pictures")">
+                    <img src="@Url.Content("~/Images/sidebar/camera.png")" />
+                    <span>Pictures</span>
+                </a>
+            </li>
+            <li class="@(controllerName=="products"?"active":"")">
+                <a href="@Url.Action("index", "products")">
+                    <img src="@Url.Content("~/Images/sidebar/products.png")" />
+                    <span>Products</span>
+                </a>
+            </li>
+            <li>
+                <img src="@Url.Content("~/Images/sidebar/orders.png")" />
+                <span>Orders</span>
+            </li>
+        </ul>
+    </div>
+    <div id="main" class="container-fluid">
+        @RenderSection("featured", required: false)
+        <div class="row-fluid">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - lillypark.com</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
