@@ -15,10 +15,11 @@ namespace MvcApplication1.Controllers
         {
             var viewModel = new ShopIndex();
             using (var db = new ShopDb()) {
-                viewModel.Categories = db.Categories.ToDictionary(c => c.Name, 
-                                                                  c => db.Products
-                                                                           .Include(i => i.Pictures)
-                                                                           .Where(p => p.CategoryId == c.Id).ToArray());
+                var categories = db.Categories.ToList();
+                viewModel.Categories = categories.ToDictionary(c => c.Name, 
+                                                               c => db.Products
+                                                                       .Include(i => i.Pictures)
+                                                                       .Where(p => p.CategoryId == c.Id).ToArray());
             }
             return View(viewModel);
         }
