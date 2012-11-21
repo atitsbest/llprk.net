@@ -9,6 +9,7 @@ using MvcApplication1.Models;
 
 namespace MvcApplication1.Controllers.Admin
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private ShopDb db = new ShopDb();
@@ -52,24 +53,12 @@ namespace MvcApplication1.Controllers.Admin
         // POST: /Products/Create
 
         [HttpPost]
-        public ActionResult Create(Product product, string[] pictures)
+        public ActionResult Create(Product product, string pictureIds)
         {
             if (ModelState.IsValid)
             {
                 // Produkt mit den Bildern anreichern.
-                var guids = Request.Form["pictures[]"]
-                    .Replace("[", "")
-                    .Replace("]", "")
-                    .Replace("\"", "")
-                    .Split(new char[] { ',' })
-                    .Select(s => Guid.Parse(s));
-
-                var ps = from p in db.Pictures
-                         where guids.Contains(p.Id)
-                         select p;
-
-                product.Pictures = new HashSet<Picture>();
-                foreach (var p in ps) { product.Pictures.Add(p); }
+                _AddPicturesToProduct(product, pictureIds);
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,7 +72,10 @@ namespace MvcApplication1.Controllers.Admin
 
         public ActionResult Edit(int id = 0)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products
+                .Include(i => i.Pictures)
+                .Where(x => x.Id == id)
+                .Single();
             if (product == null)
             {
                 return HttpNotFound();
@@ -96,11 +88,24 @@ namespace MvcApplication1.Controllers.Admin
         // POST: /Products/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product, string pictureIds)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                var p = db.Products
+                    .Include(i => i.Pictures)
+                    .Where(x => x.Id == product.Id)
+                    .Single();
+
+                p.CategoryId = product.CategoryId;
+                p.Description = product.Description;
+                p.IsPublished = product.IsPublished;
+                p.Name = product.Name;
+                p.Pice = product.Pice;
+
+                _UpdateProductPictures(_stringToGuids(pictureIds), p);
+
+                db.Entry(p).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -139,12 +144,80 @@ namespace MvcApplication1.Controllers.Admin
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Kategorie-Auswahl befüllen.
+        /// </summary>
+        /// <param name="selectedCategory"></param>
         private void _PopulateCategoriesDropDownList(object selectedCategory = null)
         {
             var departmentsQuery = from d in db.Categories
                                    orderby d.Name
                                    select d;
             ViewBag.CategoryId = new SelectList(departmentsQuery, "Id", "Name", selectedCategory);
+        }
+
+        /// <summary>
+        /// Bilder zum Produkt hinzufügen.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="pictureIds">Komma-getrennte Guids.</param>
+        private void _AddPicturesToProduct(Product product, string pictureIds)
+        {
+            var guids = _stringToGuids(pictureIds);
+
+            var ps = from p in db.Pictures
+                     where guids.Contains(p.Id)
+                     select p;
+
+            product.Pictures = new HashSet<Picture>();
+            foreach (var p in ps) { product.Pictures.Add(p); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pictureIds"></param>
+        /// <returns></returns>
+        private static IEnumerable<Guid> _stringToGuids(string pictureIds)
+        {
+            var guids = pictureIds
+                .Split(new char[] { ',' })
+                .Select(s => Guid.Parse(s));
+            return guids;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pictureIds"></param>
+        /// <param name="product"></param>
+        private void _UpdateProductPictures(IEnumerable<Guid> pictureIds, Product product)
+        {
+            if (pictureIds == null)
+            {
+                product.Pictures = new List<Picture>();
+                return;
+            }
+
+            var selectedPictures = new HashSet<Guid>(pictureIds);
+            var oldPictures = new HashSet<Guid>(product.Pictures.Select(c => c.Id));
+            foreach (var picture in db.Pictures)
+            {
+                if (selectedPictures.Contains(picture.Id))
+                {
+                    if (!oldPictures.Contains(picture.Id))
+                    {
+                        product.Pictures.Add(picture);
+                    }
+                }
+                else
+                {
+                    if (oldPictures.Contains(picture.Id))
+                    {
+                        product.Pictures.Remove(picture);
+                    }
+                }
+            }
         }
     }
 }

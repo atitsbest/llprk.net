@@ -4,7 +4,6 @@
     ViewBag.Title = "Create";
 }
 <div ng-controller="PicturesCtrl">
-    <h2>Create</h2>
 
     @using (Html.BeginForm())
     {
@@ -50,14 +49,14 @@
             </div>
             <div class="editor-field">
                 <ul class="thumbnails">
-                    <li class="span3" ng-repeat="picture in selectedPictures()">
+                    <li class="span2" ng-repeat="picture in assignedPictures">
                         <div class="thumbnail">
                             <img ng-src="{{picture.ThumbnailUrl}}" alt="">
                         </div>
                     </li>
                 </ul>
                 <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Choose Pictures</button>
-                <input type="hidden" name="pictures[]" value="{{selectedIds()}}" />
+                <input type="hidden" name="pictureIds" value="{{selectedIds()}}" />
             </div>
 
             <div class="editor-label">
@@ -81,11 +80,11 @@
     <div id="myModal" class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Modal header {{name}}</h3>
+            <h3>Choose pictures</h3>
         </div>
         <div class="modal-body">
             <ul class="thumbnails">
-                <li class="span3" ng-repeat="picture in pictures" ng-click="select(picture)">
+                <li class="span2" ng-repeat="picture in pictures" ng-click="select(picture)">
                     <img ng-src="{{picture.ThumbnailUrl}}" alt="">
                     <p>{{picture.Test}}</p>
                 </li>
@@ -93,39 +92,14 @@
             <span>{{selectedIds}}</span>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn">Close</a>
-            <a href="#" class="btn btn-primary">Save changes</a>
+            <a href="#" class="btn" ng-click="closeDlg()">Close</a>
+            <a href="#" class="btn btn-primary" ng-click="assignDlg()">Ok</a>
         </div>
     </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/app")
 
-    <script type="text/javascript">
-
-        PicturesCtrl = function ($scope, $http) {
-            $scope.name = 'Test';
-            $scope.pictures = [];
-            $scope.selectedPictures = function () {
-                return _($scope.pictures).where({ selected: true });
-            };
-            $scope.selectedIds = function () {
-                return _($scope.selectedPictures()).pluck("Id");
-            };
-            $scope.selectedThumbnailUrls = function () {
-                return _($scope.selectedIdsAsArray()).pluck("ThumbnailUrl");
-            };
-
-            $http.get('/api/pictures').success(function (data) {
-                $scope.pictures = data;
-            });
-
-            $scope.select = function (picture) {
-                if (picture.selected) { delete picture.selected; }
-                else { picture.selected = true; }
-            };
-        }
-
-    </script>
 }

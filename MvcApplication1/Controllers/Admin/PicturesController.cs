@@ -16,6 +16,7 @@ using System.IO;
 
 namespace MvcApplication1.Controllers.Admin
 {
+    [Authorize]
     public class PicturesController : Controller
     {
         private ShopDb db = new ShopDb();

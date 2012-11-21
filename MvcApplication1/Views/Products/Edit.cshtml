@@ -4,66 +4,107 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div ng-controller="PicturesCtrl">
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Product</legend>
+        <fieldset>
+            <legend>Product</legend>
 
-        @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Pice)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Pice)
-            @Html.ValidationMessageFor(model => model.Pice)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Pice)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Pice)
+                @Html.ValidationMessageFor(model => model.Pice)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CategoryId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("CategoryId", String.Empty)
-            @Html.ValidationMessageFor(model => model.CategoryId)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("CategoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.IsPublished)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IsPublished)
-            @Html.ValidationMessageFor(model => model.IsPublished)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Pictures)
+            </div>
+            <div class="editor-field">
+                <ul class="thumbnails">
+                    <li class="span2" ng-repeat="picture in assignedPictures">
+                        <div class="thumbnail">
+                            <img ng-src="{{picture.ThumbnailUrl}}" alt="">
+                        </div>
+                    </li>
+                </ul>
+                <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Choose Pictures</button>
+                <input type="hidden" name="pictureIds" value="{{selectedIds()}}" />
+            </div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsPublished)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.IsPublished)
+                @Html.ValidationMessageFor(model => model.IsPublished)
+            </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <div id="myModal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Choose pictures</h3>
+        </div>
+        <div class="modal-body">
+            <ul class="thumbnails">
+                <li class="span2" ng-repeat="picture in pictures" ng-click="select(picture)" ng-class="{thumbnail: picture.selected}">
+                    <img ng-src="{{picture.ThumbnailUrl}}" alt="">
+                    <p>{{picture.Test}}</p>
+                </li>
+            </ul>
+            <span>{{selectedIds}}</span>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" ng-click="closeDlg()">Close</a>
+            <a href="#" class="btn btn-primary" ng-click="assignDlg()">Ok</a>
+        </div>
+    </div>
+<</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/app")
+
+    <script type="text/javascript">
+        var initialPictureId = @Html.Raw(Json.Encode(Model.Pictures.Select(p => new { ThumbnailUrl=p.ThumbnailUrl })))
+    </script>
 }

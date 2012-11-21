@@ -9,6 +9,7 @@ using MvcApplication1.Models;
 
 namespace MvcApplication1.Controllers.Admin
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private ShopDb db = new ShopDb();

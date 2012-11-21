@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <title>llprk - @ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -28,6 +28,9 @@
                 </a>
                 @Html.ActionLink("llprk", "Index", "Home", new { @class = "brand" })
                 <div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                        <a href="@Url.Action("logout", "account")" class="navbar-link">Logout</a>
+                    </p>
                     <ul class="nav">
                     </ul>
                 </div>
