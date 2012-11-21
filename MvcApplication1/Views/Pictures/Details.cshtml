@@ -4,17 +4,17 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Test</h2>
+<h2>@Model.Name</h2>
 <img src="@Model.PictureUrl" />
 
 <fieldset>
     <legend>Picture</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Test)
+         @Html.DisplayNameFor(model => model.Name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Test)
+        @Html.DisplayFor(model => model.Name)
     </div>
 </fieldset>
 <p>

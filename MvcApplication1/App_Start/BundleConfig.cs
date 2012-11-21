@@ -24,7 +24,13 @@ namespace MvcApplication1
                         "~/Scripts/i18n/angular-locale_de-at.js",
                         "~/Scripts/underscore.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/angular.js",
+                        "~/Scripts/angular-resource.js",
+                        "~/Scripts/i18n/angular-locale_de-at.js",
+                        "~/Scripts/underscore.js",
+                        "~/Scripts/bootstrap.js",
                         "~/Scripts/app/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(
@@ -40,7 +46,11 @@ namespace MvcApplication1
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css/admin").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/bootstrap-responsive.css",
+                "~/Content/utils.css",
+                "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/css/shop").Include(
                 "~/Content/bootstrap.css",

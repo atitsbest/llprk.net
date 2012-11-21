@@ -164,7 +164,7 @@ namespace MvcApplication1.Controllers.Admin
 
             var picture = new Picture() {
                 Id = Guid.NewGuid(),
-                Test = Path.GetFileName(file.FileName)
+                Name = Path.GetFileName(file.FileName)
             };
 
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(

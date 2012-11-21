@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication1.Models;
+using MvcApplication1.ViewModels;
+using AutoMapper;
 
 namespace MvcApplication1.Controllers.Admin
 {
@@ -33,8 +35,7 @@ namespace MvcApplication1.Controllers.Admin
                 .Include(i => i.Pictures)
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
-            if (product == null)
-            {
+            if (product == null) {
                 return HttpNotFound();
             }
             return View(product);
@@ -45,8 +46,10 @@ namespace MvcApplication1.Controllers.Admin
 
         public ActionResult Create()
         {
+            var viewModel = new ProductCreate();
+            viewModel.AllPictures = db.Pictures.ToArray();
             _PopulateCategoriesDropDownList();
-            return View();
+            return View(viewModel);
         }
 
         //
@@ -55,8 +58,7 @@ namespace MvcApplication1.Controllers.Admin
         [HttpPost]
         public ActionResult Create(Product product, string pictureIds)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 // Produkt mit den Bildern anreichern.
                 _AddPicturesToProduct(product, pictureIds);
                 db.Products.Add(product);
@@ -76,12 +78,16 @@ namespace MvcApplication1.Controllers.Admin
                 .Include(i => i.Pictures)
                 .Where(x => x.Id == id)
                 .Single();
-            if (product == null)
-            {
+            if (product == null) {
                 return HttpNotFound();
             }
+
+            var viewModel = new ProductEdit();
+            Mapper.Map(product, viewModel);
+            viewModel.AllPictures = db.Pictures.ToArray();
+
             _PopulateCategoriesDropDownList(product.CategoryId);
-            return View(product);
+            return View(viewModel);
         }
 
         //
@@ -90,8 +96,7 @@ namespace MvcApplication1.Controllers.Admin
         [HttpPost]
         public ActionResult Edit(Product product, string pictureIds)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 var p = db.Products
                     .Include(i => i.Pictures)
                     .Where(x => x.Id == product.Id)
@@ -101,7 +106,7 @@ namespace MvcApplication1.Controllers.Admin
                 p.Description = product.Description;
                 p.IsPublished = product.IsPublished;
                 p.Name = product.Name;
-                p.Pice = product.Pice;
+                p.Price = product.Price;
 
                 _UpdateProductPictures(_stringToGuids(pictureIds), p);
 
@@ -119,8 +124,7 @@ namespace MvcApplication1.Controllers.Admin
         public ActionResult Delete(int id = 0)
         {
             Product product = db.Products.Find(id);
-            if (product == null)
-            {
+            if (product == null) {
                 return HttpNotFound();
             }
             return View(product);
@@ -193,27 +197,21 @@ namespace MvcApplication1.Controllers.Admin
         /// <param name="product"></param>
         private void _UpdateProductPictures(IEnumerable<Guid> pictureIds, Product product)
         {
-            if (pictureIds == null)
-            {
+            if (pictureIds == null) {
                 product.Pictures = new List<Picture>();
                 return;
             }
 
             var selectedPictures = new HashSet<Guid>(pictureIds);
             var oldPictures = new HashSet<Guid>(product.Pictures.Select(c => c.Id));
-            foreach (var picture in db.Pictures)
-            {
-                if (selectedPictures.Contains(picture.Id))
-                {
-                    if (!oldPictures.Contains(picture.Id))
-                    {
+            foreach (var picture in db.Pictures) {
+                if (selectedPictures.Contains(picture.Id)) {
+                    if (!oldPictures.Contains(picture.Id)) {
                         product.Pictures.Add(picture);
                     }
                 }
-                else
-                {
-                    if (oldPictures.Contains(picture.Id))
-                    {
+                else {
+                    if (oldPictures.Contains(picture.Id)) {
                         product.Pictures.Remove(picture);
                     }
                 }

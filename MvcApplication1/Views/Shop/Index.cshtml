@@ -99,7 +99,7 @@
                                     @if(@product.Pictures.Any()) {
                                         <img src="@product.Pictures.First().PictureUrl" alt="@product.Name" />
                                     }
-                                    <p><span>@product.Name @product.Pice.ToString("c")</span></p>
+                                    <p><span>@product.Name @product.Price.ToString("c")</span></p>
                                 </a>
                             </div>
                         }

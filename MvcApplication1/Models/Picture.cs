@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Script.Serialization;
 
 namespace MvcApplication1.Models
 {
     public class Picture
     {
         public Guid Id { get; set; }
-        public string Test { get; set; }
+        public string Name { get; set; }
 
+        [ScriptIgnore]
         public ICollection<Product> Products { get; set; }
 
         public string ThumbnailUrl

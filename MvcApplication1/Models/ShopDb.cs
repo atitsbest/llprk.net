@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcApplication1.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,5 +12,12 @@ namespace MvcApplication1.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Product> Products { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<ProductEdit>();
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

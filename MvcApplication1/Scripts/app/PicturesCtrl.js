@@ -1,32 +1,40 @@
-﻿PicturesCtrl = function ($scope, $http) {
-    $scope.name = 'Test';
-    $scope.pictures = [];
-    $scope.assignedPictures = initialPictureId;
-    $scope.selectedPictures = function () {
-        return _($scope.pictures).where({ selected: true });
-    };
-    $scope.selectedIds = function () {
-        return (_($scope.selectedPictures()).pluck("Id")).join(',');
-    };
-    $scope.selectedThumbnailUrls = function () {
-        return _($scope.selectedIdsAsArray()).pluck("ThumbnailUrl");
+﻿/**
+ * INFO: Der Unterschied zwischen "selectedPictures" und "assignedPictures":
+ *  selectedPictures: Das sind die Bilder, die der Benutzer gerade mi Dialog ausgewählt hat.
+ *  assignedPictures: Das sind die Bilder, die der Benutzer aus dem Dialog übernommen hat.
+ */
+PicturesCtrl = function ($scope, $http) {
+    // Vom Server generierte Daten holen.
+    // TODO: Könnte man über angular.value() wohl besser machen.
+    $scope.pictures = allPictures;
+    console.log('init');
+    $scope.assignedPictures = _(allPictures).filter(function (p) { return _(assignedPictureIds).contains(p.Id); });
+    $scope.selectedPictures = _(allPictures).filter(function (p) { return _(assignedPictureIds).contains(p.Id); });
+
+    $scope.assignedIdsAsString = function () {
+        return (_($scope.assignedPictures).pluck("Id")).join(',');
     };
 
-    $http.get('/api/pictures').success(function (data) {
-        $scope.pictures = data;
-    });
+    $scope.isSelected = function (picture) {
+        return _($scope.selectedPictures).contains(picture);
+    };
 
-    $scope.select = function (picture) {
-        if (picture.selected) { delete picture.selected; }
-        else { picture.selected = true; }
+    $scope.toggleSelect = function (picture) {
+        if ($scope.isSelected(picture)) {
+            $scope.selectedPictures = _($scope.selectedPictures).reject(function (p) { return p.Id == picture.Id; });
+        }
+        else {
+            $scope.selectedPictures.push(picture);
+        }
     };
 
     $scope.closeDlg = function () {
         $('#myModal').modal('hide');
+        $scope.selectedPictures = _(allPictures).filter(function (p) { return _($scope.assignedPictures).contains(p); });
     };
 
     $scope.assignDlg = function () {
-        $scope.assignedPictures = $scope.selectedPictures();
+        $scope.assignedPictures = $scope.selectedPictures;
         $scope.closeDlg();
     };
 }
