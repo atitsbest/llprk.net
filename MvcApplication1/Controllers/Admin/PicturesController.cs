@@ -54,64 +54,27 @@ namespace MvcApplication1.Controllers.Admin
         // POST: /Pictures/Create
 
         [HttpPost]
-        public ActionResult Create(Picture picture)
+        public ActionResult Create(IEnumerable<HttpPostedFileBase> files)
         {
-            if (ModelState.IsValid)
+            if (files == null || files.Count() == 0) {
+                ModelState.AddModelError("Picture", "You need to select at least one picture!");
+            }
+            else
             {
-                var thumbnailStream = new MemoryStream();
-                var resizedStream = new MemoryStream();
-                _ResizePictures(resizedStream, 400, 400);
-                _ResizePictures(thumbnailStream, 100, 100);
-
-                picture.Id = Guid.NewGuid();
-
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                    ConfigurationManager.ConnectionStrings["StorageConnection"].ConnectionString);
-
-                var blobClient = storageAccount.CreateCloudBlobClient();
-                var container = blobClient.GetContainerReference("pictures");
-                _PutPicture(resizedStream, picture.Id.ToString(),  container);
-                _PutPicture(thumbnailStream, picture.Id.ToString()+"_t", container);
-
-                db.Pictures.Add(picture);
+                foreach (var file in files) {
+                    if (file != null && file.ContentLength > 0) {
+                        _RequestToPicture(file);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(picture);
-        }
-
-        //
-        // GET: /Pictures/Edit/5
-
-        public ActionResult Edit(Guid id)
-        {
-            Picture picture = db.Pictures.Find(id);
-            if (picture == null)
-            {
-                return HttpNotFound();
-            }
-            return View(picture);
-        }
-
-        //
-        // POST: /Pictures/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(Picture picture)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(picture).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(picture);
+            return Redirect("index");
         }
 
         //
         // GET: /Pictures/Delete/5
-
         public ActionResult Delete(Guid id)
         {
             Picture picture = db.Pictures.Find(id);
@@ -160,11 +123,25 @@ namespace MvcApplication1.Controllers.Admin
             blob.UploadFromStream(data);
         }
 
-        private void _ResizePictures(MemoryStream outStream, int width, int height)
+        /// <summary>
+        /// Bild verkleinern und dabei die Seitenverhältnisse beibehalten.
+        /// </summary>
+        /// <param name="inStream"></param>
+        /// <param name="outStream"></param>
+        /// <param name="width">Maximale Höhe</param>
+        /// <param name="height">Maximale Breite</param>
+        private void _ResizePictures(Stream inStream, MemoryStream outStream, int width, int height)
         {
-            using (var src = Image.FromStream(Request.Files.Get(0).InputStream))
+            using (var src = Image.FromStream(inStream))
             {
-                using (var dst = new Bitmap(width, height))
+                // Proportionen beibehalten.
+                var ratioX = width / (double)src.Width;
+                var ratioY = height / (double)src.Height;
+                var ratio = ratioX < ratioY ? ratioX : ratioY;
+                var newHeight = (int)(src.Height * ratio);
+                var newWidth = (int)(src.Width * ratio);
+
+                using (var dst = new Bitmap(newWidth, newHeight))
                 {
                     using (var g = Graphics.FromImage(dst))
                     {
@@ -176,6 +153,29 @@ namespace MvcApplication1.Controllers.Admin
                     dst.Save(outStream, ImageFormat.Png);
                 }
             }
+        }
+
+        private void _RequestToPicture(HttpPostedFileBase file)
+        {
+            var thumbnailStream = new MemoryStream();
+            var resizedStream = new MemoryStream();
+            _ResizePictures(file.InputStream, resizedStream, 400, 400);
+            _ResizePictures(file.InputStream, thumbnailStream, 100, 100);
+
+            var picture = new Picture() {
+                Id = Guid.NewGuid(),
+                Test = Path.GetFileName(file.FileName)
+            };
+
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                ConfigurationManager.ConnectionStrings["StorageConnection"].ConnectionString);
+
+            var blobClient = storageAccount.CreateCloudBlobClient();
+            var container = blobClient.GetContainerReference("pictures");
+            _PutPicture(resizedStream, picture.Id.ToString(), container);
+            _PutPicture(thumbnailStream, picture.Id.ToString() + "_t", container);
+
+            db.Pictures.Add(picture);
         }
     }
 }

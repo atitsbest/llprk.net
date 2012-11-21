@@ -1,0 +1,197 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700);
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
+body {
+    background: white;
+    margin-top: 70px;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+a:hover { text-decoration: none; }
+
+header {
+    background: white;
+    box-shadow: 2px 0 7px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    min-height: 70px;
+    z-index: 102;
+    padding: 0 10px;
+}
+
+header h1 {
+    float: left;
+    margin-top: 15px;
+    letter-spacing: -1px;
+}
+
+header nav {
+   margin-top: 35px;
+}
+
+footer nav {
+    margin-top: 1em;
+    text-align: right;
+}
+
+nav > a {
+    color: #b7b7b7;
+    margin: 0 .5em;
+    text-transform: lowercase;
+    font-family: "Source Sans Pro";
+    font-size: 1em;
+    font-weight: 400;
+}
+nav > a.active {
+    color: #000;
+}
+
+#basket {
+    background: #00b9e3 url(images/shop/cart-bg.gif) repeat;
+    font-family: Georgia, "Source Sans Pro", Helvetica, Arial, sans-serif;
+    margin-top: 70px;
+    z-index: 100;
+    display: none;
+}
+#basket .span12 {
+    color: #f5f5f5;
+    padding: 1em;
+}
+
+#basket .table > thead > tr > th {
+    font-style: italic;
+    font-weight: normal;
+}
+#basket .table > tbody > tr > td {
+    border-color: #f5f5f5;
+}
+#basket select {
+    height: 25px;
+}
+
+#basket h4 {
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+
+#main {
+    background: #e8e8e8 url(images/shop/bg.png);
+    /*box-shadow: -2px 0 5px rgba(0,0,0,.5);
+    */z-index: 101;
+    position: relative;
+}
+
+#main .explanation {
+    color: #7b7b7b;
+    margin: 1em 0 2em;
+    font-weight: 200;
+    font-size: 24px;
+    font-family: "Source Sans Pro";
+    line-height: 1.5em;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+#main h2 {
+    color: rgba(255,255,255,0.298039);
+    font: 72px "Source Sans Pro", Arial, sans-serif;
+    font-weight: 100;
+    text-shadow: rgba(0,0,0,.2) -1px -1px 0px;
+    text-transform: lowercase;
+}
+
+#main img.product {
+    height: auto;
+}
+
+#main .products {
+    padding-bottom: 2em;
+}
+    #main .products span {
+        color: #8c8c8c;
+        font-weight: 400;
+        font-size: 1.2em;
+        font-family: "Source Sans Pro";
+        letter-spacing: 1px;
+    }
+
+#main .detail {
+    background-color: #f1dcaf;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,.5);
+}
+    #main .detail img {
+        max-width: 400px;
+        height: auto;
+    }
+
+    #main .detail h2 {
+        color: white;
+        text-shadow: none;
+    }
+
+footer {
+    background: white;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+    z-index: 203;
+    position: relative;
+}
+    footer .copyright {
+        margin-top: 1em;
+        color: #7b7b7b;
+        font-size: .8em;
+        text-align: right;
+    }
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+}
+
+@media (max-width: 768px) {
+  body {
+    margin-top: 0;
+  }
+
+  header {
+    position: relative;
+  }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    body {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    header h1 { margin-top: 0; }
+
+    header nav {
+      margin-top: 0;
+      float: none !important;
+      text-align: center;
+    }
+    header nav a { white-space: nowrap; }
+
+    header h1 {
+      display: block;
+      float: none;
+      text-align: center;
+    }
+
+    section#main h2 {
+      font-size: 48px;
+    }
+
+    section#main .span3 {
+      width: 200px;
+      float: left;
+    }
+}
