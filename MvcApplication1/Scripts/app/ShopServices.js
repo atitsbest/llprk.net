@@ -22,8 +22,8 @@ angular.module('ShopApp.Services', [])
                         Qty: 1
                     }
                 }
-                console.log(items);
             }
+
         };
     })
     .factory('Products', function (products) {

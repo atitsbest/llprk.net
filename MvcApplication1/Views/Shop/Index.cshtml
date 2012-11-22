@@ -37,20 +37,23 @@
                     <a href="#" class="active">taschen</a>
                     <a href="#">klimbim</a>
                     <a href="#">über uns</a>
-                    <a href="#" style="font-style: italic;" onclick="scrollToTop();$('#basket').slideToggle();$(this).toggleClass('active');return false;">Warenkorb</a>
+                    <a href="#" 
+                       style="font-style: italic;" 
+                       onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <section id="basket" ng-controller="CartCtrl">
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
+         <div id="cart" class="popover bottom" ng-controller="CartCtrl" ng-show="visible" style="left:auto;right:10px;top:65px;width:350px;display:block;">
+            <div class="arrow" style="left:auto;right:65px;"></div>
+            <h3 class="popover-title">Warenkorb</h3>
+            <div class="popover-content">
+                <div id="step1" class="collapse in">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Product</th>
+                                <th>Produkt</th>
                                 <th>Preis</th>
                                 <th style="text-align: right;">Menge</th>
                             </tr>
@@ -65,22 +68,86 @@
                     </table>
 
                     <form action="">
-                        <p>Wo wohnst Du?</p>
+                        <p>Wohin sollen wir das schicken?</p>
                         <select name="" id="">
                             <option value="DE">Deutschland (+ €5 Versand)</option>
                             <option value="AT">Österreich (+ €7 Versand)</option>
                         </select>
 
                         <p>
-                            <h4 style="display: inline-block;">Dein Gesamtpreis ist&nbsp;<h2 style="display: inline-block;">€54,98</h2>
+                            <h4 style="display: inline-block;">Dein Gesamtpreis ist&nbsp;<h2 style="display: inline-block;">{{totalPrice() | currency}}</h2>
                             </h4>
                         </p>
-                        <button type="submit" class="btn btn-warning">Zur Kasse...</button>
+                        <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step2,#step1">Zur Kasse...</button>
                     </form>
                 </div>
+                <div id="step2" class="collapse out">
+                    <p style="font-style:italic;color:#b7b7b7;">Die Rechnung wird an die Email-Adresse verschickt, die Du hier unten angibst. Dem Paket liegt keine Rechnung bei - so kannst Du llprk Produkte auch einfach verschenken.</p>
+                    <form>
+                        <fieldset>
+                            <legend>Adresse</legend>
+                            <label>Anrede</label>
+                            <input type="text" required>
+
+                            <label>Vorname / Name</label>
+                            <input type="text" class="input-small" required>
+                            <input type="text" class="input-small" required>
+
+                            <label>Adresszusatz / Firma</label>
+                            <input type="text">
+
+                            <label>Strasse, Nr.</label>
+                            <input type="text" required>
+
+                            <label>Ort / Plz</label>
+                            <input type="text" class="input-small" required>
+                            <input type="text" class="input-small" required>
+
+                            <label>Land</label>
+                            <input type="text" readonly>
+
+                            <label>E-Mail</label>
+                            <input type="text">
+                            
+                            <hr />
+                            <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step2,#step1">Zurück</button>
+                            <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step3,#step2">Weiter...</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="step3" class="collapse out">
+                    <form>
+                        <legend>Zahlungsmethode</legend>
+                        <label>
+                            <input type="radio" checked style="position:relative;top:-3px;"> Überweisung
+                        </label>
+                        <p style="font-style:italic;color:#b7b7b7;margin-left:17px;">
+                           Derzeit kannst Du nur per Überweisung zahlen. Sobald das Geld auf unserem Konto eingelangt ist verschicken wir Deine Produkte. Bitte überweise an: 
+                        </p>
+                        <p style="margin-left:17px;">
+                            IBAN: 1212-1212-1212-1212<br />
+                            BIC: 32-32323-3232
+                        </p>
+                        <hr />
+                        <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step3,#step2">Zurück</button>
+                        <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step3,#step4">Weiter...</button>
+                    </form>
+                </div>
+                <div id="step4" class="collapse out">
+                    <legend>Bestellübersicht</legend>
+                    <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step4,#step3">Zurück</button>
+                    <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step5,#step4">Bestellung abschicken</button>
+                </div>
+                <div id="step5" class="collapse out">
+                    <h5 style="margin-bottom:90px;">Deine Bestellung wird bearbeitet...</h5>
+                    <div id="spinner" class="active">
+                        <span id="first" class="ball"></span>
+                        <span id="second" class="ball"></span>
+                        <span id="third" class="ball"></span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+          </div>
 
     <section id="main" ng-controller="ProductsCtrl">
         <div class="container-fluid">
@@ -95,7 +162,12 @@
                     <div class="span12 products">
                         @foreach(var product in Model.Categories[category]) {
                             <div class="span3">
-                                <a href="#" onclick="$('#basket').slideUp('fast');$('.detail').slideToggle(function() { $('html, body').animate({ scrollTop: $('.detail').offset().top-170 }, 200); }); $('.products img').css('opacity', .3); return false;">
+                                <a href="#" 
+                                   rel="popover" 
+                                   onclick="$(this).popover()"
+                                   data-placement="top" 
+                                   data-content="@product.Description" 
+                                   data-original-title="Beschreibung">
                                     @if(@product.Pictures.Any()) {
                                         <img src="@product.Pictures.First().PictureUrl" alt="@product.Name" />
                                     }
@@ -107,43 +179,6 @@
                     </div>
                 </div>
             }
-        </div>
-
-        <div class="container-fluid detail"
-            style="display: none;"
-            onclick="$('.detail').slideUp();$('.products img').css('opacity', 1);">
-            <div class="row-fluid align-center" style="position: relative;">
-                <div class="span6 align-center">
-                    <img src="pictures/gelb-01a.png" alt="Socheata">
-                </div>
-                <div class="span5">
-                    <h2>socheata</h2>
-                    <p class="align-left">
-                        A trendy bag featuring two external pleats with a large bow accent. Has a zipper closure with two interior cell phone pockets and 1 interior zippered pocket. Comes with an adjustable strap.
-               
-                    </p>
-                    <table class="table table-condensed">
-                        <tr>
-                            <th>Materialien</th>
-                            <td>Denim</td>
-                        </tr>
-                        <tr>
-                            <th>Größe</th>
-                            <td>12 in. high x 13 in. wide</td>
-                        </tr>
-                        <tr>
-                            <th>Gurt</th>
-                            <td>60 in. (adjustable)</td>
-                        </tr>
-                    </table>
-
-                    <h3 style="font-family: 'Source Sans Pro',Arial,sans-serif;">€34,99</h3>
-
-                    <a href="#"
-                        class="btn btn-inverse"
-                        onclick="$('.detail').slideUp('fast', function() { $('.products img').css('opacity', 1); $('html, body').animate({ scrollTop: 0 }, 200); $('#basket').slideDown('fast'); });">In den Warenkorb</a>
-                </div>
-            </div>
         </div>
 
         <div class="container-fluid">
