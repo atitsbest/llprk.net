@@ -18,12 +18,6 @@ namespace MvcApplication1
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js",
-                        "~/Scripts/angular-resource.js",
-                        "~/Scripts/i18n/angular-locale_de-at.js",
-                        "~/Scripts/underscore.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/angular.js",
@@ -46,13 +40,13 @@ namespace MvcApplication1
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css/admin").Include(
+            bundles.Add(new StyleBundle("~/Content/admin").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
                 "~/Content/utils.css",
                 "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css/shop").Include(
+            bundles.Add(new StyleBundle("~/Content/shop").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
                 "~/Content/utils.css",
@@ -71,6 +65,8 @@ namespace MvcApplication1
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
