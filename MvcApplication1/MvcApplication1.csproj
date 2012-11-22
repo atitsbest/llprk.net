@@ -201,6 +201,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\images\shop\bg.png" />
+    <Content Include="Content\images\shop\cart-bg.gif" />
     <Content Include="Content\utils.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
