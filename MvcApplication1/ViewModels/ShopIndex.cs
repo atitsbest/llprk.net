@@ -15,5 +15,23 @@ namespace MvcApplication1.ViewModels
         /// Hash aus <CategorieName, Produkt>
         /// </summary>
         public IDictionary<string, Product[]> Categories;
+
+        /// <summary>
+        /// Liefert alle Produkte von Categories.
+        /// </summary>
+        public IEnumerable<dynamic> Products
+        {
+            get
+            {
+                return Categories.Values
+                            .SelectMany(x => x)
+                            .Select(x => new {
+                                Name = x.Name,
+                                Price = x.Price,
+                                Id = x.Id,
+                                ThumbailUrl = x.Pictures.First().ThumbnailUrl
+                            });
+            }
+        }
     }
 }

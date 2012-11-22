@@ -25,7 +25,7 @@ namespace MvcApplication1
                         "~/Scripts/i18n/angular-locale_de-at.js",
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/app/*.js"));
+                        "~/Scripts/app/admin/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(
                         "~/Scripts/jquery-{version}.js",
@@ -33,7 +33,8 @@ namespace MvcApplication1
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/i18n/angular-locale_de-at.js",
                         "~/Scripts/underscore.js",
-                        "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/app/*.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -66,7 +67,7 @@ namespace MvcApplication1
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -8,7 +8,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" ng-app> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" ng-app>
+<html class="no-js" ng-app="ShopApp">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
 <body>
     <!--[if lt IE 8]>
         <p class="chromeframe alert alert-error">
-            Hopla. Du verwendest einen alten Browser. 
+            Hoppla. Du verwendest einen alten Browser. 
             <a href="http://browsehappy.com/">Bring Deinen Browser heute auf den neuesten Stand</a> oder 
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
@@ -43,23 +43,23 @@
         </div>
     </header>
 
-    <section id="basket" ng-ctrl="CartCtrl">
+    <section id="basket" ng-controller="CartCtrl">
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Item</th>
-                                <th>Cost</th>
-                                <th style="text-align: right;">Qantity</th>
+                                <th>Product</th>
+                                <th>Preis</th>
+                                <th style="text-align: right;">Menge</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in items">
-                                <td>{{item.product.name}}</td>
-                                <td>{{item.product.price | currency}}</td>
-                                <td style="text-align: right;">{{item.qty}}</td>
+                            <tr ng-repeat="item in itemsAsArray()">
+                                <td>{{item.Product.Name}}</td>
+                                <td>{{item.Product.Price | currency}}</td>
+                                <td style="text-align: right;">{{item.Qty}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -82,7 +82,7 @@
         </div>
     </section>
 
-    <section id="main">
+    <section id="main" ng-controller="ProductsCtrl">
         <div class="container-fluid">
             @foreach(var category in Model.Categories.Keys) {
                 <div class="row-fluid align-center">
@@ -100,6 +100,7 @@
                                         <img src="@product.Pictures.First().PictureUrl" alt="@product.Name" />
                                     }
                                     <p><span>@product.Name @product.Price.ToString("c")</span></p>
+                                    <p><button class="btn btn-small" ng-click="addToCart(@product.Id)">Kaufen</button></p>
                                 </a>
                             </div>
                         }
@@ -191,6 +192,9 @@
     <script type="text/javascript">
         function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
         function scrollTo(e) { $('html, body').animate({ scrollTop: $(e).offset().top }, 200); }
+
+        angular.module('ShopApp.Values', [])
+            .value('products', @Html.Raw(Json.Encode(Model.Products)));
     </script>
 
 </body>
