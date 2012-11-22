@@ -3,11 +3,10 @@
  *  selectedPictures: Das sind die Bilder, die der Benutzer gerade mi Dialog ausgewählt hat.
  *  assignedPictures: Das sind die Bilder, die der Benutzer aus dem Dialog übernommen hat.
  */
-PicturesCtrl = function ($scope, $http) {
+function PicturesCtrl($scope, $http) {
     // Vom Server generierte Daten holen.
     // TODO: Könnte man über angular.value() wohl besser machen.
     $scope.pictures = allPictures;
-    console.log('init');
     $scope.assignedPictures = _(allPictures).filter(function (p) { return _(assignedPictureIds).contains(p.Id); });
     $scope.selectedPictures = _(allPictures).filter(function (p) { return _(assignedPictureIds).contains(p.Id); });
 
@@ -38,3 +37,5 @@ PicturesCtrl = function ($scope, $http) {
         $scope.closeDlg();
     };
 }
+
+PicturesCtrl.$inject = ["$scope", "$http"];
