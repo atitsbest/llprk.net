@@ -45,11 +45,18 @@
         </div>
     </header>
 
-         <div id="cart" class="popover bottom" ng-controller="CartCtrl" ng-show="visible" style="left:auto;right:10px;top:65px;width:350px;display:block;">
+         <div id="cart" 
+              class="popover bottom" 
+              ng-controller="CartCtrl" 
+              ng-show="visible" 
+              style="left:auto;right:10px;top:65px;width:350px;">
             <div class="arrow" style="left:auto;right:65px;"></div>
             <h3 class="popover-title">Warenkorb</h3>
             <div class="popover-content">
-                <div id="step1" class="collapse in">
+                <div id="step0" ng-hide="cartItemCount()">
+                    <h5>Der Warenkorb ist noch leer ;(</h5>
+                </div>
+                <div id="step1" class="collapse in" ng-show="cartItemCount()">
                     <table class="table">
                         <thead>
                             <tr>

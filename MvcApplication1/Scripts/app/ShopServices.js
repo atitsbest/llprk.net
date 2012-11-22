@@ -1,4 +1,18 @@
 ﻿'use strict'
+
+function productsFn (products) {
+    return {
+        query: function () {
+            return products;
+        },
+
+        queryById: function (productId) {
+            return _(products).find(function (p) { return p.Id === productId; });
+        }
+    };
+}
+productsFn.$inject = ['products']
+
 /**
  */
 angular.module('ShopApp.Services', [])
@@ -26,14 +40,4 @@ angular.module('ShopApp.Services', [])
 
         };
     })
-    .factory('Products', function (products) {
-        return {
-            query: function () {
-                return products;
-            },
-
-            queryById: function (productId) {
-                return _(products).find(function (p) { return p.Id === productId; });
-            }
-        };
-    });
+    .factory('Products', productsFn);
