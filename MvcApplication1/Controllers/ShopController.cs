@@ -23,5 +23,14 @@ namespace MvcApplication1.Controllers
             }
             return View(viewModel);
         }
+
+        public ActionResult Details(int id)
+        {
+            var viewModel = new ShopDetail();
+            using(var db = new ShopDb()) {
+                viewModel.Product = db.Products.Include(i => i.Pictures).Where(p => p.Id == id).FirstOrDefault();
+            }
+            return View(viewModel);
+        }
     }
 }

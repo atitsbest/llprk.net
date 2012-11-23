@@ -1,0 +1,47 @@
+﻿@model MvcApplication1.ViewModels.ShopDetail
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+<section id="main" ng-controller="ProductsCtrl" style="padding-bottom: 20px;">
+    <div class="container details">
+        <div class="row align-center">
+            <div class="span12">
+                <h2 class="categoryName">@Model.Product.Name</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span6">
+                <img src="@Model.Product.Pictures.First().PictureUrl" />
+            </div>
+            <div class="span1 thumbnails">
+                @foreach (var picture in Model.Product.Pictures) {
+                    <img src="@picture.PictureUrl" />
+                }
+            </div>
+            <div class="span5">
+                <p>
+                    @Model.Product.Description
+                </p>
+                <p>
+                    <h3>@Model.Product.Price.ToString("c")</h3>
+                </p>
+                <p>
+                    <button class="btn btn-warning">In den Warenkorb</button>
+                    <a href="@Url.Action("index")" class="btn btn-small">Zurück</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+@section scripts {
+    <script type="text/javascript">
+@*        angular.module('ShopApp.Values', [])
+            .value('products', @Html.Raw(Json.Encode(Model.Products)));*@
+    </script>
+}
+
