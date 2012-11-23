@@ -274,6 +274,12 @@
     <None Include="Properties\PublishProfiles\llprk - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\llprk - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Images\marketing\cat1.jpg" />
+    <Content Include="Images\marketing\cat2.jpg" />
+    <Content Include="Images\marketing\cat3.jpg" />
+    <Content Include="Images\marketing\IMG_3442-1.jpg" />
+    <Content Include="Images\marketing\IMG_3444-1.jpg" />
+    <Content Include="Images\marketing\IMG_3680-1.jpg" />
     <Content Include="Images\sidebar\camera.png" />
     <Content Include="Images\sidebar\house.png" />
     <Content Include="Images\sidebar\orders.png" />
