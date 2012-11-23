@@ -45,7 +45,7 @@
         </div>
     </header>
 
-         <div id="cart" 
+     <div id="cart" 
               class="popover bottom" 
               ng-controller="CartCtrl" 
               ng-show="visible" 
@@ -82,7 +82,7 @@
                         </select>
 
                         <p>
-                            <h4 style="display: inline-block;">Dein Gesamtpreis ist&nbsp;<h2 style="display: inline-block;">{{totalPrice() | currency}}</h2>
+                            <h4 style="display: inline-block;">Dein Gesamtpreis ist&nbsp;<h4 style="display: inline-block;">{{totalPrice() | currency}}</h4>
                             </h4>
                         </p>
                         <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step2,#step1">Zur Kasse...</button>
@@ -169,12 +169,7 @@
                     <div class="span12 products">
                         @foreach(var product in Model.Categories[category]) {
                             <div class="span3">
-                                <a href="#" 
-                                   rel="popover" 
-                                   onclick="$(this).popover()"
-                                   data-placement="top" 
-                                   data-content="@product.Description" 
-                                   data-original-title="Beschreibung">
+                                <a href="">
                                     @if(@product.Pictures.Any()) {
                                         <img src="@product.Pictures.First().PictureUrl" alt="@product.Name" />
                                     }

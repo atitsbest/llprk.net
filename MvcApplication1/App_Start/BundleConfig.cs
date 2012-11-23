@@ -53,6 +53,12 @@ namespace MvcApplication1
                 "~/Content/utils.css",
                 "~/Content/shop.css"));
 
+            bundles.Add(new StyleBundle("~/Content/shop2").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/bootstrap-responsive.css",
+                "~/Content/utils.css",
+                "~/Content/shop2.css"));
+
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",

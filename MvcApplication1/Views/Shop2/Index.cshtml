@@ -1,0 +1,44 @@
+﻿@model MvcApplication1.ViewModels.ShopIndex
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutShop2.cshtml";
+}
+
+<div class="row">
+    <div class="span12">
+        <div id="myCarousel" class="carousel slide" data-interval="3000" style="margin: 20px 0;">
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img src="@Url.Content("~/Images/marketing/IMG_3442-1.jpg")" />
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Images/marketing/IMG_3444-1.jpg")" />
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Images/marketing/IMG_3680-1.jpg")" />
+                </div>
+            </div>
+            <!-- Carousel nav -->
+            @*        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>*@
+        </div>
+    </div>
+</div>
+
+<div class="row" class="categories">
+    <div class="span12">
+        <h3>Unsere Produkte</h3>
+    </div>
+</div>
+<div class="row" class="categories" style="margin-top:10px;margin-bottom:20px;">
+    <div class="span4">
+        <img src="@Url.Content("~/Images/marketing/cat1.jpg")" />
+    </div>
+    <div class="span4">
+        <img src="@Url.Content("~/Images/marketing/cat2.jpg")" />
+    </div>
+    <div class="span4">
+        <img src="@Url.Content("~/Images/marketing/cat3.jpg")" />
+    </div>
+</div>

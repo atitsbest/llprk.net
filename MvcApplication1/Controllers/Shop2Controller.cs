@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
 {
-    public class ShopController : Controller
+    public class Shop2Controller : Controller
     {
         public ActionResult Index()
         {
@@ -22,6 +22,21 @@ namespace MvcApplication1.Controllers
                                                                        .Where(p => p.IsPublished && p.CategoryId == c.Id).ToArray());
             }
             return View(viewModel);
+        }
+
+        public ActionResult Products()
+        {
+            return View();
+        }
+
+        public ActionResult Detail()
+        {
+            return View();
+        }
+
+        public ActionResult Cart()
+        {
+            return View();
         }
     }
 }
