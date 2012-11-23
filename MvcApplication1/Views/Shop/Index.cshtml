@@ -4,15 +4,15 @@
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 <section id="main" ng-controller="ProductsCtrl">
-    <div class="container-fluid">
+    <div class="container">
         @foreach(var category in Model.Categories.Keys) {
-            <div class="row-fluid align-center">
+            <div class="row align-center">
                 <div class="span12">
                     <h2 class="categoryName">@category</h2>
                 </div>
             </div>
 
-            <div class="row-fluid align-center">
+            <div class="row align-center">
                 <div class="span12 products">
                     @foreach(var product in Model.Categories[category]) {
                         <div class="span3">
@@ -20,9 +20,9 @@
                                 @if(@product.Pictures.Any()) {
                                     <img src="@product.Pictures.First().PictureUrl" alt="@product.Name" />
                                 }
-                                <p><span>@product.Name @product.Price.ToString("c")</span></p>
-                                <p><button class="btn btn-small" ng-click="addToCart(@product.Id)">Kaufen</button></p>
+                                <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>
                             </a>
+                            <p><button class="btn btn-small" ng-click="addToCart(@product.Id)">Kaufen</button></p>
                         </div>
                     }
                 </div>
@@ -30,8 +30,8 @@
         }
     </div>
 
-    <div class="container-fluid">
-        <div class="row-fluid align-center explanation">
+    <div class="container">
+        <div class="row align-center explanation">
             <div class="span12">
                 <p>
                     Jede Tasche ist einzigartig.<br />

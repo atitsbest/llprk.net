@@ -522,7 +522,7 @@
     <Content Include="Views\Shop2\Detail.cshtml" />
     <Content Include="Views\Shop2\Cart.cshtml" />
     <Content Include="Views\Shared\_LayoutShop.cshtml" />
-    <Content Include="Views\Shop\Detail.cshtml" />
+    <Content Include="Views\Shop\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

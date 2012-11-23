@@ -297,7 +297,8 @@ body {
 
     section#main .span3 {
       width: 150px;
-      float: left;
+      display: inline-block;
+      text-align: center;
     }
 
     #cart {
