@@ -260,6 +260,11 @@ body {
         max-width: 100%;
         text-align: center;
     }
+
+        #main .details .caption {
+            margin: 20px 15px;
+            text-align: justify;
+        }
 }
 
 /* Portrait tablet to landscape and desktop */
