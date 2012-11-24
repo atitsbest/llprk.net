@@ -27,14 +27,14 @@
     <header>
         <div class="container">
             <div class="row">
-                <h1 id="logo">lillypark</h1>
+                <h1 id="logo" style="margin-left:20px;">lillypark</h1>
                 <nav class="pull-right">
                     <a href="@Url.Action("index")" class="active">taschen</a>
                     <a href="#">klimbim</a>
                     <a href="#">über uns</a>
                     <a href="#" 
                        style="font-style: italic;" 
-                       onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
+                       onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" style="display:none;" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
                 </nav>
             </div>
         </div>
@@ -43,7 +43,6 @@
      <div id="cart" 
               class="popover bottom" 
               ng-controller="CartCtrl" 
-              ng-show="visible" 
               style="left:auto;right:10px;top:65px;">
             <div class="arrow" style="left:auto;right:65px;"></div>
             <h3 class="popover-title">Warenkorb</h3>
@@ -58,13 +57,19 @@
                                 <th>Produkt</th>
                                 <th>Preis</th>
                                 <th style="text-align: right;">Menge</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in itemsAsArray()">
+                            <tr ng-repeat="(id, item) in items">
                                 <td>{{item.Product.Name}}</td>
                                 <td>{{item.Product.Price | currency}}</td>
                                 <td style="text-align: right;">{{item.Qty}}</td>
+                                <td>
+                                    <i class="icon-minus-sign" ng-click="remove(item)"></i>
+                                    <i class="icon-plus-sign" ng-click="add(item)"></i>
+
+                                </td>
                             </tr>
                         </tbody>
                     </table>

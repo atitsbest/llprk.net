@@ -22,6 +22,19 @@ function CartCtrl($scope, CartItems) {
                     .value();
     };
 
+    /**
+     * Zeile zum WK hinzufügen.
+     */
+    $scope.add = function (item) {
+        CartItems.add(item.Product);
+    };
+    /**
+     * Zeile aus dem WK entfernen
+     */
+    $scope.remove = function (item) {
+        CartItems.remove(item.Product.Id);
+    };
+
     $scope.toogleVisibility = function () {
         $scope.visible = !$scope.visible;
     };

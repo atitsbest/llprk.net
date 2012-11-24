@@ -28,7 +28,7 @@
                     <h3>@Model.Product.Price.ToString("c")</h3>
                 </p>
                 <p>
-                    <button class="btn btn-warning">In den Warenkorb</button>
+                    @Html.ActionLink("In den Warenkorb...", "index", null, new { @class="btn btn-warning" })
                     <a href="@Url.Action("index")" class="btn btn-small">Zurück</a>
                 </p>
             </div>
@@ -40,8 +40,11 @@
 
 @section scripts {
     <script type="text/javascript">
-@*        angular.module('ShopApp.Values', [])
-            .value('products', @Html.Raw(Json.Encode(Model.Products)));*@
+        $('.thumbnails > img').mouseover(function () {
+            console.log('enter');
+            $('#main .span6 > img').attr('src', this.src);
+        });
+        angular.module('ShopApp.Values', []).value('products', {});
     </script>
 }
 

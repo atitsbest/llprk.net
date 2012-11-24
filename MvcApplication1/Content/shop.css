@@ -250,21 +250,6 @@ body {
     position: relative;
   }
 
-    #main .details  {
-        text-align: center;
-    }
-    #main .details .span6 {
-        display: none !important;
-    }
-    #main .details .span1 {
-        max-width: 100%;
-        text-align: center;
-    }
-
-        #main .details .caption {
-            margin: 20px 15px;
-            text-align: justify;
-        }
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -312,5 +297,20 @@ body {
         left: 3px;
     }
 
+    #main .details  {
+        text-align: center;
+    }
+    #main .details .span6 {
+        display: none !important;
+    }
+    #main .details .span1 {
+        max-width: 100%;
+        text-align: center;
+    }
+
+        #main .details .caption {
+            margin: 20px 15px;
+            text-align: justify;
+        }
 }
 
