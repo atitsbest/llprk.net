@@ -39,6 +39,25 @@ function CartCtrl($scope, CartItems) {
         $scope.visible = !$scope.visible;
     };
 
+    $scope.confirmAddress = function () {
+        if ($scope.addressForm.$valid) {
+            $('#step2').collapse('hide');
+            $('#step3').collapse('show');
+        }
+    };
+
+    $scope.confirmPayment = function () {
+        $('#step3').collapse('hide');
+        $('#step4').collapse('show');
+    };
+
+    $scope.submitOrder = function () {
+        if ($scope.summaryForm.$valid) {
+            $('#step4').collapse('hide');
+            $('#step5').collapse('show');
+        }
+    };
+
 }
 
 CartCtrl.$inject = ["$scope", "CartItems"];

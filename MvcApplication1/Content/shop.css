@@ -218,6 +218,11 @@ body {
     -moz-animation-iteration-count: infinite;
     -moz-transform-origin: 6px 30px;
 }
+
+input.ng-invalid {
+    border-color: red;
+}
+
 @-webkit-keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg) scale(1);

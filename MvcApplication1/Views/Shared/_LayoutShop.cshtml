@@ -90,35 +90,44 @@
                 </div>
                 <div id="step2" class="collapse out">
                     <p style="font-style:italic;color:#b7b7b7;">Die Rechnung wird an die Email-Adresse verschickt, die Du hier unten angibst. Dem Paket liegt keine Rechnung bei - so kannst Du llprk Produkte auch einfach verschenken.</p>
-                    <form>
+                    <form name="addressForm" novalidate>
                         <fieldset>
                             <legend>Adresse</legend>
-                            <label>Anrede</label>
-                            <input type="text" required>
 
-                            <label>Vorname / Name</label>
-                            <input type="text" class="input-small" required>
-                            <input type="text" class="input-small" required>
+                            <label>Anrede*</label>
+                            <input type="text" ng-model="title" required>
+
+                            <label>Vorname* / Name*</label>
+                            <input type="text" class="input-small" ng-model="firstname" required>
+                            <input type="text" class="input-small" ng-model="name" required>
 
                             <label>Adresszusatz / Firma</label>
-                            <input type="text">
+                            <input type="text" ng-model="address1">
 
-                            <label>Strasse, Nr.</label>
-                            <input type="text" required>
+                            <label>Strasse, Nr.*</label>
+                            <input type="text" ng-model="address2" required>
 
-                            <label>Ort / Plz</label>
-                            <input type="text" class="input-small" required>
-                            <input type="text" class="input-small" required>
+                            <label>Plz* / Ort*</label>
+                            <input type="text" class="input-small" ng-model="zip" required>
+                            <input type="text" class="input-small" ng-model="city" required>
 
                             <label>Land</label>
-                            <input type="text" readonly>
+                            <input type="text" ng-model="country" readonly>
 
                             <label>E-Mail</label>
-                            <input type="text">
+                            <input type="email" ng-model="email" required>
+
+                            <p ng-show="addressForm.$invalid" style="color: #f33;">
+                                Die rot markierten Felder bitte ausfüllen.
+                            </p>
                             
                             <hr />
                             <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step2,#step1">Zurück</button>
-                            <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step3,#step2">Weiter...</button>
+                            <button type="submit" 
+                                    class="btn btn-warning" 
+                                    ng-click="confirmAddress()"
+                                    ng-disabled="addressForm.$invalid"
+                                    data-target="#step3,#step2">Weiter...</button>
                         </fieldset>
                     </form>
                 </div>
@@ -136,14 +145,71 @@
                             BIC: 32-32323-3232
                         </p>
                         <hr />
-                        <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step3,#step2">Zurück</button>
-                        <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step3,#step4">Weiter...</button>
+                        <button type="submit" 
+                                class="btn btn-small" 
+                                data-toggle="collapse" 
+                                data-target="#step3,#step2">Zurück</button>
+                        <button type="submit" 
+                                class="btn btn-warning" 
+                                ng-click="confirmPayment()"
+                                data-target="#step3,#step4">Weiter...</button>
                     </form>
                 </div>
                 <div id="step4" class="collapse out">
-                    <legend>Bestellübersicht</legend>
-                    <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step4,#step3">Zurück</button>
-                    <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step5,#step4">Bestellung abschicken</button>
+                    <form name="summaryForm">
+                        <legend>Bestellübersicht</legend>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produkt</th>
+                                    <th>Preis</th>
+                                    <th style="text-align: right;">Menge</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(id, item) in items">
+                                    <td>{{item.Product.Name}}</td>
+                                    <td>{{item.Product.Price | currency}}</td>
+                                    <td style="text-align: right;">{{item.Qty}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Lieferung:</th>
+                                    <td colspan="2">{{5 | currency}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Gesamt</th>
+                                    <th colspan="2">{{totalPrice() | currency}}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <p>
+                            Bezahlhung per Überweisung.
+                        </p>
+                        <p>
+                            {{title}}<br />
+                            {{firstname}} {{name}}<br />
+                            {{address1}}<br />
+                            {{address2}}<br />
+                            {{zip}} {{city}}<br />
+                            {{email}}
+                        </p>
+                        <hr />
+                        <label>
+                            <input type="checkbox" ng-model="accepted" required />
+                            Ich stimme den AGBs zu.
+                        </label>
+                        <button type="submit" 
+                                class="btn btn-small" 
+                                data-toggle="collapse"
+                                data-target="#step4,#step3">Zurück</button>
+                        <button type="submit" 
+                                class="btn btn-warning" 
+                                ng-disabled="summaryForm.$invalid" 
+                                ng-click="submitOrder()"
+                                data-target="#step5,#step4">Bestellung abschicken</button>
+                    </form>
                 </div>
                 <div id="step5" class="collapse out">
                     <h5 style="margin-bottom:90px;">Deine Bestellung wird bearbeitet...</h5>
