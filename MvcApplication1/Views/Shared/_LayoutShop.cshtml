@@ -91,7 +91,7 @@
                 <div id="step2" class="collapse out">
                     <p style="font-style:italic;color:#b7b7b7;">Die Rechnung wird an die Email-Adresse verschickt, die Du hier unten angibst. Dem Paket liegt keine Rechnung bei - so kannst Du llprk Produkte auch einfach verschenken.</p>
                     <form name="addressForm" novalidate>
-                        <fieldset>
+                        <fieldset >
                             <legend>Adresse</legend>
 
                             <label>Anrede*</label>
@@ -108,7 +108,7 @@
                             <input type="text" ng-model="address2" required>
 
                             <label>Plz* / Ort*</label>
-                            <input type="text" class="input-small" ng-model="zip" required>
+                            <input type="text" class="input-small" ng-model="zip" required ng-minlength="4">
                             <input type="text" class="input-small" ng-model="city" required>
 
                             <label>Land</label>
@@ -156,7 +156,7 @@
                     </form>
                 </div>
                 <div id="step4" class="collapse out">
-                    <form name="summaryForm">
+                    <form name="summaryForm" ng-submit="submitOrder()">
                         <legend>Bestellübersicht</legend>
                         <table class="table">
                             <thead>
@@ -188,6 +188,7 @@
                             Bezahlhung per Überweisung.
                         </p>
                         <p>
+                            <h5>Lieferung an:</h5>
                             {{title}}<br />
                             {{firstname}} {{name}}<br />
                             {{address1}}<br />
@@ -207,7 +208,6 @@
                         <button type="submit" 
                                 class="btn btn-warning" 
                                 ng-disabled="summaryForm.$invalid" 
-                                ng-click="submitOrder()"
                                 data-target="#step5,#step4">Bestellung abschicken</button>
                     </form>
                 </div>

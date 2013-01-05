@@ -12,11 +12,28 @@ namespace MvcApplication1.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<ProductEdit>();
+
+            modelBuilder.Entity<Order>()
+                .HasKey(o => o.Id);
+
+            modelBuilder.Entity<Product>()
+                .HasKey(p => p.Id);
+
+            modelBuilder.Entity<OrderLine>()
+                .HasKey(ol => ol.Id);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderLines)
+                .WithRequired()
+                .HasForeignKey(ol => ol.ProductId);
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

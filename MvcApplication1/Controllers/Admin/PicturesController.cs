@@ -140,6 +140,8 @@ namespace MvcApplication1.Controllers.Admin
                 var ratio = ratioX < ratioY ? ratioX : ratioY;
                 var newHeight = (int)(src.Height * ratio);
                 var newWidth = (int)(src.Width * ratio);
+                var moveX = (width - newWidth) / 2;
+                var moveY = (height - newHeight) / 2;
 
                 using (var dst = new Bitmap(newWidth, newHeight))
                 {
@@ -147,7 +149,7 @@ namespace MvcApplication1.Controllers.Admin
                     {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        g.DrawImage(src, 0, 0, dst.Width, dst.Height);
+                        g.DrawImage(src, moveX, moveY, dst.Width, dst.Height);
                     }
 
                     dst.Save(outStream, ImageFormat.Png);

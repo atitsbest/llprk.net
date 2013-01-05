@@ -34,7 +34,9 @@ angular.module('ShopApp.Services', [])
          * Liefert alle Warenkorb-Items.
          */
         function get() {
-            return JSON.parse(localStorage.getItem(STORAGE_ID) || '{}');
+            var result = JSON.parse(localStorage.getItem(STORAGE_ID) || '{}');
+            if (!_.isObject(result)) { result = {}; }
+            return result;
         }
 
         return {
@@ -43,7 +45,7 @@ angular.module('ShopApp.Services', [])
             },
 
             add: function (product) {
-                if (items[product.Id] != null) {
+                if (items[product.Id]) {
                     items[product.Id].Qty += 1;
                 }
                 else {
@@ -65,6 +67,14 @@ angular.module('ShopApp.Services', [])
                     }
                     put();
                 }
+            },
+
+            /**
+             * Warenkorb leeren.
+             */
+            clear: function () {
+                items = {};
+                put();
             }
 
         };

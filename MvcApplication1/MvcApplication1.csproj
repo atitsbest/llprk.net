@@ -150,6 +150,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\CategoriesController.cs" />
+    <Compile Include="Controllers\Admin\OrdersController.cs" />
     <Compile Include="Controllers\Admin\PicturesController.cs" />
     <Compile Include="Controllers\Admin\ProductsController.cs" />
     <Compile Include="Controllers\api\CategoriesController.cs" />
@@ -188,19 +189,30 @@
     <Compile Include="Migrations\201211212156599_UnbekannteAenderunge.Designer.cs">
       <DependentUpon>201211212156599_UnbekannteAenderunge.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201301051235391_AddOrder.cs" />
+    <Compile Include="Migrations\201301051235391_AddOrder.Designer.cs">
+      <DependentUpon>201301051235391_AddOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="ViewModels\AccountModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\ShopDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\OrderNew.cs" />
     <Compile Include="ViewModels\ShopDetail.cs" />
     <Compile Include="ViewModels\ProductCreate.cs" />
     <Compile Include="ViewModels\ProductEdit.cs" />
     <Compile Include="ViewModels\ShopIndex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MvcApplication1.Models.ShopDb.mdf" />
+    <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
+      <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\shop2.css" />
@@ -523,9 +535,10 @@
     <Content Include="Views\Shop2\Cart.cshtml" />
     <Content Include="Views\Shared\_LayoutShop.cshtml" />
     <Content Include="Views\Shop\Details.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
@@ -552,6 +565,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211212156599_UnbekannteAenderunge.resx">
       <DependentUpon>201211212156599_UnbekannteAenderunge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201301051235391_AddOrder.resx">
+      <DependentUpon>201301051235391_AddOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
