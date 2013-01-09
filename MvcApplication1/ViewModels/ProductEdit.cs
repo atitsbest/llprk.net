@@ -18,6 +18,9 @@ namespace MvcApplication1.ViewModels
         public string Description { get; set; }
         [Required]    
         public decimal Price { get; set; }
+
+        [Required]
+        public int Available { get; set; }
         
         public int CategoryId { get; set; }
 
@@ -27,5 +30,14 @@ namespace MvcApplication1.ViewModels
         public ICollection<Picture> Pictures { get; set; }
 
         public IEnumerable<Picture> AllPictures { get; set; }
+
+
+        /// <summary>
+        /// CTR
+        /// </summary>
+        public ProductEdit()
+        {
+            Available = 1;
+        }
     }
 }

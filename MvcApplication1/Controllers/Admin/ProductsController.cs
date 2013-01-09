@@ -107,6 +107,7 @@ namespace MvcApplication1.Controllers.Admin
                 p.IsPublished = product.IsPublished;
                 p.Name = product.Name;
                 p.Price = product.Price;
+                p.Available = product.Available;
 
                 _UpdateProductPictures(_stringToGuids(pictureIds), p);
 

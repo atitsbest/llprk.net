@@ -67,12 +67,12 @@ function CartCtrl($scope, $http, CartItems) {
                     $('#cart').hide();
                     CartItems.clear();
                     alert('Deine Bestellung ist eingegangen und wird von uns bearbeitet.');
+                    // Auf eine neue Seite verweisen.
                 })
                 .error(function (d, s, h, c) {
-                    console.log(d);
-                    console.log(s);
-                    console.log(h);
-                    console.log(c);
+                    $('#step1').collapse('show');
+                    $('#step5').hide('hide');
+                    alert(d);
                 });
 
         }

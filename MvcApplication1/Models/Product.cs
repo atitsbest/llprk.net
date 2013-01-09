@@ -21,6 +21,8 @@ namespace MvcApplication1.Models
 
         [Display(Name="published?")]
         public bool IsPublished { get; set; }
+
+        public int Available { get; set; }
         
         public ICollection<Picture> Pictures { get; set; }
 
@@ -29,6 +31,7 @@ namespace MvcApplication1.Models
         public Product()
         {
             Pictures = new HashSet<Picture>();
+            Available = 1;
         }
     }
 }
