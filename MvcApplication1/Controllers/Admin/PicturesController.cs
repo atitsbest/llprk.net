@@ -140,10 +140,10 @@ namespace MvcApplication1.Controllers.Admin
                 var ratio = ratioX < ratioY ? ratioX : ratioY;
                 var newHeight = (int)(src.Height * ratio);
                 var newWidth = (int)(src.Width * ratio);
-                var moveX = (width - newWidth) / 2;
-                var moveY = (height - newHeight) / 2;
+                var moveX = 0; // (width - newWidth) / 2;
+                var moveY = 0; // (height - newHeight) / 2;
 
-                using (var dst = new Bitmap(newWidth, newHeight))
+                using (var dst = new Bitmap(width, height))
                 {
                     using (var g = Graphics.FromImage(dst))
                     {

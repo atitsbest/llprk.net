@@ -24,6 +24,8 @@ namespace MvcApplication1.Models
         
         public ICollection<Picture> Pictures { get; set; }
 
+        public ICollection<OrderLine> OrderLines { get; set; }
+
         public Product()
         {
             Pictures = new HashSet<Picture>();

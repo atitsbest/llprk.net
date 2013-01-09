@@ -28,12 +28,6 @@ namespace MvcApplication1.Models
             modelBuilder.Entity<OrderLine>()
                 .HasKey(ol => ol.Id);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(o => o.OrderLines)
-                .WithRequired()
-                .HasForeignKey(ol => ol.ProductId);
-
-
             base.OnModelCreating(modelBuilder);
         }
     }
