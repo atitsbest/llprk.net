@@ -26,15 +26,15 @@ namespace Llprk.Web.UI.Models
         public int Available { get; set; }
 
         public Guid? Picture1Id { get; set; }
-        public Picture Picture1 { get; set; }
+        public virtual Picture Picture1 { get; set; }
         public Guid? Picture2Id { get; set; }
-        public Picture Picture2 { get; set; }
+        public virtual Picture Picture2 { get; set; }
         public Guid? Picture3Id { get; set; }
-        public Picture Picture3 { get; set; }
+        public virtual Picture Picture3 { get; set; }
         public Guid? Picture4Id { get; set; }
-        public Picture Picture4 { get; set; }
+        public virtual Picture Picture4 { get; set; }
         public Guid? Picture5Id { get; set; }
-        public Picture Picture5 { get; set; }
+        public virtual Picture Picture5 { get; set; }
 
 
         public ICollection<Tag> Tags { get; set; }

@@ -7,8 +7,8 @@ function PicturesCtrl($scope, $http) {
     // Vom Server generierte Daten holen.
     // TODO: Könnte man über angular.value() wohl besser machen.
     $scope.pictures = allPictures;
-    $scope.assignedPictures = _(allPictures).filter(function (p) { return _(assignedPictureIds).contains(p.Id); });
-    $scope.selectedPictures = _(allPictures).filter(function (p) { return _(assignedPictureIds).contains(p.Id); });
+    $scope.assignedPictures = _(assignedPictureIds).map(function (id) { return _(allPictures).find(function (p) { return p.Id == id; }); });
+    $scope.selectedPictures = _(assignedPictureIds).map(function (id) { return _(allPictures).find(function (p) { return p.Id == id; }); });
 
     $scope.assignedIdsAsString = function () {
         return (_($scope.assignedPictures).pluck("Id")).join(',');
