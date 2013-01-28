@@ -36,6 +36,25 @@ function PicturesCtrl($scope, $http) {
         $scope.assignedPictures = $scope.selectedPictures;
         $scope.closeDlg();
     };
+
+    $scope.dragStart = function(e, ui) {
+        ui.item.data('start', ui.item.index());
+    }
+
+    $scope.dragEnd = function(e, ui) {
+        var start = ui.item.data('start'),
+        end = ui.item.index(),
+        t = $scope.assignedPictures;
+
+        t.splice(end, 0, t.splice(start, 1)[0]);
+
+        $scope.$apply();
+    }
+
+    $('ul.thumbnails').sortable({
+        start: $scope.dragStart,
+        update: $scope.dragEnd
+    });
 }
 
 PicturesCtrl.$inject = ["$scope", "$http"];

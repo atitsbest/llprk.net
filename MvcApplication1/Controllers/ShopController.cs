@@ -1,27 +1,26 @@
-﻿using MvcApplication1.Models;
-using MvcApplication1.ViewModels;
+﻿using Llprk.Web.UI.Models;
+using Llprk.Web.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
-using MvcApplication1.Application;
-using MvcApplication1.Application.Exceptions;
+using Llprk.Web.UI.Application;
+using Llprk.Web.UI.Application.Exceptions;
 
-namespace MvcApplication1.Controllers
+namespace Llprk.Web.UI.Controllers
 {
     public class ShopController : Controller
     {
         public ActionResult Index()
         {
             var viewModel = new ShopIndex();
-            using (var db = new ShopDb()) {
+            using (var db = new Entities()) {
                 var categories = db.Categories.ToList();
                 viewModel.Categories = categories.ToDictionary(
                     c => c.Name, 
                     c => db.Products
-                           .Include(i => i.Pictures)
                            .Where(p => p.IsPublished 
                                     && p.CategoryId == c.Id
                                     && p.Available > 0) // Nur verfügbare Produkte anzeigen.
@@ -33,8 +32,8 @@ namespace MvcApplication1.Controllers
         public ActionResult Details(int id)
         {
             var viewModel = new ShopDetail();
-            using(var db = new ShopDb()) {
-                viewModel.Product = db.Products.Include(i => i.Pictures).Where(p => p.Id == id).FirstOrDefault();
+            using(var db = new Entities()) {
+                viewModel.Product = db.Products.Where(p => p.Id == id).FirstOrDefault();
             }
             return View(viewModel);
         }
@@ -42,7 +41,7 @@ namespace MvcApplication1.Controllers
         public ActionResult New(OrderNew viewModel)
         {
             if (ModelState.IsValid) {
-                using (var db = new ShopDb()) {
+                using (var db = new Entities()) {
                     var order = new Order() {
                         Address1 = viewModel.Address1,
                         Address2 = viewModel.Address2,

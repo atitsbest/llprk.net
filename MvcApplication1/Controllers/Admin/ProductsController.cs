@@ -5,16 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MvcApplication1.Models;
-using MvcApplication1.ViewModels;
+using Llprk.Web.UI.Models;
+using Llprk.Web.UI.ViewModels;
 using AutoMapper;
 
-namespace MvcApplication1.Controllers.Admin
+namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
     public class ProductsController : Controller
     {
-        private ShopDb db = new ShopDb();
+        private Entities db = new Entities();
 
         //
         // GET: /Products/
@@ -22,8 +22,7 @@ namespace MvcApplication1.Controllers.Admin
         public ActionResult Index()
         {
             return View(db.Products
-                .Include(i => i.Category)
-                .Include(i => i.Pictures));
+                .Include(i => i.Category));
         }
 
         //
@@ -32,7 +31,6 @@ namespace MvcApplication1.Controllers.Admin
         public ActionResult Details(int id = 0)
         {
             Product product = db.Products
-                .Include(i => i.Pictures)
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
             if (product == null) {
@@ -60,7 +58,8 @@ namespace MvcApplication1.Controllers.Admin
         {
             if (ModelState.IsValid) {
                 // Produkt mit den Bildern anreichern.
-                _AddPicturesToProduct(product, pictureIds);
+                var guids = _stringToGuids(pictureIds).ToArray();
+                _SetProductPictures(product, guids);
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,7 +74,6 @@ namespace MvcApplication1.Controllers.Admin
         public ActionResult Edit(int id = 0)
         {
             Product product = db.Products
-                .Include(i => i.Pictures)
                 .Where(x => x.Id == id)
                 .Single();
             if (product == null) {
@@ -98,7 +96,6 @@ namespace MvcApplication1.Controllers.Admin
         {
             if (ModelState.IsValid) {
                 var p = db.Products
-                    .Include(i => i.Pictures)
                     .Where(x => x.Id == product.Id)
                     .Single();
 
@@ -109,7 +106,8 @@ namespace MvcApplication1.Controllers.Admin
                 p.Price = product.Price;
                 p.Available = product.Available;
 
-                _UpdateProductPictures(_stringToGuids(pictureIds), p);
+                var guids = _stringToGuids(pictureIds);
+                _SetProductPictures(p, guids);
 
                 db.Entry(p).State = EntityState.Modified;
                 db.SaveChanges();
@@ -166,16 +164,25 @@ namespace MvcApplication1.Controllers.Admin
         /// </summary>
         /// <param name="product"></param>
         /// <param name="pictureIds">Komma-getrennte Guids.</param>
-        private void _AddPicturesToProduct(Product product, string pictureIds)
+        private void _SetProductPictures(Product product, IEnumerable<Guid> guids)
         {
-            var guids = _stringToGuids(pictureIds);
+            var gs = guids.ToArray();
+            var c = guids.Count();
 
-            var ps = from p in db.Pictures
-                     where guids.Contains(p.Id)
-                     select p;
+            product.Picture1 = c > 0 ? _GetPictureById(gs[0]) : null;
+            product.Picture2 = c > 1 ? _GetPictureById(gs[1]) : null;
+            product.Picture3 = c > 2 ? _GetPictureById(gs[2]) : null;
+            product.Picture4 = c > 3 ? _GetPictureById(gs[3]) : null;
+            product.Picture5 = c > 4 ? _GetPictureById(gs[4]) : null;
+        }
 
-            product.Pictures = new HashSet<Picture>();
-            foreach (var p in ps) { product.Pictures.Add(p); }
+        /// <summary>
+        /// Liefert das Bild per Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private Picture _GetPictureById(Guid id) {
+            return db.Pictures.FirstOrDefault(p => p.Id == id);
         }
 
         /// <summary>
@@ -191,32 +198,5 @@ namespace MvcApplication1.Controllers.Admin
             return guids;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pictureIds"></param>
-        /// <param name="product"></param>
-        private void _UpdateProductPictures(IEnumerable<Guid> pictureIds, Product product)
-        {
-            if (pictureIds == null) {
-                product.Pictures = new List<Picture>();
-                return;
-            }
-
-            var selectedPictures = new HashSet<Guid>(pictureIds);
-            var oldPictures = new HashSet<Guid>(product.Pictures.Select(c => c.Id));
-            foreach (var picture in db.Pictures) {
-                if (selectedPictures.Contains(picture.Id)) {
-                    if (!oldPictures.Contains(picture.Id)) {
-                        product.Pictures.Add(picture);
-                    }
-                }
-                else {
-                    if (oldPictures.Contains(picture.Id)) {
-                        product.Pictures.Remove(picture);
-                    }
-                }
-            }
-        }
     }
 }

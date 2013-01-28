@@ -5,14 +5,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MvcApplication1.Models;
+using Llprk.Web.UI.Models;
 
-namespace MvcApplication1.Controllers.Admin
+namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
     public class CategoriesController : Controller
     {
-        private ShopDb db = new ShopDb();
+        private Entities db = new Entities();
 
         //
         // GET: /Categories/

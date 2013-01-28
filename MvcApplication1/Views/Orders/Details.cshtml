@@ -1,64 +1,59 @@
-﻿@model MvcApplication1.Models.Product
+﻿@model Llprk.Web.UI.Models.Order
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <fieldset>
-    <legend>Product</legend>
+    <legend>Order @Html.DisplayFor(m => m.Id)</legend>
+    @Html.HiddenFor(m => m.Id)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+        @Html.DisplayFor(model => model.Firstname)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Price)
+         @Html.DisplayFor(model => model.Name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Price)
+        @Html.DisplayFor(model => model.Address1)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.CategoryId)
+         @Html.DisplayFor(model => model.Address2)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.CategoryId)
+        @Html.DisplayFor(model => model.Zip)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.IsPublished)
+         @Html.DisplayFor(model => model.City)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.IsPublished)
+        @Html.DisplayFor(model => model.Email)
     </div>
+
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Pictures)
-    </div>
-    <div class="editor-field">
-        <ul class="thumbnails">
-            @foreach(var picture in Model.Pictures) {
-            <li class="span3">
-                <div class="thumbnail">
-                    <img ng-src="@picture.ThumbnailUrl" alt="">
-                </div>
-            </li>
+        <ul>
+            @foreach (var ol in Model.OrderLines) {
+                <li>
+                    @ol.Qty x @Html.ActionLink(@ol.Product.Name, "details", "products", new { id = @ol.ProductId }, null)
+                </li>
             }
         </ul>
     </div>
+
+    <div class="display-field">
+        Paid? @Html.EditorFor(model => model.Paid)
+    </div>
+    <div class="display-field">
+        Shipped? @Html.EditorFor(model => model.Shipped)
+    </div>
+
+    <div class="display-label">
+        @Html.TextAreaFor(m => m.Comment)
+    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-small" })
 </p>

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MvcApplication1.Models
+namespace Llprk.Web.UI.Models
 {
     public class Order
     {
@@ -28,7 +28,24 @@ namespace MvcApplication1.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public bool Paid { get; set; }
+        public bool Shipped { get; set; }
+
+        [MaxLength(1024)]
+        public string Comment { get; set; }
+
         public virtual ICollection<OrderLine> OrderLines { get; set; }
+
+        /// <summary>
+        /// Preis OHNE Versandkosten.
+        /// </summary>
+        public decimal TotalPrice {
+            get {
+                return OrderLines
+                    .Select(ol => ol.Product.Price * ol.Qty)
+                    .Sum();
+            }
+        }
 
         /// <summary>
         /// CTR

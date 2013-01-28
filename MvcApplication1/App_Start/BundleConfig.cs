@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace MvcApplication1
+namespace Llprk.Web.UI
 {
     public class BundleConfig
     {
@@ -20,6 +20,7 @@ namespace MvcApplication1
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/i18n/angular-locale_de-at.js",

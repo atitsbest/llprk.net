@@ -70,8 +70,8 @@ function CartCtrl($scope, $http, CartItems) {
                     // Auf eine neue Seite verweisen.
                 })
                 .error(function (d, s, h, c) {
-                    $('#step1').collapse('show');
                     $('#step5').hide('hide');
+                    $('#step1').collapse('show');
                     alert(d);
                 });
 

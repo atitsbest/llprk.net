@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MvcApplication1.Models;
-using MvcApplication1.ViewModels;
+using Llprk.Web.UI.Models;
+using Llprk.Web.UI.ViewModels;
 
-namespace MvcApplication1
+namespace Llprk.Web.UI
 {
     public class MappingConfig
     {

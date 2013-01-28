@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using MvcApplication1.Models;
+using Llprk.Web.UI.Models;
 
-namespace MvcApplication1.Controllers.api
+namespace Llprk.Web.UI.Controllers.api
 {
     public class ProductsController : ApiController
     {
-        private ShopDb db = new ShopDb();
+        private Entities db = new Entities();
 
         // GET api/Products
         public IEnumerable<Product> GetProducts()

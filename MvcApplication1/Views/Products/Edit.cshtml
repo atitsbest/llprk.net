@@ -1,4 +1,4 @@
-﻿@model MvcApplication1.ViewModels.ProductEdit
+﻿@model Llprk.Web.UI.ViewModels.ProductEdit
 
 @{
     ViewBag.Title = "Edit";
@@ -55,6 +55,14 @@
             </div>
 
             <div class="editor-label">
+               <label class="checkbox">
+                    @Html.EditorFor(model => model.IsPublished)
+                    @Html.DisplayNameFor(model => model.IsPublished)
+                    @Html.ValidationMessageFor(model => model.IsPublished)
+                </label>         
+            </div>
+
+            <div class="editor-label">
                 @Html.LabelFor(model => model.Pictures)
             </div>
             <div class="editor-field">
@@ -69,23 +77,13 @@
                 <input type="hidden" name="pictureIds" value="{{assignedIdsAsString()}}" />
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.IsPublished)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.IsPublished)
-                @Html.ValidationMessageFor(model => model.IsPublished)
-            </div>
 
-            <p>
-                <input type="submit" value="Save" />
-            </p>
+            <div class="form-actions">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index")
+            </div>
         </fieldset>
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 
     <div id="myModal" class="modal hide fade large">
         <div class="modal-header">
@@ -109,11 +107,13 @@
             <a href="#" class="btn btn-primary" ng-click="assignDlg()">Choose</a>
         </div>
     </div>
-<</div>
+</div>
 
 @section Scripts {
     <script type="text/javascript">
         var allPictures = @(Html.Raw(Json.Encode(Model.AllPictures)));
         var assignedPictureIds = @Html.Raw(Json.Encode(Model.Pictures.Select(p => p.Id)))
+
+        $('ul.thumbnails').sortable();
     </script>
 }

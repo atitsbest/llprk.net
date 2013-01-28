@@ -1,8 +1,8 @@
-﻿using MvcApplication1.ViewModels;
+﻿using Llprk.Web.UI.ViewModels;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace MvcApplication1.Controllers
+namespace Llprk.Web.UI.Controllers
 {
     [Authorize]
     public class AccountController : Controller

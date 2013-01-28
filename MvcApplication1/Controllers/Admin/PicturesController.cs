@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MvcApplication1.Models;
+using Llprk.Web.UI.Models;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -14,12 +14,12 @@ using Microsoft.WindowsAzure;
 using System.Configuration;
 using System.IO;
 
-namespace MvcApplication1.Controllers.Admin
+namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
     public class PicturesController : Controller
     {
-        private ShopDb db = new ShopDb();
+        private Entities db = new Entities();
 
         //
         // GET: /Pictures/

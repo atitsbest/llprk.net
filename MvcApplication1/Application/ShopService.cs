@@ -1,12 +1,12 @@
-﻿using MvcApplication1.Application.Exceptions;
-using MvcApplication1.Models;
+﻿using Llprk.Web.UI.Application.Exceptions;
+using Llprk.Web.UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace MvcApplication1.Application
+namespace Llprk.Web.UI.Application
 {
     public class ShopService
     {
@@ -15,7 +15,7 @@ namespace MvcApplication1.Application
         /// </summary>
         /// <param name="order"></param>
         /// <param name="productIdsAndQtys"></param>
-        public void PlaceOrder(ShopDb db, Order order, IDictionary<int, int> productIdsAndQtys)
+        public void PlaceOrder(Entities db, Order order, IDictionary<int, int> productIdsAndQtys)
         {
             db.Orders.Add(order);
             db.SaveChanges();

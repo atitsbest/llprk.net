@@ -5,16 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MvcApplication1.Models;
-using MvcApplication1.ViewModels;
+using Llprk.Web.UI.Models;
+using Llprk.Web.UI.ViewModels;
 using AutoMapper;
 
-namespace MvcApplication1.Controllers.Admin
+namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
     public class OrdersController : Controller
     {
-        private ShopDb db = new ShopDb();
+        private Entities db = new Entities();
 
         //
         // GET: /Orders/

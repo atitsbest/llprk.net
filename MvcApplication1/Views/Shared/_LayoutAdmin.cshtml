@@ -39,12 +39,6 @@
     </div>
     <div id="sidebar">
         <ul class="unstyled">
-            <li class="@(controllerName=="home"?"active":"")">
-                <a href="@Url.Action("index", "home")">
-                    <img src="@Url.Content("~/Images/sidebar/house.png")" />
-                    <span>Home</span>
-                </a>
-            </li>
             <li class="@(controllerName=="categories"?"active":"")">
                 <a href="@Url.Action("index", "categories")">
                     <img src="@Url.Content("~/Images/sidebar/tags.png")" />

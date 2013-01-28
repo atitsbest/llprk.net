@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 
-namespace MvcApplication1.Models
+namespace Llprk.Web.UI.Models
 {
     public class Picture
     {
