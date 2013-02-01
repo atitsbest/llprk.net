@@ -110,12 +110,22 @@ namespace Llprk.Web.UI.Controllers.Admin
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Bild auf Blob-Storage hochladen.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="name"></param>
+        /// <param name="container"></param>
         private static void _PutPicture(Stream data, string name, Microsoft.WindowsAzure.Storage.Blob.CloudBlobContainer container)
         {
             var blob = container.GetBlockBlobReference(name + ".png");
@@ -137,11 +147,11 @@ namespace Llprk.Web.UI.Controllers.Admin
                 // Proportionen beibehalten.
                 var ratioX = width / (double)src.Width;
                 var ratioY = height / (double)src.Height;
-                var ratio = ratioX < ratioY ? ratioX : ratioY;
-                var newHeight = (int)(src.Height * ratio);
+                var ratio = Math.Min(ratioX, ratioY);
                 var newWidth = (int)(src.Width * ratio);
-                var moveX = 0; // (width - newWidth) / 2;
-                var moveY = 0; // (height - newHeight) / 2;
+                var newHeight = (int)(src.Height * ratio);
+                var moveX = (width - newWidth) / 2;
+                var moveY = (height - newHeight) / 2;
 
                 using (var dst = new Bitmap(width, height))
                 {
@@ -149,7 +159,7 @@ namespace Llprk.Web.UI.Controllers.Admin
                     {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        g.DrawImage(src, moveX, moveY, dst.Width, dst.Height);
+                        g.DrawImage(src, moveX, moveY, newWidth, newHeight);
                     }
 
                     dst.Save(outStream, ImageFormat.Png);
@@ -157,10 +167,15 @@ namespace Llprk.Web.UI.Controllers.Admin
             }
         }
 
+        /// <summary>
+        /// Von einem hochgeladenen File, Bild und Thumbnail speichern.
+        /// </summary>
+        /// <param name="file"></param>
         private void _RequestToPicture(HttpPostedFileBase file)
         {
             var thumbnailStream = new MemoryStream();
             var resizedStream = new MemoryStream();
+
             _ResizePictures(file.InputStream, resizedStream, 400, 400);
             _ResizePictures(file.InputStream, thumbnailStream, 100, 100);
 
