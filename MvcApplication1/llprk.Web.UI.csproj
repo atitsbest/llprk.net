@@ -182,6 +182,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ProductDelete.cs" />
     <Compile Include="ViewModels\OrderNew.cs" />
     <Compile Include="ViewModels\PictureDelete.cs" />
     <Compile Include="ViewModels\ShopDetail.cs" />

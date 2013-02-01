@@ -128,7 +128,13 @@ namespace Llprk.Web.UI.Controllers.Admin
             if (product == null) {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(new ProductDelete() { 
+                Product = product,
+                Orders = from o in db.Orders
+                         from ol in o.OrderLines
+                         where ol.ProductId == id
+                         select o
+            });
         }
 
         //
@@ -171,7 +177,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             var gs = guids.ToArray();
             var c = guids.Count();
 
-            if (c > 0) { product.Picture1 = _GetPictureById(gs[0]); }
+            if (c > 0) { product.Picture1 = _GetPictureById(gs[0]); product.Picture1Id = gs[0]; }
             else { product.Picture1 = null;  product.Picture1Id = null; }
             if (c > 1) { product.Picture2 = _GetPictureById(gs[1]); }
             else { product.Picture2 = null;  product.Picture2Id = null; }
