@@ -23,13 +23,12 @@ namespace Llprk.Web.UI.ViewModels
         {
             get
             {
-                return Categories.Values
-                            .SelectMany(x => x)
-                            .Select(x => new {
+                var result = Categories.Values.SelectMany(x => x);
+                return result.Select(x => new {
                                 Name = x.Name,
                                 Price = x.Price,
                                 Id = x.Id,
-                                ThumbailUrl = x.Pictures.First().ThumbnailUrl
+                                ThumbailUrl = x.Pictures.FirstOrDefault() == null ? "": x.Pictures.First().ThumbnailUrl
                             });
             }
         }

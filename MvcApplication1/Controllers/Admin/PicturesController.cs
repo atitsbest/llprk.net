@@ -13,6 +13,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure;
 using System.Configuration;
 using System.IO;
+using Llprk.Web.UI.ViewModels;
 
 namespace Llprk.Web.UI.Controllers.Admin
 {
@@ -26,7 +27,7 @@ namespace Llprk.Web.UI.Controllers.Admin
 
         public ActionResult Index()
         {
-            return View(db.Pictures.ToList());
+            return View(db.Pictures.OrderBy(p => p.Name).ToList());
         }
 
         //
@@ -82,7 +83,17 @@ namespace Llprk.Web.UI.Controllers.Admin
             {
                 return HttpNotFound();
             }
-            return View(picture);
+
+            return View(new PictureDelete() {
+                Picture = picture,
+                Products = from p in db.Products
+                           where p.Picture1Id == picture.Id || 
+                                 p.Picture2Id == picture.Id ||
+                                 p.Picture3Id == picture.Id ||
+                                 p.Picture4Id == picture.Id ||
+                                 p.Picture5Id == picture.Id
+                           select p
+            });
         }
 
         //
@@ -100,13 +111,16 @@ namespace Llprk.Web.UI.Controllers.Admin
             var blobClient = storageAccount.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference("pictures");
 
+            // Erst die Bilder aus der DB löschen...
+            db.Pictures.Remove(picture);
+            db.SaveChanges();
+
+            // ...und dann vom Blob-Storage.
             var blob = container.GetBlockBlobReference(picture.Id.ToString()+".png");
             blob.DeleteIfExists();
             blob = container.GetBlockBlobReference(picture.Id.ToString() + "_t.png");
             blob.DeleteIfExists();
             
-            db.Pictures.Remove(picture);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

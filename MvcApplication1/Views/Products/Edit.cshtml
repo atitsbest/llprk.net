@@ -4,109 +4,21 @@
     ViewBag.Title = "Edit";
 }
 
-<div ng-controller="PicturesCtrl">
+<div ng-controller="PicturesCtrl" class="span12">
 
     @using (Html.BeginForm()) {
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>Product</legend>
+            <legend>Edit</legend>
 
             @Html.HiddenFor(model => model.Id)
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Description)
-            </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(model => model.Description, 10, 50, null)
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Price)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Price)
-                @Html.ValidationMessageFor(model => model.Price)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Available)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Available)
-                @Html.ValidationMessageFor(model => model.Available)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.CategoryId)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownList("CategoryId", String.Empty)
-                @Html.ValidationMessageFor(model => model.CategoryId)
-            </div>
-
-            <div class="editor-label">
-               <label class="checkbox">
-                    @Html.EditorFor(model => model.IsPublished)
-                    @Html.DisplayNameFor(model => model.IsPublished)
-                    @Html.ValidationMessageFor(model => model.IsPublished)
-                </label>         
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Pictures)
-            </div>
-            <div class="editor-field">
-                <ul class="thumbnails">
-                    <li class="span2" ng-repeat="picture in assignedPictures">
-                        <div>
-                            <img ng-src="{{picture.ThumbnailUrl}}" alt="" class="img-polaroid">
-                        </div>
-                    </li>
-                </ul>
-                <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Choose Pictures</button>
-                <input type="hidden" name="pictureIds" value="{{assignedIdsAsString()}}" />
-            </div>
-
-
-            <div class="form-actions">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                @Html.ActionLink("Back to List", "Index")
-            </div>
+            @Html.Partial("~/Views/Products/_Form.cshtml", Model)
         </fieldset>
     }
 
-    <div id="myModal" class="modal hide fade large">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 style="display:inline-block">Choose pictures</h3>
-            <input type="text" ng-model="search" class="search-query" placeholder="Search" style="float:right;margin-right:10px;">
-        </div>
-        <div class="modal-body">
-            <ul class="thumbnails">
-                <li class="span2 thumbnail" ng-repeat="picture in pictures | filter:search" ng-click="toggleSelect(picture)" ng-class="{selected: isSelected(picture)}">
-                    <div >
-                        <img ng-src="{{picture.ThumbnailUrl}}" alt="">
-                        <p>{{picture.Name}}</p>
-                    </div>
-                </li>
-            </ul>
-            <span>{{selectedIds}}</span>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn" ng-click="closeDlg()">Close</a>
-            <a href="#" class="btn btn-primary" ng-click="assignDlg()">Choose</a>
-        </div>
-    </div>
+    @Html.Partial("~/Views/Products/_PictureDlg.cshtml")
 </div>
 
 @section Scripts {
@@ -115,5 +27,6 @@
         var assignedPictureIds = @Html.Raw(Json.Encode(Model.Pictures.Select(p => p.Id)))
 
         $('ul.thumbnails').sortable();
+        $('form').addClass('form-horizontal');
     </script>
 }

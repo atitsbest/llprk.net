@@ -26,6 +26,7 @@ namespace Llprk.Web.UI
                         "~/Scripts/i18n/angular-locale_de-at.js",
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
+                        "~/Scripts/ckeditor.js",
                         "~/Scripts/app/admin/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(

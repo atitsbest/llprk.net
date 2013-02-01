@@ -4,26 +4,27 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="span12">
+    @using (Html.BeginForm("Create", "Pictures", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm("Create", "Pictures", FormMethod.Post, new { enctype="multipart/form-data" })) {
-    @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Add Picture</legend>
 
-    <fieldset>
-        <legend>Picture</legend>
+            <div class="controls">
+                <input type="file" name="files" multiple />
+            </div>
 
-        <div class="editor-field">
-            <input type="file" name="files" multiple />
-        </div>
+            <div class="form-actions">
+                <input type="submit" value="Create" class="btn btn-small btn-success" />
+                <small class="muted">or</small>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </fieldset>
+    }
 
-        <p>
-            <input type="submit" value="Create" class="btn" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div>
+    </div>
 </div>
 
 @section Scripts {

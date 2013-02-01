@@ -14,13 +14,54 @@ namespace Llprk.Web.UI.Controllers.Admin
     [Authorize]
     public class OrdersController : Controller
     {
+        public enum Filter
+        {
+            All,
+            Paid,
+            Shipped,
+            Ready,
+            Overdue
+        }
+
         private Entities db = new Entities();
 
         //
         // GET: /Orders/
-        public ActionResult Index()
+        public ActionResult Index(Filter? filter)
         {
-            var result = db.Orders.Include(i => i.OrderLines).ToList();
+            IEnumerable<Order> result;
+
+            if (filter == null) {
+                result = db.Orders.Include(i => i.OrderLines).ToList();
+            }
+            else {
+                switch (filter) {
+                    case Filter.Overdue:
+                        result = db.Orders
+                                    .Include(i => i.OrderLines)
+                                    .ToList()
+                                    .Where(o => o.PaidAt == null && (DateTime.Now - o.CreatedAt).Days > 10);
+                        break;
+                    case Filter.Ready:
+                        result = db.Orders
+                                    .Include(i => i.OrderLines)
+                                    .Where(o => o.PaidAt != null && o.ShippedAt == null);
+                        break;
+                    case Filter.Paid:
+                        result = db.Orders
+                                    .Include(i => i.OrderLines)
+                                    .Where(o => o.PaidAt != null);
+                        break;
+                    case Filter.Shipped:
+                        result = db.Orders
+                                    .Include(i => i.OrderLines)
+                                    .Where(o => o.ShippedAt != null);
+                        break;
+                    default:
+                        result = db.Orders.Include(i => i.OrderLines);
+                        break;
+                }
+            }
             return View(result);
         }
 
@@ -38,6 +79,78 @@ namespace Llprk.Web.UI.Controllers.Admin
             return View(order);
         }
 
+        //
+        // GET: /Orders/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            var order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
+        //
+        // POST: /Orders/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var order = db.Orders.Find(id);
+            db.Orders.Remove(order);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Setzt den Status der Rechnung auf bezahlt.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Paid(int id)
+        {
+            var order = db.Orders.Find(id);
+            order.PaidAt = DateTime.Now;
+            db.SaveChanges();
+            return RedirectToAction("details", new { id });
+        }
+
+        /// <summary>
+        /// Setzt den Status der Rechnung auf bezahlt.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Shipped(int id)
+        {
+            var order = db.Orders.Find(id);
+            order.ShippedAt = DateTime.Now;
+            db.SaveChanges();
+            return RedirectToAction("details", new { id });
+        }
+
+        /// <summary>
+        /// Die Notizen zu einer Bestellung speichern.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Comment(int id, string comment) 
+        {
+            var order = db.Orders.Find(id);
+            order.Comment = comment;
+            db.SaveChanges();
+            return RedirectToAction("details", new { id });
+        }
+
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

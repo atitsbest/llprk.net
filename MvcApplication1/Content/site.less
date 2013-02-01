@@ -1,0 +1,102 @@
+﻿html {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fff;
+	padding: 10px 20px;
+}
+
+header {
+    h2 {
+        font-family: 'Arial Black', Arial, sans-serif;
+        text-transform: uppercase;
+        color: #999;
+        font-weight: bold;
+        letter-spacing: -2px;
+        display: inline-block;
+        margin-right: .5em;
+    }
+
+    > a {
+        font-family: Pacifico, Georgia, serif;
+        font-size: 16pt;
+        margin: 0 .5em;
+        color: #999;
+
+        &.active {
+            color: #333;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &.orders:hover + ul.orders {
+			display: block;
+		}
+    }
+
+	ul.orders {
+		position: absolute;
+		left: 520px;
+		margin-top:-10px;
+
+		&:hover { display: block;
+		} 
+	}
+}
+
+
+#main {
+    margin-top: 10px;
+}
+
+.container {
+	position: relative;
+}
+
+footer {
+    clear: both;
+    font-size: .8em;
+    height: 100px;
+    text-align: center;
+}
+
+.modal-body .thumbnails .thumbnail {
+}
+
+    .modal-body .thumbnails .thumbnail.selected {
+        background: #f1f1f1;
+    }
+
+/* login
+----------------------------------------------------------*/
+
+
+.nopadding {
+    padding: 0 !important;
+}
+
+    .nopadding .table {
+        margin-bottom: 0;
+    }
+
+    .nopadding .table-bordered {
+        border: 0;
+    }
+
+/* Buttons
+   --------------------------------------------- */
+.buttons {
+	position: absolute;
+	right: 0;
+	top: -45px;
+}
+
+/* Media Queries
+   --------------------------------------------- */
+@media (max-width: 979px) {
+}

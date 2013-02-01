@@ -9,40 +9,49 @@
 }
 
 <div class="span12">
-    <div class="widget-box">
-        <div class="widget-title">
-            <h5>Orders</h5>
-        </div>
-        <div class="widget-content nopadding">
-            @grid.GetHtml(
-                tableStyle : "table table-striped table-bordered",
-                columns: grid.Columns(
-                    grid.Column("Id"),
-                    grid.Column("Salutation"),
-                    grid.Column("Firstname"),
-                    grid.Column("Name"),
-                    grid.Column("Address1"),
-                    grid.Column("Address2"),
-                    grid.Column("Zip"),
-                    grid.Column("City"),
-                    grid.Column("CountryCode"),
-                    grid.Column("Email"),
-                    grid.Column("Paid", format: @<text> @if(item.Paid) { <i class="icon-check"></i> } </text>),
-                    grid.Column("Shipped", format: @<text> @if(item.Shipped) { <i class="icon-check"></i> } </text>),
-                    grid.Column("Value", format: @<text>@item.TotalPrice.ToString("c")</text>, style: "align-right"),
-                    grid.Column("Products", format:
-                        @<text>
-                            <ul>
-                                @foreach(var ol in item.OrderLines) {
-                                    <li>
-                                        @ol.Qty x @Html.ActionLink((string)ol.Product.Name, "details", "products", new { id = ol.ProductId }, null)
-                                    </li>
-                                }
-                            </ul>
-                        </text>
-                    ),
-                    grid.Column(format: @<text><a href='@Url.Action("Details", new { id=item.Id })' class="btn btn-small"><i class="icon-edit"></i></a></text>)
-                ))
-        </div>
-    </div>
+        @grid.GetHtml(
+        tableStyle : "table table-striped table-bordered",
+        columns: grid.Columns(
+            grid.Column("Id", format:
+                @<text>
+                    <b>@item.Id</b>
+                    <br />
+                    @if(item.IsPaid) { <span class="badge badge-success">PAID</span> } 
+                    else { <span class="badge">NOT PAID</span> }
+                    <br />
+                    @if(item.IsShipped) { <span class="badge badge-success">DELIVERD</span> } 
+                    else { <span class="badge">NOT DELIVERD</span> }
+                </text>),
+            grid.Column("Salutation", format:
+                @<text>
+                <b>
+                    @item.Salutation<br />
+                    @item.Firstname
+                    @item.Name
+                </b>
+
+                @item.Address1<br />
+                @item.Address2<br />
+                @item.Zip&nbsp;-&nbsp;@item.City<br />
+                @item.CountryCode<br />
+                @item.Email
+                </text>),
+            grid.Column("Value", format: @<text>@item.TotalPrice.ToString("c")</text>, style: "align-right"),
+            grid.Column("Products", format:
+                @<text>
+                    <ul class="unstyled">
+                        @foreach(var ol in item.OrderLines) {
+                            <li>
+                                @ol.Qty x @Html.ActionLink((string)ol.Product.Name, "details", "products", new { id = ol.ProductId }, null)
+                            </li>
+                        }
+                    </ul>
+                </text>
+            ),
+            grid.Column(format: 
+                @<text>
+                    <a href='@Url.Action("Details", new { id=item.Id })' class="btn btn-small"><i class="icon-edit"></i></a>
+                    <a href='@Url.Action("Delete", new { id=item.Id })' class="btn btn-small btn-danger"><i class="icon-trash"></i></a>
+                </text>)
+        ))
 </div>

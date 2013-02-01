@@ -9,29 +9,22 @@
 }
 
 <div class="span12">
-    <div class="widget-box">
-        <div class="widget-title">
-            <h5>Products</h5>
-            <div class="buttons">
-                @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-small btn-success" })
-            </div>
-        </div>
-        <div class="widget-content nopadding">
-            @grid.GetHtml(
-                tableStyle : "table table-striped table-bordered",
-                columns: grid.Columns(
-                    grid.Column("", format:@<text>@if(item.Picture1 != null) {<img src="@item.Picture1.ThumbnailUrl" />}</text>),
-                    grid.Column("Name", format:@<text><b>@item.Name</b></text>),
-                    grid.Column("Price"),
-                    grid.Column("Available"),
-                    grid.Column("Category", format:@<text>@item.Category.Name</text>),
-                    grid.Column("Published", format: @<text> @if(item.IsPublished) { <i class="icon-ok"></i> } </text>),
-                    grid.Column(format: 
-                        @<text>
-                            <a href='@Url.Action("Edit", new { id=item.Id })' class="btn btn-small"><i class="icon-pencil"></i></a>
-                            <a href='@Url.Action("Delete", new { id=item.Id })' class="btn btn-small btn-danger"><i class="icon-trash"></i></a>
-                        </text>)
-                    ))
-        </div>
+    <div class="buttons">
+        @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-small btn-success" })
     </div>
+    @grid.GetHtml(
+        tableStyle : "table table-striped table-bordered",
+        columns: grid.Columns(
+            grid.Column("", format:@<text>@if(item.Picture1 != null) {<img src="@item.Picture1.ThumbnailUrl" />}</text>),
+            grid.Column("Name", format:@<text><b>@item.Name</b></text>),
+            grid.Column("Price"),
+            grid.Column("Available"),
+            grid.Column("Category", format:@<text>@item.Category.Name</text>),
+            grid.Column("Published", format: @<text> @if(item.IsPublished) { <i class="icon-ok"></i> } </text>),
+            grid.Column(format: 
+                @<text>
+                    <a href='@Url.Action("Edit", new { id=item.Id })' class="btn btn-small"><i class="icon-pencil"></i></a>
+                    <a href='@Url.Action("Delete", new { id=item.Id })' class="btn btn-small btn-danger"><i class="icon-trash"></i></a>
+                </text>)
+            ))
 </div>

@@ -13,58 +13,55 @@ namespace Llprk.Web.UI.Controllers
 {
     public class ShopController : Controller
     {
+        private Entities db = new Entities();
+
         public ActionResult Index()
         {
             var viewModel = new ShopIndex();
-            using (var db = new Entities()) {
-                var categories = db.Categories.ToList();
-                viewModel.Categories = categories.ToDictionary(
-                    c => c.Name, 
-                    c => db.Products
-                           .Where(p => p.IsPublished 
-                                    && p.CategoryId == c.Id
-                                    && p.Available > 0) // Nur verfügbare Produkte anzeigen.
-                           .ToArray());
-            }
+            var categories = db.Categories.ToList();
+            viewModel.Categories = categories.ToDictionary(
+                c => c.Name,
+                c => db.Products
+                       .Where(p => p.IsPublished
+                                && p.CategoryId == c.Id
+                                && p.Available > 0) // Nur verfügbare Produkte anzeigen.
+                       .Take(4)
+                       .ToArray());
             return View(viewModel);
         }
 
         public ActionResult Details(int id)
         {
             var viewModel = new ShopDetail();
-            using(var db = new Entities()) {
-                viewModel.Product = db.Products.Where(p => p.Id == id).FirstOrDefault();
-            }
+            viewModel.Product = db.Products.Where(p => p.Id == id).FirstOrDefault();
             return View(viewModel);
         }
 
         public ActionResult New(OrderNew viewModel)
         {
             if (ModelState.IsValid) {
-                using (var db = new Entities()) {
-                    var order = new Order() {
-                        Address1 = viewModel.Address1,
-                        Address2 = viewModel.Address2,
-                        City = viewModel.City,
-                        CountryCode = "at", // TODO: Land übergeben.
-                        Email = viewModel.Email,
-                        Firstname = viewModel.Firstname,
-                        Name = viewModel.Name,
-                        Salutation = viewModel.Salutation,
-                        Zip = viewModel.Zip,
-                    };
+                var order = new Order() {
+                    Address1 = viewModel.Address1,
+                    Address2 = viewModel.Address2,
+                    City = viewModel.City,
+                    CountryCode = "at", // TODO: Land übergeben.
+                    Email = viewModel.Email,
+                    Firstname = viewModel.Firstname,
+                    Name = viewModel.Name,
+                    Salutation = viewModel.Salutation,
+                    Zip = viewModel.Zip,
+                };
 
-                    var productIdsAndQtys = viewModel.Products.ToDictionary(
-                        k => k.Id,
-                        v => v.Qty);
+                var productIdsAndQtys = viewModel.Products.ToDictionary(
+                    k => k.Id,
+                    v => v.Qty);
 
-                    try {
-                        new ShopService().PlaceOrder(db, order, productIdsAndQtys);
-                    }
-                    catch (AppException e) {
-                        Response.StatusCode = 500;
-                        return Json(e.Message);
-                    }
+                try {
+                    new ShopService().PlaceOrder(db, order, productIdsAndQtys);
+                }
+                catch (AppException e) {
+                    Response.StatusCode = 500;
+                    return Json(e.Message);
                 }
             }
             else {
@@ -73,6 +70,16 @@ namespace Llprk.Web.UI.Controllers
             }
 
             return Json(null);
+        }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
 
     }

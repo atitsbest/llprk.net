@@ -28,8 +28,12 @@ namespace Llprk.Web.UI.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        public bool Paid { get; set; }
-        public bool Shipped { get; set; }
+
+        [Required]
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime? PaidAt { get; set; }
+        public DateTime? ShippedAt { get; set; }
 
         [MaxLength(1024)]
         public string Comment { get; set; }
@@ -46,6 +50,16 @@ namespace Llprk.Web.UI.Models
                     .Sum();
             }
         }
+
+        /// <summary>
+        /// Wurde schon gezahlt?
+        /// </summary>
+        public bool IsPaid { get { return PaidAt != null; } }
+
+        /// <summary>
+        /// Wurde der Auftrag schon verschickt?
+        /// </summary>
+        public bool IsShipped { get { return ShippedAt != null; } }
 
         /// <summary>
         /// CTR

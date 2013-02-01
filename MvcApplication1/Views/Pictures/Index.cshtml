@@ -5,30 +5,19 @@
 }
 
 <div class="span12">
-    <div class="widget-box">
-        <div class="widget-title">
-            <h5>Pictures</h5>
-            <div class="buttons">
-                @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-small" })
-            </div>
-        </div>
-        <div class="widget-content nopadding">
-            <ul class="thumbnails">
-                @foreach (var item in Model)
-                {
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img src="@item.ThumbnailUrl" />
-                            <div class="cation">
-                                <h5>@item.Name</h5>
-                                <p>
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class="btn" })
-                                </p>
-                            </div>           
-                        </div>
-                    </li>
-                }
-            </ul>
-        </div>
+    <div class="buttons">
+        @Html.ActionLink("Add Picture", "Create", null, new { @class="btn btn-small btn-success" })
     </div>
+    <ul class="thumbnails">
+        @foreach (var item in Model)
+        {
+            <li class="span2">
+                <div class="img-polaroid">
+                    <img src="@item.ThumbnailUrl" />
+                    <a href="@Url.Action("delete", new { id = item.Id })"><i class="icon-trash"></i></a>
+                </div>
+                <small class="muted">@item.Name&nbsp;</small>
+            </li>
+        }
+    </ul>
 </div>

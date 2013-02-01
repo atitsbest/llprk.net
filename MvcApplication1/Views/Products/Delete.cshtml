@@ -4,20 +4,19 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="span12">
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>@Html.DisplayFor(model => model.Name)</legend>
-
-    <p>
-        @Html.DisplayFor(model => model.Description)
-    </p>
-
-</fieldset>
-@using (Html.BeginForm()) {
-    <p>
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+    @using (Html.BeginForm()) {
+        <fieldset>
+            <legend>Are you sure you want to delete <span style="color: red;">"@Html.DisplayFor(m => m.Name)"</span>?</legend>
+            <p class="muted">
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </fieldset>
+        <div class="form-actions">
+            <input type="submit" value="Delete" class="btn btn-small btn-danger" />
+            <small class="muted">or</small>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

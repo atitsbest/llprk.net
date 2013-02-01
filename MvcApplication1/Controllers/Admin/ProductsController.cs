@@ -47,7 +47,8 @@ namespace Llprk.Web.UI.Controllers.Admin
             var viewModel = new ProductCreate();
             viewModel.AllPictures = db.Pictures.ToArray();
             _PopulateCategoriesDropDownList();
-            return View(viewModel);
+            ViewBag.Title = "New Product";
+            return View("edit", viewModel);
         }
 
         //
@@ -85,6 +86,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             viewModel.AllPictures = db.Pictures.ToArray();
 
             _PopulateCategoriesDropDownList(product.CategoryId);
+            ViewBag.Title = "Edit";
             return View(viewModel);
         }
 
@@ -169,11 +171,16 @@ namespace Llprk.Web.UI.Controllers.Admin
             var gs = guids.ToArray();
             var c = guids.Count();
 
-            product.Picture1 = c > 0 ? _GetPictureById(gs[0]) : null;
-            product.Picture2 = c > 1 ? _GetPictureById(gs[1]) : null;
-            product.Picture3 = c > 2 ? _GetPictureById(gs[2]) : null;
-            product.Picture4 = c > 3 ? _GetPictureById(gs[3]) : null;
-            product.Picture5 = c > 4 ? _GetPictureById(gs[4]) : null;
+            if (c > 0) { product.Picture1 = _GetPictureById(gs[0]); }
+            else { product.Picture1 = null;  product.Picture1Id = null; }
+            if (c > 1) { product.Picture2 = _GetPictureById(gs[1]); }
+            else { product.Picture2 = null;  product.Picture2Id = null; }
+            if (c > 2) { product.Picture3 = _GetPictureById(gs[2]); }
+            else { product.Picture3 = null;  product.Picture3Id = null; }
+            if (c > 3) { product.Picture4 = _GetPictureById(gs[3]); }
+            else { product.Picture4 = null;  product.Picture4Id = null; }
+            if (c > 4) { product.Picture5 = _GetPictureById(gs[4]); }
+            else { product.Picture5 = null;  product.Picture5Id = null; }
         }
 
         /// <summary>
@@ -192,6 +199,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         /// <returns></returns>
         private static IEnumerable<Guid> _stringToGuids(string pictureIds)
         {
+            if (string.IsNullOrWhiteSpace(pictureIds)) { return new Guid[] { }; }
             var guids = pictureIds
                 .Split(new char[] { ',' })
                 .Select(s => Guid.Parse(s));

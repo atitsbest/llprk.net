@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 
@@ -8,9 +9,6 @@ namespace Llprk.Web.UI.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
-        [ScriptIgnore]
-        public ICollection<Product> Products { get; set; }
 
         public string ThumbnailUrl
         {
@@ -22,11 +20,6 @@ namespace Llprk.Web.UI.Models
         {
             // TODO: Url konfigurierbar machen.
             get { return "http://llprk.blob.core.windows.net/pictures/" + Id.ToString() + ".png"; }
-        }
-
-        public Picture()
-        {
-            Products = new HashSet<Product>();
         }
     }
 }

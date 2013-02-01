@@ -84,9 +84,10 @@
           <Property Name="City" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CountryCode" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Paid" Type="bit" Nullable="false" />
-          <Property Name="Shipped" Type="bit" Nullable="false" />
+          <Property Name="PaidAt" Type="datetime" />
+          <Property Name="ShippedAt" Type="datetime" />
           <Property Name="Comment" Type="nvarchar" MaxLength="1024" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Pictures">
           <Key>
@@ -260,22 +261,21 @@
         <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Llprk.Web.UI.Models.ShopDbModel.Category" />
           <EntitySet Name="OrderLines" EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" />
-          <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" />
-          <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" />
           <EntitySet Name="Products" EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" />
           <EntitySet Name="Tags" EntityType="Llprk.Web.UI.Models.ShopDbModel.Tag" />
           <AssociationSet Name="FK_dbo_Products_dbo_Categories_CategoryId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_OrderLines_dbo_Orders_OrderId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderLine" EntitySet="OrderLines" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_OrderLines_dbo_Products_ProductId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId">
             <End Role="Product" EntitySet="Products" />
             <End Role="OrderLine" EntitySet="OrderLines" />
           </AssociationSet>
+          <AssociationSet Name="Product_Tag" Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+          <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" />
           <AssociationSet Name="FK_dbo_Products_dbo_Pictures_Picture1Id" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture1Id">
             <End Role="Picture" EntitySet="Pictures" />
             <End Role="Product" EntitySet="Products" />
@@ -296,11 +296,12 @@
             <End Role="Picture" EntitySet="Pictures" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="Product_Tag" Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Tag" EntitySet="Tags" />
+          <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" />
+          <AssociationSet Name="FK_dbo_OrderLines_dbo_Orders_OrderId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -316,35 +317,9 @@
           <Property Type="Int32" Name="OrderId" Nullable="false" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
           <Property Type="Int32" Name="Qty" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="OrderLine" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId" FromRole="OrderLine" ToRole="Product" />
+          <NavigationProperty Name="Order" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="OrderLine" ToRole="Order" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Salutation" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Address1" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Address2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Zip" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="City" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Paid" Nullable="false" />
-          <Property Type="Boolean" Name="Shipped" Nullable="false" />
-          <Property Type="String" Name="Comment" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="Order" ToRole="OrderLine" />
-        </EntityType>
-        <EntityType Name="Picture">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Guid" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
-          </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -363,12 +338,12 @@
           <Property Type="Guid" Name="Picture5Id" />
           <NavigationProperty Name="Category" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId" FromRole="Product" ToRole="OrderLine" />
+          <NavigationProperty Name="Tags" Relationship="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" FromRole="Product" ToRole="Tag" />
           <NavigationProperty Name="Picture1" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture2Id" FromRole="Product" ToRole="Picture" />
           <NavigationProperty Name="Picture2" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture3Id" FromRole="Product" ToRole="Picture" />
           <NavigationProperty Name="Picture3" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture4Id" FromRole="Product" ToRole="Picture" />
           <NavigationProperty Name="Picture4" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture5Id" FromRole="Product" ToRole="Picture" />
-          <NavigationProperty Name="Tags" Relationship="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" FromRole="Product" ToRole="Tag" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="Id" />
@@ -390,20 +365,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Role="OrderLine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderLine">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_OrderLines_dbo_Products_ProductId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -418,6 +379,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Product_Tag">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Tag" Role="Tag" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+          </EntityType>
         <Association Name="FK_dbo_Products_dbo_Pictures_Picture1Id">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Picture" Role="Picture" Multiplicity="0..1" />
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="*" />
@@ -478,9 +450,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Product_Tag">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Tag" Role="Tag" Multiplicity="*" />
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Salutation" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address1" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Zip" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PaidAt" Precision="3" />
+          <Property Type="DateTime" Name="ShippedAt" Precision="3" />
+          <Property Type="String" Name="Comment" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="Order" ToRole="OrderLine" />
+        </EntityType>
+        <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Role="OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -502,33 +504,6 @@
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Shipped" ColumnName="Shipped" />
-                <ScalarProperty Name="Paid" ColumnName="Paid" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pictures">
-            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Picture">
-              <MappingFragment StoreEntitySet="Pictures">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -567,6 +542,34 @@
               <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ShippedAt" ColumnName="ShippedAt" />
+                <ScalarProperty Name="PaidAt" ColumnName="PaidAt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

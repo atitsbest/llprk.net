@@ -17,6 +17,7 @@ namespace Llprk.Web.UI.Application
         /// <param name="productIdsAndQtys"></param>
         public void PlaceOrder(Entities db, Order order, IDictionary<int, int> productIdsAndQtys)
         {
+            order.CreatedAt = DateTime.Now;
             db.Orders.Add(order);
             db.SaveChanges();
 
