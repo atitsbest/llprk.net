@@ -11,9 +11,16 @@
     @using (Html.BeginForm()) {
         <fieldset>
             <legend>Are you sure you want to delete <span style="color: red;">"@Html.DisplayFor(m => m.Product.Name)"</span>?</legend>
-            <p class="muted">
-                @Html.DisplayFor(model => model.Product.Description)
-            </p>
+            <div class="span5">
+                @if (Model.Product.FirstPicture != null) {
+                    <img src="@Model.Product.FirstPicture.PictureUrl" />
+                }
+            </div>
+            <div class="span6">
+                <p class="muted">
+                    @Html.Raw(Model.Product.Description)
+                </p>
+            </div>
             <div class="control-group">
                 @if(Model.Orders.Count() > 0) {
                     <legend>Orders with this product:</legend>
