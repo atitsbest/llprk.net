@@ -54,7 +54,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         //
         // POST: /Products/Create
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Product product, string pictureIds)
         {
             if (ModelState.IsValid) {
@@ -94,7 +94,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         //
         // POST: /Products/Edit/5
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(Product product, string pictureIds)
         {
             if (ModelState.IsValid) {
@@ -185,10 +185,12 @@ namespace Llprk.Web.UI.Controllers.Admin
                 var id = gs[i];
                 var pp = product.Pictures.FirstOrDefault(p => p.Picture.Id == id);
                 if (pp == null) {
-                    product.Pictures.Add(new Product_Picture() {
+                    pp = new Product_Picture() {
                         Product = product,
                         Picture = _GetPictureById(id)
-                    });
+                    };
+
+                    product.Pictures.Add(pp);
                 }
 
                 // Bilder reihen.

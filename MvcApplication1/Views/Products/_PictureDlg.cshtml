@@ -5,7 +5,7 @@
         <input type="text" ng-model="search" class="search-query" placeholder="Search" style="float: right; margin-right: 10px;">
     </div>
     <div class="modal-body">
-        <ul class="thumbnails">
+        <ul class="unstyled">
             <li class="span1" 
                 ng-repeat="picture in pictures | orderBy:'Name' | filter:search" 
                 ng-click="toggleSelect(picture)" 

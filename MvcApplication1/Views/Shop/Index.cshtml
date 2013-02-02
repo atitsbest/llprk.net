@@ -18,7 +18,7 @@
                         <div class="span3">
                             <a href="@Url.Action("details", new { Id=product.Id })">
                                 @if(@product.Pictures.Any()) {
-                                    <img src="@product.Pictures.First().PictureUrl" alt="@product.Name" />
+                                    <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
                                 }
                                 <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>
                             </a>

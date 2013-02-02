@@ -13,16 +13,16 @@
 
         <div class="row">
             <div class="span6">
-                <img src="@Model.Product.Pictures.First().PictureUrl" />
+                <img src="@Model.Product.FirstPicture.PictureUrl" />
             </div>
             <div class="span1 thumbnails">
-                @foreach (var picture in Model.Product.Pictures) {
+                @foreach (var picture in Model.Product.OrderedPictures) {
                     <img src="@picture.PictureUrl" />
                 }
             </div>
             <div class="span5">
                 <p class="caption">
-                    @Model.Product.Description
+                    @Html.Raw(Model.Product.Description)
                 </p>
                 <p>
                     <h3>@Model.Product.Price.ToString("c")</h3>

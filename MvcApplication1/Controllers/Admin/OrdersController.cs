@@ -136,7 +136,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Comment(int id, string comment) 
         {
             var order = db.Orders.Find(id);
