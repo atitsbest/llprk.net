@@ -25,6 +25,7 @@ namespace Llprk.Web.UI.ViewModels
         public string Address2 { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
+        public string CountryCode { get; set; }
         public string Email { get; set; }
         public IEnumerable<ProductLine> Products { get; set; }
     }

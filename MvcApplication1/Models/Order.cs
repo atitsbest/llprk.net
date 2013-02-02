@@ -24,7 +24,8 @@ namespace Llprk.Web.UI.Models
         [Required]
         public string City { get; set; }
         [Required]
-        public string CountryCode { get; set; }
+        public string CountryId { get; set; }
+        public virtual Country Country { get; set; }
         [EmailAddress]
         public string Email { get; set; }
 

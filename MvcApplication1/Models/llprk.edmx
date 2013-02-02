@@ -7,6 +7,7 @@
     <Schema Namespace="Llprk.Web.UI.Models.ShopDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="LlprkWebUIModelsShopDbModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Countries" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderLines" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.OrderLines" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" store:Type="Tables" Schema="dbo" />
@@ -25,6 +26,10 @@
           <AssociationSet Name="FK_dbo_Products_dbo_Categories_CategoryId" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_dbo_Products_dbo_Categories_CategoryId">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Country" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Orders_Country">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Picture_Picture" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Product_Picture_Picture">
             <End Role="Pictures" EntitySet="Pictures" />
@@ -50,6 +55,13 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="OrderLines">
           <Key>
             <PropertyRef Name="Id" />
@@ -71,7 +83,7 @@
           <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
           <Property Name="City" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CountryCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="5" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="PaidAt" Type="datetime" />
           <Property Name="ShippedAt" Type="datetime" />
@@ -163,6 +175,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_Country">
+          <End Role="Countries" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" Multiplicity="1" />
+          <End Role="Orders" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Picture_Picture">
           <End Role="Pictures" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" Multiplicity="1" />
           <End Role="Product_Picture" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Picture" Multiplicity="*" />
@@ -247,6 +271,11 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Tag" EntitySet="Tags" />
           </AssociationSet>
+          <EntitySet Name="Countries" EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" />
+          <AssociationSet Name="FK_Orders_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -292,13 +321,14 @@
           <Property Type="String" Name="Address2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Zip" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="City" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="PaidAt" Precision="3" />
           <Property Type="DateTime" Name="ShippedAt" Precision="3" />
           <Property Type="String" Name="Comment" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" />
           <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="Order" ToRole="OrderLine" />
+          <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Order" ToRole="Country" />
         </EntityType>
         <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
@@ -396,6 +426,25 @@
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="*" />
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Tag" Role="Tag" Multiplicity="*" />
         </Association>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Orders_Country">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -439,12 +488,12 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ShippedAt" ColumnName="ShippedAt" />
                 <ScalarProperty Name="PaidAt" ColumnName="PaidAt" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Zip" ColumnName="Zip" />
                 <ScalarProperty Name="Address2" ColumnName="Address2" />
@@ -486,6 +535,14 @@
               <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

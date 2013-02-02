@@ -32,5 +32,6 @@ namespace Llprk.Web.UI.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product_Picture> Product_Picture { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Country> Countries { get; set; }
     }
 }

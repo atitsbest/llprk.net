@@ -29,11 +29,12 @@
                     @item.Firstname
                     @item.Name
                 </b>
+                <br />
 
                 @item.Address1<br />
                 @item.Address2<br />
                 @item.Zip&nbsp;-&nbsp;@item.City<br />
-                @item.CountryCode<br />
+                @item.Country.Name<br />
                 @item.Email
                 </text>),
             grid.Column("Value", format: @<text>@item.TotalPrice.ToString("c")</text>, style: "align-right"),

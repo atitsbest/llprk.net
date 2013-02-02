@@ -39,7 +39,7 @@
         </div>
     </header>
 
-    @Html.Partial("~/Views/Shop/_Cart.cshtml")
+    @Html.Partial("~/Views/Shop/_Cart.cshtml", new Llprk.Web.UI.Models.Entities().Countries.OrderBy(c => c.Name))
 
     @RenderBody()
 

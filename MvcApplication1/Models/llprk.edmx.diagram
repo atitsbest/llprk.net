@@ -18,6 +18,8 @@
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Picture" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Product" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" Width="1.5" PointX="1.330163045474404" PointY="18.913874664769448" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

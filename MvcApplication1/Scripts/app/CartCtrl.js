@@ -61,13 +61,14 @@ function CartCtrl($scope, $http, CartItems) {
             $('#step4').collapse('hide');
             $('#step5').collapse('show');
 
-            $http.post('shop/new', _generateNewOrder())
+            $http.post('/shop/new', _generateNewOrder())
                 .success(function (d, s, h, c) {
                     $('#step5').collapse('hide');
                     $('#cart').hide();
                     CartItems.clear();
                     alert('Deine Bestellung ist eingegangen und wird von uns bearbeitet.');
                     // Auf eine neue Seite verweisen.
+                    window.location = "/shop/";
                 })
                 .error(function (d, s, h, c) {
                     $('#step5').hide('hide');
@@ -94,6 +95,7 @@ function CartCtrl($scope, $http, CartItems) {
             address2:   $scope.address2,
             zip:        $scope.zip,
             city:       $scope.city,
+            countryCode:$scope.countryCode,
             email:      $scope.email,
             products: products
         };

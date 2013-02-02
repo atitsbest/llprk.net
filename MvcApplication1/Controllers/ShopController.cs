@@ -44,7 +44,7 @@ namespace Llprk.Web.UI.Controllers
                     Address1 = viewModel.Address1,
                     Address2 = viewModel.Address2,
                     City = viewModel.City,
-                    CountryCode = "at", // TODO: Land übergeben.
+                    Country = db.Countries.First(c => c.Id == viewModel.CountryCode.ToLower()),
                     Email = viewModel.Email,
                     Firstname = viewModel.Firstname,
                     Name = viewModel.Name,
