@@ -1,6 +1,10 @@
 ﻿@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700);
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 
+html {
+    background: #fff;
+}
+
 body {
     background: white;
     margin-top: 70px;
@@ -24,6 +28,8 @@ header h1 {
     float: left;
     margin-top: 15px;
     letter-spacing: -1px;
+    font-family: 'Arial Black', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase
 }
 
 header nav {
@@ -157,9 +163,6 @@ footer {
 
 /* Spinner Animation
    ------------------------------------------------*/
-body {
-    background-color: #222;
-}
 #spinner.active {
     display: block;
 }

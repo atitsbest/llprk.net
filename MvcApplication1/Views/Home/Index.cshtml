@@ -1,0 +1,67 @@
+﻿@model Llprk.Web.UI.ViewModels.HomeIndex
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="padding-top:20px;">
+        <div class="span12">
+            <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <img src="http://placehold.it/1170x300" />
+                    </div>
+                    <div class="item">
+                        <img src="http://placehold.it/1170x300" />
+                    </div>
+                    <div class="item">
+                        <img src="http://placehold.it/1170x300" />
+                    </div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="span4">
+            <h4>Headline</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+            </p>
+        </div>
+        <div class="span4">
+            <h4>Headline</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+            </p>
+        </div>
+        <div class="span4">
+            <h4>Headline</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+            </p>
+        </div>
+
+    </div>
+    
+    <div class="row align-center">
+        <h3>Aus unserem Shop</h3>
+        <div class="products">
+            @foreach(var product in Model.Products) {
+                <div class="span3">
+                    <a href="@Url.Action("details", "shop", new { Id=product.Id })">
+                        @if(@product.Pictures.Any()) {
+                            <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
+                        }
+                        <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

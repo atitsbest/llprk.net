@@ -160,6 +160,7 @@
     <Compile Include="Controllers\api\CategoriesController.cs" />
     <Compile Include="Controllers\api\PicturesController.cs" />
     <Compile Include="Controllers\api\ProductsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +183,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HomeIndex.cs" />
     <Compile Include="ViewModels\ProductDelete.cs" />
     <Compile Include="ViewModels\OrderNew.cs" />
     <Compile Include="ViewModels\PictureDelete.cs" />
@@ -543,6 +545,7 @@
     <Content Include="Views\Products\_Form.cshtml" />
     <Content Include="Views\Products\_PictureDlg.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
