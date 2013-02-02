@@ -28,7 +28,8 @@
                     <h3>@Model.Product.Price.ToString("c")</h3>
                 </p>
                 <p>
-                    @Html.ActionLink("In den Warenkorb...", "index", null, new { @class="btn btn-warning" })
+                    <button class="btn btn-warning" 
+                            ng:click="addToCart(@Model.Product.Id)">In den Warenkorb...</button>
                     <a href="@Url.Action("index")" class="btn btn-small">Zurück</a>
                 </p>
             </div>
@@ -44,7 +45,8 @@
             console.log('enter');
             $('#main .span6 > img').attr('src', this.src);
         });
-        angular.module('ShopApp.Values', []).value('products', {});
+        angular.module('ShopApp.Values', [])
+            .value('products', [@Html.Raw(Json.Encode(Model.SerializeableProduct))]);
     </script>
 }
 

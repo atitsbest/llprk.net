@@ -16,5 +16,18 @@ namespace Llprk.Web.UI.ViewModels
         /// </summary>
         public Product Product { get; set; }
 
+        public dynamic SerializeableProduct
+        {
+            get
+            {
+                return new {
+                    Name = Product.Name,
+                    Price = Product.Price,
+                    Id = Product.Id,
+                    ThumbailUrl = Product.FirstPicture == null ? "" : Product.FirstPicture.ThumbnailUrl
+                };
+            }
+        }
+
     }
 }

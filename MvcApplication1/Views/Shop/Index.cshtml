@@ -49,9 +49,6 @@
 
 @section scripts {
     <script type="text/javascript">
-        function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
-        function scrollTo(e) { $('html, body').animate({ scrollTop: $(e).offset().top }, 200); }
-
         angular.module('ShopApp.Values', [])
             .value('products', @Html.Raw(Json.Encode(Model.Products)));
     </script>
