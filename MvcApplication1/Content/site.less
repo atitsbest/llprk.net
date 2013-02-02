@@ -65,12 +65,14 @@ footer {
     text-align: center;
 }
 
-.modal-body .thumbnails .thumbnail {
-}
+.modal-body li {
+	cursor: pointer;
 
-    .modal-body .thumbnails .thumbnail.selected {
-        background: #f1f1f1;
+    &.selected .img-polaroid {
+        background: rgba(255,0,0,.1);
+        border-color: red;
     }
+}
 
 /* login
 ----------------------------------------------------------*/

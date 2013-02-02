@@ -51,8 +51,12 @@ footer {
   height: 100px;
   text-align: center;
 }
-.modal-body .thumbnails .thumbnail.selected {
-  background: #f1f1f1;
+.modal-body li {
+  cursor: pointer;
+}
+.modal-body li.selected .img-polaroid {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: red;
 }
 /* login
 ----------------------------------------------------------*/
