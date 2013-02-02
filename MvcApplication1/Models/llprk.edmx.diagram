@@ -6,21 +6,19 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e8db3d4fd4564037aeaf114accc5073c" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Category" Width="1.5" PointX="11.951184449694672" PointY="13.875236562395113" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" Width="1.5" PointX="10.533230451183966" PointY="20.228317448975666" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Tag" Width="1.5" PointX="7.7961827385221518" PointY="22.328282843496783" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" Width="1.5" PointX="4.875" PointY="15.25" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture1Id" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture2Id" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture3Id" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture4Id" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Pictures_Picture5Id" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Width="1.5" PointX="8.375" PointY="14.125" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" Width="1.5" PointX="6.6484859244192416" PointY="7.5788862740522651" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" Width="1.5" PointX="8.875" PointY="7.75" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" />
-      </Diagram>
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Product_Picture" Width="1.5" PointX="0.73211230930504967" PointY="27.081318882797529" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" Width="1.5" PointX="1.4018527480782255" PointY="0.25462749612267477" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Picture" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Product" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

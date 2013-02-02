@@ -6,7 +6,10 @@
     </div>
     <div class="modal-body">
         <ul class="thumbnails">
-            <li class="span1" ng-repeat="picture in pictures | orderBy:'Name' | filter:search" ng-click="toggleSelect(picture)" ng-class="{selected: isSelected(picture)}">
+            <li class="span1" 
+                ng-repeat="picture in pictures | orderBy:'Name' | filter:search" 
+                ng-click="toggleSelect(picture)" 
+                ng-class="{selected: isSelected(picture)}">
                 <div>
                     <img class="img-polaroid" ng-src="{{picture.ThumbnailUrl}}" alt="">
                     <small class="muted" style="overflow:hidden;white-space:nowrap;">{{picture.Name}}</small>

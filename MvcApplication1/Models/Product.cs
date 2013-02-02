@@ -23,39 +23,35 @@ namespace Llprk.Web.UI.Models
         [Display(Name="published?")]
         public bool IsPublished { get; set; }
 
+        /// <summary>
+        /// Wieviele davon sind verfügbar.
+        /// </summary>
         public int Available { get; set; }
 
-        public Guid? Picture1Id { get; set; }
-        public virtual Picture Picture1 { get; set; }
-        public Guid? Picture2Id { get; set; }
-        public virtual Picture Picture2 { get; set; }
-        public Guid? Picture3Id { get; set; }
-        public virtual Picture Picture3 { get; set; }
-        public Guid? Picture4Id { get; set; }
-        public virtual Picture Picture4 { get; set; }
-        public Guid? Picture5Id { get; set; }
-        public virtual Picture Picture5 { get; set; }
-
+        public virtual ICollection<Product_Picture> Pictures { get; set; }
 
         public ICollection<Tag> Tags { get; set; }
 
-        public ICollection<OrderLine> OrderLines { get; set; }
+        /// <summary>
+        /// Alle Bilder in der richtigen Reihenfolge.
+        /// </summary>
+        public IEnumerable<Picture> OrderedPictures {
+            get
+            {
+                return Pictures
+                    .OrderBy(p => p.Pos)
+                    .Select(p => p.Picture);
+            }
+        } 
 
         /// <summary>
-        /// Liste mit allen verfügbaren Bilden. Sind nur 3 Bilder vorhanden,
-        /// ist die Liste auch nur 3 Einträge lang.
+        /// Liefert das erste Bild, wenn es eines Gibt.
         /// </summary>
-        public IEnumerable<Picture> Pictures {
-            get {
-                var result = new List<Picture>();
-                if (Picture1 != null) { result.Add(Picture1); }
-                if (Picture2 != null) { result.Add(Picture2); }
-                if (Picture3 != null) { result.Add(Picture3); }
-                if (Picture4 != null) { result.Add(Picture4); }
-                if (Picture5 != null) { result.Add(Picture5); }
-                return result.ToArray();
-            }
+        public Picture FirstPicture
+        {
+            get { return OrderedPictures.FirstOrDefault(); }
         }
+
 
         /// <summary>
         /// CTR
@@ -63,6 +59,28 @@ namespace Llprk.Web.UI.Models
         public Product()
         {
             Available = 1;
+            Pictures = new HashSet<Product_Picture>();
+            Tags = new HashSet<Tag>();
+        }
+
+        /// <summary>
+        /// Vergleich!
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            return this.Id == ((Product)obj).Id;
+        }
+
+        /// <summary>
+        /// Vergleich!
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
     }
 }

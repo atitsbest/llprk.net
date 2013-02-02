@@ -75,6 +75,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         public ActionResult Edit(int id = 0)
         {
             Product product = db.Products
+                .Include(i => i.Pictures)
                 .Where(x => x.Id == id)
                 .Single();
             if (product == null) {
@@ -175,18 +176,24 @@ namespace Llprk.Web.UI.Controllers.Admin
         private void _SetProductPictures(Product product, IEnumerable<Guid> guids)
         {
             var gs = guids.ToArray();
-            var c = guids.Count();
 
-            if (c > 0) { product.Picture1 = _GetPictureById(gs[0]); product.Picture1Id = gs[0]; }
-            else { product.Picture1 = null;  product.Picture1Id = null; }
-            if (c > 1) { product.Picture2 = _GetPictureById(gs[1]); }
-            else { product.Picture2 = null;  product.Picture2Id = null; }
-            if (c > 2) { product.Picture3 = _GetPictureById(gs[2]); }
-            else { product.Picture3 = null;  product.Picture3Id = null; }
-            if (c > 3) { product.Picture4 = _GetPictureById(gs[3]); }
-            else { product.Picture4 = null;  product.Picture4Id = null; }
-            if (c > 4) { product.Picture5 = _GetPictureById(gs[4]); }
-            else { product.Picture5 = null;  product.Picture5Id = null; }
+            // Erstmal alle Bilder vom Produkt entfernen, die nicht mehr dazu gehören.
+            var toRemove = product.Pictures.Where(p => !guids.Contains(p.Picture.Id)).ToArray();
+            foreach (var p in toRemove) { product.Pictures.Remove(p); }
+
+            for(var i=0; i<gs.Count(); i+=1) {
+                var id = gs[i];
+                var pp = product.Pictures.FirstOrDefault(p => p.Picture.Id == id);
+                if (pp == null) {
+                    product.Pictures.Add(new Product_Picture() {
+                        Product = product,
+                        Picture = _GetPictureById(id)
+                    });
+                }
+
+                // Bilder reihen.
+                pp.Pos = i;
+            }
         }
 
         /// <summary>

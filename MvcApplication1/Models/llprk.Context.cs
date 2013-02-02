@@ -27,9 +27,10 @@ namespace Llprk.Web.UI.Models
     
         public DbSet<Category> Categories { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Product_Picture> Product_Picture { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace Llprk.Web.UI.ViewModels
                                 Name = x.Name,
                                 Price = x.Price,
                                 Id = x.Id,
-                                ThumbailUrl = x.Pictures.FirstOrDefault() == null ? "": x.Pictures.First().ThumbnailUrl
+                                ThumbailUrl = x.FirstPicture == null ? "": x.FirstPicture.ThumbnailUrl
                             });
             }
         }

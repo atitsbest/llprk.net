@@ -87,11 +87,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             return View(new PictureDelete() {
                 Picture = picture,
                 Products = from p in db.Products
-                           where p.Picture1Id == picture.Id || 
-                                 p.Picture2Id == picture.Id ||
-                                 p.Picture3Id == picture.Id ||
-                                 p.Picture4Id == picture.Id ||
-                                 p.Picture5Id == picture.Id
+                           where p.Pictures.Any(pi => pi.Picture.Id == picture.Id)
                            select p
             });
         }

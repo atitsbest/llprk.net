@@ -185,6 +185,7 @@
     <Compile Include="ViewModels\ProductDelete.cs" />
     <Compile Include="ViewModels\OrderNew.cs" />
     <Compile Include="ViewModels\PictureDelete.cs" />
+    <Compile Include="Models\Product_Picture.cs" />
     <Compile Include="ViewModels\ShopDetail.cs" />
     <Compile Include="ViewModels\ProductCreate.cs" />
     <Compile Include="ViewModels\ProductEdit.cs" />
@@ -197,7 +198,6 @@
     </Content>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\shop2.css" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
     <Content Include="Content\site.css">
