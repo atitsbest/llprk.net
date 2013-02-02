@@ -24,7 +24,7 @@
 @section Scripts {
     <script type="text/javascript">
         var allPictures = @(Html.Raw(Json.Encode(Model.AllPictures)));
-        var assignedPictureIds = @Html.Raw(Json.Encode(Model.Pictures.Select(p => p.Id)))
+        var assignedPictureIds = @Html.Raw(Json.Encode(Model.AssignedPictureIds))
 
         $('ul.thumbnails').sortable();
         $('form').addClass('form-horizontal');

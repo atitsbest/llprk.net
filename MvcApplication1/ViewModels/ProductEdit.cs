@@ -31,6 +31,15 @@ namespace Llprk.Web.UI.ViewModels
 
         public IEnumerable<Picture> AllPictures { get; set; }
 
+        public IEnumerable<Guid> AssignedPictureIds
+        {
+            get
+            {
+                return Pictures == null
+                    ? new Guid[] { }
+                    : Pictures.Select(p => p.Id);
+            }
+        }
 
         /// <summary>
         /// CTR
