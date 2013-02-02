@@ -48,5 +48,33 @@ namespace Llprk.Web.UI.Application
             }
             db.SaveChanges();
         }
+
+        /// <summary>
+        /// Markiert einen Auftrag als bezahlt.
+        /// </summary>
+        /// <param name="order"></param>
+        public void PayOrder(Entities db, Order order)
+        {
+            if (order == null) { throw new ArgumentNullException("order"); }
+
+            order.PaidAt = DateTime.Now; // TODO: Vielleicht hat der Kunde schon vorher gezahlt?
+            // TODO: Email an den Kunden schicken.
+
+            db.SaveChanges(); 
+        }
+
+        /// <summary>
+        /// Markiert einen Auftrag als verschickt.
+        /// </summary>
+        /// <param name="order"></param>
+        public void ShipOrder(Entities db, Order order)
+        {
+            if (order == null) { throw new ArgumentNullException("order"); }
+
+            order.ShippedAt = DateTime.Now;
+            // TODO: Email an den Kunden schicken.
+
+            db.SaveChanges(); 
+        }
     }
 }

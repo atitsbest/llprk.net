@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Llprk.Web.UI.Models;
 using Llprk.Web.UI.ViewModels;
 using AutoMapper;
+using Llprk.Web.UI.Application;
 
 namespace Llprk.Web.UI.Controllers.Admin
 {
@@ -113,8 +114,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         public ActionResult Paid(int id)
         {
             var order = db.Orders.Find(id);
-            order.PaidAt = DateTime.Now;
-            db.SaveChanges();
+            new ShopService().PayOrder(db, order);
             return RedirectToAction("details", new { id });
         }
 
@@ -127,8 +127,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         public ActionResult Shipped(int id)
         {
             var order = db.Orders.Find(id);
-            order.ShippedAt = DateTime.Now;
-            db.SaveChanges();
+            new ShopService().ShipOrder(db, order);
             return RedirectToAction("details", new { id });
         }
 
