@@ -546,6 +546,7 @@
     <Content Include="Views\Products\_PictureDlg.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shop\_Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

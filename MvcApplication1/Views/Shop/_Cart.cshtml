@@ -7,6 +7,9 @@
             <div class="popover-content">
                 <div id="step0" ng-hide="cartItemCount()">
                     <h5>Der Warenkorb ist noch leer ;(</h5>
+                    <a href="@Url.Action("index", "shop")"
+                       onclick="$('#cart').hide();"
+                       class="btn btn-small">Weiter shoppen...</a>
                 </div>
                 <div id="step1" class="collapse in" ng-show="cartItemCount()">
                     <table class="table">
@@ -43,7 +46,16 @@
                             <h4 style="display: inline-block;">Dein Gesamtpreis ist&nbsp;<h4 style="display: inline-block;">{{totalPrice() | currency}}</h4>
                             </h4>
                         </p>
-                        <button type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#step2,#step1">Zur Kasse...</button>
+                        <button type="submit" 
+                                class="btn btn-warning" 
+                                data-toggle="collapse" 
+                                data-target="#step2,#step1">Zur Kasse...</button>
+                        <small class="muted">oder</small>
+                        <button type="submit" 
+                                onclick="$('#cart').hide();"
+                                class="btn btn-small" 
+                                data-toggle="collapse" 
+                                data-target="#step2,#step1">Weiter shoppen</button>
                     </form>
                 </div>
                 <div id="step2" class="collapse out">
