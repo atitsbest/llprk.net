@@ -30,7 +30,7 @@ namespace Llprk.Web.UI.Models
 
         public virtual ICollection<Product_Picture> Pictures { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
 
         /// <summary>
         /// Alle Bilder in der richtigen Reihenfolge.

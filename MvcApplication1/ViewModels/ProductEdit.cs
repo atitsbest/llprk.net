@@ -41,6 +41,7 @@ namespace Llprk.Web.UI.ViewModels
             }
         }
 
+        public IEnumerable<Tag> Tags { get; set; }
         public IEnumerable<Tag> AllTags { get; set; }
 
         /// <summary>

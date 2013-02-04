@@ -54,12 +54,15 @@ namespace Llprk.Web.UI.Controllers.Admin
         // POST: /Products/Create
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Create(Product product, string pictureIds)
+        public ActionResult Create(Product product, string pictureIds, int[] tagIds)
         {
             if (ModelState.IsValid) {
                 // Produkt mit den Bildern anreichern.
                 var guids = _stringToGuids(pictureIds).ToArray();
+
                 _SetProductPictures(product, guids);
+                _SetProductTags(product, tagIds);
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,7 +98,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         // POST: /Products/Edit/5
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Edit(Product product, string pictureIds)
+        public ActionResult Edit(Product product, string pictureIds, int[] tagIds)
         {
             if (ModelState.IsValid) {
                 var p = db.Products
@@ -110,7 +113,9 @@ namespace Llprk.Web.UI.Controllers.Admin
                 p.Available = product.Available;
 
                 var guids = _stringToGuids(pictureIds);
+
                 _SetProductPictures(p, guids);
+                _SetProductTags(p, tagIds);
 
                 db.Entry(p).State = EntityState.Modified;
                 db.SaveChanges();
@@ -160,6 +165,24 @@ namespace Llprk.Web.UI.Controllers.Admin
                                    orderby d.Name
                                    select d;
             ViewBag.CategoryId = new SelectList(departmentsQuery, "Id", "Name", selectedCategory);
+        }
+
+
+        /// <summary>
+        /// Tags zum Produkt hinzufügen.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="tagIds"></param>
+        private void _SetProductTags(Product product, int[] tagIds) 
+        {
+            var toRemove = product.Tags.Where(p => !tagIds.Contains(p.Id)).ToArray();
+            foreach (var t in toRemove) { product.Tags.Remove(t); }
+
+            foreach (var id in tagIds) {
+                if (!product.Tags.Any(t => t.Id == id)) {
+                    product.Tags.Add(db.Tags.Find(id));
+                }
+            }
         }
 
         /// <summary>

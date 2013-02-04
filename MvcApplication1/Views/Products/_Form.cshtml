@@ -46,7 +46,11 @@
                     @foreach (var tag in Model.AllTags) {
                         <div class="span2">
                             <label class="checkbox">
-                                <input type="checkbox" name="tags" value="@tag.Id" /> @tag.Name
+                                <input type="checkbox" 
+                                       name="tagIds" 
+                                       value="@tag.Id" 
+                                       @if(Model.Tags.Contains(tag)) { <text>checked="checked"</text> }
+                                    /> @tag.Name
                             </label>
                         </div>
                     }
