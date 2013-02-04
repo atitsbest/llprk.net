@@ -147,6 +147,7 @@
   <ItemGroup>
     <Compile Include="Application\Exceptions\AppException.cs" />
     <Compile Include="Application\ShopService.cs" />
+    <Compile Include="Application\SmtpMailProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MappingConfig.cs" />
@@ -283,6 +284,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>llprk.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\border.png" />
+    <Content Include="Images\delivered_stamp.png" />
+    <Content Include="Images\paid_stamp.png" />
+    <Content Include="Images\shipped_stamp.png" />
     <Content Include="Models\llprk.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>llprk.edmx</DependentUpon>
@@ -507,19 +512,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />

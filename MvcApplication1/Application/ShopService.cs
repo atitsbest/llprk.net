@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 
 namespace Llprk.Web.UI.Application
@@ -53,12 +55,14 @@ namespace Llprk.Web.UI.Application
         /// Markiert einen Auftrag als bezahlt.
         /// </summary>
         /// <param name="order"></param>
-        public void PayOrder(Entities db, Order order)
+        public void PayOrder(Entities db, Order order, string mailBody)
         {
             if (order == null) { throw new ArgumentNullException("order"); }
 
             order.PaidAt = DateTime.Now; // TODO: Vielleicht hat der Kunde schon vorher gezahlt?
+
             // TODO: Email an den Kunden schicken.
+            _SendMailToCustomer(order, "Wir haben Deine Bezahlung erhalten", mailBody);
 
             db.SaveChanges(); 
         }
@@ -67,14 +71,32 @@ namespace Llprk.Web.UI.Application
         /// Markiert einen Auftrag als verschickt.
         /// </summary>
         /// <param name="order"></param>
-        public void ShipOrder(Entities db, Order order)
+        public void ShipOrder(Entities db, Order order, string mailBody)
         {
             if (order == null) { throw new ArgumentNullException("order"); }
 
             order.ShippedAt = DateTime.Now;
-            // TODO: Email an den Kunden schicken.
 
+            // TODO: Email an den Kunden schicken.
+            _SendMailToCustomer(order, "Deine Bestellung wurde verschickt", mailBody);
             db.SaveChanges(); 
+        }
+
+        /// <summary>
+        /// Schickt eine HTML-Mail an die Email-Adresse aus dem Auftrag.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="subject"></param>
+        /// <param name="mailBody"></param>
+        private static void _SendMailToCustomer(Order order, string subject, string mailBody)
+        {
+            var message = new MailMessage("shop@lillypark.com", order.Email, subject, mailBody);
+            message.IsBodyHtml = true;
+            message.BodyEncoding = Encoding.UTF8;
+
+            var mp = new SmtpMailProvider();
+            mp.SendMail(message);
+
         }
     }
 }

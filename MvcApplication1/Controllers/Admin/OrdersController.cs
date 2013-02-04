@@ -112,7 +112,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         public ActionResult Pay(int id)
         {
             var order = db.Orders.Find(id);
-            return View(new OrderStatusChange() { 
+            return View("StatusChange", new OrderStatusChange() { 
                 Order = order,
                 ActionButtonText = "Invoice has been PAID",
                 ChangeActionName = "paid",
@@ -126,11 +126,11 @@ namespace Llprk.Web.UI.Controllers.Admin
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult Paid(int id)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Paid(int id, string mailBody)
         {
             var order = db.Orders.Find(id);
-            new ShopService().PayOrder(db, order);
+            new ShopService().PayOrder(db, order, mailBody);
             return RedirectToAction("details", new { id });
         }
 
@@ -157,11 +157,11 @@ namespace Llprk.Web.UI.Controllers.Admin
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult Shipped(int id)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Shipped(int id, string mailBody)
         {
             var order = db.Orders.Find(id);
-            new ShopService().ShipOrder(db, order);
+            new ShopService().ShipOrder(db, order, mailBody);
             return RedirectToAction("details", new { id });
         }
 
