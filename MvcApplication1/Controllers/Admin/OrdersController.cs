@@ -103,6 +103,24 @@ namespace Llprk.Web.UI.Controllers.Admin
             return RedirectToAction("Index");
         }
 
+
+        /// <summary>
+        /// GET: orders/pay/{id}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Pay(int id)
+        {
+            var order = db.Orders.Find(id);
+            return View(new OrderStatusChange() { 
+                Order = order,
+                ActionButtonText = "Invoice has been PAID",
+                ChangeActionName = "paid",
+                Headline = string.Format("Invoice for Order {0} has been paid.", order.Id),
+                MailBody = "<h2>Das ist nur ein Test</h2> Mit irgendeinem Text."
+            });
+        }
+
         /// <summary>
         /// Setzt den Status der Rechnung auf bezahlt.
         /// </summary>
@@ -114,6 +132,24 @@ namespace Llprk.Web.UI.Controllers.Admin
             var order = db.Orders.Find(id);
             new ShopService().PayOrder(db, order);
             return RedirectToAction("details", new { id });
+        }
+
+
+        /// <summary>
+        /// GET: orders/ship/{id}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Ship(int id)
+        {
+            var order = db.Orders.Find(id);
+            return View("StatusChange", new OrderStatusChange() { 
+                Order = order,
+                ActionButtonText = "Order has been SHIPPED",
+                ChangeActionName = "shipped",
+                Headline = string.Format("Order {0} has been shipped.", order.Id),
+                MailBody = "<h2>Das ist nur ein Test</h2> Mit irgendeinem Text."
+            });
         }
 
         /// <summary>

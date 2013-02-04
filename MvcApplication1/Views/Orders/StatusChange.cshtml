@@ -1,0 +1,27 @@
+﻿@model Llprk.Web.UI.ViewModels.OrderStatusChange
+@{
+    ViewBag.Title = "Paid";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="span12">
+
+    @using (Html.BeginForm(Model.ChangeActionName, "orders", new {id=Model.Order.Id}, FormMethod.Post)) {
+        <fieldset>
+            <legend>@Model.Headline</legend>
+            <div class="control-group">
+                <label class="control-label bold">The customer will receive this email</label>
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.MailBody, new { @class="input-xlarge", rows=10 })
+                    <span class="help-block">You can edit the mail before it is sent.</span>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <input type="submit" value="@Model.ActionButtonText" class="btn btn-small btn-warning" />
+            <small class="muted">or</small>
+            @Html.ActionLink("Back to Order", "details", new { id = @Model.Order.Id })
+        </div>
+    }
+</div>

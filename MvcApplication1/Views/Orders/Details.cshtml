@@ -10,14 +10,10 @@
             <div class="row clearfix">
             <span class="span3">ORDER #@Html.DisplayFor(m => m.Id)</span>
                 @if(!Model.IsPaid) {
-                    using (Html.BeginForm("paid", "orders", new { id = Model.Id }, FormMethod.Post, new { @class="span2", style="margin-bottom:0;" })) {
-                        <button class="btn btn-small" onclick="return confirm('Are you sure?');">Invoice paid</button>
-                    }
+                    @Html.ActionLink("Invoice paid", "pay", new { id = Model.Id }, new { @class="btn btn-small" })
                 }
                 @if(!Model.IsShipped) {
-                    using (Html.BeginForm("shipped", "orders", new { id = Model.Id }, FormMethod.Post, new { @class = "span2", style="margin-bottom:0;" })) {
-                        <button class="btn btn-small" onclick="return confirm('Are you sure?');">Order shipped</button>
-                    }
+                    @Html.ActionLink("Order shipped", "ship", new { id = Model.Id }, new { @class="btn btn-small" })
                 }
             <span class="pull-right">@Model.CreatedAt.ToShortDateString()</span>
             </div>
@@ -101,8 +97,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row form-actions">
             @using(Html.BeginForm("comment", "orders", new {id=Model.Id})) {
                 <div class="span6">
