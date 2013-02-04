@@ -36,15 +36,26 @@ header {
         &.orders:hover + ul.orders {
 			display: block;
 		}
+
+        &.config:hover + ul.config {
+			display: block;
+		}
     }
 
 	ul.orders {
 		position: absolute;
-		left: 520px;
+		left: 410px;
 		margin-top:-10px;
 
-		&:hover { display: block;
-		} 
+		&:hover { display: block; } 
+	}
+
+	ul.config {
+		position: absolute;
+		left: 495px;
+		margin-top:-10px;
+
+		&:hover { display: block; } 
 	}
 }
 

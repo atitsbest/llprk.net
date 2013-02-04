@@ -23,7 +23,6 @@
 <body>
     <header class="container">
         <h2>lillypark</h2>
-        <a href="@Url.Action("index", "categories")" class="@categoriesActive">Categories</a>
         <a href="@Url.Action("index", "pictures")" class="@picturesActive">Pictures</a>
         <a href="@Url.Action("index", "products")" class="@productsActive">Products</a>
         <a href="@Url.Action("index", "orders")" class="orders @ordersActive">Orders</a>
@@ -34,6 +33,13 @@
           <li class="divider"></li>
           <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="ready"})">Read to ship</a></li>
           <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="overdue"})">Overdue</a></li>
+        </ul>
+        <a href="@Url.Action("index", "categories")" class="config @categoriesActive">Config</a>
+        <ul class="config dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <li><a tabindex="-1" href="@Url.Action("index", "categories")">Categories</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "tags", new {filter="paid"})">Tags</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="shipped"})">Mail messages</a></li>
         </ul>
     </header>
 
