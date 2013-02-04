@@ -46,6 +46,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         {
             var viewModel = new ProductCreate();
             viewModel.AllPictures = db.Pictures.ToArray();
+            viewModel.AllTags = db.Tags.ToArray();
             _PopulateCategoriesDropDownList();
             ViewBag.Title = "New Product";
             return View("edit", viewModel);
@@ -85,6 +86,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             var viewModel = new ProductEdit();
             Mapper.Map(product, viewModel);
             viewModel.AllPictures = db.Pictures.ToArray();
+            viewModel.AllTags = db.Tags.ToArray();
 
             _PopulateCategoriesDropDownList(product.CategoryId);
             ViewBag.Title = "Edit";
