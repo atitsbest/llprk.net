@@ -21,19 +21,6 @@ namespace Llprk.Web.UI.Controllers.Admin
         }
 
         //
-        // GET: /Categories/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
-        //
         // GET: /Categories/Create
 
         public ActionResult Create()
