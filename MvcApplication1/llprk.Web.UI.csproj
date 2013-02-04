@@ -154,6 +154,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\CategoriesController.cs" />
+    <Compile Include="Controllers\Admin\TagsController.cs" />
+    <Compile Include="Controllers\Admin\SingleValueController.cs" />
     <Compile Include="Controllers\Admin\OrdersController.cs" />
     <Compile Include="Controllers\Admin\PicturesController.cs" />
     <Compile Include="Controllers\Admin\ProductsController.cs" />
@@ -527,7 +529,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
@@ -551,6 +552,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shop\_Cart.cshtml" />
     <Content Include="Views\Orders\StatusChange.cshtml" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

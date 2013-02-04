@@ -1,0 +1,35 @@
+﻿@model Llprk.Web.UI.Models.Tag
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="span12">
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Create</legend>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Create" class="btn btn-small btn-success" />
+                <small class="muted">or</small>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </fieldset>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $('form').addClass('form-horizontal');
+    </script>
+}
