@@ -16,15 +16,14 @@
         tableStyle : "table table-striped table-bordered",
         columns: grid.Columns(
             grid.Column("", format:@<text>@if(item.FirstPicture != null) {<img src="@item.FirstPicture.ThumbnailUrl" width="60" />}</text>),
-            grid.Column("Name", format:@<text><b>@item.Name</b></text>),
+            grid.Column("Name", format:@<text><a href="@Url.Action("details", new { id = item.Id})"><b>@item.Name</b></a>"</text>),
             grid.Column("Price"),
             grid.Column("Available"),
             grid.Column("Category", format:@<text>@item.Category.Name</text>),
             grid.Column("Published", format: @<text> @if(item.IsPublished) { <i class="icon-ok"></i> } </text>),
             grid.Column(format: 
                 @<text>
-                    <a href='@Url.Action("Edit", new { id=item.Id })' class="btn btn-small"><i class="icon-pencil"></i></a>
-                    <a href='@Url.Action("Delete", new { id=item.Id })' class="btn btn-small btn-danger"><i class="icon-trash"></i></a>
+                    <a href='@Url.Action("Delete", new { id=item.Id })' title="Delete"><i class="icon-trash"></i></a>
                 </text>)
             ))
 </div>

@@ -2,11 +2,13 @@
 
 @{
     ViewBag.Title = "Details";
+
+    var shippedClass = Model.IsShipped ? "shipped" : null;
 }
 
 <div class="span12" >
     <fieldset>
-        <legend>
+        <legend class="@shippedClass">
             <div class="row clearfix">
             <span class="span3">ORDER #@Html.DisplayFor(m => m.Id)</span>
                 @if(!Model.IsPaid) {

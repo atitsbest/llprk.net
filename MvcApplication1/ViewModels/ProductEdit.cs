@@ -41,7 +41,7 @@ namespace Llprk.Web.UI.ViewModels
             }
         }
 
-        public IEnumerable<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
         public IEnumerable<Tag> AllTags { get; set; }
 
         /// <summary>
@@ -50,6 +50,7 @@ namespace Llprk.Web.UI.ViewModels
         public ProductEdit()
         {
             Available = 1;
+            Tags = new HashSet<Tag>();
         }
     }
 }
