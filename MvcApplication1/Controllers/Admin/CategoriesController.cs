@@ -10,10 +10,8 @@ using Llprk.Web.UI.Models;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public class CategoriesController : Controller
+    public class CategoriesController : ApplicationController
     {
-        private Entities db = new Entities();
-
         //
         // GET: /Categories/
 
@@ -112,10 +110,5 @@ namespace Llprk.Web.UI.Controllers.Admin
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
     }
 }

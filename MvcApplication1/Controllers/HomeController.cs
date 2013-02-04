@@ -8,28 +8,26 @@ using System.Web.Mvc;
 
 namespace Llprk.Web.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApplicationController
     {
-        private Entities db = new Entities();
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
-            return View(new HomeIndex() { 
+            return View(new HomeIndex() {
                 Products = db.Products.Take(4)
             });
         }
 
-
         /// <summary>
-        /// Dispose
+        /// 
         /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
+        /// <returns></returns>
+        public ActionResult About()
         {
-            db.Dispose();
-            base.Dispose(disposing);
+            return View();
         }
+
     }
 }

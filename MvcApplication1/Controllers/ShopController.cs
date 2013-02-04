@@ -11,10 +11,12 @@ using Llprk.Web.UI.Application.Exceptions;
 
 namespace Llprk.Web.UI.Controllers
 {
-    public class ShopController : Controller
+    public class ShopController : ApplicationController
     {
-        private Entities db = new Entities();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var viewModel = new ShopIndex();
@@ -30,6 +32,11 @@ namespace Llprk.Web.UI.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int id)
         {
             var viewModel = new ShopDetail();
@@ -37,6 +44,11 @@ namespace Llprk.Web.UI.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         public ActionResult New(OrderNew viewModel)
         {
             if (ModelState.IsValid) {
@@ -70,16 +82,6 @@ namespace Llprk.Web.UI.Controllers
             }
 
             return Json(null);
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
 
     }

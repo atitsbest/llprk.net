@@ -18,10 +18,8 @@ using Llprk.Web.UI.ViewModels;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public class PicturesController : Controller
+    public class PicturesController : ApplicationController
     {
-        private Entities db = new Entities();
-
         //
         // GET: /Pictures/
 
@@ -120,15 +118,6 @@ namespace Llprk.Web.UI.Controllers.Admin
             return RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
 
         /// <summary>
         /// Bild auf Blob-Storage hochladen.

@@ -12,10 +12,8 @@ using AutoMapper;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public class ProductsController : Controller
+    public class ProductsController : ApplicationController
     {
-        private Entities db = new Entities();
-
         //
         // GET: /Products/
 
@@ -150,12 +148,6 @@ namespace Llprk.Web.UI.Controllers.Admin
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
 
         /// <summary>

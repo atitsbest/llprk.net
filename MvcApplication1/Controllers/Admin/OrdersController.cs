@@ -13,7 +13,7 @@ using Llprk.Web.UI.Application;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public class OrdersController : Controller
+    public class OrdersController : ApplicationController
     {
         public enum Filter
         {
@@ -23,8 +23,6 @@ namespace Llprk.Web.UI.Controllers.Admin
             Ready,
             Overdue
         }
-
-        private Entities db = new Entities();
 
         //
         // GET: /Orders/
@@ -143,17 +141,6 @@ namespace Llprk.Web.UI.Controllers.Admin
             order.Comment = comment;
             db.SaveChanges();
             return RedirectToAction("details", new { id });
-        }
-
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
 
     }
