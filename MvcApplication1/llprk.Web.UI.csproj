@@ -58,6 +58,9 @@
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.2.0.1.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
+    <Reference Include="Nustache.Core">
+      <HintPath>..\packages\Nustache.1.12.4.29\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -155,6 +158,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\CategoriesController.cs" />
+    <Compile Include="Controllers\Admin\ParametersController.cs" />
     <Compile Include="Controllers\Admin\TagsController.cs" />
     <Compile Include="Controllers\Admin\SingleValueController.cs" />
     <Compile Include="Controllers\Admin\OrdersController.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Parameter.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\llprk.Context.cs">
       <AutoGen>True</AutoGen>
@@ -548,6 +553,7 @@
     <Content Include="Views\Tags\Delete.cshtml" />
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Parameters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

@@ -20,6 +20,7 @@
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" Width="1.5" PointX="1.330163045474404" PointY="18.913874664769448" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Parameter" Width="1.5" PointX="7.8542220815337371" PointY="4.4570403864872832" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

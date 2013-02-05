@@ -10,6 +10,7 @@
           <EntitySet Name="Countries" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderLines" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.OrderLines" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Parameters" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Parameters" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product_Picture" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Picture" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product_Tag" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" store:Type="Tables" Schema="dbo" />
@@ -89,6 +90,14 @@
           <Property Name="ShippedAt" Type="datetime" />
           <Property Name="Comment" Type="nvarchar" MaxLength="1024" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MailMessagePaid" Type="text" Nullable="false" />
+          <Property Name="MailMessageShipped" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="Pictures">
           <Key>
@@ -212,7 +221,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Tag_Product">
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="1" />
+          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Product_Tag" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
@@ -224,7 +235,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Tag_Tag">
-          <End Role="Tags" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Tags" Multiplicity="1" />
+          <End Role="Tags" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Product_Tag" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tags">
@@ -276,6 +289,7 @@
             <End Role="Country" EntitySet="Countries" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="Parameters" EntityType="Llprk.Web.UI.Models.ShopDbModel.Parameter" />
           </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -445,6 +459,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="MailMessagePaid" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MailMessageShipped" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -539,6 +561,15 @@
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Country">
               <MappingFragment StoreEntitySet="Countries">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="MailMessageShipped" ColumnName="MailMessageShipped" />
+                <ScalarProperty Name="MailMessagePaid" ColumnName="MailMessagePaid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

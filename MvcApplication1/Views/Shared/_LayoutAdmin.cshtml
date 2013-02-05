@@ -7,7 +7,7 @@
     var productsActive = controllerName == "products" ? "active" : null;
     var ordersActive = controllerName == "orders" ? "active" : null;
 }
-<html lang="en" ng-app>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>llprk - @ViewBag.Title</title>
@@ -37,9 +37,9 @@
         <a href="@Url.Action("index", "categories")" class="config @categoriesActive">Config</a>
         <ul class="config dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li><a tabindex="-1" href="@Url.Action("index", "categories")">Categories</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "tags", new {filter="paid"})">Tags</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "tags")">Tags</a></li>
           <li class="divider"></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="shipped"})">Mail messages</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "parameters")">Mail messages</a></li>
         </ul>
     </header>
 
@@ -61,7 +61,9 @@
     @Scripts.Render("~/bundles/admin")
     @RenderSection("scripts", required: false)
     <script>
-        CKEDITOR.replaceAll();
+        CKEDITOR.replaceAll(function (textarea, config) {
+            return !$(textarea).hasClass('no-richtext');
+        });
     </script>
 </body>
 </html>
