@@ -27,10 +27,12 @@
     <header>
         <div class="container">
             <div class="row">
-                <h1 id="logo" style="margin-left:20px;">lillypark</h1>
+                <h1 id="logo" style="margin-left:20px;">
+                    <a href="@Url.Action("index", "home")">lillypark</a>
+                </h1>
                 <nav class="pull-right">
                     <a href="@Url.Action("index", "shop")" class="active" style="font-weight:bold;">shop</a>
-                    <a href="#">über uns</a>
+                    <a href="@Url.Action("about", "home")">über uns</a>
                     <a href="#" 
                        style="font-style: italic;" 
                        onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" style="display:none;" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
@@ -50,7 +52,7 @@
                 <div class="span12 pull-right">
                     <nav>
                         <a href="#">events</a>
-                        <a href="#">impressum</a>
+                        <a href="@Url.Action("impressum", "home")">impressum</a>
                         <a href="http://www.facebook.com/taschenlilly" target="_blank">facebook</a>
                         <a href="#">twitter</a>
                     </nav>
