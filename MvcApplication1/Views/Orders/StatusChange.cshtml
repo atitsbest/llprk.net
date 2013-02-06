@@ -7,7 +7,7 @@
 
 <div class="span12">
 
-    @using (Html.BeginForm(Model.ChangeActionName, "orders", new {id=Model.Order.Id}, FormMethod.Post)) {
+    @using (Html.BeginForm(Model.ChangeActionName, "orders", new {id=Model.Order.OrderNumber}, FormMethod.Post)) {
         <fieldset>
             <legend>@Model.Headline</legend>
             <div class="control-group">
