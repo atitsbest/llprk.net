@@ -178,7 +178,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             var toRemove = product.Tags.Where(p => !tagIds.Contains(p.Id)).ToArray();
             foreach (var t in toRemove) { product.Tags.Remove(t); }
 
-            foreach (var id in tagIds) {
+            foreach (var id in (tagIds ?? new int[]{})) {
                 if (!product.Tags.Any(t => t.Id == id)) {
                     product.Tags.Add(db.Tags.Find(id));
                 }
