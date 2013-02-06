@@ -11,25 +11,16 @@ namespace Llprk.Web.UI.ViewModels
     /// </summary>
     public class ShopIndex
     {
-        /// <summary>
-        /// Hash aus <CategorieName, Produkt>
-        /// </summary>
-        public IDictionary<string, Product[]> Categories;
+        public IEnumerable<ShopCategory> Categories;
 
         /// <summary>
         /// Liefert alle Produkte von Categories.
         /// </summary>
-        public IEnumerable<dynamic> Products
+        public IEnumerable<Product> Products
         {
             get
             {
-                var result = Categories.Values.SelectMany(x => x);
-                return result.Select(x => new {
-                                Name = x.Name,
-                                Price = x.Price,
-                                Id = x.Id,
-                                ThumbailUrl = x.FirstPicture == null ? "": x.FirstPicture.ThumbnailUrl
-                            });
+                return Categories.SelectMany(x => x.Products);
             }
         }
     }

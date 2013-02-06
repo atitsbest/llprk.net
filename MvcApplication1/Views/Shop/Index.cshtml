@@ -5,28 +5,8 @@
 }
 <section id="main" ng-controller="ProductsCtrl">
     <div class="container">
-        @foreach(var category in Model.Categories.Keys) {
-            <div class="row align-center">
-                <div class="span12">
-                    <h2 class="categoryName">@category</h2>
-                </div>
-            </div>
-
-            <div class="row align-center">
-                <div class="products">
-                    @foreach(var product in Model.Categories[category]) {
-                        <div class="span3">
-                            <a href="@Url.Action("details", new { Id=product.Id })">
-                                @if(@product.Pictures.Any()) {
-                                    <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
-                                }
-                                <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>
-                            </a>
-                            <p>@*<button class="btn btn-small" ng-click="addToCart(@product.Id)">Kaufen</button>*@</p>
-                        </div>
-                    }
-                </div>
-            </div>
+        @foreach(var cp in Model.Categories) {
+            @Html.Partial("~/Views/Shop/_Category.cshtml", cp);
         }
     </div>
 
@@ -50,7 +30,13 @@
 @section scripts {
     <script type="text/javascript">
         angular.module('ShopApp.Values', [])
-            .value('products', @Html.Raw(Json.Encode(Model.Products)));
+            .value('products', @Html.Raw(Json.Encode(Model.Products.Select(p => new {
+                                            Name = p.Name,
+                                            Price = p.Price,
+                                            Id = p.Id,
+                                            ThumbailUrl = p.FirstPicture == null ? "": p.FirstPicture.ThumbnailUrl 
+                                         })))
+            );
     </script>
 }
 
