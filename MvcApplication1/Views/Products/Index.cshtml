@@ -16,7 +16,7 @@
         tableStyle : "table table-striped table-bordered",
         columns: grid.Columns(
             grid.Column("", format:@<text>@if(item.FirstPicture != null) {<img src="@item.FirstPicture.ThumbnailUrl" width="60" />}</text>),
-            grid.Column("Name", format:@<text><a href="@Url.Action("edit", new { id = item.Id})"><b>@item.Name</b></a>"</text>),
+            grid.Column("Name", format:@<text><a href="@Url.Action("edit", new { id = item.Id})"><b>@item.Name</b></a></text>),
             grid.Column("Price"),
             grid.Column("Available"),
             grid.Column("Category", format:@<text>@item.Category.Name</text>),

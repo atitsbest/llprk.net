@@ -43,7 +43,7 @@
                     <ul class="unstyled">
                         @foreach(var ol in item.OrderLines) {
                             <li>
-                                @ol.Qty x @Html.ActionLink((string)ol.Product.Name, "details", "products", new { id = ol.ProductId }, null)
+                                @ol.Qty x @Html.ActionLink((string)ol.Product.Name, "edit", "products", new { id = ol.ProductId }, null)
                             </li>
                         }
                     </ul>

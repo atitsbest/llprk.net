@@ -58,7 +58,7 @@
                         @foreach (var ol in Model.OrderLines) {
                             <tr>
                                 <td>
-                                    @Html.ActionLink(@ol.Product.Name, "details", "products", new { id = @ol.ProductId }, null)
+                                    @Html.ActionLink(@ol.Product.Name, "edit", "products", new { id = @ol.ProductId }, null)
                                 </td>
                                 <td>
                                     @ol.Qty

@@ -54,7 +54,7 @@
             @foreach(var product in Model.Products) {
                 <div class="span3">
                     <a href="@Url.Action("details", "shop", new { Id=product.Id })">
-                        @if(@product.Pictures.Any()) {
+                        @if(@product.FirstPicture != null) {
                             <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
                         }
                         <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>

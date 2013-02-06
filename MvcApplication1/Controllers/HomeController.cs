@@ -16,7 +16,7 @@ namespace Llprk.Web.UI.Controllers
         public ActionResult Index()
         {
             return View(new HomeIndex() {
-                Products = db.Products.Take(4)
+                Products = db.Products.Take(4).ToArray()
             });
         }
 
