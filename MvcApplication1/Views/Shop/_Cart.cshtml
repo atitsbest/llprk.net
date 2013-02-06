@@ -38,9 +38,11 @@
 
                 <form action="">
                     <p>Wohin sollen wir das schicken?</p>
-                    <select name="shippingCosts" id="shippingCosts" ng:model="countryCode">
-                        <option ng:repeat="c in countries"
-                                value="{{c.Id}}">{{c.Name}}&nbsp;(+ {{c.ShippingCosts | currency}} Versand)</option>
+                    <select name="shippingCosts" id="shippingCosts" 
+                            ng:model="countryCode"
+                            required 
+                            ng:options='option.Id as (option.Name + " (+ " + (option.ShippingCosts | currency) + " Versand)") for option in countries'
+                            class="input-xlarge">
                     </select>
 
                     <p>

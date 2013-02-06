@@ -7,6 +7,7 @@ function CartCtrl($scope, $http, CartItems, countries) {
 
     // Alle Länder verfügbar machen.
     $scope.countries = countries;
+    $scope.countryCode = countries[0].Id;
 
     /**
      * Anstatt dem Hash gibt's ein Array der Values.
