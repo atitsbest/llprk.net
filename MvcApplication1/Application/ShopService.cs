@@ -49,6 +49,10 @@ namespace Llprk.Web.UI.Application
                 });
             }
             db.SaveChanges();
+
+            // Bestätigungsmail verschicken.
+            var mailBody = Nustache.Core.Render.StringToString(db.Parameters.First().MailMessageOrdered, order);
+            _SendMailToCustomer(order, "Deine Bestellung bei lillypark.com", mailBody);
         }
 
         /// <summary>
@@ -90,11 +94,15 @@ namespace Llprk.Web.UI.Application
         /// <param name="mailBody"></param>
         private static void _SendMailToCustomer(Order order, string subject, string mailBody)
         {
-            var message = new MailMessage("shop@lillypark.com", order.Email, subject, mailBody);
+            var message = new MailMessage("s_meissner@gmx.net", order.Email, subject, mailBody);
             message.IsBodyHtml = true;
             message.BodyEncoding = Encoding.UTF8;
 
-            var mp = new SmtpMailProvider();
+            var mp = new SmtpMailProvider(
+                "email-smtp.us-east-1.amazonaws.com",
+                user: "AKIAICQDHBAEORJ477RQ",
+                password: "AojioKHAL5oqNAs+8HVLdJDTcCvhMmIAJ7JgfGQHwT7C",
+                enableSSL: true);
             mp.SendMail(message);
 
         }

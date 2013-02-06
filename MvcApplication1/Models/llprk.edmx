@@ -99,6 +99,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MailMessagePaid" Type="text" Nullable="false" />
           <Property Name="MailMessageShipped" Type="text" Nullable="false" />
+          <Property Name="MailMessageOrdered" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="Pictures">
           <Key>
@@ -468,6 +469,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="MailMessagePaid" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="MailMessageShipped" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MailMessageOrdered" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -571,6 +573,7 @@
           <EntitySetMapping Name="Parameters">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Parameter">
               <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="MailMessageOrdered" ColumnName="MailMessageOrdered" />
                 <ScalarProperty Name="MailMessageShipped" ColumnName="MailMessageShipped" />
                 <ScalarProperty Name="MailMessagePaid" ColumnName="MailMessagePaid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

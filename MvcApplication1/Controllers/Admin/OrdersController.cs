@@ -118,7 +118,7 @@ namespace Llprk.Web.UI.Controllers.Admin
                 Order = order,
                 ActionButtonText = "Invoice has been PAID",
                 ChangeActionName = "paid",
-                Headline = string.Format("Invoice for Order {0} has been paid.", order.Id),
+                Headline = string.Format("Invoice for Order {0} has been paid.", order.OrderNumber),
                 MailBody = renderedMailBody
             });
         }
@@ -151,7 +151,7 @@ namespace Llprk.Web.UI.Controllers.Admin
                 Order = order,
                 ActionButtonText = "Order has been SHIPPED",
                 ChangeActionName = "shipped",
-                Headline = string.Format("Order {0} has been shipped.", order.Id),
+                Headline = string.Format("Order {0} has been shipped.", order.OrderNumber),
                 MailBody = renderedMailBody
             });
         }

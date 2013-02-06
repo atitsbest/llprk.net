@@ -21,6 +21,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         public ActionResult Index(Parameter config)
         {
             var c= db.Parameters.First();
+            c.MailMessageOrdered = config.MailMessageOrdered;
             c.MailMessagePaid = config.MailMessagePaid;
             c.MailMessageShipped = config.MailMessageShipped;
             db.SaveChanges();

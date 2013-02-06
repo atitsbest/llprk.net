@@ -13,6 +13,14 @@
             <legend>Mail messages</legend>
 
             <div class="control-group">
+                @Html.LabelFor(model => model.MailMessageOrdered, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.MailMessageOrdered, new { @class = "input-xxlarge", rows = 10 })
+                    @Html.ValidationMessageFor(model => model.MailMessageOrdered)
+                </div>
+            </div>
+
+            <div class="control-group">
                 @Html.LabelFor(model => model.MailMessagePaid, new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextAreaFor(model => model.MailMessagePaid, new { @class = "input-xxlarge", rows = 10 })
@@ -23,7 +31,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.MailMessageShipped, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.MailMessageShipped, new { @class="input-xxlarge", rows=10})
+                    @Html.TextAreaFor(model => model.MailMessageShipped, new { @class="input-xxlarge", rows=15})
                     @Html.ValidationMessageFor(model => model.MailMessageShipped)
                 </div>
             </div>

@@ -34,6 +34,11 @@ namespace Llprk.Web.UI.Application
         private readonly string _Password;
 
         /// <summary>
+        /// SSL zum versenden verwenden?
+        /// </summary>
+        private readonly bool _EnableSSL;
+
+        /// <summary>
         /// Anmeldeinfos verwenden?
         /// </summary>
         private bool _UseDefaultCredentials
@@ -48,7 +53,7 @@ namespace Llprk.Web.UI.Application
         /// <param name="port"></param>
         /// <param name="user"></param>
         /// <param name="password"></param>
-        public SmtpMailProvider(string host="localhost", int port=25, string user="", string password="")
+        public SmtpMailProvider(string host="localhost", int port=25, string user="", string password="", bool enableSSL=false)
         {
             if (string.IsNullOrEmpty(host)) { throw new ArgumentNullException("host"); }
 
@@ -56,6 +61,7 @@ namespace Llprk.Web.UI.Application
             _Port = port;
             _User = user;
             _Password = password;
+            _EnableSSL = enableSSL;
         }
 
         /// <summary>
@@ -122,6 +128,8 @@ namespace Llprk.Web.UI.Application
         private SmtpClient _CreateClient()
         {
             var client = new SmtpClient(_Host, _Port);
+            client.EnableSsl = _EnableSSL;
+
             if (_UseDefaultCredentials) {
                 client.UseDefaultCredentials = true;
             }
