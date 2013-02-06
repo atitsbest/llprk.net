@@ -10,7 +10,7 @@
     <fieldset>
         <legend class="@shippedClass">
             <div class="row clearfix">
-            <span class="span3">ORDER #@Html.DisplayFor(m => m.Id)</span>
+            <span class="span3">ORDER #@Html.DisplayFor(m => m.OrderNumber)</span>
                 @if(!Model.IsPaid) {
                     @Html.ActionLink("Invoice paid", "pay", new { id = Model.Id }, new { @class="btn btn-small" })
                 }
@@ -32,14 +32,13 @@
 
         <div class="row">
             <div class="span6">
-                <h5>
+                <b>
                     @Html.DisplayFor(model => model.Salutation)<br />
                     @Html.DisplayFor(model => model.Firstname)
                     @Html.DisplayFor(model => model.Name)
-                </h5>
+                </b>
 
                 @Html.DisplayFor(model => model.Address1)<br />
-
                 @Html.DisplayFor(model => model.Address2)<br />
                 @Html.DisplayFor(model => model.Zip)&nbsp;-&nbsp;@Html.DisplayFor(model => model.City)<br />
                 @Html.DisplayFor(model => model.Country.Name)<br />
@@ -69,13 +68,13 @@
                                 </td>
                             </tr>
                         }
-                        <tfoot>
+                        <tfoot style="border-top:2px solid;">
                             <tr>
                                 <td colspan="2" style="text-align:right;">
                                     Subtotal
                                 </td>
                                 <td style="text-align:right;">
-                                    @Model.TotalPrice.ToString("c")
+                                    @Model.SubTotalPrice.ToString("c")
                                 </td>
                             </tr>
                             <tr>
@@ -83,10 +82,10 @@
                                     Shipping
                                 </td>
                                 <td style="text-align:right;">
-                                    ???
+                                    @Model.ShippingCosts.ToString("c")
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="border-top:2px solid;">
                                 <td colspan="2" style="text-align:right;font-weight:bold;">
                                     Total
                                 </td>

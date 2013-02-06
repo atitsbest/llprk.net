@@ -1,9 +1,12 @@
 ﻿/**
  */
-function CartCtrl($scope, $http, CartItems) {
+function CartCtrl($scope, $http, CartItems, countries) {
     $scope.items = CartItems.query();
     // Soll der Warenkorb angezeigt werden?
     $scope.visible = true;
+
+    // Alle Länder verfügbar machen.
+    $scope.countries = countries;
 
     /**
      * Anstatt dem Hash gibt's ein Array der Values.
@@ -16,14 +19,31 @@ function CartCtrl($scope, $http, CartItems) {
     $scope.productIds = function () { return _($scope.items).keys(); };
 
     /**
-     * Gesamtpreis für alle Produkte im Warenkorb.
+     * Gesamtpreis für alle Produkte im Warenkorb + Versandkosten.
      */
     $scope.totalPrice = function () {
+        return $scope.subTotalPrice() + $scope.shippingCosts();
+    };
+
+    /**
+     * Gesamtpreis für alle Produkte im Warenkorb.
+     */
+    $scope.subTotalPrice = function () {
         return _.chain($scope.items)
                     .values()
                     .reduce(function (memo, item) { return memo + (item.Qty * item.Product.Price); }, 0)
                     .value();
     };
+
+    /**
+     * Versandkosten.
+     */
+    $scope.shippingCosts = function () {
+        var country = _(countries).find(function (c) { return c.Id == $scope.countryCode; })
+        return country == null
+            ? 0
+            : country.ShippingCosts;
+    }
 
     /**
      * Zeile zum WK hinzufügen.
@@ -105,4 +125,4 @@ function CartCtrl($scope, $http, CartItems) {
 
 }
 
-CartCtrl.$inject = ["$scope", "$http", "CartItems"];
+CartCtrl.$inject = ["$scope", "$http", "CartItems", "countries"];

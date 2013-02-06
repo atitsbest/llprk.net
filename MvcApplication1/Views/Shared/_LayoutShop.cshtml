@@ -41,7 +41,7 @@
         </div>
     </header>
 
-    @Html.Partial("~/Views/Shop/_Cart.cshtml", new Llprk.Web.UI.Models.Entities().Countries.OrderBy(c => c.Name))
+    @Html.Partial("~/Views/Shop/_Cart.cshtml")
 
     @RenderBody()
 
@@ -72,9 +72,16 @@
 
     @RenderSection("scripts", required: false)
 
+    @{
+        var allCountries = new Llprk.Web.UI.Models.Entities().Countries.OrderBy(c => c.Name);
+    }
     <script>
         function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
         function scrollTo(e) { $('html, body').animate({ scrollTop: $(e).offset().top }, 200); }
+
+        // Alle Länder für den Warenkorb.
+        angular.module('ShopApp.Values')
+            .value('countries', @Html.Raw(Json.Encode(allCountries)));
 
     </script>
 </body>

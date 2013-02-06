@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Llprk.Web.UI.Models.Country>
- <div id="cart" 
+﻿ <div id="cart" 
           class="popover bottom" 
           ng-controller="CartCtrl" 
           style="left:auto;right:10px;top:65px;">
@@ -39,10 +38,9 @@
 
                 <form action="">
                     <p>Wohin sollen wir das schicken?</p>
-                    <select name="" id="" ng:model="countryCode">
-                        @foreach(var country in Model) {
-                            <option value="@country.Id">@country.Name</option>
-                        }
+                    <select name="shippingCosts" id="shippingCosts" ng:model="countryCode">
+                        <option ng:repeat="c in countries"
+                                value="{{c.Id}}">{{c.Name}}&nbsp;(+ {{c.ShippingCosts | currency}} Versand)</option>
                     </select>
 
                     <p>
@@ -50,15 +48,15 @@
                         </h4>
                     </p>
                     <button type="submit" 
-                            class="btn btn-warning" 
-                            data-toggle="collapse" 
-                            data-target="#step2,#step1">Zur Kasse...</button>
-                    <small class="muted">oder</small>
-                    <button type="submit" 
                             onclick="$('#cart').hide();"
                             class="btn btn-small" 
                             data-toggle="collapse" 
                             data-target="#step2,#step1">Weiter shoppen</button>
+                    <small class="muted">oder</small>
+                    <button type="submit" 
+                            class="btn btn-warning" 
+                            data-toggle="collapse" 
+                            data-target="#step2,#step1">Zur Kasse...</button>
                 </form>
             </div>
             <div id="step2" class="collapse out">
@@ -142,18 +140,22 @@
                         <tbody>
                             <tr ng-repeat="(id, item) in items">
                                 <td>{{item.Product.Name}}</td>
-                                <td>{{item.Product.Price | currency}}</td>
                                 <td style="text-align: right;">{{item.Qty}}</td>
+                                <td style="text-align: right;">{{item.Product.Price | currency}}</td>
                             </tr>
                         </tbody>
-                        <tfoot>
+                        <tfoot style="border-top:2px solid;">
                             <tr>
-                                <th>Lieferung:</th>
-                                <td colspan="2">{{5 | currency}}</td>
+                                <th>Zwischensumme:</th>
+                                <td colspan="2" style="text-align:right;">{{subTotalPrice() | currency}}</td>
                             </tr>
                             <tr>
+                                <th>Lieferung:</th>
+                                <td colspan="2" style="text-align:right;">{{shippingCosts() | currency}}</td>
+                            </tr>
+                            <tr style="border-top:2px solid;">
                                 <th>Gesamt</th>
-                                <th colspan="2">{{totalPrice() | currency}}</th>
+                                <th colspan="2" style="text-align:right;">{{totalPrice() | currency}}</th>
                             </tr>
                         </tfoot>
                     </table>

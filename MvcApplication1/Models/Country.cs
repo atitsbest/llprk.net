@@ -9,6 +9,7 @@ namespace Llprk.Web.UI.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public decimal ShippingCosts { get; set; }
 
         /// <summary>
         /// Vergleich!

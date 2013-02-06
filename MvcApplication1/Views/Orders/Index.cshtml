@@ -14,7 +14,7 @@
         columns: grid.Columns(
             grid.Column("Id", format:
                 @<text>
-                    <b>@item.Id</b>
+                    <b>@item.OrderNumber</b>
                     <br />
                     @if(item.IsPaid) { <span class="badge badge-success">PAID</span> } 
                     else { <span class="badge">NOT PAID</span> }

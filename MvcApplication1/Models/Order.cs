@@ -42,13 +42,39 @@ namespace Llprk.Web.UI.Models
         public virtual ICollection<OrderLine> OrderLines { get; set; }
 
         /// <summary>
+        /// Auftragsnummer.
+        /// </summary>
+        public string OrderNumber
+        {
+            get { return string.Format("{0}{1}{2}", Id, CreatedAt.Month, CreatedAt.Year-2000); }
+        }
+
+        /// <summary>
         /// Preis OHNE Versandkosten.
         /// </summary>
-        public decimal TotalPrice {
+        public decimal SubTotalPrice {
             get {
                 return OrderLines
                     .Select(ol => ol.Product.Price * ol.Qty)
                     .Sum();
+            }
+        }
+
+        /// <summary>
+        /// Versandkosten.
+        /// </summary>
+        public decimal ShippingCosts {
+            get {
+                return (Country ?? new Country()).ShippingCosts;
+            }
+        }
+
+        /// <summary>
+        /// Preis MIT Versandkosten.
+        /// </summary>
+        public decimal TotalPrice {
+            get {
+                return SubTotalPrice + ShippingCosts;
             }
         }
 
