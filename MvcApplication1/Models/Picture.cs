@@ -13,13 +13,13 @@ namespace Llprk.Web.UI.Models
         public string ThumbnailUrl
         {
             // TODO: Url konfigurierbar machen.
-            get { return "http://llprk.blob.core.windows.net/pictures/" + Id.ToString() +"_t.png"; }
+            get { return "http://llprk2.blob.core.windows.net/pictures/" + Id.ToString() +"_t.png"; }
         }
 
         public string PictureUrl
         {
             // TODO: Url konfigurierbar machen.
-            get { return "http://llprk.blob.core.windows.net/pictures/" + Id.ToString() + ".png"; }
+            get { return "http://llprk2.blob.core.windows.net/pictures/" + Id.ToString() + ".png"; }
         }
 
         /// <summary>

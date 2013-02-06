@@ -305,14 +305,8 @@
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>
     <Content Include="Content\site.less" />
-    <None Include="Properties\PublishProfiles\llprk - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - FTP %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - Web Deploy %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - Web Deploy %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\llprk2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\marketing\cat1.jpg" />
     <Content Include="Images\marketing\cat2.jpg" />
@@ -340,6 +334,9 @@
     <Content Include="Scripts\app\CartCtrl.js" />
     <Content Include="Scripts\app\admin\PicturesCtrl.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\ckeditor.js" />
+    <Content Include="Scripts\config.js" />
+    <Content Include="Scripts\contents.css" />
     <Content Include="Scripts\i18n\angular-locale_am-et.js" />
     <Content Include="Scripts\i18n\angular-locale_am.js" />
     <Content Include="Scripts\i18n\angular-locale_ar-eg.js" />
@@ -505,7 +502,33 @@
     <Content Include="Scripts\jstd-scenario-adapter.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\lang\en.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\plugins\about\dialogs\about.js" />
+    <Content Include="Scripts\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Scripts\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Scripts\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Scripts\plugins\fakeobjects\images\spacer.gif" />
+    <Content Include="Scripts\plugins\icons.png" />
+    <Content Include="Scripts\plugins\link\dialogs\anchor.js" />
+    <Content Include="Scripts\plugins\link\dialogs\link.js" />
+    <Content Include="Scripts\plugins\link\images\anchor.png" />
+    <Content Include="Scripts\skins\moono\dialog.css" />
+    <Content Include="Scripts\skins\moono\dialog_ie.css" />
+    <Content Include="Scripts\skins\moono\dialog_ie7.css" />
+    <Content Include="Scripts\skins\moono\dialog_ie8.css" />
+    <Content Include="Scripts\skins\moono\dialog_iequirks.css" />
+    <Content Include="Scripts\skins\moono\dialog_opera.css" />
+    <Content Include="Scripts\skins\moono\editor.css" />
+    <Content Include="Scripts\skins\moono\editor_gecko.css" />
+    <Content Include="Scripts\skins\moono\editor_ie.css" />
+    <Content Include="Scripts\skins\moono\editor_ie7.css" />
+    <Content Include="Scripts\skins\moono\editor_ie8.css" />
+    <Content Include="Scripts\skins\moono\editor_iequirks.css" />
+    <Content Include="Scripts\skins\moono\icons.png" />
+    <Content Include="Scripts\skins\moono\images\arrow.png" />
+    <Content Include="Scripts\skins\moono\images\close.png" />
+    <Content Include="Scripts\skins\moono\images\mini.png" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -556,6 +579,7 @@
     <Content Include="Views\Parameters\Index.cshtml" />
     <Content Include="Views\Home\Impressum.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Scripts\skins\moono\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -582,7 +606,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>60795</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49502/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

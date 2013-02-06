@@ -103,7 +103,11 @@ namespace Llprk.Web.UI.Controllers.Admin
                 ConfigurationManager.ConnectionStrings["StorageConnection"].ConnectionString);
 
             var blobClient = storageAccount.CreateCloudBlobClient();
+#if DEBUG
+            var container = blobClient.GetContainerReference("picturestest");
+#else
             var container = blobClient.GetContainerReference("pictures");
+#endif
 
             // Erst die Bilder aus der DB löschen...
             db.Pictures.Remove(picture);
