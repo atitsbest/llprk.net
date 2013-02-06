@@ -335,7 +335,6 @@
     <Content Include="Scripts\app\admin\PicturesCtrl.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\ckeditor.js" />
-    <Content Include="Scripts\config.js" />
     <Content Include="Scripts\contents.css" />
     <Content Include="Scripts\i18n\angular-locale_am-et.js" />
     <Content Include="Scripts\i18n\angular-locale_am.js" />
