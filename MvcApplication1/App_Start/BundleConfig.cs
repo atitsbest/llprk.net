@@ -31,6 +31,7 @@ namespace Llprk.Web.UI
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.lettering.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/i18n/angular-locale_de-at.js",

@@ -1,7 +1,4 @@
-﻿@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700);
-@import url(http://fonts.googleapis.com/css?family=Pacifico);
-
-html {
+﻿html {
     background: #e8e8e8 url(images/shop/bg.png);
 }
 
@@ -39,6 +36,21 @@ header h1 {
     /*font-size: 48px;*/
     color: #00b9e3;
 }
+    header h1 span {
+        position: relative;
+        display: inline-block;
+        -webkit-transition: all linear 2s;
+    }
+
+        header h1 span.char1 { color: #DB6369; }
+        header h1 span.char2 { color: #EBD581; }
+        header h1 span.char3 { color: #E0BD63; }
+        header h1 span.char4 { color: #C0D5EB; }
+        header h1 span.char5 { color: #E0BD63; }
+        header h1 span.char6 { color: #33BCD4; }
+        header h1 span.char7 { color: #DB6369; }
+        header h1 span.char8 { color: #E0BD63; }
+        header h1 span.char9 { color: #33BCD4; }
 
 header nav {
    margin-top: 35px;

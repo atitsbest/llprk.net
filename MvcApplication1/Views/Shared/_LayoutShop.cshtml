@@ -20,7 +20,8 @@
     <meta charset="utf-8">
     <meta name="description" content="lillypark,Tasche,Taschen,Bag,Sak Saum">
     
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel="stylesheet" type="text/css" />
     
     @Styles.Render("~/Content/shop")
     @Scripts.Render("~/bundles/modernizr")
@@ -36,9 +37,9 @@
     <header>
         <div class="container">
             <div class="row">
-                <h1 id="logo" style="margin-left:20px;">
-                    <a href="@Url.Action("index", "home")">lillypark</a>
-                </h1>
+                <a href="@Url.Action("index", "home")">
+                    <h1 id="logo" style="margin-left:20px;">lillypark</h1>
+                </a>
                 <nav class="pull-right">
                     <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
                     <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
@@ -88,9 +89,22 @@
         function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
         function scrollTo(e) { $('html, body').animate({ scrollTop: $(e).offset().top }, 200); }
 
+        // ----------------------------------------------------------
+        // Das Logo: Bunt und die Buchstaben leicht verrückt und schräg.
+        //
+        $('#logo').lettering();
+        $('#logo span').each(function(i, e) {
+            var top = Math.floor((Math.random()*10)+1)-5;  
+            var rotate = Math.floor((Math.random()*10)+1)-5;  
+            $(e)
+                .css('top', top+'px');
+                //.css('-webkit-transform', 'rotate('+rotate+'deg)');
+        });
+
         // Alle Länder für den Warenkorb.
         angular.module('ShopApp.Values')
             .value('countries', @Html.Raw(Json.Encode(allCountries)));
+
 
     </script>
 </body>
