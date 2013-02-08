@@ -8,5 +8,7 @@ function run ($rootScope, CartItems) {
 }
 run.$inject = ['$rootScope', 'CartItems'];
 
+angular.module('ShopApp.Values', []);
+
 angular.module('ShopApp', ['ShopApp.Values', 'ShopApp.Services'])
     .run(run);

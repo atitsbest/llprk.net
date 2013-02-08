@@ -308,7 +308,6 @@
     <Content Include="Content\site.less" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\marketing\cat1.jpg" />
     <Content Include="Images\marketing\cat2.jpg" />
     <Content Include="Images\marketing\cat3.jpg" />
@@ -492,7 +491,10 @@
     <Content Include="Scripts\i18n\angular-locale_zh-hk.js" />
     <Content Include="Scripts\i18n\angular-locale_zh-tw.js" />
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery.lettering.js" />
@@ -501,8 +503,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jstd-scenario-adapter-config.js" />
     <Content Include="Scripts\jstd-scenario-adapter.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\lang\en.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\plugins\about\dialogs\about.js" />

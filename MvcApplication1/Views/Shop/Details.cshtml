@@ -46,7 +46,7 @@
             console.log('enter');
             $('#main .span6 > img').attr('src', this.src);
         });
-        angular.module('ShopApp.Values', [])
+        angular.module('ShopApp.Values')
             .value('products', [@Html.Raw(Json.Encode(Model.SerializeableProduct))]);
     </script>
 }

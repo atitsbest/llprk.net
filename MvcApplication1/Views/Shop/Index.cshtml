@@ -29,7 +29,7 @@
 
 @section scripts {
     <script type="text/javascript">
-        angular.module('ShopApp.Values', [])
+        angular.module('ShopApp.Values')
             .value('products', @Html.Raw(Json.Encode(Model.Products.Select(p => new {
                                             Name = p.Name,
                                             Price = p.Price,
