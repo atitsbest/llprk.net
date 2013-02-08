@@ -51,7 +51,7 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public ActionResult Wiederrufsrecht()
+        public ActionResult Widerrufsrecht()
         {
             return View();
         }

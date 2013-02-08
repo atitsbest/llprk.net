@@ -3,6 +3,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
+<style>
+    h2 {
+        margin: 0;
+    }
+</style>
 
 <div class="container">
     <div class="row" style="padding-top:20px;">
@@ -29,12 +34,14 @@
     <div class="row">
         <div class="span4">
             <h4>Headline</h4>
+            <img src="http://placehold.it/120x120" class="img-polaroid" style="float:left;margin: 0 1em 0 0;" />
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
             </p>
         </div>
         <div class="span4">
             <h4>Headline</h4>
+            <img src="http://placehold.it/120x120" class="img-polaroid" style="float:left;margin: 0 1em 0 0;" />
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
             </p>
@@ -48,11 +55,11 @@
 
     </div>
     
-    <div class="row align-center">
+    <div class="row align-center" style="padding-bottom:20px;">
         <h2>Aus unserem Shop</h2>
         <div class="products">
             @foreach(var product in Model.Products) {
-                <div class="span3">
+                <div class="span3 product">
                     <a href="@Url.Action("details", "shop", new { Id=product.Id })">
                         @if(@product.FirstPicture != null) {
                             <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
@@ -62,6 +69,24 @@
                 </div>
             }
         </div>
+    </div>
+
+    <div class="row" style="">
+        <div class="span4">
+            <h4>Headline</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+            </p>
+        </div>
+        <div class="span8">
+            <h4>Headline</h4>
+            <img src="http://placehold.it/120x120" class="img-polaroid" style="float:left;margin: 0 1em 0 0;" />
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+            </p>
+        </div>
+
     </div>
 
 </div>

@@ -1,7 +1,11 @@
 ﻿@{
     var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
     var shopActive = controllerName == "shop" ? "active" : null;
-    var aboutActive = controllerName == "home" ? "active" : null;
+    var aboutActive = actionName == "about" ? "active" : null;
+    var agbsActive = actionName == "agbs" ? "active" : null;
+    var impressumActive = actionName == "impressum" ? "active" : null;
+    var widerrufActive = actionName == "widerrufsrecht" ? "active" : null;
     var cartVisible = controllerName == "shop" ? null : "hidden";
 
     }
@@ -72,9 +76,9 @@
             <div class="row">
                 <div class="span12">
                     <nav>
-                        <a href="@Url.Action("agbs", "home")">agbs</a>
-                        <a href="@Url.Action("impressum", "home")">impressum</a>
-                        <a href="@Url.Action("wiederrufsrecht", "home")">wiederrufsrecht</a>
+                        <a href="@Url.Action("agbs", "home")" class="@agbsActive">agbs</a>
+                        <a href="@Url.Action("impressum", "home")" class="@impressumActive">impressum</a>
+                        <a href="@Url.Action("widerrufsrecht", "home")" class="@widerrufActive">widerrufsrecht</a>
                         <a href="http://www.facebook.com/taschenlilly" target="_blank">facebook</a>
                         <a href="#">twitter</a>
                     </nav>
@@ -109,8 +113,7 @@
             .find('span').each(function(i, e) {
                 var top = Math.floor((Math.random()*10)+1)-5;  
                 var rotate = Math.floor((Math.random()*10)+1)-5;  
-                $(e)
-                    .css('top', top+'px');
+                $(e).animate({ top: top+'px'}, 700); 
                     //.css('-webkit-transform', 'rotate('+rotate+'deg)');
             });
 
