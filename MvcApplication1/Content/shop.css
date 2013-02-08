@@ -56,6 +56,10 @@ header nav {
    /*margin-top: 35px;*/
 }
 
+    header nav.cart {
+        margin-top: 30px;
+    }
+
 footer nav {
     margin-top: 1em;
     text-align: center;
@@ -120,7 +124,7 @@ nav > a.active {
     /*box-shadow: -2px 0 5px rgba(0,0,0,.5);
     */z-index: 101;
     position: relative;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #main .explanation {
@@ -147,13 +151,16 @@ h2 {
     line-height: 1.1em;
 }
 
+.products .product {
+}
 
 #main img.product {
     height: auto;
 }
 
 #main .products {
-    padding-bottom: 2em;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
     #main .products span {
         color: #8c8c8c;
@@ -161,6 +168,8 @@ h2 {
         font-size: 1.2em;
         font-family: "Source Sans Pro";
         letter-spacing: 1px;
+        height: 42px;
+        display: inline-block;
     }
 
 #main .detail {
@@ -306,9 +315,10 @@ input.ng-invalid {
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-    body {
-        padding-right: 0;
-        padding-left: 0;
+    header nav.cart {
+        margin-top: 10px;
+        float: none;
+        text-align: center
     }
 }
 

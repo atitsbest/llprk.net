@@ -11,7 +11,7 @@
         <div class="row align-center">
             <div class="products">
                 @foreach(var product in Model.Products) {
-                    <div class="span3">
+                    <div class="span3 product">
                         <a href="@Url.Action("details", new { Id=product.Id })">
                             @if(@product.FirstPicture != null) {
                                 <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />

@@ -7,9 +7,10 @@
         </div>
 
         <div class="span9">
-            <div class="row">
-            @foreach(var product in Model.Products) {
-                <div class="span3">
+            <div class="row products">
+            @for(var i=0; i<5; i+=1) {
+            foreach(var product in Model.Products) {
+                <div class="span3" class="product">
                     <a href="@Url.Action("details", new { Id=product.Id })">
                         @if(@product.FirstPicture != null) {
                             <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
@@ -18,7 +19,8 @@
                     </a>
                 </div>
             }
-                </div>
+            }
+            </div>
 
         </div>
     </div>
