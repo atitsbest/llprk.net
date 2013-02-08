@@ -191,6 +191,7 @@ footer {
     z-index: 203;
     position: relative;
     border-top: 1px dashed #d8d8d8;
+    margin-top: 20px;
 }
     footer .copyright {
         border-top: 1px dashed #d8d8d8;

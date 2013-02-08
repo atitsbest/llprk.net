@@ -38,5 +38,23 @@ namespace Llprk.Web.UI.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Agbs()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Wiederrufsrecht()
+        {
+            return View();
+        }
+
     }
 }
