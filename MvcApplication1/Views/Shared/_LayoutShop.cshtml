@@ -55,13 +55,14 @@
                         <a href="#" 
                            class="@cartVisible"
                            onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" style="display:none;" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
+                        
+                        @Html.Partial("~/Views/Shop/_Cart.cshtml")
                     </nav>
                 </div>
             </div>
         </div>
     </header>
 
-    @Html.Partial("~/Views/Shop/_Cart.cshtml")
 
     @RenderBody()
 

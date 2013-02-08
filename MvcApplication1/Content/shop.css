@@ -58,6 +58,7 @@ header nav {
 
     header nav.cart {
         margin-top: 30px;
+        position: relative;
     }
 
 footer nav {
@@ -91,6 +92,12 @@ nav > a.active {
         font-size: 12px;
         font-weight: normal;
     }
+
+#cart {
+    right: 10px;
+    left: auto;
+    top: auto;
+}
 
 #basket {
     background: #00b9e3 url(images/shop/cart-bg.gif) repeat;
@@ -320,6 +327,10 @@ input.ng-invalid {
         margin-top: 10px;
         float: none;
         text-align: center
+    }
+
+    #cart { 
+        right: auto;
     }
 }
 
