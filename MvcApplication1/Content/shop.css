@@ -25,11 +25,11 @@ header {
     z-index: 102;
     padding: 0 10px;*/
     border-bottom: 1px dashed #d8d8d8;
+    padding-bottom: 10px;
 }
 
 header h1 {
-    float: left;
-    margin-top: 15px;
+    margin-bottom: 15px;
     letter-spacing: -1px;
     font-family: 'Arial Black', "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
@@ -42,23 +42,23 @@ header h1 {
         -webkit-transition: all linear 2s;
     }
 
-        header h1 span.char1 { color: #DB6369; }
-        header h1 span.char2 { color: #EBD581; }
-        header h1 span.char3 { color: #E0BD63; }
-        header h1 span.char4 { color: #C0D5EB; }
-        header h1 span.char5 { color: #E0BD63; }
-        header h1 span.char6 { color: #33BCD4; }
-        header h1 span.char7 { color: #DB6369; }
-        header h1 span.char8 { color: #E0BD63; }
-        header h1 span.char9 { color: #33BCD4; }
+        .logo span.char1 { color: #DB6369; }
+        .logo span.char2 { color: #EBD581; }
+        .logo span.char3 { color: #E0BD63; }
+        .logo span.char4 { color: #C0D5EB; }
+        .logo span.char5 { color: #E0BD63; }
+        .logo span.char6 { color: #33BCD4; }
+        .logo span.char7 { color: #DB6369; }
+        .logo span.char8 { color: #E0BD63; }
+        .logo span.char9 { color: #33BCD4; }
 
 header nav {
-   margin-top: 35px;
+   /*margin-top: 35px;*/
 }
 
 footer nav {
     margin-top: 1em;
-    text-align: right;
+    text-align: center;
 }
 
 nav > a {
@@ -76,9 +76,16 @@ nav > a.active {
     /* Die Anzahl über dem Warenkorb. */
     nav > a > .badge {
         position: relative;
-        top: -6px;
-        opacity: .6;
-        margin-left: 2px;
+        top: -3px;
+        left: 10px;
+        font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+        background: none;
+        border: 2px dotted #666;
+        border-radius: 13px;
+        padding: 5px 9px;
+        color: #333;
+        font-size: 12px;
+        font-weight: normal;
     }
 
 #basket {
@@ -113,6 +120,7 @@ nav > a.active {
     /*box-shadow: -2px 0 5px rgba(0,0,0,.5);
     */z-index: 101;
     position: relative;
+    margin-top: 20px;
 }
 
 #main .explanation {
@@ -182,6 +190,10 @@ footer {
         color: #7b7b7b;
         font-size: .8em;
         text-align: center;
+    }
+    footer .copyright span {
+        display: inline-block;
+        font-weight: bold;
     }
 
 #cart {

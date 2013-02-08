@@ -37,16 +37,26 @@
     <header>
         <div class="container">
             <div class="row">
-                <a href="@Url.Action("index", "home")">
-                    <h1 id="logo" style="margin-left:20px;">lillypark</h1>
-                </a>
-                <nav class="pull-right">
-                    <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
-                    <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-                    <a href="#" 
-                       class="@cartVisible"
-                       onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" style="display:none;" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
-                </nav>
+                <div class="span4">
+                </div>
+                <div class="span4">
+                    <div class="row align-center">
+                        <a href="@Url.Action("index", "home")" style="display:inline-block;">
+                            <h1 id="logo" class="logo">lillypark</h1>
+                        </a>
+                    </div>
+                    <nav class="align-center">
+                        <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
+                        <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
+                    </nav>
+                </div>
+                <div class="span4">
+                    <nav class="pull-right">
+                        <a href="#" 
+                           class="@cartVisible"
+                           onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" style="display:none;" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
@@ -59,7 +69,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="span12 pull-right">
+                <div class="span12">
                     <nav>
                         <a href="#">events</a>
                         <a href="@Url.Action("impressum", "home")">impressum</a>
@@ -70,8 +80,8 @@
             </div>
 
             <div class="row">
-                <div class="span12 pull-right">
-                    <p class="copyright">&copy; 2012 lillypark</p>
+                <div class="span12">
+                    <p class="copyright">&copy; 2012 <span class="logo">lillypark</span></p>
                 </div>
             </div>
         </div>
@@ -92,14 +102,15 @@
         // ----------------------------------------------------------
         // Das Logo: Bunt und die Buchstaben leicht verrückt und schräg.
         //
-        $('#logo').lettering();
-        $('#logo span').each(function(i, e) {
-            var top = Math.floor((Math.random()*10)+1)-5;  
-            var rotate = Math.floor((Math.random()*10)+1)-5;  
-            $(e)
-                .css('top', top+'px');
-                //.css('-webkit-transform', 'rotate('+rotate+'deg)');
-        });
+        $('#logo, .logo')
+            .lettering()
+            .find('span').each(function(i, e) {
+                var top = Math.floor((Math.random()*10)+1)-5;  
+                var rotate = Math.floor((Math.random()*10)+1)-5;  
+                $(e)
+                    .css('top', top+'px');
+                    //.css('-webkit-transform', 'rotate('+rotate+'deg)');
+            });
 
         // Alle Länder für den Warenkorb.
         angular.module('ShopApp.Values')
