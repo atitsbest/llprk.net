@@ -58,7 +58,7 @@
                     <nav class="pull-right cart">
                         <a href="#" 
                            class="@cartVisible"
-                           onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" style="display:none;" ng-show="cartItemCount()">{{cartItemCount()}}</span></a>
+                           onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" ng:bind="cartItemCount()">0</span></a>
                         
                         @Html.Partial("~/Views/Shop/_Cart.cshtml")
                     </nav>
@@ -66,6 +66,7 @@
             </div>
         </div>
     </header>
+    <hr />
 
 
     @RenderBody()
@@ -73,6 +74,7 @@
 
     <footer>
         <div class="container">
+            <hr />
             <div class="row">
                 <div class="span12">
                     <nav>
@@ -84,6 +86,7 @@
                     </nav>
                 </div>
             </div>
+            <hr />
 
             <div class="row">
                 <div class="span12">

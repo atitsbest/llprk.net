@@ -17,6 +17,13 @@ a {
     text-shadow: 1px 1px #fff;
 }
 
+hr {
+    border-top: 1px dashed #c7c7c7;
+    border-bottom: 1px dashed #fff;
+    margin: 10px 0;
+}
+
+
 header {
     /*box-shadow: 2px 0 7px rgba(0, 0, 0, 0.5);*/
     /*position: fixed;
@@ -24,8 +31,6 @@ header {
     min-height: 70px;
     z-index: 102;
     padding: 0 10px;*/
-    border-bottom: 1px dashed #d8d8d8;
-    padding-bottom: 7px;
 }
 
 header h1 {
@@ -62,7 +67,6 @@ header nav {
     }
 
 footer nav {
-    margin-top: 8px;
     text-align: center;
 }
 
@@ -198,11 +202,9 @@ footer {
     /*box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);*/
     z-index: 203;
     position: relative;
-    border-top: 1px dashed #d8d8d8;
     margin-top: 20px;
 }
     footer .copyright {
-        border-top: 1px dashed #d8d8d8;
         margin-top: 1em;
         padding-top: 1em;
         color: #7b7b7b;

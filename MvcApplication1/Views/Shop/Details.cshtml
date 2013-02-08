@@ -12,12 +12,12 @@
         </div>
 
         <div class="row">
-            <div class="span6">
-                <img src="@Model.Product.FirstPicture.PictureUrl" />
+            <div class="span6 align-center">
+                <img src="@Model.Product.FirstPicture.PictureUrl" class="img-polaroid" />
             </div>
-            <div class="span1 thumbnails">
+            <div class="span1 thumbnails align-center">
                 @foreach (var picture in Model.Product.OrderedPictures) {
-                    <img src="@picture.PictureUrl" />
+                    <img src="@picture.PictureUrl" class="img-polaroid" style="margin:2px 0;" />
                 }
             </div>
             <div class="span5">
@@ -27,6 +27,7 @@
                 <p>
                     <h3>@Model.Product.Price.ToString("c")</h3>
                 </p>
+                <hr />
                 <p>
                     <button class="btn btn-warning" 
                             ng:click="addToCart(@Model.Product.Id)">In den Warenkorb...</button>
