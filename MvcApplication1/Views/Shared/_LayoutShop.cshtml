@@ -1,4 +1,5 @@
-﻿@{
+﻿<!DOCTYPE html>
+@{
     var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
     var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
     var shopActive = controllerName == "shop" ? "active" : null;
@@ -9,7 +10,6 @@
     var cartVisible = controllerName == "shop" ? null : "hidden";
 
     }
-<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" ng-app> <![endif]-->
