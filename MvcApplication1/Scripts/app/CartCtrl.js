@@ -120,7 +120,6 @@ function CartCtrl($scope, $http, CartItems, countries) {
             email:      $scope.email,
             products: products
         };
-        console.log(result);
         return result;
     }
 

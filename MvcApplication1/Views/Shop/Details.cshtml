@@ -43,7 +43,6 @@
 @section scripts {
     <script type="text/javascript">
         $('.thumbnails > img').mouseover(function () {
-            console.log('enter');
             $('#main .span6 > img').attr('src', this.src);
         });
         angular.module('ShopApp.Values')

@@ -41,20 +41,20 @@
     <header>
         <div class="container">
             <div class="row">
-                <div class="span4">
+                <div class="span3">
                 </div>
-                <div class="span4">
+                <div class="span6">
                     <div class="row align-center">
                         <a href="@Url.Action("index", "home")" style="display:inline-block;">
                             <h1 id="logo" class="logo">lillypark</h1>
                         </a>
                     </div>
                     <nav class="align-center">
-                        <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
+                        *<a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>*
                         <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
                     </nav>
                 </div>
-                <div class="span4">
+                <div class="span3">
                     <nav class="pull-right cart">
                         <a href="#" 
                            class="@cartVisible"
@@ -116,8 +116,11 @@
             .find('span').each(function(i, e) {
                 var top = Math.floor((Math.random()*10)+1)-5;  
                 var rotate = Math.floor((Math.random()*10)+1)-5;  
-                $(e).animate({ top: top+'px'}, 700); 
-                    //.css('-webkit-transform', 'rotate('+rotate+'deg)');
+                $(e)
+                    .animate({ 
+                        top: top+'px',
+                        rotate: '+='+rotate+'deg'
+                    }, 700);
             });
 
         // Alle Länder für den Warenkorb.

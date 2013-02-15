@@ -42,9 +42,10 @@ header {
         letter-spacing: -1px;
         font-family: 'Arial Black', "Helvetica Neue", Helvetica, Arial, sans-serif;
         text-transform: uppercase;
-        /*font-size: 48px;*/
+        font-size: 70px;
         color: #00b9e3;
-        line-height: 35px;
+        line-height: 42px;
+        letter-spacing: -7px;
     }
 
         header h1 span {
