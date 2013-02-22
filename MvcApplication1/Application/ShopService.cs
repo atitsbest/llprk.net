@@ -2,6 +2,7 @@
 using Llprk.Web.UI.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
@@ -65,7 +66,7 @@ namespace Llprk.Web.UI.Application
 
             order.PaidAt = DateTime.Now; // TODO: Vielleicht hat der Kunde schon vorher gezahlt?
 
-            // TODO: Email an den Kunden schicken.
+            // Email an den Kunden schicken.
             _SendMailToCustomer(order, "Wir haben Deine Bezahlung erhalten", mailBody);
 
             db.SaveChanges(); 
@@ -81,7 +82,7 @@ namespace Llprk.Web.UI.Application
 
             order.ShippedAt = DateTime.Now;
 
-            // TODO: Email an den Kunden schicken.
+            // Email an den Kunden schicken.
             _SendMailToCustomer(order, "Deine Bestellung wurde verschickt", mailBody);
             db.SaveChanges(); 
         }
@@ -98,10 +99,14 @@ namespace Llprk.Web.UI.Application
             message.IsBodyHtml = true;
             message.BodyEncoding = Encoding.UTF8;
 
+			var smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
+	        var smtpUser = ConfigurationManager.AppSettings["SMTPUser"];
+	        var smtpPwd = ConfigurationManager.AppSettings["SMTPPwd"];
+
             var mp = new SmtpMailProvider(
-                "email-smtp.us-east-1.amazonaws.com",
-                user: "AKIAICQDHBAEORJ477RQ",
-                password: "AojioKHAL5oqNAs+8HVLdJDTcCvhMmIAJ7JgfGQHwT7C",
+                smtpServer,
+                user: smtpUser,
+                password: smtpPwd,
                 enableSSL: true);
             mp.SendMail(message);
 
