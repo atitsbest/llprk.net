@@ -12,6 +12,8 @@ namespace Llprk.Web.UI
             Mapper.CreateMap<Product, ProductEdit>()
                 .ForMember(d => d.Pictures, o => o.MapFrom(s => s.OrderedPictures))
                 .ForMember(d => d.AllPictures, o => o.Ignore());
+
+            Mapper.CreateMap<Parameter, ParameterIndex>();
         }
     }
 }

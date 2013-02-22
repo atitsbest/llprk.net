@@ -92,6 +92,10 @@ fieldset legend.shipped {
   border-bottom: none;
   background: url('../images/border.png') repeat-x 0px 36px;
 }
+.field-validation-error {
+	color: red;
+}
+
 /* Media Queries
    --------------------------------------------- */
 @media (max-width: 979px) {

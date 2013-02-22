@@ -10,7 +10,6 @@ namespace Llprk.Web.UI.ViewModels
     /// <summary>
     /// ViewModel für ~/orders/new
     /// </summary>
-    // TODO: Validierung von "Order" übernehmen.
     public class OrderStatusChange
     {
         public Order Order { get; set; }

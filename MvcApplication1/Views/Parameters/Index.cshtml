@@ -1,4 +1,4 @@
-﻿@model Llprk.Web.UI.Models.Parameter
+﻿@model Llprk.Web.UI.ViewModels.ParameterIndex
 
 @{
     ViewBag.Title = "Index";
@@ -16,7 +16,9 @@
                 @Html.LabelFor(model => model.MailMessageOrdered, new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextAreaFor(model => model.MailMessageOrdered, new { @class = "input-xxlarge", rows = 10 })
-                    @Html.ValidationMessageFor(model => model.MailMessageOrdered)
+		    <p>
+			@Html.ValidationMessageFor(model => model.MailMessageOrdered)
+		    </p>
                 </div>
             </div>
 
@@ -24,7 +26,9 @@
                 @Html.LabelFor(model => model.MailMessagePaid, new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextAreaFor(model => model.MailMessagePaid, new { @class = "input-xxlarge", rows = 10 })
-                    @Html.ValidationMessageFor(model => model.MailMessagePaid)
+		    <p>
+			@Html.ValidationMessageFor(model => model.MailMessagePaid)
+		    </p>
                 </div>
             </div>
 
@@ -32,7 +36,9 @@
                 @Html.LabelFor(model => model.MailMessageShipped, new { @class = "control-label" })
                 <div class="controls">
                     @Html.TextAreaFor(model => model.MailMessageShipped, new { @class="input-xxlarge", rows=15})
-                    @Html.ValidationMessageFor(model => model.MailMessageShipped)
+		    <p>
+			@Html.ValidationMessageFor(model => model.MailMessageShipped)
+		    </p>
                 </div>
             </div>
 

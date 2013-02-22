@@ -99,9 +99,9 @@ namespace Llprk.Web.UI.Application
             message.IsBodyHtml = true;
             message.BodyEncoding = Encoding.UTF8;
 
-			var smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
-	        var smtpUser = ConfigurationManager.AppSettings["SMTPUser"];
-	        var smtpPwd = ConfigurationManager.AppSettings["SMTPPwd"];
+	    var smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
+            var smtpUser = ConfigurationManager.AppSettings["SMTPUser"];
+	    var smtpPwd = ConfigurationManager.AppSettings["SMTPPwd"];
 
             var mp = new SmtpMailProvider(
                 smtpServer,
