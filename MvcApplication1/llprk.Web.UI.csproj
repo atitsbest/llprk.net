@@ -586,6 +586,7 @@
     <Content Include="Views\Shop\Categories.cshtml" />
     <Content Include="Views\Home\Agbs.cshtml" />
     <Content Include="Views\Home\Widerrufsrecht.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

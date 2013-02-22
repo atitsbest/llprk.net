@@ -23,6 +23,15 @@ namespace Llprk.Web.UI.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Blog(int id) {
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public ActionResult About()
         {

@@ -1,9 +1,9 @@
 ﻿html {
-    background: #e8e8e8 url(images/shop/bg.png);
+    /*background: #e8e8e8 url(images/shop/bg.png);*/
 }
 
 body {
-    background: #e8e8e8 url(images/shop/bg.png);
+    background: #e8e8e8 url(../images/bg/bright_squares_sep.png);
     /*margin-top: 70px;*/
     padding-top: 10px;
     text-rendering: optimizelegibility;
@@ -133,6 +133,12 @@ nav > a {
         font-weight: normal;
     }
 
+article a {
+    color: #333;
+    -webkit-text-shadow: none;
+    text-shadow: none;
+}
+
 #cart {
     right: 10px;
     left: auto;
@@ -170,7 +176,7 @@ nav > a {
     }
 
 #main {
-    background: #e8e8e8 url(images/shop/bg.png);
+    /*background: #e8e8e8 url(images/shop/bg.png);*/
     /*box-shadow: -2px 0 5px rgba(0,0,0,.5);
     */ z-index: 101;
     position: relative;
