@@ -8,6 +8,7 @@
     var impressumActive = actionName == "impressum" ? "active" : null;
     var widerrufActive = actionName == "widerrufsrecht" ? "active" : null;
     var cartVisible = controllerName == "shop" ? null : "hidden";
+    var shopVisible = controllerName == "shop" ? "hidden" : null;
 
     }
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app> <![endif]-->
@@ -42,6 +43,9 @@
         <div class="container">
             <div class="row">
                 <div class="span3">
+                    <nav class="pull-right cart">
+                        <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
+		    </nav>
                 </div>
                 <div class="span6">
                     <div class="row align-center">
@@ -49,13 +53,11 @@
                             <h1 id="logo" class="logo">lillypark</h1>
                         </a>
                     </div>
-                    <nav class="align-center">
-                        <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
-                        <img src="@Url.Content("~/images/star.png")" style="width:16px;position:relative;top:-3px;opacity:.4;" />
-                        <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-                    </nav>
                 </div>
                 <div class="span3">
+                    <nav class="pull-left cart @shopVisible">
+                        <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
+		    </nav>
                     <nav class="pull-right cart">
                         <a href="#" 
                            class="@cartVisible"

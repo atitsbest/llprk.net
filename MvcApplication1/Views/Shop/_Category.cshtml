@@ -12,10 +12,13 @@
             foreach(var product in Model.Products) {
                 <div class="span3 product">
                     <a href="@Url.Action("details", new { Id=product.Id })">
+			<h5>
+			    @product.Name
+			</h5>
                         @if(@product.FirstPicture != null) {
                             <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
                         }
-                        <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>
+                        <p><span>@product.Price.ToString("c")</span></p>
                     </a>
                 </div>
             }
