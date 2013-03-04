@@ -9,6 +9,10 @@ function CartCtrl($scope, $http, CartItems, countries) {
     $scope.countries = countries;
     $scope.countryCode = countries[0].Id;
 
+    $scope.paymentType = "Überweisung";
+
+
+
     /**
      * Anstatt dem Hash gibt's ein Array der Values.
      */
