@@ -85,6 +85,7 @@ namespace Llprk.Web.UI.Controllers
                     Name = viewModel.Name,
                     Salutation = viewModel.Salutation,
                     Zip = viewModel.Zip,
+		    Comment = viewModel.Comment
                 };
 
                 var productIdsAndQtys = viewModel.Products.ToDictionary(

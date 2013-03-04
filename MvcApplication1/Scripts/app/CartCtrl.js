@@ -122,6 +122,7 @@ function CartCtrl($scope, $http, CartItems, countries) {
             city:       $scope.city,
             countryCode:$scope.countryCode,
             email:      $scope.email,
+            comment:	$scope.comment,
             products: products
         };
         return result;

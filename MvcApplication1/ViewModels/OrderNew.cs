@@ -27,6 +27,7 @@ namespace Llprk.Web.UI.ViewModels
         public string City { get; set; }
         public string CountryCode { get; set; }
         public string Email { get; set; }
+        public string Comment { get; set; }
         public IEnumerable<ProductLine> Products { get; set; }
     }
 }
