@@ -298,6 +298,9 @@
     </EntityDeploy>
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
+    <Content Include="Images\marketing\banner1.png" />
+    <Content Include="Images\marketing\banner2.png" />
+    <Content Include="Images\marketing\banner3.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
     <Content Include="Models\llprk.Context.tt">
@@ -314,12 +317,6 @@
     <Content Include="Content\site.less" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy.pubxml" />
-    <Content Include="Images\marketing\cat1.jpg" />
-    <Content Include="Images\marketing\cat2.jpg" />
-    <Content Include="Images\marketing\cat3.jpg" />
-    <Content Include="Images\marketing\IMG_3442-1.jpg" />
-    <Content Include="Images\marketing\IMG_3444-1.jpg" />
-    <Content Include="Images\marketing\IMG_3680-1.jpg" />
     <Content Include="Images\sidebar\camera.png" />
     <Content Include="Images\sidebar\house.png" />
     <Content Include="Images\sidebar\orders.png" />
