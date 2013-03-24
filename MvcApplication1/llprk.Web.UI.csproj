@@ -306,6 +306,7 @@
     <Content Include="Images\about\peah.jpg" />
     <Content Include="Images\about\saksaum.jpg" />
     <Content Include="Images\bg\bright_squares_sep.png" />
+    <Content Include="Images\blume.gif" />
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
     <Content Include="Images\marketing\banner1.png" />
@@ -328,7 +329,9 @@
     <Content Include="Content\fonts\saint-andrews_queen-webfont.eot" />
     <Content Include="Content\fonts\saint-andrews_queen-webfont.ttf" />
     <Content Include="Content\fonts\saint-andrews_queen-webfont.woff" />
+    <None Include="Properties\PublishProfiles\llprk2 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\llprk2 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy.pubxml" />
     <Content Include="Images\sidebar\camera.png" />
     <Content Include="Images\sidebar\house.png" />
