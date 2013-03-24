@@ -49,12 +49,17 @@ header {
         color: #00b9e3;
         line-height: 60px;
         letter-spacing: -7px;
+		display: inline-block;
     }
 
         header h1 span {
             position: relative;
             display: inline-block;
         }
+
+    header #flower {
+		display: inline-block;
+    }
 
 .logo span.char1 {
     color: #DB6369;
@@ -203,7 +208,7 @@ article a {
 
 h2 {
     color: rgba(255,255,255,0.298039);
-    font: 48px jellyka, Pacifico, "Source Sans Pro", Arial, sans-serif;
+    font: 48px Pacifico, "Source Sans Pro", Arial, sans-serif;
     font-weight: 100;
     -webkit-text-shadow: rgba(0,0,0,.2) -1px -1px 0px;
     text-shadow: rgba(0,0,0,.2) -1px -1px 0px;

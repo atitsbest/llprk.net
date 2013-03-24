@@ -42,6 +42,15 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+        public ActionResult ShowYourLove()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Impressum()
         {
             return View();

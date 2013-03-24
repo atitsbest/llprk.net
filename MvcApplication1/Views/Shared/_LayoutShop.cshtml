@@ -4,6 +4,7 @@
     var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
     var shopActive = controllerName == "shop" ? "active" : null;
     var aboutActive = actionName == "about" ? "active" : null;
+    var sylActive = actionName == "showyourlove" ? "active" : null;
     var agbsActive = actionName == "agbs" ? "active" : null;
     var impressumActive = actionName == "impressum" ? "active" : null;
     var widerrufActive = actionName == "widerrufsrecht" ? "active" : null;
@@ -48,11 +49,13 @@
                     <div class="row align-center">
                         <a href="@Url.Action("index", "home")" style="display:inline-block;">
                             <h1 id="logo" class="logo">lillypark</h1>
+			    <img id="flower" src="@Url.Content("~/Images/blume.gif")" />
                         </a>
                     </div>
                     <div class="row align-center">
 			<nav>
 			    <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
+			    <a href="@Url.Action("showyourlove", "home")" class="@sylActive">ShowYourLove</a>
 			    <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
 			</nav>
 		    </div>
@@ -84,7 +87,6 @@
                         <a href="@Url.Action("impressum", "home")" class="@impressumActive">impressum</a>
                         <a href="@Url.Action("widerrufsrecht", "home")" class="@widerrufActive">widerrufsrecht</a>
                         <a href="http://www.facebook.com/taschenlilly" target="_blank">facebook</a>
-                        <a href="#">twitter</a>
                     </nav>
                 </div>
             </div>
