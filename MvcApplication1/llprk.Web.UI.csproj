@@ -218,6 +218,8 @@
     </Content>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\fonts.css" />
+    <Content Include="Content\fonts\saint-andrews_queen-webfont.svg" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
     <Content Include="Content\site.css">
@@ -296,6 +298,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>llprk.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\about\founders.jpg" />
+    <Content Include="Images\about\logo.jpg" />
+    <Content Include="Images\about\mission1.jpg" />
+    <Content Include="Images\about\mission2.jpg" />
+    <Content Include="Images\about\mission3.jpg" />
+    <Content Include="Images\about\peah.jpg" />
+    <Content Include="Images\about\saksaum.jpg" />
     <Content Include="Images\bg\bright_squares_sep.png" />
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
@@ -316,6 +325,9 @@
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>
     <Content Include="Content\site.less" />
+    <Content Include="Content\fonts\saint-andrews_queen-webfont.eot" />
+    <Content Include="Content\fonts\saint-andrews_queen-webfont.ttf" />
+    <Content Include="Content\fonts\saint-andrews_queen-webfont.woff" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy.pubxml" />
     <Content Include="Images\sidebar\camera.png" />
