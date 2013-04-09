@@ -20,21 +20,12 @@ namespace Llprk.Web.UI.Controllers
         public ActionResult Index(int? id)
         {
             var viewModel = new ShopIndex();
-            var categories = db.Categories.ToList();
-            viewModel.Categories = categories.Select(c => {
-                var products = db.Products
+            viewModel.Categories = db.Categories.ToList();
+            viewModel.Products = db.Products
                        .Where(p => p.IsPublished
-                                && p.CategoryId == c.Id
-                                && p.Available > 0);
-                if (!(id.HasValue && id.Value == c.Id)) {
-                    // Auf der Startseite nur die ersten 3 anzeigen.
-                    products = products.Take(3);
-                }
-                return new ShopCategory() {
-                    Category = c,
-                    Products = products.ToArray()
-                };
-            });
+								&& (!id.HasValue || (p.CategoryId == id.Value))
+                                && p.Available > 0) // Nur verfügbare Produkte anzeigen.
+                       .ToArray();
             return View(viewModel);
         }
 

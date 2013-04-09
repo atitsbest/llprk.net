@@ -1,32 +1,21 @@
-﻿@model Llprk.Web.UI.ViewModels.ShopCategory
-<div class="row align-center">
-    <div class="products" id="@Model.Category.Id">
-        <div class="span3">
+﻿@model IEnumerable<Llprk.Web.UI.Models.Product>
+@*        <div class="span3">
             <h2 class="categoryName">@Model.Category.Name</h2>
             <a href="@Url.Action("index", "shop", new {id = Model.Category.Id }, null)#@Model.Category.Id">alle anzeigen...</a>
-        </div>
+        </div>*@
 
-        <div class="span9">
             <div class="row products">
-            @for(var i=0; i<1; i+=1) {
-            foreach(var product in Model.Products) {
+            @foreach(var product in Model) {
                 <div class="span3 product">
                     <a href="@Url.Action("details", new { Id=product.Id })">
-			<h5>
-			    @product.Name
-			</h5>
                         @if(@product.FirstPicture != null) {
                             <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
                         }
-                        <p><span>@product.Price.ToString("c")</span></p>
+						<h5>
+							@product.Name
+						</h5>
+                        <p class="info"><span class="price">@product.Price.ToString("c")</span></p>
                     </a>
                 </div>
             }
-            }
             </div>
-
-        </div>
-    </div>
-    <div class="clearfix" ></div>
-</div>
-<hr />

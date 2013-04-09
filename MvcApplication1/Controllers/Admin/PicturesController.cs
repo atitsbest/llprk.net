@@ -188,7 +188,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             };
 
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.ConnectionStrings["StorageConnection"].ConnectionString);
+                ConfigurationManager.AppSettings["StorageConnection"]);
 
             var blobClient = storageAccount.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference("pictures");

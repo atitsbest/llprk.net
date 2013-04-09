@@ -11,17 +11,11 @@ namespace Llprk.Web.UI.ViewModels
     /// </summary>
     public class ShopIndex
     {
-        public IEnumerable<ShopCategory> Categories;
+        public IEnumerable<Category> Categories { get; set; }
 
         /// <summary>
         /// Liefert alle Produkte von Categories.
         /// </summary>
-        public IEnumerable<Product> Products
-        {
-            get
-            {
-                return Categories.SelectMany(x => x.Products);
-            }
-        }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

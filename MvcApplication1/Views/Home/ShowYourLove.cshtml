@@ -220,7 +220,7 @@ neues Zuhause gesichert.
 @section scripts {
     <script>
     	$(function () {
-            $('cite, img').each(function(i, e) {
+            $('cite, img').not('#showyourlove').each(function(i, e) {
                 var rotate = Math.floor((Math.random()*6)+1)-3;  
                 $(e)
                     .animate({ rotate: '+='+rotate+'deg' }, 0);

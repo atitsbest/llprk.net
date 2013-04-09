@@ -8,7 +8,7 @@
     var agbsActive = actionName == "agbs" ? "active" : null;
     var impressumActive = actionName == "impressum" ? "active" : null;
     var widerrufActive = actionName == "widerrufsrecht" ? "active" : null;
-    var cartVisible = controllerName == "shop" ? null : "hidden";
+    var cartVisible = controllerName == null;//"shop" ? null : "hidden";
     var shopVisible = controllerName == "shop" ? "hidden" : null;
 
     }
@@ -40,6 +40,9 @@
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
     <![endif]-->
+	<a href="home/showyourlove">
+		<img id="showyourlove" src="@Url.Content("~/images/showyourlove.png")" alt="" />
+	</a>
     <header>
         <div class="container">
             <div class="row">
@@ -47,17 +50,17 @@
                 </div>
                 <div class="span6">
                     <div class="row align-center">
-                        <a href="@Url.Action("index", "home")" style="display:inline-block;">
+                        <a href="@Url.Action("index", "shop")" style="display:inline-block;">
                             <h1 id="logo" class="logo">lillypark</h1>
 			    <img id="flower" src="@Url.Content("~/Images/blume.gif")" />
                         </a>
                     </div>
                     <div class="row align-center">
-			<nav>
+@*			<nav>
 			    <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
 			    <a href="@Url.Action("showyourlove", "home")" class="@sylActive">ShowYourLove</a>
 			    <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-			</nav>
+			</nav>*@
 		    </div>
                 </div>
                 <div class="span3">

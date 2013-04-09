@@ -6,21 +6,10 @@
 <section id="main" ng-controller="ProductsCtrl">
     <div class="container">
         <div class="row align-center">
-                <h2 class="categoryName">@Model.Category.Name</h2>
+            <h2 class="categoryName">@Model.Category.Name</h2>
         </div>
         <div class="row align-center">
-            <div class="products">
-                @foreach(var product in Model.Products) {
-                    <div class="span3 product">
-                        <a href="@Url.Action("details", new { Id=product.Id })">
-                            @if(@product.FirstPicture != null) {
-                                <img src="@product.FirstPicture.PictureUrl" alt="@product.Name" />
-                            }
-                            <p><span>@product.Name <i>@product.Price.ToString("c")</i></span></p>
-                        </a>
-                    </div>
-                }
-            </div>
+			@Html.Partial("~/Views/Shop/_Category.cshtml", Model.Products);
         </div>
     </div>
 
@@ -28,13 +17,13 @@
 
 @section scripts {
     <script type="text/javascript">
-        angular.module('ShopApp.Values')
+    	angular.module('ShopApp.Values')
             .value('products', @Html.Raw(Json.Encode(Model.Products.Select(p => new {
-                                            Name = p.Name,
-                                            Price = p.Price,
-                                            Id = p.Id,
-                                            ThumbailUrl = p.FirstPicture == null ? "": p.FirstPicture.ThumbnailUrl 
-                                         })))
+                              Name = p.Name,
+                              Price = p.Price,
+                              Id = p.Id,
+                              ThumbailUrl = p.FirstPicture == null ? "" : p.FirstPicture.ThumbnailUrl
+                          })))
             );
     </script>
 }
