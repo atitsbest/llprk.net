@@ -314,6 +314,7 @@
     <Content Include="Images\marketing\banner3.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
+    <Content Include="Images\showyourlove.png" />
     <Content Include="Models\llprk.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>llprk.edmx</DependentUpon>
