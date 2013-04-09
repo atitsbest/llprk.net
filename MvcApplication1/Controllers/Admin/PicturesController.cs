@@ -99,8 +99,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             Picture picture = db.Pictures.Find(id);
             
             // Remove Picture from Blob Storage
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.ConnectionStrings["StorageConnection"].ConnectionString);
+            var storageAccount = _getStorageAccount();
 
             var blobClient = storageAccount.CreateCloudBlobClient();
 #if DEBUG
@@ -187,8 +186,7 @@ namespace Llprk.Web.UI.Controllers.Admin
                 Name = Path.GetFileName(file.FileName)
             };
 
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.AppSettings["StorageConnection"]);
+            var storageAccount = _getStorageAccount();
 
             var blobClient = storageAccount.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference("pictures");
@@ -196,6 +194,17 @@ namespace Llprk.Web.UI.Controllers.Admin
             _PutPicture(thumbnailStream, picture.Id.ToString() + "_t", container);
 
             db.Pictures.Add(picture);
+        }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+        private static CloudStorageAccount _getStorageAccount()
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                ConfigurationManager.AppSettings["StorageConnection"]);
+            return storageAccount;
         }
     }
 }
