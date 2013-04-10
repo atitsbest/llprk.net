@@ -219,7 +219,7 @@ article a {
 
     #main .explanation {
         color: #7b7b7b;
-        margin: 2em 0 2em;
+        margin: 2em 0 0;
         font-weight: 200;
         font-size: 24px;
         font-family: "Source Sans Pro";
@@ -262,6 +262,7 @@ h2 {
 	margin-top: 20px;
 	padding-top: 20px;
 	box-shadow: 0 0 6px rgba(0,0,0,.2);
+	position: relative;
 }
 
     .products .product .info {
@@ -299,8 +300,14 @@ h2 {
         font-size: 1.2em;
         font-family: "Source Sans Pro";
         letter-spacing: 1px;
-        height: 42px;
         display: inline-block;
+		background: #DB6369;
+padding: 2px 6px;
+position: absolute;
+top: 16px;
+right: 0px;
+color: #f1f1f1;
+text-shadow: none;
     }
 
 #main .detail {
