@@ -6,46 +6,41 @@
     var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
     var aboutActive = actionName == "about" ? "active" : null;
 }
-<header class="categories">
-    <div class="row align-center">
-		<nav>
-			@foreach (var c in Model.Categories) { 
-				<a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
-			}
-			<a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-		</nav>
-    </div>
-</header>
 
 <section id="main" ng-controller="ProductsCtrl">
-    <div class="container">
-        <div class="row align-center">
-            <div class="span12">
-				@if(Model.Products.Count() > 0) {
-					@Html.Partial("~/Views/Shop/_Category.cshtml", Model.Products)
-				}
-				else {
-					<h3>Hoppla!</h3>
-					<p>Leider keine Produkte in dieser Kategorie.</p>
-				}
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row align-center explanation">
-            <div class="span12">
-                <p>
-                    Jede Tasche ist einzigartig.<br />
-                    Darum gibt es sie auch nur genau ein mal.
-               
-                    <br />
-                    Schnapp dir deine tasche!
-           
-                </p>
-            </div>
-        </div>
-    </div>
+	@if(Model.Products.Count() > 0) {
+		<div class="container">
+			<div class="row align-center">
+				<div class="span12">
+						@Html.Partial("~/Views/Shop/_Category.cshtml", Model.Products)
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row align-center explanation">
+				<div class="span12">
+					<p>
+						Jede Tasche ist einzigartig.<br />
+						Darum gibt es sie auch nur genau ein mal.
+				   
+						<br />
+						Schnapp dir deine tasche!
+			   
+					</p>
+				</div>
+			</div>
+		</div>
+	}
+	else {
+		<div class="container">
+			<div class="row align-center explanation">
+				<div class="span12">
+				<p>Hoppla!</p>
+				<p>Leider keine Produkte in dieser Kategorie.</p>
+				</div>
+			</div>
+		</div>
+	}
 
 </section>
 

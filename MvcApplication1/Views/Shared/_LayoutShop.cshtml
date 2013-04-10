@@ -40,7 +40,7 @@
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
     <![endif]-->
-	<a href="home/showyourlove">
+	<a href="@Url.Action("showyourlove", "home")">
 		<img id="showyourlove" src="@Url.Content("~/images/showyourlove.png")" alt="" />
 	</a>
     <header>
@@ -50,18 +50,11 @@
                 </div>
                 <div class="span6">
                     <div class="row align-center">
-                        <a href="@Url.Action("index", "shop")" style="display:inline-block;">
+                        <a href="@Url.Action("index", "shop", new { id = "" })" style="display:inline-block;">
                             <h1 id="logo" class="logo">lillypark</h1>
-			    <img id="flower" src="@Url.Content("~/Images/blume.gif")" />
+							<img id="flower" src="@Url.Content("~/Images/blume.gif")" />
                         </a>
                     </div>
-                    <div class="row align-center">
-@*			<nav>
-			    <a href="@Url.Action("index", "shop")" class="@shopActive">shop</a>
-			    <a href="@Url.Action("showyourlove", "home")" class="@sylActive">ShowYourLove</a>
-			    <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-			</nav>*@
-		    </div>
                 </div>
                 <div class="span3">
                     <nav class="pull-right cart">
@@ -75,6 +68,16 @@
             </div>
         </div>
     </header>
+	<header class="categories">
+		<div class="row align-center">
+			<nav>
+				@foreach (var c in ViewBag.Categories) { 
+					<a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
+				}
+				<a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
+			</nav>
+		</div>
+	</header>
 
 
     @RenderBody()

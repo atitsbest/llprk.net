@@ -153,6 +153,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationViewPage.cs" />
     <Compile Include="Application\Exceptions\AppException.cs" />
     <Compile Include="Application\ShopService.cs" />
     <Compile Include="Application\SmtpMailProvider.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ShopLayout.cs" />
     <Compile Include="ViewModels\ParametersIndex.cs" />
     <Compile Include="ViewModels\ShopCategory.cs" />
     <Compile Include="ViewModels\OrderStatusChange.cs" />
