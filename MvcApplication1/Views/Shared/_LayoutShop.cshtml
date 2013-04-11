@@ -133,6 +133,11 @@
                     }, 700);
             });
 
+    	// Bilder Lazy-Loading
+        $(function() {
+			$('img.lazy').lazyload();
+        });
+
         // Alle Länder für den Warenkorb.
         angular.module('ShopApp.Values')
             .value('countries', @Html.Raw(Json.Encode(allCountries)));

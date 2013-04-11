@@ -33,6 +33,7 @@ namespace Llprk.Web.UI
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.lettering.js",
                         "~/Scripts/jquery.rotatescale.js",
+                        "~/Scripts/jquery.lazyload.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/i18n/angular-locale_de-at.js",
