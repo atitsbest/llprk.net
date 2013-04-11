@@ -57,8 +57,16 @@
 			),
 			grid.Column(format: 
 				@<text>
-					<a href='@Url.Action("Details", new { id=item.Id })' class="btn btn-small"><i class="icon-edit"></i></a>
-					<a href='@Url.Action("Delete", new { id=item.Id })' class="btn btn-small btn-danger"><i class="icon-trash"></i></a>
+					<div class="btn-group pull-right">
+						<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+							Action
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href='@Url.Action("Details", new { id=item.Id })'>Edit</a></li>
+							<li><a href='@Url.Action("Delete", new { id=item.Id })'>Delete</a></li>
+						</ul>
+					</div>
 				</text>)
 	))
 </div>
