@@ -135,7 +135,7 @@
 
     	// Bilder Lazy-Loading
         $(function() {
-			$('img.lazy').lazyload();
+        	setTimeout(function() { $('img.lazy').lazyload(); }, 500);
         });
 
         // Alle Länder für den Warenkorb.
