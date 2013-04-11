@@ -17,10 +17,19 @@ namespace Llprk.Web.UI.Controllers.Admin
         //
         // GET: /Products/
 
-        public ActionResult Index()
+        public ActionResult Index(string q)
         {
-            return View(db.Products
-                .Include(i => i.Category));
+            var products = db.Products.Include(p => p.Category).AsEnumerable();
+            if (!string.IsNullOrWhiteSpace(q)) { 
+				// Suche...
+                products = products
+                    .Where(p => p.Name.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || p.Id.ToString().IndexOf(q) != -1
+                            || (p.Description ?? "").IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1);
+							
+            }
+            ViewBag.q = q;
+            return View(products);
         }
 
         //

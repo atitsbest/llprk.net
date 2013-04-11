@@ -86,6 +86,11 @@ footer {
   right: 0;
   top: -45px;
 }
+
+    .buttons a,
+    .buttons form {
+		display: inline-block;
+	}
 /* Fieldsets
    --------------------------------------------- */
 fieldset legend.shipped {

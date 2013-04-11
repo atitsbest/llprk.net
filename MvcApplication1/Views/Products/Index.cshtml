@@ -10,7 +10,11 @@
 
 <div class="span12">
     <div class="buttons">
-        @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-small btn-success" })
+		<form class="form-search">
+			<input type="search" name="q" value="@ViewBag.q" class="input-small search-query" />
+			<input type="submit" class="btn btn-small" value="Search" />
+		</form>
+        @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-medium btn-success" })
     </div>
     @grid.GetHtml(
         tableStyle : "table table-striped table-bordered",
