@@ -8,9 +8,9 @@
     <div class="popover-content">
         <div id="step0" ng-hide="cartItemCount()">
             <h5>Der Warenkorb ist noch leer ;(</h5>
-            <a href="@Url.Action("index", "shop")"
-                   onclick="$('#cart').hide();"
-                   class="btn btn-small">Weiter shoppen...</a>
+            <a	href="@Url.Action("index", "shop")"
+                ng:click="hideCart()"
+                class="btn btn-small">Weiter shoppen...</a>
         </div>
         <div id="step1" class="collapse in" ng-show="cartItemCount()">
             <table class="table">

@@ -351,6 +351,7 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\app\HeaderCtrl.js" />
     <Content Include="Scripts\app\ProductsCtrl.js" />
     <Content Include="Scripts\app\ShopServices.js" />
     <Content Include="Scripts\app\ShopApp.js" />

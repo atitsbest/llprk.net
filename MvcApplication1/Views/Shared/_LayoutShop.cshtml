@@ -43,7 +43,7 @@
 	<a href="@Url.Action("showyourlove", "home")">
 		<img id="showyourlove" src="@Url.Content("~/images/showyourlove.png")" alt="" />
 	</a>
-    <header>
+    <header ng:controller="HeaderCtrl">
         <div class="container">
             <div class="row">
                 <div class="span3">
@@ -58,9 +58,9 @@
                 </div>
                 <div class="span3">
                     <nav class="pull-right cart">
-                        <a href="#" 
-                           class="@cartVisible"
-                           onclick="$('#cart').toggle();">Warenkorb<span class="badge badge-info" ng:bind="cartItemCount()">0</span></a>
+                        <a	href="#" 
+							class="@cartVisible"
+							ng:click="showCart()">Warenkorb<span class="badge badge-info" ng:bind="cartItemCount()">0</span></a>
                         
                         @Html.Partial("~/Views/Shop/_Cart.cshtml")
                     </nav>

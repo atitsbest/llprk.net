@@ -177,6 +177,7 @@ article a {
     right: 10px;
     left: auto;
     top: auto;
+	z-index: 9999;
 }
 
 #basket {
