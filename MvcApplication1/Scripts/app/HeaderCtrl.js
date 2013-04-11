@@ -1,25 +1,19 @@
 ﻿/**
  */
-function HeaderCtrl($scope) {
+function HeaderCtrl($scope, CartUI) {
 	/**
 	 * Warenkorb anzeigen.
 	 */
 	$scope.showCart = function () {
-		// Backdrop einfügen.
-		$('body').append('<div class="modal-backdrop" style="opacity:.1;cursor:pointer;"></div>');
-		$('#cart').show();
-		$('.modal-backdrop').click(function () {
-			$scope.hideCart();
-		});
+		CartUI.showCart();
 	}
 
 	/**
 	 * Warenkorb wieder ausblenden.
 	 */
 	$scope.hideCart = function () {
-		$('#cart').hide();
-		$('.modal-backdrop').remove();
+		CartUI.hideCart();
 	}
 }
 
-HeaderCtrl.$inject = ["$scope"];
+HeaderCtrl.$inject = ["$scope", "CartUI"];

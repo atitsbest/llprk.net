@@ -8,8 +8,7 @@
     <div class="popover-content">
         <div id="step0" ng-hide="cartItemCount()">
             <h5>Der Warenkorb ist noch leer ;(</h5>
-            <a	href="@Url.Action("index", "shop")"
-                ng:click="hideCart()"
+            <a	href="@Url.Action("index", "shop", new { id = "" })"
                 class="btn btn-small">Weiter shoppen...</a>
         </div>
         <div id="step1" class="collapse in" ng-show="cartItemCount()">
@@ -55,10 +54,8 @@
                     </h4>
                 </p>
                 <hr />
-                <button type="submit"
-                    onclick="$('#cart').hide();"
-                    class="btn btn-small">
-                    Weiter shoppen</button>
+				<a	href="@Url.Action("index", "shop", new { id = "" })"
+					class="btn btn-small">Weiter shoppen...</a>
                 <small class="muted">oder</small>
                 <button type="submit"
                     class="btn btn-warning"
