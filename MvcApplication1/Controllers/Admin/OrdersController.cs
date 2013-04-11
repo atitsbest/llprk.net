@@ -26,7 +26,7 @@ namespace Llprk.Web.UI.Controllers.Admin
 
         //
         // GET: /Orders/
-        public ActionResult Index(Filter? filter)
+        public ActionResult Index(Filter? filter, string q)
         {
             IEnumerable<Order> result;
 
@@ -61,6 +61,22 @@ namespace Llprk.Web.UI.Controllers.Admin
                         break;
                 }
             }
+            if (!string.IsNullOrWhiteSpace(q)) { 
+				// Suche...
+                result = result
+                    .Where(p => p.OrderNumber.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || (p.Address1 ?? "").IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || (p.Address2 ?? "").IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || p.Email.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || p.City.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || p.Zip.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+							// Suche nach dem Produkt das bestellt wurde.
+                            || p.OrderLines.Any(ol => ol.Product.Name.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1)
+                            || p.Firstname.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1
+                            || p.Name.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) != -1);
+							
+            }
+            ViewBag.q = q;
             return View(result);
         }
 
