@@ -220,26 +220,27 @@
     </Content>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\cart-spinner.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts\saint-andrews_queen-webfont.svg" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
+    <Content Include="Content\shop.css">
+      <DependentUpon>shop.less</DependentUpon>
+    </Content>
+    <Content Include="Content\shop.min.css">
+      <DependentUpon>shop.less</DependentUpon>
+    </Content>
     <Content Include="Content\site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
+    <Content Include="Content\site.less" />
     <Content Include="Content\site.min.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="Content\site2.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="Content\site2.min.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
     <Content Include="Content\utils.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
-    <Content Include="Content\shop.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -329,10 +330,10 @@
     <Content Include="Models\llprk.tt">
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\site.less" />
     <Content Include="Content\fonts\saint-andrews_queen-webfont.eot" />
     <Content Include="Content\fonts\saint-andrews_queen-webfont.ttf" />
     <Content Include="Content\fonts\saint-andrews_queen-webfont.woff" />
+    <Content Include="Content\shop.less" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy %282%29.pubxml" />

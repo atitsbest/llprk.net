@@ -4,26 +4,26 @@
 }
 
 body {
+    padding: 10px 20px;
     background: #fff;
-	padding: 10px 20px;
 }
 
 header {
     h2 {
-        font-family: 'Arial Black', Arial, sans-serif;
-        text-transform: uppercase;
-        color: #999;
-        font-weight: bold;
-        letter-spacing: -2px;
         display: inline-block;
         margin-right: .5em;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        font-weight: bold;
+        font-family: 'Arial Black', Arial, sans-serif;
     }
 
     > a {
-        font-family: Pacifico, Georgia, serif;
-        font-size: 16pt;
         margin: 0 .5em;
         color: #999;
+        font-size: 16pt;
+        font-family: Pacifico, Georgia, serif;
 
         &.active {
             color: #333;
@@ -34,29 +34,33 @@ header {
         }
 
         &.orders:hover + ul.orders {
-			display: block;
-		}
+            display: block;
+        }
 
         &.config:hover + ul.config {
-			display: block;
-		}
+            display: block;
+        }
     }
 
-	ul.orders {
-		position: absolute;
-		left: 410px;
-		margin-top:-10px;
+    ul.orders {
+        position: absolute;
+        left: 410px;
+        margin-top: -10px;
 
-		&:hover { display: block; } 
-	}
+        &:hover {
+            display: block;
+        }
+    }
 
-	ul.config {
-		position: absolute;
-		left: 495px;
-		margin-top:-10px;
+    ul.config {
+        position: absolute;
+        left: 495px;
+        margin-top: -10px;
 
-		&:hover { display: block; } 
-	}
+        &:hover {
+            display: block;
+        }
+    }
 }
 
 
@@ -65,22 +69,22 @@ header {
 }
 
 .container {
-	position: relative;
+    position: relative;
 }
 
 footer {
     clear: both;
-    font-size: .8em;
     height: 100px;
     text-align: center;
+    font-size: .8em;
 }
 
 .modal-body li {
-	cursor: pointer;
+    cursor: pointer;
 
     &.selected .img-polaroid {
-        background: rgba(255,0,0,.1);
         border-color: red;
+        background: rgba(255,0,0,.1);
     }
 }
 
@@ -103,29 +107,28 @@ footer {
 /* Buttons
    --------------------------------------------- */
 .buttons {
-	position: absolute;
-	right: 0;
-	top: -45px;
+    position: absolute;
+    top: -45px;
+    right: 0;
 
-	a, form {
-		display: inline-block;
-	}
+    a, form {
+        display: inline-block;
+    }
 }
 
 /* Fieldsets
    --------------------------------------------- */
 fieldset {
-	legend {
-		&.shipped {
-			border-bottom: none;
-			background: url('../images/border.png') repeat-x 0px 36px;
-		}
-
-	}
+    legend {
+        &.shipped {
+            border-bottom: none;
+            background: url('../images/border.png') repeat-x 0px 36px;
+        }
+    }
 }
 
 .field-validation-error {
-	color: red;
+    color: red;
 }
 
 /* Media Queries

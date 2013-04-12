@@ -89,7 +89,7 @@
     <JsHintErrorLocation>2</JsHintErrorLocation>
     <JsHintRunOnBuild>false</JsHintRunOnBuild>
     <KeepImportantComments>false</KeepImportantComments>
-    <LessCompileOnBuild>false</LessCompileOnBuild>
+    <LessCompileOnBuild>true</LessCompileOnBuild>
     <LessCompileToFolder>false</LessCompileToFolder>
     <LessGenerateCssFile>true</LessGenerateCssFile>
     <LessMinify>true</LessMinify>
