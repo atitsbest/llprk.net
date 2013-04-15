@@ -24,7 +24,9 @@
         @Html.HiddenFor(m => m.Id)
 
         @if(Model.IsPaid) {
-            <img src="@Url.Content("~/images/paid_stamp.png")" style="height:120px;position:absolute;right:100px;opacity:.5;" />
+            <img src="@Url.Content("~/images/paid_stamp.png")" 
+				 style="height:120px;position:absolute;right:100px;opacity:.5;"
+				 title="@Model.PayPalPaymentId" />
         }
         @if(Model.IsShipped) {
             <img src="@Url.Content("~/images/delivered_stamp.png")" style="position:absolute;right:0px;margin-top:15px;opacity:.5;" />

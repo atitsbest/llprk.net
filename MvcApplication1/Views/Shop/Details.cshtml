@@ -29,8 +29,9 @@
                 </p>
                 <hr />
                 <p>
-                    <button class="btn btn-warning" 
-                            ng:click="addToCart(@Model.Product.Id)">In den Warenkorb...</button>
+                    <a	href="#" 
+						class="btn btn-warning" 
+                        ng:click="addToCart(@Model.Product.Id)">In den Warenkorb...</a>
                     <a href="@Url.Action("index")" class="btn btn-small">Zurück</a>
                 </p>
             </div>

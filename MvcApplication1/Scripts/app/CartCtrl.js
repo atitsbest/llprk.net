@@ -9,9 +9,15 @@ function CartCtrl($scope, $http, CartItems, countries) {
     $scope.countries = countries;
     $scope.countryCode = countries[0].Id;
 
-    $scope.paymentType = "Überweisung";
+	// Zahlungsmethoden.
+    $scope.paymentTypes = [
+		{ id: "PAYPAL", name: "PayPal" },
+		{ id: "WIRE", name: "Überweisung" }];
 
-
+    $scope.paymentType = $scope.paymentTypes[0].id;
+    $scope.humanReadablePaymentType = function () {
+    	return _($scope.paymentTypes).where({ id: $scope.paymentType })[0].name;
+    }
 
     /**
      * Anstatt dem Hash gibt's ein Array der Values.
@@ -70,7 +76,13 @@ function CartCtrl($scope, $http, CartItems, countries) {
     $scope.confirmAddress = function () {
         if ($scope.addressForm.$valid) {
             $('#step2').collapse('hide');
-            $('#step3').collapse('show');
+
+        	// Wenn Paypal als Bezahlmethode gewählt wurde,
+        	// muss die Bankverbindung nicht mehr angezeigt werden.
+            var nextStep = ($scope.paymentType == "PAYPAL")
+				? '#step4'
+				: '#step3'
+			$(nextStep).collapse('show');
         }
     };
 
@@ -79,6 +91,15 @@ function CartCtrl($scope, $http, CartItems, countries) {
         $('#step4').collapse('show');
     };
 
+    $scope.backFromSummary = function () {
+    	$('#step4').collapse('hide');
+		// Wenn Paypal als Bezahlmethode gewählt wurde,
+		// muss die Bankverbindung nicht mehr angezeigt werden.
+		var nextStep = ($scope.paymentType == "PAYPAL")
+			? '#step2'
+			: '#step3'
+    	$(nextStep).collapse('show');
+    }
 
     $scope.submitOrder = function () {
         if ($scope.summaryForm.$valid) {
@@ -87,13 +108,8 @@ function CartCtrl($scope, $http, CartItems, countries) {
             $('#step5').collapse('show');
 
             $http.post('/shop/new', _generateNewOrder())
-                .success(function (d, s, h, c) {
-                    $('#step5').collapse('hide');
-                    $('#cart').hide();
-                    CartItems.clear();
-                    alert('Deine Bestellung ist eingegangen und wird von uns bearbeitet.');
-                    // Auf eine neue Seite verweisen.
-                    window.location = "/shop/";
+                .success(function (orderId, s, h, c) {
+                	_handlePayment(orderId);
                 })
                 .error(function (d, s, h, c) {
                     $('#step5').hide('hide');
@@ -107,6 +123,18 @@ function CartCtrl($scope, $http, CartItems, countries) {
         }
     };
 
+	/**
+	 * 
+	 */
+    $scope.proceedeToPayPal = function () {
+    	CartItems.clear();
+    	$('#cart').hide();
+    	return true;
+    }
+
+	/**
+	 * Erstellt ein Bestellung, die an den Server geschickt werden kann.
+	 */
     function _generateNewOrder() {
         var products = _($scope.items).map(function (k, v) {
             return { id: k.Product.Id, qty: k.Qty };
@@ -123,9 +151,33 @@ function CartCtrl($scope, $http, CartItems, countries) {
             countryCode:$scope.countryCode,
             email:      $scope.email,
             comment:	$scope.comment,
+			paymentType:$scope.paymentType,
             products: products
         };
         return result;
+    }
+
+    function _handlePayment(orderId) {
+    	switch ($scope.paymentType) {
+    		case "PAYPAL": return _handlePayPalPayment(orderId);
+    		case "WIRE": return _handleWirePayment();
+    		default: throw Error("Ungültige Zahlungsart " + $scope.paymentType + "!");
+    	}
+    }
+
+    function _handlePayPalPayment(orderId) {
+    	$scope.orderId = orderId;
+    	$('#step5').collapse('hide');
+    	$('#step_paypal').collapse('show');
+    }
+
+    function _handleWirePayment() {
+    	CartItems.clear();
+    	$('#step5').collapse('hide');
+		$('#cart').hide();
+    	alert('Deine Bestellung ist eingegangen und wird von uns bearbeitet.');
+		// Auf eine neue Seite verweisen.
+		window.location = "/shop/";
     }
 
 }

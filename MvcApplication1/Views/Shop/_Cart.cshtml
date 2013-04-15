@@ -38,9 +38,9 @@
                 <p>Wie möchtest Du bezahlen?</p>
                 <select name="paymentTypes" id="paymentTypes"
                     ng:model="paymentType"
+					ng:options="p.id as p.name for p in paymentTypes"
                     required
                     class="input-xlarge">
-                    <option>Überweisung</option>
                 </select>
                 <p>Wohin sollen wir das schicken?</p>
                 <select ng:model="countryCode"
@@ -103,12 +103,14 @@
                     </p>
 
                     <hr />
-                    <button type="submit" class="btn btn-small" data-toggle="collapse" data-target="#step2,#step1">Zurück</button>
+                    <button type="submit" 
+						class="btn btn-small" 
+						data-toggle="collapse" 
+						data-target="#step2,#step1">Zurück</button>
                     <button type="submit"
                         class="btn btn-warning"
                         ng-click="confirmAddress()"
-                        ng-disabled="addressForm.$invalid"
-                        data-target="#step3,#step2">
+                        ng-disabled="addressForm.$invalid">
                         Weiter...</button>
                 </fieldset>
             </form>
@@ -139,13 +141,12 @@ BIC: BYLADEM1HOF
                     Zurück</button>
                 <button type="submit"
                     class="btn btn-warning"
-                    ng-click="confirmPayment()"
-                    data-target="#step3,#step4">
+                    ng:click="confirmPayment()">
                     Weiter...</button>
             </form>
         </div>
         <div id="step4" class="collapse out">
-            <form name="summaryForm" ng-submit="submitOrder()">
+            <form name="summaryForm" ng:submit="submitOrder()">
                 <legend>Bestellübersicht</legend>
                 <table class="table">
                     <thead>
@@ -178,7 +179,7 @@ BIC: BYLADEM1HOF
                     </tfoot>
                 </table>
                 <p>
-                    Bezahlhung per Überweisung.
+                    Bezahlung: {{humanReadablePaymentType()}}
                 </p>
                 <p>
                     <h5>Lieferung an:</h5>
@@ -203,16 +204,16 @@ BIC: BYLADEM1HOF
                     <input type="checkbox" ng-model="accepted" required />
                     Ich stimme den AGBs zu.
                 </label>
-                <button type="submit"
+                <a  href="#"
                     class="btn btn-small"
-                    data-toggle="collapse"
-                    data-target="#step4,#step3">
-                    Zurück</button>
+                    ng:click="backFromSummary()">
+                    Zurück
+                </a>
                 <button type="submit"
                     class="btn btn-warning"
-                    ng-disabled="summaryForm.$invalid"
-                    data-target="#step5,#step4">
-                    Bestellung abschicken</button>
+                    ng:disabled="summaryForm.$invalid">
+                    Bestellung abschicken
+                </button>
             </form>
         </div>
         <div id="step5" class="collapse out">
@@ -222,6 +223,19 @@ BIC: BYLADEM1HOF
                 <span id="second" class="ball"></span>
                 <span id="third" class="ball"></span>
             </div>
+        </div>
+        <div id="step_paypal" class="collapse out">
+            <h5>Wir haben Deine Bestellung erhalten.</h5>
+            <p>Du kannst jetzt mit PayPal zahlen. Dazu werden wir Dich zu PayPal weiterleiten, wo Du Deine Zahlung bestätigen musst.</p>
+			<form method="post" 
+				  action="@Url.Action("paypal", "shop")?orderId={{orderId}}" >
+				<input	type="submit" 
+						class="btn btn-warning"
+						value="Mit PayPal zahlen..." 
+						ng:click="proceedeToPayPal()"
+						onclick="javascript: $(this).hide();" />
+						
+			</form>
         </div>
     </div>
 </div>

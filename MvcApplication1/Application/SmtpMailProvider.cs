@@ -75,7 +75,7 @@ namespace Llprk.Web.UI.Application
             var client = _CreateClient();
 
             try {
-                client.Send(message);
+                //client.Send(message);
             }
             catch (InvalidOperationException e) {
                 throw new ApplicationException("Die E-Mail konnte nicht verschickt werden.", e);

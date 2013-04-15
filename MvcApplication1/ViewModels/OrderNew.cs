@@ -28,6 +28,14 @@ namespace Llprk.Web.UI.ViewModels
         public string CountryCode { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
+        public string PaymentType { get; set; }
         public IEnumerable<ProductLine> Products { get; set; }
+
+        public bool UsesPayPal {
+            get { return (PaymentType ?? "").ToUpper() == "PAYPAL"; }
+        }
+        public bool UsesTransaction {
+            get { return (PaymentType ?? "").ToUpper() == "WIRE"; }
+        }
     }
 }

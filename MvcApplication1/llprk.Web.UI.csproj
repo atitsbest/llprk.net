@@ -52,6 +52,9 @@
     <Reference Include="Elmah.Mvc">
       <HintPath>..\packages\Elmah.MVC.2.0.2\lib\net40\Elmah.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,6 +77,14 @@
     </Reference>
     <Reference Include="Nustache.Core">
       <HintPath>..\packages\Nustache.1.12.4.29\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="RestApiSDK, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\RestApiSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -624,6 +635,8 @@
     <Content Include="Views\Home\Widerrufsrecht.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\ShowYourLove.cshtml" />
+    <Content Include="Views\Shop\ExecutePayPal.cshtml" />
+    <Content Include="Views\Shop\CancelPayPal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

@@ -91,6 +91,7 @@
           <Property Name="ShippedAt" Type="datetime" />
           <Property Name="Comment" Type="nvarchar" MaxLength="1024" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="PayPalPaymentId" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Parameters">
           <Key>
@@ -345,6 +346,7 @@
           <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="Order" ToRole="OrderLine" />
           <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Order" ToRole="Country" />
+          <Property Type="String" Name="PayPalPaymentId" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
@@ -514,6 +516,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="PayPalPaymentId" ColumnName="PayPalPaymentId" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />

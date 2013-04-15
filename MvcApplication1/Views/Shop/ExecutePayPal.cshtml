@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "ExecutePayPal";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+
+<style>
+	 .container.paper {
+		background: #f7f7f7;
+		border: 1px solid #d8d8d8;
+		box-shadow: 0 3px 6px rgba(0,0,0,.2);
+		padding: 10px 0 30px 0;
+		margin-top: 20px;
+		text-align: center;
+	}
+        .container.paper p,
+        .container.paper h3 {
+			margin: 0 20px;
+		}
+        .container.paper a {
+			color: #33BCD4;
+		}
+</style>
+
+<div class="container paper">
+
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h3>Bezahlung abgeschlossen.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <p>
+						Wir haben Deine Bezahlung erhalten (eine E-Mail ist unterwegs zu Dir). Wir verpacken so schnell wie möglich Deinen Einkauf und verschicken ihn. 
+						Du erhältst noch mal eine E-Mail wenn wir Deine Bestellung versendet haben.
+                    </p>
+                    <p>Vielen Dank, dass Du bei lillypark.com geshoppt hast.</p>
+                    <br />
+                    <p>
+                        @Html.ActionLink("Zurück zum Shop", "index")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

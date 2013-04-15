@@ -41,6 +41,11 @@ namespace Llprk.Web.UI.Models
 
         public virtual ICollection<OrderLine> OrderLines { get; set; }
 
+		/// <summary>
+		/// Wenn mit PayPal gezahlt wurde, dann wird hier die PaymentId gespeichert.
+		/// </summary>
+        public string PayPalPaymentId { get; set; }
+
         /// <summary>
         /// Auftragsnummer.
         /// </summary>
