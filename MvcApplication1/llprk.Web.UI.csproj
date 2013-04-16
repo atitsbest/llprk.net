@@ -192,6 +192,7 @@
     <Compile Include="Controllers\api\ProductsController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -635,8 +636,9 @@
     <Content Include="Views\Home\Widerrufsrecht.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\ShowYourLove.cshtml" />
-    <Content Include="Views\Shop\ExecutePayPal.cshtml" />
-    <Content Include="Views\Shop\CancelPayPal.cshtml" />
+    <Content Include="Views\PayPal\Confirmed.cshtml" />
+    <Content Include="Views\PayPal\Canceled.cshtml" />
+    <Content Include="Views\PayPal\Paid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

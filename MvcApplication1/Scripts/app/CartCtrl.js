@@ -129,6 +129,14 @@ function CartCtrl($scope, $http, CartItems, countries) {
     $scope.proceedeToPayPal = function () {
     	CartItems.clear();
     	$('#cart').hide();
+
+    	// "Bitte warten..." Dialog anzeigen.
+    	$('	<div class="modal"> \
+				<div class="modal-body"> \
+					<p>Wir leiten Dich weiter zu PayPal...</p> \
+				</div> \
+			</div>').modal();
+
     	return true;
     }
 

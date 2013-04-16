@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "ExecutePayPal";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+
+<style>
+	 .container.paper {
+		background: #fff;
+		border: 1px solid #d8d8d8;
+		box-shadow: 0 3px 6px rgba(0,0,0,.2);
+		padding: 30px 0 30px 0;
+		margin-top: 20px;
+		text-align: center;
+	}
+        .container.paper p,
+        .container.paper h3 {
+			margin: 0 20px;
+		}
+</style>
+
+<div class="container paper">
+
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h3>Du hast die Bezahlung per PayPal erlaubt...</h3>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="offset3 span6">
+                    <table class="table">
+                        @foreach (var ol in Model.OrderLines) {
+                            <tr>
+                                <td>
+                                    @ol.Product.Name
+                                </td>
+                                <td>
+                                    @ol.Qty
+                                </td>
+                                <td style="text-align:right;">
+                                   @ol.Product.Price.ToString("c") 
+                                </td>
+                            </tr>
+                        }
+                        <tfoot style="border-top:2px solid;">
+                            <tr>
+                                <td colspan="2" style="text-align:right;">
+                                    Zwischensumme
+                                </td>
+                                <td style="text-align:right;">
+                                    @Model.SubTotalPrice.ToString("c")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:right;">
+                                    Versand
+                                </td>
+                                <td style="text-align:right;">
+                                    @Model.ShippingCosts.ToString("c")
+                                </td>
+                            </tr>
+                            <tr style="border-top:2px solid;">
+                                <td colspan="2" style="text-align:right;font-weight:bold;">
+                                    Gesamt
+                                </td>
+                                <td style="text-align:right;font-weight:bold;">
+                                    @Model.TotalPrice.ToString("c")
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+				</div>
+                <br />
+				<div class="span12">
+                    <p>
+						<form action="@Url.Action("execute")" method="post">
+@*							@Html.Hidden("orderId", ViewBag.OrderId)
+							@Html.Hidden("token", ViewBag.Token)
+							@Html.Hidden("payerId", ViewBag.PayerId)*@
+							@Html.ActionLink("Jetzt bezahlen", "execute", null, new { @class="btn btn-warning" })
+						</form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
