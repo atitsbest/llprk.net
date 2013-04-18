@@ -112,7 +112,17 @@
     @RenderSection("scripts", required: false)
 
     @{
-        var allCountries = new Llprk.Web.UI.Models.Entities().Countries.OrderBy(c => c.Name);
+        var allCountries = new Llprk.Web.UI.Models.Entities().Countries
+            .Include("ShippingCosts")
+            .OrderBy(c => c.Name)
+            .Select(c => new { 
+				Id= c.Id,
+                Name= c.Name,
+                ShippingCosts= c.ShippingCosts.Select(sc => new {
+					Id= sc.ShippingCategoryId,
+                    Amount= sc.Amount
+                })
+            });
     }
     <script>
         function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
@@ -141,7 +151,6 @@
         // Alle Länder für den Warenkorb.
         angular.module('ShopApp.Values')
             .value('countries', @Html.Raw(Json.Encode(allCountries)));
-
 
     </script>
 </body>

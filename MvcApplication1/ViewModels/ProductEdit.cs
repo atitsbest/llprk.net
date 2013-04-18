@@ -22,7 +22,10 @@ namespace Llprk.Web.UI.ViewModels
         [Required]
         public int Available { get; set; }
         
+		[Display(Name="Category")]
         public int CategoryId { get; set; }
+		[Display(Name="Shipping")]
+        public int ShippingCategoryId { get; set; }
 
         [Display(Name="published?")]
         public bool IsPublished { get; set; }

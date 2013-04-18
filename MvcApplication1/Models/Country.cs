@@ -9,7 +9,20 @@ namespace Llprk.Web.UI.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public decimal ShippingCosts { get; set; }
+
+        public virtual ICollection<ShippingCost> ShippingCosts { get; set; }
+
+		/// <summary>
+		/// Wie hoch sind die Versandkosten für die angegebene 
+        /// Kategorie in dieses Land?
+		/// <returns>Die Versandkosten. 0.0 wenn keine Versandkosten hinterlegt wurden.</returns>
+		/// </summary>
+        public decimal ShippingCost(ShippingCategory category)
+        {
+            return (from sc in ShippingCosts
+                    where sc.ShippingCategoryId == category.Id
+                    select sc.Amount).FirstOrDefault();
+        }
 
         /// <summary>
         /// Vergleich!

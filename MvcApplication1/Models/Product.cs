@@ -20,6 +20,9 @@ namespace Llprk.Web.UI.Models
         [Display(Name="Category")]
         public Category Category { get; set; }
 
+        public int ShippingCategoryId { get; set; }
+        public ShippingCategory ShippingCategory { get; set; }
+
         [Display(Name="published?")]
         public bool IsPublished { get; set; }
 

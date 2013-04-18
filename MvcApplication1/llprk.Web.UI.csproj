@@ -181,6 +181,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\CategoriesController.cs" />
+    <Compile Include="Controllers\Admin\ShippingCostsController.cs" />
     <Compile Include="Controllers\Admin\ParametersController.cs" />
     <Compile Include="Controllers\Admin\TagsController.cs" />
     <Compile Include="Controllers\Admin\SingleValueController.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShippingCost.cs" />
+    <Compile Include="Models\ShippingCategory.cs" />
     <Compile Include="Models\Parameter.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\llprk.Context.cs">
@@ -631,7 +634,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Scripts\skins\moono\readme.md" />
     <Content Include="Views\Shop\_Category.cshtml" />
-    <Content Include="Views\Shop\Categories.cshtml" />
     <Content Include="Views\Home\Agbs.cshtml" />
     <Content Include="Views\Home\Widerrufsrecht.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
@@ -639,6 +641,10 @@
     <Content Include="Views\PayPal\Confirmed.cshtml" />
     <Content Include="Views\PayPal\Canceled.cshtml" />
     <Content Include="Views\PayPal\Paid.cshtml" />
+    <Content Include="Views\ShippingCosts\Create.cshtml" />
+    <Content Include="Views\ShippingCosts\Delete.cshtml" />
+    <Content Include="Views\ShippingCosts\Edit.cshtml" />
+    <Content Include="Views\ShippingCosts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

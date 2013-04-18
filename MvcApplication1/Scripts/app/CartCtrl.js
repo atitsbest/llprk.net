@@ -11,7 +11,7 @@ function CartCtrl($scope, $http, CartItems, countries) {
 
 	// Zahlungsmethoden.
     $scope.paymentTypes = [
-		{ id: "PAYPAL", name: "PayPal" },
+		//{ id: "PAYPAL", name: "PayPal" },
 		{ id: "WIRE", name: "Überweisung" }];
 
     $scope.paymentType = $scope.paymentTypes[0].id;
@@ -33,7 +33,8 @@ function CartCtrl($scope, $http, CartItems, countries) {
      * Gesamtpreis für alle Produkte im Warenkorb + Versandkosten.
      */
     $scope.totalPrice = function () {
-        return $scope.subTotalPrice() + $scope.shippingCosts();
+    	var result = $scope.subTotalPrice() + $scope.shippingCosts();
+    	return result;
     };
 
     /**
@@ -46,14 +47,28 @@ function CartCtrl($scope, $http, CartItems, countries) {
                     .value();
     };
 
+    _shippingCostsForItem = function (country, product) {
+    	var category = _(country.ShippingCosts).find(function (sc) { return sc.Id === product.ShippingCategoryId });
+    	return category ? category.Amount : 0;
+    }
+
     /**
      * Versandkosten.
      */
     $scope.shippingCosts = function () {
-        var country = _(countries).find(function (c) { return c.Id == $scope.countryCode; })
-        return country == null
-            ? 0
-            : country.ShippingCosts;
+    	var country = _(countries).find(function (c) { return c.Id == $scope.countryCode; }),
+			costs = 0;
+    	if (country != null)
+        {
+    		costs = _($scope.items).reduce(function (memo, item) {
+    			return memo + _shippingCostsForItem(country, item.Product);
+        	}, 0);
+        }
+
+    	// HACK: Nicht gut so. Wird nur gemacht, dass in der Dropbox die Versandkosten
+    	//		 angezeigt werden können.
+    	country.Costs = costs;
+        return costs;
     }
 
     /**

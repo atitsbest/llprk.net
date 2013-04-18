@@ -33,6 +33,14 @@
             </div>
 
             <div class="control-group">
+                @Html.LabelFor(model => model.ShippingCategoryId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("ShippingCategoryId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.ShippingCategoryId)
+                </div>
+            </div>
+
+            <div class="control-group">
                 @Html.LabelFor(model => model.IsPublished, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.IsPublished)

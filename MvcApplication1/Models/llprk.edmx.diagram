@@ -7,7 +7,7 @@
       <Diagram DiagramId="e8db3d4fd4564037aeaf114accc5073c" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Category" Width="1.5" PointX="11.951184449694672" PointY="13.875236562395113" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Tag" Width="1.5" PointX="7.7961827385221518" PointY="22.328282843496783" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" Width="1.5" PointX="4.875" PointY="15.25" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" Width="1.5" PointX="3.625" PointY="16.875" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Width="1.5" PointX="8.375" PointY="14.125" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" Width="1.5" PointX="8.875" PointY="7.75" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" />
@@ -21,6 +21,11 @@
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" Width="1.5" PointX="1.330163045474404" PointY="18.913874664769448" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Parameter" Width="1.5" PointX="4.875" PointY="4.75" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.ShippingCategory" Width="1.5" PointX="9.6036545064317327" PointY="9.6485752657282049" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.ShippingCost" Width="1.5" PointX="9.625" PointY="17" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

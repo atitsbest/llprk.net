@@ -1,4 +1,5 @@
 ﻿using log4net.Config;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Llprk.Web.UI
         {
             // BasicConfigurator replaced with XmlConfigurator.
             log4net.Config.XmlConfigurator.Configure();
-
+            
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

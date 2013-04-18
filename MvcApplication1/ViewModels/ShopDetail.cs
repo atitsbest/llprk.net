@@ -24,6 +24,7 @@ namespace Llprk.Web.UI.ViewModels
                     Name = Product.Name,
                     Price = Product.Price,
                     Id = Product.Id,
+					ShippingCategoryId = Product.ShippingCategoryId,
                     ThumbailUrl = Product.FirstPicture == null ? "" : Product.FirstPicture.ThumbnailUrl
                 };
             }

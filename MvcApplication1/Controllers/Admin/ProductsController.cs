@@ -55,6 +55,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             viewModel.AllPictures = db.Pictures.ToArray();
             viewModel.AllTags = db.Tags.ToArray();
             _PopulateCategoriesDropDownList();
+            _PopulateShippingCategoriesDropDownList();
             ViewBag.Title = "New Product";
             return View("edit", viewModel);
         }
@@ -99,6 +100,7 @@ namespace Llprk.Web.UI.Controllers.Admin
             viewModel.AllTags = db.Tags.ToArray();
 
             _PopulateCategoriesDropDownList(product.CategoryId);
+            _PopulateShippingCategoriesDropDownList(product.ShippingCategoryId);
             ViewBag.Title = "Edit";
             return View(viewModel);
         }
@@ -115,6 +117,7 @@ namespace Llprk.Web.UI.Controllers.Admin
                     .Single();
 
                 p.CategoryId = product.CategoryId;
+                p.ShippingCategoryId = product.ShippingCategoryId;
                 p.Description = product.Description;
                 p.IsPublished = product.IsPublished;
                 p.Name = product.Name;
@@ -131,6 +134,7 @@ namespace Llprk.Web.UI.Controllers.Admin
                 return RedirectToAction("Index");
             }
             _PopulateCategoriesDropDownList(product.CategoryId);
+            _PopulateShippingCategoriesDropDownList(product.ShippingCategoryId);
             return View(product);
         }
 
@@ -174,6 +178,18 @@ namespace Llprk.Web.UI.Controllers.Admin
                                    orderby d.Name
                                    select d;
             ViewBag.CategoryId = new SelectList(departmentsQuery, "Id", "Name", selectedCategory);
+        }
+
+        /// <summary>
+        /// ShippingKategorie-Auswahl befüllen.
+        /// </summary>
+        /// <param name="selectedCategory"></param>
+        private void _PopulateShippingCategoriesDropDownList(object selectedCategory = null)
+        {
+            var departmentsQuery = from d in db.ShippingCategories
+                                   orderby d.Name
+                                   select d;
+            ViewBag.ShippingCategoryId = new SelectList(departmentsQuery, "Id", "Name", selectedCategory);
         }
 
 

@@ -70,7 +70,8 @@ namespace Llprk.Web.UI.Models
         /// </summary>
         public decimal ShippingCosts {
             get {
-                return (Country ?? new Country()).ShippingCosts;
+                var c = Country ?? new Country();
+                return OrderLines.Sum(ol => c.ShippingCost(ol.Product.ShippingCategory));
             }
         }
 

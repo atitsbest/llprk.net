@@ -45,7 +45,7 @@
                 <p>Wohin sollen wir das schicken?</p>
                 <select ng:model="countryCode"
                     required
-                    ng:options='option.Id as (option.Name + " (+ " + (option.ShippingCosts | currency) + " Versand)") for option in countries'
+                    ng:options='option.Id as (option.Name + " (+ " + (option.Costs | currency) + " Versand)") for option in countries'
                     class="input-xlarge">
                 </select>
 

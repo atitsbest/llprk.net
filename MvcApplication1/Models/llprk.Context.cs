@@ -34,5 +34,7 @@ namespace Llprk.Web.UI.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
+        public DbSet<ShippingCategory> ShippingCategories { get; set; }
+        public DbSet<ShippingCost> ShippingCosts { get; set; }
     }
 }
