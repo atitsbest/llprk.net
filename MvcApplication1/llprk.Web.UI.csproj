@@ -181,6 +181,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\CategoriesController.cs" />
+    <Compile Include="Controllers\Admin\CountriesController.cs" />
     <Compile Include="Controllers\Admin\ShippingCostsController.cs" />
     <Compile Include="Controllers\Admin\ParametersController.cs" />
     <Compile Include="Controllers\Admin\TagsController.cs" />
@@ -645,6 +646,10 @@
     <Content Include="Views\ShippingCosts\Delete.cshtml" />
     <Content Include="Views\ShippingCosts\Edit.cshtml" />
     <Content Include="Views\ShippingCosts\Index.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Delete.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

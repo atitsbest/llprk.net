@@ -19,6 +19,7 @@ namespace Llprk.Web.UI.Models
 		/// </summary>
         public decimal ShippingCost(ShippingCategory category)
         {
+            if (category == null) { return 0; }
             return (from sc in ShippingCosts
                     where sc.ShippingCategoryId == category.Id
                     select sc.Amount).FirstOrDefault();

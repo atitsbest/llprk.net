@@ -10,7 +10,7 @@ using Llprk.Web.UI.Models;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public class CategoriesController : SingleValueController<Category>
+    public class CategoriesController : SingleValueController<Category, int>
     {
         public CategoriesController()
             : base((e) => e.Categories)

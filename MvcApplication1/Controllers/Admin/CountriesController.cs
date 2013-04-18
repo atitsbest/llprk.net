@@ -10,10 +10,10 @@ using Llprk.Web.UI.Models;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public class TagsController : SingleValueController<Tag, int>
+    public class CountriesController : SingleValueController<Country, string>
     {
-        public TagsController()
-            : base((e) => e.Tags)
+        public CountriesController()
+            : base((e) => e.Countries)
         { }
     }
 }

@@ -10,7 +10,7 @@ using Llprk.Web.UI.Models;
 namespace Llprk.Web.UI.Controllers.Admin
 {
     [Authorize]
-    public abstract class SingleValueController<T> : ApplicationController where T: class
+    public abstract class SingleValueController<T, IDT> : ApplicationController where T: class
     {
         private Func<Entities, DbSet<T>> _CollectionFn;
 
@@ -60,7 +60,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         //
         // GET: /Categories/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(IDT id = default(IDT))
         {
             var xs = _CollectionFn(db);
             var entity = xs.Find(id);
@@ -89,7 +89,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         //
         // GET: /Categories/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(IDT id = default(IDT))
         {
             var xs = _CollectionFn(db);
             var entity = xs.Find(id);
@@ -104,7 +104,7 @@ namespace Llprk.Web.UI.Controllers.Admin
         // POST: /Categories/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(IDT id)
         {
             var xs = _CollectionFn(db);
             var entity = xs.Find(id);

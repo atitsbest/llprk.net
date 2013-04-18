@@ -52,12 +52,19 @@
 							<td>
 								<div class="input-prepend input-append">
 									<span class="add-on">€</span>
+									@{
+										var id = string.Format("sc_{0}_{1}", c.Id, sc.Id);
+									}
 									<input	type="text" 
-										name="@string.Format("sc_{0}_{1}", c.Id, sc.Id)" 
+										id="@id" 
+										name="@id" 
 										value="@c.ShippingCost(sc).ToString("n")" 
 										class="input-small"
+										data-val="true"
+										data-val-number="Must be a price!"
 										style="text-align:right;margin-bottom:0;"
 									/>
+									<span class="field-validation-valid" data-valmsg-for="id" data-valmsg-replace="true"></span>
 								</div>
 							</td>
 						}
