@@ -1,0 +1,19 @@
+﻿@model Llprk.Web.UI.Models.ShippingCategory
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="span12">
+    @using (Html.BeginForm()) {
+        <fieldset>
+            <legend>Are you sure you want to delete <span style="color: red;">"@Html.DisplayFor(m => m.Name)"</span>?</legend>
+            <div class="form-actions">
+                <input type="submit" value="Delete" class="btn btn-small btn-danger" />
+                |
+        <small class="muted">or</small>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </fieldset>    }
+</div>
