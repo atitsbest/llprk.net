@@ -156,7 +156,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="ShippingCosts">

@@ -2,8 +2,12 @@
 
 @{
     ViewBag.Title = "Index";
-	var db = new Llprk.Web.UI.Models.Entities();
-    var countries = db.Countries;
+    IEnumerable<Llprk.Web.UI.Models.Country> countries = null;
+    IEnumerable<Llprk.Web.UI.Models.ShippingCategory> shippingCategories = null;
+	using (var db = new Llprk.Web.UI.Models.Entities()) {
+        countries = db.Countries.Include("ShippingCosts").ToArray();
+        shippingCategories = db.ShippingCategories.ToArray();
+    }
 }
 
 <div class="span12">
@@ -45,7 +49,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var sc in db.ShippingCategories) { 
+				@foreach (var sc in shippingCategories) { 
 					<tr>
 						<th>@sc.Name</th>	
 						@foreach (var c in countries) { 
