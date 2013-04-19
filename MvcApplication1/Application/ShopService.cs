@@ -95,13 +95,14 @@ namespace Llprk.Web.UI.Application
         /// <param name="mailBody"></param>
         private static void _SendMailToCustomer(Order order, string subject, string mailBody)
         {
-            var message = new MailMessage("s_meissner@gmx.net", order.Email, subject, mailBody);
+			var smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
+            var smtpUser = ConfigurationManager.AppSettings["SMTPUser"];
+			var smtpPwd = ConfigurationManager.AppSettings["SMTPPwd"];
+            var senderAddress = ConfigurationManager.AppSettings["EmailSenderAddress"];
+
+            var message = new MailMessage(senderAddress, order.Email, subject, mailBody);
             message.IsBodyHtml = true;
             message.BodyEncoding = Encoding.UTF8;
-
-	    var smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
-            var smtpUser = ConfigurationManager.AppSettings["SMTPUser"];
-	    var smtpPwd = ConfigurationManager.AppSettings["SMTPPwd"];
 
             var mp = new SmtpMailProvider(
                 smtpServer,

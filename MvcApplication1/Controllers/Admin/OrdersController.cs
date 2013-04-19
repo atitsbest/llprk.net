@@ -160,7 +160,11 @@ namespace Llprk.Web.UI.Controllers.Admin
         /// <returns></returns>
         public ActionResult Ship(int id)
         {
-            var order = db.Orders.Find(id);
+            var order = db.Orders
+                .Include(o => o.OrderLines)
+				.Include("OrderLines.Product")
+				.Include("OrderLines.Product.ShippingCategory")
+                .Single(o => o.Id == id);
             var renderedMailBody = Nustache.Core.Render.StringToString(db.Parameters.First().MailMessageShipped, order);
 
             return View("StatusChange", new OrderStatusChange() { 
