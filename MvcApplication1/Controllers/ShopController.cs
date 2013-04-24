@@ -21,7 +21,9 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+#if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
+#endif
         public ActionResult Index(int? id)
         {
             var viewModel = new ShopIndex();
@@ -39,7 +41,9 @@ namespace Llprk.Web.UI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+#if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
+#endif
         public ActionResult Categories(int id)
         {
             var viewModel = new ShopCategory();
@@ -57,7 +61,9 @@ namespace Llprk.Web.UI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+#if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
+#endif
         public ActionResult Details(int id)
         {
             var viewModel = new ShopDetail();
