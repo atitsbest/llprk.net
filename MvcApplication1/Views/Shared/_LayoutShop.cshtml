@@ -11,7 +11,7 @@
     var cartVisible = controllerName == null;//"shop" ? null : "hidden";
     var shopVisible = controllerName == "shop" ? "hidden" : null;
 
-    }
+}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" ng-app> <![endif]-->
@@ -25,10 +25,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="description" content="lillypark,Tasche,Taschen,Bag,Sak Saum">
-    
+
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel="stylesheet" type="text/css" />
-    
+
     @Styles.Render("~/Content/shop")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -40,72 +40,63 @@
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
     <![endif]-->
-	<a href="@Url.Action("showyourlove", "home")">
-		<img id="showyourlove" src="@Url.Content("~/images/syl-corner.png")" alt="" />
-	</a>
-    <header ng:controller="HeaderCtrl">
-        <div class="container">
-            <div class="row">
-                <div class="span3">
-                </div>
-                <div class="span6">
-                    <div class="row align-center">
-                        <a href="@Url.Action("index", "shop", new { id = "" })" style="display:inline-block;">
-                            <h1 id="logo" class="logo">lillypark</h1>
-							<img id="flower" src="@Url.Content("~/Images/blume.gif")" />
+    <div class="container">
+        <div class="row">
+            <header ng:controller="HeaderCtrl">
+                        <a href="@Url.Action("index", "shop", new { id = "" })">
+                            <h1 id="logo" class="logo" style="display:inline-block;">lillypark</h1>
                         </a>
-                    </div>
-                </div>
-                <div class="span3">
                     <nav class="pull-right cart">
                         <a	href="#" 
 							class="@cartVisible"
 							ng:click="showCart()">Warenkorb<span class="badge badge-info" ng:bind="cartItemCount()">0</span></a>
-                        
+
                         @Html.Partial("~/Views/Shop/_Cart.cshtml")
                     </nav>
-                </div>
-            </div>
+            </header>
         </div>
-    </header>
-	<header class="categories">
-		<div class="row align-center">
-			<nav>
-				@foreach (var c in ViewBag.Categories) { 
-					<a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
-				}
-				<a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-				<a href="@Url.Action("showyourlove", "home")" class="@aboutActive">S.Y.L</a>
-			</nav>
-		</div>
-	</header>
+
+        <div class="row">
+            <header class="categories">
+                <div class="row align-center">
+                    <nav>
+                        @foreach (var c in ViewBag.Categories) { 
+                            <a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
+                        }
+                        <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
+                        <a href="@Url.Action("showyourlove", "home")" class="@aboutActive syl">S.Y.L</a>
+                    </nav>
+                </div>
+            </header>
+        </div>
+    </div>
 
 
     @RenderBody()
 
 
-    <footer>
-        <div class="container">
-            <hr />
-            <div class="row">
-                <div class="span12">
-                    <nav>
-                        <a href="@Url.Action("agbs", "home")" class="@agbsActive">agbs</a>
-                        <a href="@Url.Action("impressum", "home")" class="@impressumActive">impressum</a>
-                        <a href="@Url.Action("widerrufsrecht", "home")" class="@widerrufActive">widerrufsrecht</a>
-                        <a href="http://facebook.com/showyourlove.info" target="_blank">facebook</a>
-                    </nav>
+    <div class="container">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <nav>
+                            <a href="@Url.Action("agbs", "home")" class="@agbsActive">agbs</a>
+                            <a href="@Url.Action("impressum", "home")" class="@impressumActive">impressum</a>
+                            <a href="@Url.Action("widerrufsrecht", "home")" class="@widerrufActive">widerrufsrecht</a>
+                            <a href="http://facebook.com/showyourlove.info" target="_blank">facebook</a>
+                        </nav>
+                    </div>
                 </div>
-            </div>
-            <hr />
 
-            <div class="row">
-                <div class="span12">
-                    <p class="copyright">&copy; 2012 <span class="logo">lillypark</span></p>
+                <div class="row">
+                    <div class="span12">
+                        <p class="copyright">&copy; 2012 <span class="logo">lillypark</span></p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
 
     @Scripts.Render("~/bundles/shop")
@@ -116,41 +107,41 @@
         var allCountries = new Llprk.Web.UI.Models.Entities().Countries
             .Include("ShippingCosts")
             .OrderBy(c => c.Name)
-            .Select(c => new { 
-				Id= c.Id,
-                Name= c.Name,
-                ShippingCosts= c.ShippingCosts.Select(sc => new {
-					Id= sc.ShippingCategoryId,
-                    Amount= sc.Amount
+            .Select(c => new {
+                Id = c.Id,
+                Name = c.Name,
+                ShippingCosts = c.ShippingCosts.Select(sc => new {
+                    Id = sc.ShippingCategoryId,
+                    Amount = sc.Amount
                 })
             });
     }
     <script>
-        function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
-        function scrollTo(e) { $('html, body').animate({ scrollTop: $(e).offset().top }, 200); }
+    	function scrollToTop() { $('html, body').animate({ scrollTop: 0 }, 200); }
+    	function scrollTo(e) { $('html, body').animate({ scrollTop: $(e).offset().top }, 200); }
 
-        // ----------------------------------------------------------
-        // Das Logo: Bunt und die Buchstaben leicht verrückt und schräg.
-        //
-        $('#logo, .logo')
-            .lettering()
-            .find('span').each(function(i, e) {
-                var top = Math.floor((Math.random()*10)+1)-5;  
-                var rotate = Math.floor((Math.random()*10)+1)-5;  
-                $(e)
-                    .animate({ 
-                        top: top+'px',
-                        rotate: '+='+rotate+'deg'
-                    }, 700);
-            });
+    	// ----------------------------------------------------------
+    	// Das Logo: Bunt und die Buchstaben leicht verrückt und schräg.
+    	//
+    	//$('#logo, .logo')
+    	//    .lettering()
+    	//    .find('span').each(function(i, e) {
+    	//        var top = Math.floor((Math.random()*10)+1)-5;  
+    	//        var rotate = Math.floor((Math.random()*10)+1)-5;  
+    	//        $(e)
+    	//            .animate({ 
+    	//                top: top+'px',
+    	//                rotate: '+='+rotate+'deg'
+    	//            }, 700);
+    	//    });
 
     	// Bilder Lazy-Loading
-        $(function() {
-        	setTimeout(function() { $('img.lazy').lazyload(); }, 500);
-        });
+    	$(function() {
+    		setTimeout(function() { $('img.lazy').lazyload(); }, 500);
+    	});
 
-        // Alle Länder für den Warenkorb.
-        angular.module('ShopApp.Values')
+    	// Alle Länder für den Warenkorb.
+    	angular.module('ShopApp.Values')
             .value('countries', @Html.Raw(Json.Encode(allCountries)));
 
     </script>

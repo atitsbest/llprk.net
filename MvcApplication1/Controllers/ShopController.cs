@@ -64,7 +64,9 @@ namespace Llprk.Web.UI.Controllers
         public ActionResult Details(int id)
         {
             var viewModel = new ShopDetail();
-            viewModel.Product = db.Products.Where(p => p.Id == id).FirstOrDefault();
+            viewModel.Product = db.Products
+				.Include(p => p.Category)
+                .Single(p => p.Id == id);
             return View(viewModel);
         }
 

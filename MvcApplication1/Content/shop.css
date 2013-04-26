@@ -2,11 +2,9 @@
 
 @import url(cart-spinner.css);
 body {
-  background: #e8e8e8 url(../images/bg/bright_squares_sep.png);
-  padding-top: 10px;
+  background: #fff;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
-  border-top: 4px solid #00b9e3;
 }
 a {
   color: #333;
@@ -17,11 +15,6 @@ a:hover {
   text-decoration: none;
 }
 h2 {
-  color: rgba(255, 255, 255, 0.29804);
-  font: 48px Pacifico, "Source Sans Pro", Arial, sans-serif;
-  font-weight: 100;
-  -webkit-text-shadow: rgba(0, 0, 0, 0.2) -1px -1px 0px;
-  text-shadow: rgba(0, 0, 0, 0.2) -1px -1px 0px;
   text-transform: lowercase;
 }
 hr {
@@ -30,21 +23,20 @@ hr {
   margin: 10px 0;
 }
 header {
-  padding: 10px;
+  padding: 10px 0;
 }
 header.categories {
-  border: 1px dashed #d8d8d8;
+  border: 1px solid #d6d6d6;
   border-left: none;
   border-right: none;
 }
 header h1 {
-  margin-bottom: 15px;
+  margin-bottom: 0;
   font-family: 'Arial Black', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  font-size: 70px;
-  color: #00b9e3;
-  line-height: 60px;
-  letter-spacing: -7px;
+  font-size: 36px;
+  color: #999;
+  letter-spacing: -4px;
   display: inline-block;
 }
 header h1 span {
@@ -82,8 +74,11 @@ header #flower {
   display: inline-block;
 }
 header nav.cart {
-  margin-top: 28px;
+  margin-top: 20px;
   position: relative;
+}
+header nav a.syl {
+  color: #ad001e;
 }
 #showyourlove {
   position: absolute;
@@ -92,12 +87,12 @@ header nav.cart {
   z-index: 999;
 }
 nav > a {
-  color: #33BCD4;
-  margin: 0 .5em;
-  text-transform: lowercase;
-  font-family: Pacifico, "Source Sans Pro";
-  font-size: 21px;
+  color: #a2a2a2;
+  margin: 0 30px;
+  text-transform: uppercase;
+  font-family: "Source Sans Pro", Arial, sans-serif;
   font-weight: 400;
+  letter-spacing: 1px;
   line-height: 1.5em;
 }
 nav > a.active {
@@ -109,12 +104,12 @@ nav > a > .badge {
   left: 10px;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   background: none;
-  border: 2px dotted #666;
+  border: 2px dotted #d6d6d6;
   -moz-border-radius: 13px;
   -webkit-border-radius: 13px;
   border-radius: 13px;
   padding: 5px 9px;
-  color: #333;
+  color: #a2a2a2;
   font-size: 12px;
   font-weight: normal;
 }
@@ -129,6 +124,8 @@ article a {
   top: auto;
   z-index: 9999;
   width: 350px;
+  border-radius: 0;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
 }
 #basket {
   background: #00b9e3 url(images/shop/cart-bg.gif) repeat;
@@ -159,15 +156,27 @@ article a {
   position: relative;
   margin-top: 10px;
 }
-#main .explanation {
-  color: #7b7b7b;
-  margin: 2em 0 0;
-  font-weight: 200;
-  font-size: 24px;
+#main .header {
+  border-bottom: 1px solid #d6d6d6;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+#main .header h2 {
   font-family: "Source Sans Pro";
-  line-height: 1.5em;
-  text-transform: lowercase;
-  letter-spacing: 1px;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 1.4em;
+  color: #666;
+}
+#main .explanation {
+  font-family: "Source Sans Pro";
+  font-size: 17px;
+  line-height: 20px;
+  background: #f1f1f1;
+}
+#main .explanation p,
+#main .explanation h3 {
+  margin: 20px 20px;
 }
 #main img.product {
   height: auto;
@@ -176,21 +185,10 @@ article a {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-#main .products span {
-  color: #8c8c8c;
-  font-weight: 400;
-  font-size: 1.2em;
-  font-family: "Source Sans Pro";
-  letter-spacing: 1px;
+#main .thumbnails > img {
   display: inline-block;
-  background: #DB6369;
-  padding: 2px 6px;
-  position: absolute;
-  top: 16px;
-  right: 0px;
-  color: #f1f1f1;
-  -webkit-text-shadow: none;
-  text-shadow: none;
+  border: 1px solid #d6d6d6;
+  margin-right: 20px;
 }
 #main .detail {
   background-color: #f1dcaf;
@@ -223,24 +221,44 @@ article a {
   line-height: 1.1em;
 }
 .products .product {
-  background: #fff;
-  border-radius: 2px;
   margin-top: 20px;
-  padding-top: 20px;
-  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  padding: 60px 0 20px;
   position: relative;
-  min-height: 100px;
+}
+.products .product h4 {
+  letter-spacing: -1px;
+  text-align: left;
+  color: #666;
+  margin-bottom: 4px;
 }
 .products .product .info {
-  margin: 0;
-  margin-top: 20px;
+  margin: 0 40px 0 0;
+  text-align: left;
+  color: #a2a2a2;
+  font-family: "Source Sans Pro";
+}
+.products .product .info span {
+  color: #fff;
+  background: #666;
+  font-family: 'Arial Narrow', 'Nimbus Sans L', sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  display: inline-block;
+  position: absolute;
+  padding: 8px 4px 12px;
+  right: 0;
+  top: 100px;
+  text-shadow: none;
+  display: none;
 }
 .products .product img {
   -webkit-transition: all 0.4s ease-out;
   -moz-transition: all 0.4s ease-out;
   -o-transition: all 0.4s ease-out;
   transition: all 0.4s ease-out;
+  max-width: 240px;
+  margin-bottom: 40px;
 }
 .products .product:hover img {
   -webkit-transform: scale(1.05);
@@ -253,20 +271,24 @@ footer {
   z-index: 203;
   position: relative;
   margin-top: 20px;
+  border-top: 1px solid #d6d6d6;
 }
 footer .copyright {
   margin-top: 1em;
   padding-top: 1em;
-  color: #7b7b7b;
+  color: #a2a2a2;
   font-size: .8em;
-  text-align: center;
+  text-align: left;
 }
 footer .copyright span {
   display: inline-block;
-  font-weight: bold;
 }
 footer nav {
-  text-align: center;
+  margin-top: 10px;
+  text-align: left;
+}
+footer nav a {
+  margin: 0 60px 0 0;
 }
 input.ng-invalid {
   border-color: red;
