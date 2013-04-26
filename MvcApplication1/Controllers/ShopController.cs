@@ -8,9 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Llprk.Web.UI.Application;
 using Llprk.Web.UI.Application.Exceptions;
-using PayPal;
-using System.Configuration;
-using PayPal.Api.Payments;
 using System.Globalization;
 
 namespace Llprk.Web.UI.Controllers
