@@ -5,6 +5,7 @@
 @light-border-color: #d6d6d6;
 @syl-color: #AD001E; 
 @blue-color: #00b9e3;
+@dark-text-color: #666;
 
 html {
     //background: #e8e8e8 url(images/shop/bg.png);
@@ -22,8 +23,6 @@ a {
     }
 
     color: #333;
-    -webkit-text-shadow: 1px 1px #fff;
-    text-shadow: 1px 1px #fff;
 }
 
 h2 {
@@ -291,6 +290,7 @@ article a {
         margin-top: 20px;
         padding: 60px 0 20px;
         position: relative;
+		height: 350px;
 
         h4 {
 			letter-spacing: -1px;
@@ -306,20 +306,15 @@ article a {
             font-family: "Source Sans Pro";
 
             span {
-                color: #fff;
-				background: #666;
-				font-family: 'Arial Narrow', 'Nimbus Sans L', sans-serif;
-                font-weight: bold;
-                font-size: 1.2em;
+				font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;
+				font-weight: normal;
+                font-size: 21px;
                 letter-spacing: -1px;
                 display: inline-block;
 				position: absolute;
 				padding: 8px 4px 12px;
-				right: 0;
-				top: 100px;
-				text-shadow: none;
-				display: none;
-
+				right: 40px; // damit's mit dem Padding vom Text übereinstimmt.
+				top: 341px;
             }
         }
 

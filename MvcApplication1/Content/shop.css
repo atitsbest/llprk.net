@@ -8,8 +8,6 @@ body {
 }
 a {
   color: #333;
-  -webkit-text-shadow: 1px 1px #fff;
-  text-shadow: 1px 1px #fff;
 }
 a:hover {
   text-decoration: none;
@@ -224,6 +222,7 @@ article a {
   margin-top: 20px;
   padding: 60px 0 20px;
   position: relative;
+  height: 350px;
 }
 .products .product h4 {
   letter-spacing: -1px;
@@ -238,19 +237,15 @@ article a {
   font-family: "Source Sans Pro";
 }
 .products .product .info span {
-  color: #fff;
-  background: #666;
-  font-family: 'Arial Narrow', 'Nimbus Sans L', sans-serif;
-  font-weight: bold;
-  font-size: 1.2em;
+  font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;
+  font-weight: normal;
+  font-size: 21px;
   letter-spacing: -1px;
   display: inline-block;
   position: absolute;
   padding: 8px 4px 12px;
-  right: 0;
-  top: 100px;
-  text-shadow: none;
-  display: none;
+  right: 40px;
+  top: 341px;
 }
 .products .product img {
   -webkit-transition: all 0.4s ease-out;

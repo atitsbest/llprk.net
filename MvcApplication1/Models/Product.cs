@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Llprk.Web.UI.Models
@@ -53,6 +54,20 @@ namespace Llprk.Web.UI.Models
         public Picture FirstPicture
         {
             get { return OrderedPictures.FirstOrDefault(); }
+        }
+
+		/// <summary>
+		/// Liefert den ersten Satz der Beschreibung.
+		/// </summary>
+        public string ShortDescription
+        {
+            get {
+                var result = Regex.Replace((Description ?? ""), "<.*?>", string.Empty); ;
+                string[] sentences = Regex.Split(result, @"(?<=[\.!\?])\s?");
+                return sentences != null && sentences.Length > 0
+                    ? sentences[0]
+                    : "";
+            }
         }
 
 

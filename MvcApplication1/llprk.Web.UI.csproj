@@ -331,6 +331,7 @@
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
     <Content Include="Images\marketing\banner-2.jpg" />
+    <Content Include="Images\marketing\banner-3.jpg" />
     <Content Include="Images\marketing\banner1.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
@@ -543,6 +544,7 @@
     <Content Include="Scripts\jquery.lazyload.min.js" />
     <Content Include="Scripts\jquery.lettering.js" />
     <Content Include="Scripts\jquery.rotatescale.js" />
+    <Content Include="Scripts\jquery.cycle.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
