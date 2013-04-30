@@ -122,7 +122,7 @@ article a {
   left: auto;
   top: auto;
   z-index: 9999;
-  width: 350px;
+  min-width: 300px;
   border-radius: 0;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
 }
@@ -285,78 +285,4 @@ footer nav a {
 }
 input.ng-invalid {
   border-color: red;
-}
-/* Large desktop */
-@media (min-width: 1200px) {
-  
-}
-@media (max-width: 768px) {
-  body {
-    margin-top: 0;
-  }
-  header {
-    position: relative;
-  }
-}
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {
-  
-}
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-  header nav.cart {
-    margin-top: 10px;
-    float: none;
-    text-align: center;
-  }
-  #cart {
-    right: auto;
-  }
-}
-/* Landscape phones and down */
-@media (max-width: 480px) {
-  header h1 {
-    margin-top: 0;
-  }
-  header nav {
-    margin-top: 0;
-    float: none !important;
-    text-align: center;
-  }
-  header nav a {
-    white-space: nowrap;
-  }
-  header h1 {
-    display: block;
-    float: none;
-    text-align: center;
-  }
-  section#main h2 {
-    font-size: 36px;
-    margin-top: 0px;
-  }
-  section#main .span3 {
-    width: 150px;
-    display: inline-block;
-    text-align: center;
-  }
-  #cart {
-    width: auto;
-    right: 2px !important;
-    left: 3px;
-  }
-  #main .details {
-    text-align: center;
-  }
-  #main .details .span6 {
-    display: none !important;
-  }
-  #main .details .span1 {
-    max-width: 100%;
-    text-align: center;
-  }
-  #main .details .caption {
-    margin: 20px 15px;
-    text-align: justify;
-  }
 }
