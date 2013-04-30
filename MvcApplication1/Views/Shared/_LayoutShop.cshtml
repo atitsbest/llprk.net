@@ -42,7 +42,7 @@
     <![endif]-->
     <div class="container">
         <div class="row">
-            <header ng:controller="HeaderCtrl">
+            <header ng:controller="HeaderCtrl" class="span12">
                         <a href="@Url.Action("index", "shop", new { id = "" })">
                             <h1 id="logo" class="logo" style="display:inline-block;">lillypark</h1>
                         </a>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="row">
-            <header class="categories">
+            <header class="categories span12">
                 <div class="row align-center">
                     <nav>
                         @foreach (var c in ViewBag.Categories) { 
