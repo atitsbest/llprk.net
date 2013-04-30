@@ -18,7 +18,7 @@ namespace Llprk.Web.UI.Controllers.Admin
     {
         public ActionResult Index()
         {
-            ViewBag.DummyOrder = _createDummyOrder();
+            ViewBag.DummyOrder = _CreateDummyOrder();
 
             return View(
                 Mapper.Map<ParameterIndex>(db.Parameters.First())
@@ -43,9 +43,25 @@ namespace Llprk.Web.UI.Controllers.Admin
         }
 
         [HttpPost, ValidateInput(false)]
+        public ActionResult Render(string template) { 
+            var order = _CreateDummyOrder();
+			string result = "";
+
+            try {
+                result = Nustache.Core.Render.StringToString(template, order);
+            }
+            catch (Exception e) {
+                result = string.Format("Invalid email template ({0})!", e.Message);
+            }
+
+            // Alles ok.
+            return Content(result);
+        }
+
+        [HttpPost, ValidateInput(false)]
         public JsonResult IsMailTemplateValid()
         {
-            var order = _createDummyOrder();
+            var order = _CreateDummyOrder();
             var template = Request.Unvalidated.Form[0];
 
             try {
@@ -63,12 +79,14 @@ namespace Llprk.Web.UI.Controllers.Admin
 		/// Bsp. Bestellung erstellen.
 		/// </summary>
 		/// <returns></returns>
-        private static Order _createDummyOrder()
+        private Order _CreateDummyOrder()
         {
             var order = Builder<Order>.CreateNew()
                 .With(o => o.OrderLines = Builder<OrderLine>.CreateListOfSize(2)
 					.All()
-					.With(ol => ol.Product = Builder<Product>.CreateNew().Build())
+					.With(ol => ol.Product = Builder<Product>.CreateNew()
+                        .With(p => p.Price = 44.99m)
+                        .Build())
 					.Build())
                 .Build();
             return order;
