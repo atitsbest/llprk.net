@@ -18,9 +18,6 @@ namespace Llprk.Web.UI
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/mustache").Include(
-                        "~/Scripts/mustache.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-{version}.js",
@@ -30,6 +27,8 @@ namespace Llprk.Web.UI
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/ckeditor.js",
+						"~/Scripts/rx.js",
+						"~/Scripts/rx.time.js",
                         "~/Scripts/app/admin/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(

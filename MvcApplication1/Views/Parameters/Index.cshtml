@@ -67,24 +67,38 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/mustache")
     <script>
-    	var dummyOrder = @Html.Raw(Json.Encode(ViewBag.DummyOrder));
+    	function renderEditorTemplateAsync(editor) {
+			$.when($.post('@Url.Action("render")', { template: editor.getData() }))
+			 .then(function(result) {
+				var id = 'Output_'+editor.name;
+				$('#'+id).html(result);
+			 });
+    	}
+
     	$(function () {
+			// Vorlagen rendern...
+			for (var i in CKEDITOR.instances) {
+				renderEditorTemplateAsync(CKEDITOR.instances[i]);
+			}
+
     		$('#myTab a').click(function (e) {
     			e.preventDefault();
     			$(this).tab('show');
     		})
 
-    		for (var i in CKEDITOR.instances) {
-    			CKEDITOR.instances[i].on('key', function(e) {
-    				$.when($.post('@Url.Action("render")', { template: e.editor.getData() }))
-					 .then(function(result) {
-					 	var id = 'Output_'+e.editor.name;
-					 	$('#'+id).html(result);
-					 });
-    			});
-    		}
+			// Auf Änderungen an der Vorlage reagieren...
+    		var o = Rx.Observable.create(function(observer) {
+    			for (var i in CKEDITOR.instances) {
+    				CKEDITOR.instances[i].on('key', function (e) { observer.onNext(e); });
+    			}
+    		});
+
+			// ...aber nur mit einer leichten Verzögerung.
+    		o.throttle(700)
+			 .subscribe(function (e) {
+			 	renderEditorTemplateAsync(e.editor);
+			 });
     	});
     </script>
 }
