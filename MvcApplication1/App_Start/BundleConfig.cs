@@ -18,6 +18,9 @@ namespace Llprk.Web.UI
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/mustache").Include(
+                        "~/Scripts/mustache.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-{version}.js",

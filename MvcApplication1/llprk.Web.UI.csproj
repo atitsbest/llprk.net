@@ -43,14 +43,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="AutoPoco">
-      <HintPath>..\packages\AutoPoco.1.0.0.0\lib\AutoPoco.dll</HintPath>
-    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="Elmah.Mvc">
       <HintPath>..\packages\Elmah.MVC.2.0.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="FizzWare.NBuilder">
+      <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -332,6 +332,7 @@
     <Content Include="Images\delivered_stamp.png" />
     <Content Include="Images\marketing\banner-2.jpg" />
     <Content Include="Images\marketing\banner-3.jpg" />
+    <Content Include="Images\marketing\banner-4.jpg" />
     <Content Include="Images\marketing\banner1.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
@@ -556,6 +557,7 @@
     <Content Include="Scripts\jstd-scenario-adapter.js" />
     <Content Include="Scripts\lang\en.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mustache.js" />
     <Content Include="Scripts\plugins\about\dialogs\about.js" />
     <Content Include="Scripts\plugins\about\dialogs\logo_ckeditor.png" />
     <Content Include="Scripts\plugins\clipboard\dialogs\paste.js" />

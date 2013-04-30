@@ -6,10 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Llprk.Web.UI.Models;
-using AutoPoco;
 using AutoMapper;
 using Llprk.Web.UI.ViewModels;
 using System.Web.UI;
+using FizzWare.NBuilder;
 
 namespace Llprk.Web.UI.Controllers.Admin
 {
@@ -18,6 +18,8 @@ namespace Llprk.Web.UI.Controllers.Admin
     {
         public ActionResult Index()
         {
+            ViewBag.DummyOrder = _createDummyOrder();
+
             return View(
                 Mapper.Map<ParameterIndex>(db.Parameters.First())
             );
@@ -33,24 +35,17 @@ namespace Llprk.Web.UI.Controllers.Admin
                 c.MailMessageShipped = config.MailMessageShipped;
                 db.SaveChanges();
 
-		return RedirectToAction("index");
+                return RedirectToAction("index");
             }
 
-	    // Neu anzeigen mit Fehlern.
+            // Neu anzeigen mit Fehlern.
             return View(config);
         }
 
         [HttpPost, ValidateInput(false)]
         public JsonResult IsMailTemplateValid()
         {
-            var pocoFactory = AutoPocoContainer.Configure(x => {
-                x.Conventions(c => c.UseDefaultConventions());
-                x.AddFromAssemblyContainingType<Order>();
-                x.Include<Order>();
-            });
-            var pocoSession = pocoFactory.CreateSession();
-
-            var order = pocoSession.Single<Order>();
+            var order = _createDummyOrder();
             var template = Request.Unvalidated.Form[0];
 
             try {
@@ -60,8 +55,23 @@ namespace Llprk.Web.UI.Controllers.Admin
                 return Json(string.Format("Invalid email template ({0})!", e.Message), JsonRequestBehavior.AllowGet);
             }
 
-	    // Alles ok.
+            // Alles ok.
             return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+		/// <summary>
+		/// Bsp. Bestellung erstellen.
+		/// </summary>
+		/// <returns></returns>
+        private static Order _createDummyOrder()
+        {
+            var order = Builder<Order>.CreateNew()
+                .With(o => o.OrderLines = Builder<OrderLine>.CreateListOfSize(2)
+					.All()
+					.With(ol => ol.Product = Builder<Product>.CreateNew().Build())
+					.Build())
+                .Build();
+            return order;
         }
     }
 }
