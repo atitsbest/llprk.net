@@ -27,8 +27,8 @@ namespace Llprk.Web.UI
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/ckeditor.js",
-						"~/Scripts/rx.js",
-						"~/Scripts/rx.time.js",
+                        "~/Scripts/rx.js",
+                        "~/Scripts/rx.time.js",
                         "~/Scripts/app/admin/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(
@@ -63,7 +63,7 @@ namespace Llprk.Web.UI
 
             bundles.Add(new StyleBundle("~/Content/shop2").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-responsive.css",
+                //"~/Content/bootstrap-responsive.css",
                 "~/Content/utils.css",
                 "~/Content/shop2.css"));
 

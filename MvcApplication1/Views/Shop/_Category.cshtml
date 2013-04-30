@@ -5,18 +5,8 @@
         </div>*@
 
             <div class="row products">
-                <div class="span4 product hide">
-                    <a href="@Url.Action("showyourlove", "home")">
-						<img class="lazy" 
-							 style="padding-top:10px;"
-							 data-original="@Url.Content("~/Images/syl.png")"
-							 src="@Url.Content("~/images/spinner.gif")" 
-							 alt="ShowYourLove" />
-						<h4> &nbsp; </h4>
-                    </a>
-                </div>
             @foreach(var product in Model) {
-                <div class="span4 product">
+                <div class="span3 product">
                     <a href="@Url.Action("details", new { Id=product.Id })">
                         @if(@product.FirstPicture != null) {
                             <img class="lazy" 
@@ -26,7 +16,7 @@
                         }
 						<h4>@product.Name</h4>
                         <p class="info">@product.ShortDescription</p>
-                        <p class="info"><span class="price">€@product.Price.ToString("n")</span></p>
+                        <p class="info"><span class="price hidden">€@product.Price.ToString("n")</span></p>
                     </a>
                 </div>
             }

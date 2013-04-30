@@ -237,7 +237,6 @@
     <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\cart-spinner.css" />
     <Content Include="Content\fonts.css" />

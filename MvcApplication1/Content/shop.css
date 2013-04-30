@@ -27,6 +27,7 @@ header.categories {
   border: 1px solid #d6d6d6;
   border-left: none;
   border-right: none;
+  padding: 8px 0;
 }
 header h1 {
   margin-bottom: 0;
@@ -152,7 +153,6 @@ article a {
 #main {
   z-index: 101;
   position: relative;
-  margin-top: 10px;
 }
 #main .header {
   border-bottom: 1px solid #d6d6d6;
@@ -226,15 +226,13 @@ article a {
 }
 .products .product h4 {
   letter-spacing: -1px;
-  text-align: left;
   color: #666;
-  margin-bottom: 4px;
+  margin-bottom: 0px;
 }
 .products .product .info {
-  margin: 0 40px 0 0;
-  text-align: left;
   color: #a2a2a2;
   font-family: "Source Sans Pro";
+  line-height: 1.3em;
 }
 .products .product .info span {
   font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;

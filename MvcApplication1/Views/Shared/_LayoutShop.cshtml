@@ -21,7 +21,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>lillypark [PROTOTYP]</title>
+    <title>lillypark</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="description" content="lillypark,Tasche,Taschen,Bag,Sak Saum">
@@ -64,7 +64,9 @@
                             <a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
                         }
                         <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-                        <a href="@Url.Action("showyourlove", "home")" class="@aboutActive syl">S.Y.L</a>
+                        <a href="@Url.Action("showyourlove", "home")" class="@aboutActive syl">
+							<img src="@Url.Content("~/images/syl-small.png")" alt="S.Y.L" style="position:absolute;margin-top:-23px;" />
+                        </a>
                     </nav>
                 </div>
             </header>
