@@ -336,7 +336,9 @@
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
     <Content Include="Images\spinner.gif" />
+    <Content Include="Images\syl-banner.png" />
     <Content Include="Images\syl-corner.png" />
+    <Content Include="Images\syl-small.png" />
     <Content Include="Images\syl.png" />
     <Content Include="Models\llprk.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
