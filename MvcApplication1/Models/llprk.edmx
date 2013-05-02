@@ -151,6 +151,7 @@
           <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="Available" Type="int" Nullable="false" />
           <Property Name="ShippingCategoryId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="ShippingCategories">
           <Key>
@@ -469,6 +470,7 @@
           <NavigationProperty Name="Tags" Relationship="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" FromRole="Product" ToRole="Tag" />
           <Property Type="Int32" Name="ShippingCategoryId" Nullable="false" />
           <NavigationProperty Name="ShippingCategory" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" FromRole="Product" ToRole="ShippingCategory" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_dbo_Products_dbo_Categories_CategoryId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Category" Role="Category" Multiplicity="0..1">
@@ -684,6 +686,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="ShippingCategoryId" ColumnName="ShippingCategoryId" />
                 <ScalarProperty Name="Available" ColumnName="Available" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

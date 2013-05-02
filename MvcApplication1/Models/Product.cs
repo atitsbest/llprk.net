@@ -36,6 +36,8 @@ namespace Llprk.Web.UI.Models
 
         public virtual ICollection<Tag> Tags { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         /// <summary>
         /// Alle Bilder in der richtigen Reihenfolge.
         /// </summary>
@@ -67,6 +69,16 @@ namespace Llprk.Web.UI.Models
                 return sentences != null && sentences.Length > 0
                     ? sentences[0]
                     : "";
+            }
+        }
+
+		/// <summary>
+		/// Ist das ein neues Produkt? Ja, wenn vor weniger als zwei Wochen erstellt.
+		/// </summary>
+        public bool IsNew {
+            get {
+                var diff = DateTime.Now - CreatedAt;
+                return diff.Days < 14;
             }
         }
 

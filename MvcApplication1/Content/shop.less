@@ -290,47 +290,63 @@ article a {
         margin-top: 20px;
         padding: 60px 0 20px;
         position: relative;
-		height: 350px;
+        height: 350px;
 
         h4 {
-			letter-spacing: -1px;
-			color: #666;
-			margin-bottom: 0px;
-        }
+            letter-spacing: -1px;
+            color: #666;
+            margin-bottom: 0px;
+            text-transform: uppercase;
 
-        .info {
-			color: @light-color;
-            font-family: "Source Sans Pro";
-			line-height: 1.3em;
-
-            span {
-				font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;
-				font-weight: normal;
-                font-size: 1.2em;
-                letter-spacing: -1px;
-                display: inline-block;
-				position: absolute;
-				padding: 8px 4px 12px;
-				right: 40px; // damit's mit dem Padding vom Text übereinstimmt.
-				top: 341px;
+            small {
+				position: relative;
+				top: -10px;
+				letter-spacing: 0px;
+				font-weight: bold;
+				color: @syl-color;
             }
         }
 
-        img {
+        .info {
+            color: @light-color;
+            font-family: "Source Sans Pro";
+            line-height: 1.3em;
+
+            span {
+                font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;
+                font-weight: normal;
+                font-size: 1.2em;
+                letter-spacing: -1px;
+                display: inline-block;
+                position: absolute;
+                padding: 8px 4px 12px;
+                right: 40px; // damit's mit dem Padding vom Text übereinstimmt.
+                top: 341px;
+            }
+        }
+
+        a img {
             -webkit-transition: all .4s ease-out;
             -moz-transition: all .4s ease-out;
             -o-transition: all .4s ease-out;
             transition: all .4s ease-out;
-			max-width: 240px;
-			margin-bottom: 40px;
+            max-width: 240px;
+            margin-bottom: 40px;
         }
 
-        &:hover img {
+        &:hover a img {
             -webkit-transform: scale(1.05);
             -moz-transform: scale(1.05);
             -ms-transform: scale(1.05);
             -o-transform: scale(1.05);
             transform: scale(1.05);
+        }
+
+        .new {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 48px;
         }
     }
 }

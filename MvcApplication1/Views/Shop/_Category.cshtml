@@ -14,10 +14,13 @@
 								 src="@Url.Content("~/images/spinner.gif")" 
 								 alt="@product.Name" />
                         }
-						<h4>@product.Name</h4>
+						<h4>@product.Name&nbsp;<small>NEU</small></h4>
                         <p class="info">@product.ShortDescription</p>
                         <p class="info"><span class="price hidden">€@product.Price.ToString("n")</span></p>
                     </a>
+					@if (product.IsNew && false) {
+						<img class="new" src="@Url.Content("~/Images/new.png")" alt="Neu im Sortiment" />
+					}
                 </div>
             }
             </div>

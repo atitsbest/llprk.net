@@ -228,6 +228,14 @@ article a {
   letter-spacing: -1px;
   color: #666;
   margin-bottom: 0px;
+  text-transform: uppercase;
+}
+.products .product h4 small {
+  position: relative;
+  top: -10px;
+  letter-spacing: 0px;
+  font-weight: bold;
+  color: #ad001e;
 }
 .products .product .info {
   color: #a2a2a2;
@@ -245,7 +253,7 @@ article a {
   right: 40px;
   top: 341px;
 }
-.products .product img {
+.products .product a img {
   -webkit-transition: all 0.4s ease-out;
   -moz-transition: all 0.4s ease-out;
   -o-transition: all 0.4s ease-out;
@@ -253,12 +261,18 @@ article a {
   max-width: 240px;
   margin-bottom: 40px;
 }
-.products .product:hover img {
+.products .product:hover a img {
   -webkit-transform: scale(1.05);
   -moz-transform: scale(1.05);
   -ms-transform: scale(1.05);
   -o-transform: scale(1.05);
   transform: scale(1.05);
+}
+.products .product .new {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
 }
 footer {
   z-index: 203;

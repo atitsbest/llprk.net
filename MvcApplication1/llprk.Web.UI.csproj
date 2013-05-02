@@ -333,6 +333,7 @@
     <Content Include="Images\marketing\banner-3.jpg" />
     <Content Include="Images\marketing\banner-4.jpg" />
     <Content Include="Images\marketing\banner1.png" />
+    <Content Include="Images\new.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
     <Content Include="Images\spinner.gif" />
