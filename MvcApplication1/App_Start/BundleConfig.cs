@@ -57,7 +57,6 @@ namespace Llprk.Web.UI
 
             bundles.Add(new StyleBundle("~/Content/shop").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-responsive.css",
                 "~/Content/utils.css",
                 "~/Content/shop.css"));
 
@@ -80,7 +79,9 @@ namespace Llprk.Web.UI
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
+#if !DEBUG
             BundleTable.EnableOptimizations = true;
+#endif
         }
     }
 }
