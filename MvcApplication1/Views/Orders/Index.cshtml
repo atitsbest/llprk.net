@@ -1,11 +1,12 @@
-﻿@model IEnumerable<Llprk.Web.UI.Models.Order>
+﻿@using Llprk.Web.UI.Extensions
+@model IEnumerable<Llprk.Web.UI.Models.Order>
 
 @{
     ViewBag.Title = "Index";
 
     var grid = new WebGrid(Model, 
         defaultSort: "Id",
-        rowsPerPage: 20);
+        rowsPerPage: 10);
 }
 
 <div class="span12">
@@ -18,9 +19,11 @@
 	@grid.GetHtml(
 		tableStyle : "table table-striped table-bordered",
 		columns: grid.Columns(
-			grid.Column("Id", format:
+			grid.Column("Info", format:
 				@<text>
 					<b>@item.OrderNumber</b>
+					<br />
+					<span title="@item.CreatedAt">@(((DateTime)item.CreatedAt).ToRelativeDateString())</span>
 					<br />
 					@if(item.IsPaid) { <span class="badge badge-success">PAID</span> } 
 					else { <span class="badge">NOT PAID</span> }
