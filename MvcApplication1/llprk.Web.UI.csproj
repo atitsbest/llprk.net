@@ -240,7 +240,6 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\cart-spinner.css" />
-    <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts\crumbler-webfont.svg" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
@@ -330,6 +329,7 @@
     <Content Include="Images\blume.gif" />
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
+    <Content Include="Images\lillypark.PNG" />
     <Content Include="Images\marketing\banner-2.jpg" />
     <Content Include="Images\marketing\banner-3.jpg" />
     <Content Include="Images\marketing\banner-4.jpg" />

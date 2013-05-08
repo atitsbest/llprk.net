@@ -1,5 +1,4 @@
-﻿@import url(fonts.css);
-@import url(cart-spinner.css);
+﻿@import url(cart-spinner.css);
 
 @color: #333;
 @light-color: lighten(@color, 40%);
@@ -7,6 +6,18 @@
 @syl-color: #AD001E; 
 @blue-color: #00b9e3;
 @dark-text-color: #666;
+
+@font-face {
+    font-family: 'crumbler';
+    src: url('fonts/crumbler-webfont.eot');
+    src: url('fonts/crumbler-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/crumbler-webfont.woff') format('woff'),
+         url('fonts/crumbler-webfont.ttf') format('truetype'),
+         url('fonts/crumbler-webfont.svg#crumblerregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 html {
     //background: #e8e8e8 url(images/shop/bg.png);
@@ -244,9 +255,6 @@ article a {
         }
 
         .explanation {
-            font-size: 17px;
-            line-height: 20px;
-
             p {
                 margin: 0px 0px 20px;
             }
