@@ -5,9 +5,21 @@ body {
   background: #fff;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
+  font-family: "Droid Sans", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "crumbler", Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+}
+p {
+  line-height: 1.8em;
 }
 a {
-  color: #333;
+  color: #333333;
 }
 a:hover {
   text-decoration: none;
@@ -86,13 +98,14 @@ header nav a.syl {
   z-index: 999;
 }
 nav > a {
-  color: #a2a2a2;
+  color: #999999;
   margin: 0 30px;
   text-transform: uppercase;
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: "crumbler", Arial, sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
   line-height: 1.5em;
+  font-size: 16px;
 }
 nav > a.active {
   color: #00b9e3;
@@ -101,14 +114,14 @@ nav > a > .badge {
   position: relative;
   top: -3px;
   left: 10px;
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "crumbler", Helvetica, Arial, sans-serif;
   background: none;
   border: 2px dotted #d6d6d6;
   -moz-border-radius: 13px;
   -webkit-border-radius: 13px;
   border-radius: 13px;
   padding: 5px 9px;
-  color: #a2a2a2;
+  color: #999999;
   font-size: 12px;
   font-weight: normal;
 }
@@ -128,7 +141,6 @@ article a {
 }
 #basket {
   background: #00b9e3 url(images/shop/cart-bg.gif) repeat;
-  font-family: Georgia, "Source Sans Pro", Helvetica, Arial, sans-serif;
   margin-top: 70px;
   z-index: 100;
   display: none;
@@ -147,58 +159,66 @@ article a {
 #basket select {
   height: 25px;
 }
-#basket h4 {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-}
 #main {
   z-index: 101;
   position: relative;
 }
-#main .header {
-  border-bottom: 1px solid #d6d6d6;
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-#main .header h2 {
-  font-family: "Source Sans Pro";
-  font-weight: normal;
-  font-size: 48px;
-  line-height: 1.4em;
-  color: #666;
-}
-#main .explanation {
-  font-family: "Source Sans Pro";
-  font-size: 17px;
-  line-height: 20px;
-  background: #f1f1f1;
-}
-#main .explanation p,
-#main .explanation h3 {
-  margin: 20px 20px;
-}
-#main img.product {
-  height: auto;
-}
 #main .products {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 40px;
 }
-#main .thumbnails > img {
+#main .details {
+  margin-top: 20px;
+}
+#main .details > .row > .span8 {
+  border-right: 2px dotted #d6d6d6;
+  box-sizing: border-box;
+}
+#main .details .header {
+  text-align: right;
+  margin-right: 20px;
+}
+#main .details .header h2 {
+  font-family: "crumbler", Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 1em;
+  color: #666666;
+}
+#main .details .explanation {
+  font-size: 17px;
+  line-height: 20px;
+}
+#main .details .explanation p {
+  margin: 0px 0px 20px;
+}
+#main .details .explanation .price {
+  margin: 0px 0px 20px;
+  font-family: "crumbler", Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 1em;
+  color: #666666;
+}
+#main .details img.product {
+  height: auto;
+}
+#main .details .thumbnails > img {
   display: inline-block;
   border: 1px solid #d6d6d6;
   margin-right: 20px;
 }
-#main .detail {
+#main .details .detail {
   background-color: #f1dcaf;
   -moz-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
 }
-#main .detail img {
+#main .details .detail img {
   max-width: 400px;
   height: auto;
 }
-#main .detail h2 {
+#main .details .detail h2 {
   color: white;
   -webkit-text-shadow: none;
   text-shadow: none;
@@ -225,10 +245,11 @@ article a {
   height: 350px;
 }
 .products .product h4 {
-  letter-spacing: -1px;
+  letter-spacing: 1px;
   color: #666;
   margin-bottom: 0px;
   text-transform: uppercase;
+  font-family: crumbler, Helvetica, Arial, sans-serif;
 }
 .products .product h4 small {
   position: relative;
@@ -238,12 +259,10 @@ article a {
   color: #ad001e;
 }
 .products .product .info {
-  color: #a2a2a2;
-  font-family: "Source Sans Pro";
+  color: #999999;
   line-height: 1.3em;
 }
 .products .product .info span {
-  font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;
   font-weight: normal;
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -283,7 +302,7 @@ footer {
 footer .copyright {
   margin-top: 1em;
   padding-top: 1em;
-  color: #a2a2a2;
+  color: #999999;
   font-size: .8em;
   text-align: left;
 }

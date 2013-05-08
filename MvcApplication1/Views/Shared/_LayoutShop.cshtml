@@ -25,8 +25,7 @@
     <meta charset="utf-8">
     <meta name="description" content="lillypark,Tasche,Taschen,Bag,Sak Saum">
 
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
     @Styles.Render("~/Content/shop")
     @Scripts.Render("~/bundles/modernizr")
@@ -43,7 +42,8 @@
         <div class="row">
             <header ng:controller="HeaderCtrl" class="span12">
                         <a href="@Url.Action("index", "shop", new { id = "" })">
-                            <h1 id="logo" class="logo" style="display:inline-block;">lillypark</h1>
+                            <img src="@Url.Content("~/Images/lillypark.png")" alt="" style="display:inline-block;opacity:.8;position:relative;top:10px;" />
+                            @*<h1 id="logo" class="logo" style="display:inline-block;">lillypark</h1>*@
                         </a>
                     <nav class="pull-right cart">
                         <a	href="#" 

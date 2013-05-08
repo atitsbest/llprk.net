@@ -1,7 +1,8 @@
 ﻿@import url(fonts.css);
 @import url(cart-spinner.css);
 
-@light-color: #a2a2a2;
+@color: #333;
+@light-color: lighten(@color, 40%);
 @light-border-color: #d6d6d6;
 @syl-color: #AD001E; 
 @blue-color: #00b9e3;
@@ -15,6 +16,15 @@ body {
     background: #fff;
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
+	font-family: "Droid Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "crumbler", Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+}
+
+p {
+	line-height: 1.8em;
 }
 
 a {
@@ -22,7 +32,7 @@ a {
         text-decoration: none;
     }
 
-    color: #333;
+    color: @color;
 }
 
 h2 {
@@ -128,10 +138,11 @@ nav > a {
     color: @light-color;
     margin: 0 30px;
     text-transform: uppercase;
-    font-family: "Source Sans Pro", Arial, sans-serif;
+    font-family: "crumbler", Arial, sans-serif;
     font-weight: 400;
 	letter-spacing: 1px;
     line-height: 1.5em;
+	font-size: 16px;
 
     &.active {
         color: #00b9e3;
@@ -141,7 +152,7 @@ nav > a {
         position: relative;
         top: -3px;
         left: 10px;
-        font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+        font-family: "crumbler", Helvetica, Arial, sans-serif;
         background: none;
         border: 2px dotted @light-border-color;
         -moz-border-radius: 13px;
@@ -172,7 +183,7 @@ article a {
 
 #basket {
     background: #00b9e3 url(images/shop/cart-bg.gif) repeat;
-    font-family: Georgia, "Source Sans Pro", Helvetica, Arial, sans-serif;
+    //font-family: Georgia, Helvetica, Arial, sans-serif;
     margin-top: 70px;
     z-index: 100;
     display: none;
@@ -198,7 +209,7 @@ article a {
     }
 
     h4 {
-        font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+        //font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
     }
 }
 
@@ -206,61 +217,76 @@ article a {
     z-index: 101;
     position: relative;
 
-    .header {
-        border-bottom: 1px solid @light-border-color;
-		margin-top: 40px;
-		margin-bottom: 20px;
+	.products {
+		padding-top: 10px;
+		padding-bottom: 40px;
+	}
 
-        h2 {
-            font-family: "Source Sans Pro";
-            font-weight: normal;
-            font-size: 48px;
-            line-height: 1.4em;
-            color: #666;
+    .details {
+        margin-top: 20px;
+
+        > .row > .span8 {
+            border-right: 2px dotted @light-border-color;
+			box-sizing: border-box; 
+		}
+
+        .header {
+            text-align: right;
+			margin-right: 20px;
+
+            h2 {
+                font-family: "crumbler", Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+                font-weight: normal;
+                font-size: 48px;
+                line-height: 1em;
+                color: @dark-text-color;
+            }
         }
-    }
 
-    .explanation {
-        font-family: "Source Sans Pro";
-        font-size: 17px;
-        line-height: 20px;
-		background: #f1f1f1;
+        .explanation {
+            font-size: 17px;
+            line-height: 20px;
 
-        p, h3 {
-			margin: 20px 20px;
+            p {
+                margin: 0px 0px 20px;
+            }
+
+            .price {
+                margin: 0px 0px 20px;
+                font-family: "crumbler", Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+                font-weight: normal;
+                font-size: 48px;
+                line-height: 1em;
+                color: @dark-text-color;
+            }
         }
-    }
 
-    img.product {
-        height: auto;
-    }
-
-    .products {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .thumbnails > img {
-        display: inline-block;
-        border: 1px solid @light-border-color;
-        margin-right: 20px;
-    }
-
-    .detail {
-        background-color: #f1dcaf;
-        -moz-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-        -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-
-        img {
-            max-width: 400px;
+        img.product {
             height: auto;
         }
 
-        h2 {
-            color: white;
-            -webkit-text-shadow: none;
-            text-shadow: none;
+        .thumbnails > img {
+            display: inline-block;
+            border: 1px solid @light-border-color;
+            margin-right: 20px;
+        }
+
+        .detail {
+            background-color: #f1dcaf;
+            -moz-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+
+            img {
+                max-width: 400px;
+                height: auto;
+            }
+
+            h2 {
+                color: white;
+                -webkit-text-shadow: none;
+                text-shadow: none;
+            }
         }
     }
 }
@@ -293,10 +319,11 @@ article a {
         height: 350px;
 
         h4 {
-            letter-spacing: -1px;
+            letter-spacing: 1px;
             color: #666;
             margin-bottom: 0px;
             text-transform: uppercase;
+			font-family: crumbler, Helvetica, Arial, sans-serif;
 
             small {
 				position: relative;
@@ -309,11 +336,9 @@ article a {
 
         .info {
             color: @light-color;
-            font-family: "Source Sans Pro";
             line-height: 1.3em;
 
             span {
-                font-family: 'Source Sans Pro', 'Nimbus Sans L', sans-serif;
                 font-weight: normal;
                 font-size: 1.2em;
                 letter-spacing: -1px;

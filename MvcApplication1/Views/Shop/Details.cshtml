@@ -5,14 +5,11 @@
 }
 <section id="main" ng-controller="ProductsCtrl" style="padding-bottom: 20px;">
     <div class="container details">
-        <div class="row header">
-            <div class="span12">
-				<h2 class="categoryName">@Model.Product.Name <small class="muted hide">@Model.Product.Category.Name</small></h2>
-            </div>
-        </div>
-
         <div class="row">
             <div class="span8 align-center">
+				<div class="row header">
+					<h2 class="categoryName">@Model.Product.Name <small class="muted hide">@Model.Product.Category.Name</small></h2>
+				</div>
                 <div class="row">
                     <img id="bigPicture" src="@Model.Product.FirstPicture.PictureUrl" class="" />
                 </div>
@@ -29,12 +26,11 @@
                     @Html.Raw(Model.Product.Description)
                 </p>
                 <p>
-                    <h3>@Model.Product.Price.ToString("c")</h3>
+                    <h2 class="price">@Model.Product.Price.ToString("c")</h2>
                 </p>
-                <hr />
                 <p>
                     <a	href="#" 
-						class="btn btn-warning" 
+						class="btn btn-inverse" 
                         ng:click="addToCart(@Model.Product.Id)">In den Warenkorb...</a>
                     <a href="@Url.Action("index")" class="btn btn-small">Zurück</a>
                 </p>

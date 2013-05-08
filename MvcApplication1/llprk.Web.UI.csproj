@@ -241,7 +241,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\cart-spinner.css" />
     <Content Include="Content\fonts.css" />
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.svg" />
+    <Content Include="Content\fonts\crumbler-webfont.svg" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
     <Content Include="Content\shop.css">
@@ -353,10 +353,10 @@
     <Content Include="Models\llprk.tt">
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.eot" />
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.ttf" />
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.woff" />
     <Content Include="Content\shop.less" />
+    <Content Include="Content\fonts\crumbler-webfont.eot" />
+    <Content Include="Content\fonts\crumbler-webfont.ttf" />
+    <Content Include="Content\fonts\crumbler-webfont.woff" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy %282%29.pubxml" />
