@@ -15,7 +15,7 @@
 								 alt="@product.Name" />
                         }
 						<h4>@product.Name&nbsp;<small>NEU</small></h4>
-                        <p class="info">@product.ShortDescription</p>
+                        <p class="info">@Html.Raw(product.ShortDescription)</p>
                         <p class="info"><span class="price hidden">€@product.Price.ToString("n")</span></p>
                     </a>
 					@if (product.IsNew && false) {
