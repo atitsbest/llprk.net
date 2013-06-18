@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Llprk.Web.UI.Extensions
+<!DOCTYPE html>
 @{
     var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
     var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
@@ -146,5 +147,6 @@
             .value('countries', @Html.Raw(Json.Encode(allCountries)));
 
     </script>
+	@Html.Analytics("UA-41833314-1", "lillypark.com")
 </body>
 </html>

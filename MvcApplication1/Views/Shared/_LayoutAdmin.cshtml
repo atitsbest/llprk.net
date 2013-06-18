@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Llprk.Web.UI.Extensions
+<!DOCTYPE html>
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
 
@@ -102,6 +103,7 @@
             return !$(textarea).hasClass('no-richtext');
         });
     </script>
+	@Html.Analytics("UA-41833314-2", "lillypark.com")
 </body>
 </html>
 

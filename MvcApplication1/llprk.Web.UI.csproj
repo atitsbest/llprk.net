@@ -190,6 +190,7 @@
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Extensions\DateTime+RelativeDate.cs" />
+    <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
