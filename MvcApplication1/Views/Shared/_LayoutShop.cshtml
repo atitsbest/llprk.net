@@ -39,67 +39,69 @@
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
     <![endif]-->
-    <div class="container">
-        <div class="row">
-            <header ng:controller="HeaderCtrl" class="span12">
-                        <a href="@Url.Action("index", "shop", new { id = "" })">
-                            @*<img src="@Url.Content("~/Images/lillypark.png")" alt="" style="display:inline-block;opacity:.8;position:relative;top:10px;" />*@
-                            <h1 id="logo" class="logo" style="display:inline-block;">lillypark</h1>
-                        </a>
-                    <nav class="pull-right cart">
-                        <a	href="#" 
-							class="@cartVisible"
-							ng:click="showCart()">Warenkorb<span class="badge badge-info" ng:bind="cartItemCount()">0</span></a>
+	<div class="wrapper">
+		<div class="container">
+			<div class="row">
+				<header ng:controller="HeaderCtrl" class="span12">
+							<a href="@Url.Action("index", "shop", new { id = "" })">
+								@*<img src="@Url.Content("~/Images/lillypark.png")" alt="" style="display:inline-block;opacity:.8;position:relative;top:10px;" />*@
+								<h1 id="logo" class="logo" style="display:inline-block;">lillypark</h1>
+							</a>
+						<nav class="pull-right cart">
+							<a	href="#" 
+								class="@cartVisible"
+								ng:click="showCart()">Warenkorb<span class="badge badge-info" ng:bind="cartItemCount()">0</span></a>
 
-                        @Html.Partial("~/Views/Shop/_Cart.cshtml")
-                    </nav>
-            </header>
-        </div>
+							@Html.Partial("~/Views/Shop/_Cart.cshtml")
+						</nav>
+				</header>
+			</div>
 
-        <div class="row">
-            <header class="categories span12">
-                <div class="row align-center">
-                    <nav>
-                        @foreach (var c in ViewBag.Categories) { 
-                            <a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
-                        }
-                        <a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
-                        <a href="@Url.Action("showyourlove", "home")" class="@aboutActive syl">
-							<img src="@Url.Content("~/images/syl-small.png")" alt="S.Y.L" style="position:absolute;margin-top:-23px;z-index:10;" />
-                        </a>
-                    </nav>
-                </div>
-            </header>
-        </div>
-    </div>
-
-
-    @RenderBody()
+			<div class="row">
+				<header class="categories span12">
+					<div class="row align-center">
+						<nav>
+							@foreach (var c in ViewBag.Categories) { 
+								<a href="@Url.Action("index", "shop", new { id = c.Id }, null)">@c.Name </a>
+							}
+							<a href="@Url.Action("about", "home")" class="@aboutActive">über uns</a>
+							<a href="@Url.Action("showyourlove", "home")" class="@aboutActive syl">
+								<img src="@Url.Content("~/images/syl-small.png")" alt="S.Y.L" style="position:absolute;margin-top:-23px;z-index:10;" />
+							</a>
+						</nav>
+					</div>
+				</header>
+			</div>
+		</div>
 
 
-    <div class="container">
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <nav>
-                            <a href="@Url.Action("agbs", "home")" class="@agbsActive">agbs</a>
-                            <a href="@Url.Action("impressum", "home")" class="@impressumActive">impressum</a>
-                            <a href="@Url.Action("widerrufsrecht", "home")" class="@widerrufActive">widerrufsrecht</a>
-                            <a href="http://facebook.com/showyourlove.info" target="_blank">facebook</a>
-                        </nav>
-                    </div>
-                </div>
+		@RenderBody()
 
-                <div class="row">
-                    <div class="span12">
-                        <p class="copyright">&copy; 2012 <span class="logo">lillypark</span></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
 
+		<div class="container">
+			<footer>
+				<div class="container">
+					<div class="row">
+						<div class="span12">
+							<nav>
+								<a href="@Url.Action("agbs", "home")" class="@agbsActive">agbs</a>
+								<a href="@Url.Action("impressum", "home")" class="@impressumActive">impressum</a>
+								<a href="@Url.Action("widerrufsrecht", "home")" class="@widerrufActive">widerrufsrecht</a>
+								<a href="http://facebook.com/showyourlove.info" target="_blank">facebook</a>
+							</nav>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="span12">
+							<p class="copyright">&copy; 2012 <span class="logo">lillypark</span></p>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div> @* .wrapper *@
 
     @Scripts.Render("~/bundles/shop")
 

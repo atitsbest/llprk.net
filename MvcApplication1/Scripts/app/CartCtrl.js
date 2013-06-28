@@ -8,6 +8,11 @@ function CartCtrl($scope, $http, CartItems, countries) {
     // Alle Länder verfügbar machen.
     $scope.countries = countries;
     $scope.countryCode = countries[0].Id;
+    $scope.county = countries[0].Name;
+
+    $scope.countryName = function () {
+    	return _($scope.countries).where({ Id: $scope.countryCode })[0].Name;
+    };
 
 	// Zahlungsmethoden.
     $scope.paymentTypes = [
@@ -52,22 +57,22 @@ function CartCtrl($scope, $http, CartItems, countries) {
     	return category ? category.Amount : 0;
     }
 
+    _shippingCostsForCountry = function (country) {
+    	return _($scope.items).reduce(function (memo, item) {
+			return memo + _shippingCostsForItem(country, item.Product);
+		}, 0);
+    }
+
     /**
      * Versandkosten.
      */
     $scope.shippingCosts = function () {
     	var country = _(countries).find(function (c) { return c.Id == $scope.countryCode; }),
 			costs = 0;
-    	if (country != null)
-        {
-    		costs = _($scope.items).reduce(function (memo, item) {
-    			return memo + _shippingCostsForItem(country, item.Product);
-        	}, 0);
+    	if (country != null) {
+    		costs = _shippingCostsForCountry(country);
         }
 
-    	// HACK: Nicht gut so. Wird nur gemacht, dass in der Dropbox die Versandkosten
-    	//		 angezeigt werden können.
-    	country.Costs = costs;
         return costs;
     }
 
