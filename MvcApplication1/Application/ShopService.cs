@@ -2,11 +2,13 @@
 using Llprk.Web.UI.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Transactions;
 using System.Web;
 
 namespace Llprk.Web.UI.Application
@@ -20,40 +22,79 @@ namespace Llprk.Web.UI.Application
         /// <param name="productIdsAndQtys"></param>
         public void PlaceOrder(Entities db, Order order, IDictionary<int, int> productIdsAndQtys)
         {
-            order.CreatedAt = DateTime.Now;
-            db.Orders.Add(order);
-            db.SaveChanges();
+            using (var transaction = new TransactionScope()) {
+                // Bestellung mit Datum versehen und in DB speichern.
+                order.CreatedAt = DateTime.Now;
+				// Preis berechnen
+                order.SubTotalPrice = CalculateSubTotalPrice(order);
+				// Versandkosten berechnen
+                order.ShippingCosts = CalculateShippingCosts(order);
 
-            foreach (var id in productIdsAndQtys.Keys) {
-                var product = db.Products.FirstOrDefault(x => x.Id == id);
-                var qty = productIdsAndQtys[id];
-                if (product == null) {
-                    throw new AppException(string.Format(
-                        "Das Produkt mit der Id {0} ist nicht verfügbar!",
-                        id));
+                // Validierung.
+                var vc = new ValidationContext(order, null, null);
+                Validator.ValidateObject(order, vc, true);
+
+                db.Orders.Add(order);
+                db.SaveChanges();
+
+                foreach (var id in productIdsAndQtys.Keys) {
+                    var product = db.Products.FirstOrDefault(x => x.Id == id);
+                    var qty = productIdsAndQtys[id];
+                    if (product == null) {
+                        throw new AppException(string.Format(
+                            "Das Produkt mit der Id {0} ist nicht verfügbar!",
+                            id));
+                    }
+                    // Nicht mehr genug vom Produkt auf Lager?
+                    if (product.Available < qty) {
+                        throw new AppException(string.Format(
+                            "Von {0} ist/sind nur noch {1} Stück auf Lager. Bitte Menge anpassen.",
+                            product.Name,
+                            product.Available));
+                    }
+
+                    // Menge abziehen.
+                    product.Available -= qty;
+
+                    // Produkte zur Bestellung hinzufügen.
+                    order.OrderLines.Add(new OrderLine() {
+                        OrderId = order.Id,
+                        ProductId = id,
+                        Qty = qty
+                    });
                 }
-                // Nicht mehr genug vom Produkt auf Lager?
-                if (product.Available < qty) {
-                    throw new AppException(string.Format(
-                        "Von {0} ist/sind nur noch {1} Stück auf Lager. Bitte Menge anpassen.",
-                        product.Name,
-                        product.Available));
-                }
+                db.SaveChanges();
 
-                // Menge abziehen.
-                product.Available -= qty;
+                // Bestätigungsmail verschicken.
+                var mailBody = Nustache.Core.Render.StringToString(db.Parameters.First().MailMessageOrdered, order);
+                MailService.SendMailToCustomer(order.Email, "Deine Bestellung bei lillypark.com", mailBody);
 
-                order.OrderLines.Add(new OrderLine() {
-                    OrderId = order.Id,
-                    ProductId = id,
-                    Qty = qty
-                });
+                transaction.Complete();
             }
-            db.SaveChanges();
 
-            // Bestätigungsmail verschicken.
-            var mailBody = Nustache.Core.Render.StringToString(db.Parameters.First().MailMessageOrdered, order);
-            _SendMailToCustomer(order, "Deine Bestellung bei lillypark.com", mailBody);
+        }
+
+        /// <summary>
+        /// Versandkosten berechnen.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public decimal CalculateShippingCosts(Order order)
+        {
+            var c = order.Country ?? new Country();
+            return order.OrderLines.Sum(ol => c.ShippingCost(ol.Product.ShippingCategory));
+        }
+
+		/// <summary>
+		/// Berechnet den Preis aller Bestellzeilen (ohne Versandkosten oder ähnlichem).
+		/// </summary>
+		/// <param name="order"></param>
+		/// <returns></returns>
+        public decimal CalculateSubTotalPrice(Order order)
+        {
+            return order.OrderLines
+                .Select(ol => ol.Product.Price * ol.Qty)
+                .Sum();
         }
 
         /// <summary>
@@ -67,9 +108,9 @@ namespace Llprk.Web.UI.Application
             order.PaidAt = DateTime.Now; // TODO: Vielleicht hat der Kunde schon vorher gezahlt?
 
             // Email an den Kunden schicken.
-            _SendMailToCustomer(order, "Wir haben Deine Bezahlung erhalten", mailBody);
+            MailService.SendMailToCustomer(order.Email, "Wir haben Deine Bezahlung erhalten", mailBody);
 
-            db.SaveChanges(); 
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -83,34 +124,9 @@ namespace Llprk.Web.UI.Application
             order.ShippedAt = DateTime.Now;
 
             // Email an den Kunden schicken.
-            _SendMailToCustomer(order, "Deine Bestellung wurde verschickt", mailBody);
-            db.SaveChanges(); 
+            MailService.SendMailToCustomer(order.Email, "Deine Bestellung wurde verschickt", mailBody);
+            db.SaveChanges();
         }
 
-        /// <summary>
-        /// Schickt eine HTML-Mail an die Email-Adresse aus dem Auftrag.
-        /// </summary>
-        /// <param name="order"></param>
-        /// <param name="subject"></param>
-        /// <param name="mailBody"></param>
-        private static void _SendMailToCustomer(Order order, string subject, string mailBody)
-        {
-			var smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
-            var smtpUser = ConfigurationManager.AppSettings["SMTPUser"];
-			var smtpPwd = ConfigurationManager.AppSettings["SMTPPwd"];
-            var senderAddress = ConfigurationManager.AppSettings["EmailSenderAddress"];
-
-            var message = new MailMessage(senderAddress, order.Email, subject, mailBody);
-            message.IsBodyHtml = true;
-            message.BodyEncoding = Encoding.UTF8;
-
-            var mp = new SmtpMailProvider(
-                smtpServer,
-                user: smtpUser,
-                password: smtpPwd,
-                enableSSL: true);
-            mp.SendMail(message);
-
-        }
     }
 }

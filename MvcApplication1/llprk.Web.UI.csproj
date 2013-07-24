@@ -165,6 +165,7 @@
   <ItemGroup>
     <Compile Include="ApplicationViewPage.cs" />
     <Compile Include="Application\Exceptions\AppException.cs" />
+    <Compile Include="Application\MailService.cs" />
     <Compile Include="Application\ShopService.cs" />
     <Compile Include="Application\SmtpMailProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -185,12 +186,14 @@
     <Compile Include="Controllers\api\CategoriesController.cs" />
     <Compile Include="Controllers\api\PicturesController.cs" />
     <Compile Include="Controllers\api\ProductsController.cs" />
+    <Compile Include="Controllers\api\ShopController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Extensions\DateTime+RelativeDate.cs" />
     <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
+    <Compile Include="Filters\ValidateModelFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -660,9 +663,7 @@
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\Countries\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

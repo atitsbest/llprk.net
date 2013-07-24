@@ -127,7 +127,7 @@ function CartCtrl($scope, $http, CartItems, countries) {
             $('#step4').collapse('hide');
             $('#step5').collapse('show');
 
-            $http.post('/shop/new', _generateNewOrder())
+        	$http.post('/api/shop/new', _generateNewOrder())
                 .success(function (orderId, s, h, c) {
                 	_handlePayment(orderId);
                 })

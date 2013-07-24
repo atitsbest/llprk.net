@@ -6,6 +6,11 @@ using System.Web;
 
 namespace Llprk.Web.UI.Models
 {
+	/// <summary>
+	/// Eine Bestellung, so wie sie abgegeben wurde. 
+    /// Preise und Versandkosten werden bei der Bestellung einmalig berechnet und können 
+    /// dann nicht mehr geändert werden.
+	/// </summary>
     public class Order
     {
         public int Id { get; set; }
@@ -28,7 +33,16 @@ namespace Llprk.Web.UI.Models
         public virtual Country Country { get; set; }
         [EmailAddress]
         public string Email { get; set; }
-
+        /// <summary>
+        /// Preis OHNE Versandkosten.
+        /// </summary>
+		[Required]
+        public decimal SubTotalPrice { get; set; }
+        /// <summary>
+        /// Versandkosten.
+        /// </summary>
+		[Required]
+        public decimal ShippingCosts { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }
@@ -52,27 +66,6 @@ namespace Llprk.Web.UI.Models
         public string OrderNumber
         {
             get { return string.Format("{0}{1}{2}", Id, CreatedAt.Month, CreatedAt.Year-2000); }
-        }
-
-        /// <summary>
-        /// Preis OHNE Versandkosten.
-        /// </summary>
-        public decimal SubTotalPrice {
-            get {
-                return OrderLines
-                    .Select(ol => ol.Product.Price * ol.Qty)
-                    .Sum();
-            }
-        }
-
-        /// <summary>
-        /// Versandkosten.
-        /// </summary>
-        public decimal ShippingCosts {
-            get {
-                var c = Country ?? new Country();
-                return OrderLines.Sum(ol => c.ShippingCost(ol.Product.ShippingCategory));
-            }
         }
 
         /// <summary>
