@@ -5,8 +5,9 @@
     ViewBag.Title = "Index";
 
     var grid = new WebGrid(Model, 
-        defaultSort: "Id",
+		canSort: false,
         rowsPerPage: 10);
+    grid.SortDirection = SortDirection.Descending;
 }
 
 <div class="span12">

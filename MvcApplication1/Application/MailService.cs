@@ -35,7 +35,18 @@ namespace Llprk.Web.UI.Application
                 password: smtpPwd,
                 enableSSL: true);
             mp.SendMail(message);
+        }
 
+        /// <summary>
+        /// Schickt eine HTML-Mail an den Eigentümer des WebShops.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="subject"></param>
+        /// <param name="mailBody"></param>
+        public static void SendMailToOwner(string subject, string mailBody)
+        {
+            var ownerAddress = ConfigurationManager.AppSettings["EmailSenderAddress"];
+            SendMailToCustomer(ownerAddress, subject, mailBody);
         }
     }
 }

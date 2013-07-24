@@ -134,7 +134,7 @@ function CartCtrl($scope, $http, CartItems, countries) {
                 .error(function (d, s, h, c) {
                     $('#step5').hide('hide');
                     $('#step1').collapse('show');
-                    alert(d);
+                    alert('Uups. Das ist uns ein Fehler unterlaufen. Das tut uns leid. Wir arbeiten daran.\nDeine Bestellung wurde NICHT angenommen. Bitte versuche es später noch einmal.');
                 });
 
         }

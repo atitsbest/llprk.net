@@ -1,15 +1,12 @@
 ﻿using Llprk.Web.UI.Application.Exceptions;
 using Llprk.Web.UI.Models;
 using System;
+using System.Data;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Configuration;
-using System.Data.Entity;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Transactions;
-using System.Web;
 
 namespace Llprk.Web.UI.Application
 {
@@ -25,20 +22,15 @@ namespace Llprk.Web.UI.Application
             using (var transaction = new TransactionScope()) {
                 // Bestellung mit Datum versehen und in DB speichern.
                 order.CreatedAt = DateTime.Now;
-				// Preis berechnen
-                order.SubTotalPrice = CalculateSubTotalPrice(order);
-				// Versandkosten berechnen
-                order.ShippingCosts = CalculateShippingCosts(order);
-
-                // Validierung.
-                var vc = new ValidationContext(order, null, null);
-                Validator.ValidateObject(order, vc, true);
-
+				// Die Bestellung muss erstmal ohne Bestellzeilen gespeichert werden,
+				// damit wir eine BestellID aus der DB haben.
                 db.Orders.Add(order);
                 db.SaveChanges();
 
                 foreach (var id in productIdsAndQtys.Keys) {
-                    var product = db.Products.FirstOrDefault(x => x.Id == id);
+                    var product = db.Products
+                        .Include(p => p.ShippingCategory) // Brauchen wird für die Versandkostenberechnung.
+                        .FirstOrDefault(x => x.Id == id);
                     var qty = productIdsAndQtys[id];
                     if (product == null) {
                         throw new AppException(string.Format(
@@ -60,9 +52,23 @@ namespace Llprk.Web.UI.Application
                     order.OrderLines.Add(new OrderLine() {
                         OrderId = order.Id,
                         ProductId = id,
+						Product = product,
                         Qty = qty
                     });
                 }
+				// ...speichern.
+                db.SaveChanges();
+
+				// Preis berechnen
+                order.SubTotalPrice = CalculateSubTotalPrice(order);
+				// Versandkosten berechnen
+                order.ShippingCosts = CalculateShippingCosts(order);
+
+                // Validierung.
+                var vc = new ValidationContext(order, null, null);
+                Validator.ValidateObject(order, vc, true);
+
+				// ...speichern.
                 db.SaveChanges();
 
                 // Bestätigungsmail verschicken.
@@ -72,6 +78,18 @@ namespace Llprk.Web.UI.Application
                 transaction.Complete();
             }
 
+			// Benachrichtgung an den Shopinhaber, dass eine neue
+			// Bestellung eingegangen ist.
+			// INFO: Wenn das Verschicken fehlschlägt, soll die Bestellung dennoch angenommen werden.
+            var ownerMailBody = string.Format(@"
+Hi Lilly/Hoonie,
+
+guckst Du <a href=""http://lillypark.com/orders/details/{0}"">hier</a>.
+
+Liebe Grüße,
+
+Dein WebShop", order.Id);
+            MailService.SendMailToOwner("Eine neue Bestellung ist eingegangen.", ownerMailBody);
         }
 
         /// <summary>
@@ -81,8 +99,8 @@ namespace Llprk.Web.UI.Application
         /// <returns></returns>
         public decimal CalculateShippingCosts(Order order)
         {
-            var c = order.Country ?? new Country();
-            return order.OrderLines.Sum(ol => c.ShippingCost(ol.Product.ShippingCategory));
+            if (order.Country == null) { throw new AppException("Für die Versandkosten muss ein Land angegeben sein!"); }
+            return order.OrderLines.Sum(ol => order.Country.ShippingCost(ol.Product.ShippingCategory));
         }
 
 		/// <summary>

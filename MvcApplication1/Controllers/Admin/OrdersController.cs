@@ -17,11 +17,7 @@ namespace Llprk.Web.UI.Controllers.Admin
     {
         public enum Filter
         {
-            All,
-            Paid,
-            Shipped,
-            Ready,
-            Overdue
+            All, Paid, Shipped, Ready, Overdue
         }
 
         //
@@ -29,35 +25,36 @@ namespace Llprk.Web.UI.Controllers.Admin
         public ActionResult Index(Filter? filter, string q)
         {
             IEnumerable<Order> result;
+            var sortedOrders = db.Orders.OrderByDescending(o => o.Id);
 
             if (filter == null) {
-                result = db.Orders.Include(i => i.OrderLines).ToList();
+                result = sortedOrders.Include(i => i.OrderLines).ToList();
             }
             else {
                 switch (filter) {
                     case Filter.Overdue:
-                        result = db.Orders
+                        result = sortedOrders
                                     .Include(i => i.OrderLines)
                                     .ToList()
                                     .Where(o => o.PaidAt == null && (DateTime.Now - o.CreatedAt).Days > 10);
                         break;
                     case Filter.Ready:
-                        result = db.Orders
+                        result = sortedOrders
                                     .Include(i => i.OrderLines)
                                     .Where(o => o.PaidAt != null && o.ShippedAt == null);
                         break;
                     case Filter.Paid:
-                        result = db.Orders
+                        result = sortedOrders
                                     .Include(i => i.OrderLines)
                                     .Where(o => o.PaidAt != null);
                         break;
                     case Filter.Shipped:
-                        result = db.Orders
+                        result = sortedOrders
                                     .Include(i => i.OrderLines)
                                     .Where(o => o.ShippedAt != null);
                         break;
                     default:
-                        result = db.Orders.Include(i => i.OrderLines);
+                        result = sortedOrders.Include(i => i.OrderLines);
                         break;
                 }
             }
