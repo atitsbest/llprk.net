@@ -43,14 +43,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="AutoPoco">
-      <HintPath>..\packages\AutoPoco.1.0.0.0\lib\AutoPoco.dll</HintPath>
-    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="Elmah.Mvc">
       <HintPath>..\packages\Elmah.MVC.2.0.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="FizzWare.NBuilder">
+      <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -165,6 +165,7 @@
   <ItemGroup>
     <Compile Include="ApplicationViewPage.cs" />
     <Compile Include="Application\Exceptions\AppException.cs" />
+    <Compile Include="Application\MailService.cs" />
     <Compile Include="Application\ShopService.cs" />
     <Compile Include="Application\SmtpMailProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -185,13 +186,19 @@
     <Compile Include="Controllers\api\CategoriesController.cs" />
     <Compile Include="Controllers\api\PicturesController.cs" />
     <Compile Include="Controllers\api\ProductsController.cs" />
+    <Compile Include="Controllers\api\ShopController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Controllers\PerformanceController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Extensions\DateTime+RelativeDate.cs" />
+    <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
+    <Compile Include="Filters\ValidateModelFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\01OrderPriceInDBMigration.cs" />
     <Compile Include="Models\ShippingCost.cs" />
     <Compile Include="Models\ShippingCategory.cs" />
     <Compile Include="Models\Parameter.cs" />
@@ -237,11 +244,9 @@
     <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\cart-spinner.css" />
-    <Content Include="Content\fonts.css" />
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.svg" />
+    <Content Include="Content\fonts\crumbler-webfont.svg" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
     <Content Include="Content\shop.css">
@@ -327,17 +332,21 @@
     <Content Include="Images\about\mission3.jpg" />
     <Content Include="Images\about\peah.jpg" />
     <Content Include="Images\about\saksaum.jpg" />
-    <Content Include="Images\bg\bright_squares_sep.png" />
     <Content Include="Images\blume.gif" />
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
+    <Content Include="Images\lillypark.PNG" />
+    <Content Include="Images\marketing\banner-2.jpg" />
+    <Content Include="Images\marketing\banner-3.jpg" />
+    <Content Include="Images\marketing\banner-4.jpg" />
     <Content Include="Images\marketing\banner1.png" />
-    <Content Include="Images\marketing\banner2.png" />
-    <Content Include="Images\marketing\banner3.png" />
+    <Content Include="Images\new.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />
     <Content Include="Images\spinner.gif" />
+    <Content Include="Images\syl-banner.png" />
     <Content Include="Images\syl-corner.png" />
+    <Content Include="Images\syl-small.png" />
     <Content Include="Images\syl.png" />
     <Content Include="Models\llprk.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -350,10 +359,10 @@
     <Content Include="Models\llprk.tt">
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.eot" />
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.ttf" />
-    <Content Include="Content\fonts\saint-andrews_queen-webfont.woff" />
     <Content Include="Content\shop.less" />
+    <Content Include="Content\fonts\crumbler-webfont.eot" />
+    <Content Include="Content\fonts\crumbler-webfont.ttf" />
+    <Content Include="Content\fonts\crumbler-webfont.woff" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\llprk2 - Web Deploy %282%29.pubxml" />
@@ -545,6 +554,7 @@
     <Content Include="Scripts\jquery.lazyload.min.js" />
     <Content Include="Scripts\jquery.lettering.js" />
     <Content Include="Scripts\jquery.rotatescale.js" />
+    <Content Include="Scripts\jquery.cycle.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -565,6 +575,12 @@
     <Content Include="Scripts\plugins\link\dialogs\anchor.js" />
     <Content Include="Scripts\plugins\link\dialogs\link.js" />
     <Content Include="Scripts\plugins\link\images\anchor.png" />
+    <None Include="Scripts\rx-vsdoc.js" />
+    <Content Include="Scripts\rx.js" />
+    <Content Include="Scripts\rx.min.js" />
+    <None Include="Scripts\rx.time-vsdoc.js" />
+    <Content Include="Scripts\rx.time.js" />
+    <Content Include="Scripts\rx.time.min.js" />
     <Content Include="Scripts\skins\moono\dialog.css" />
     <Content Include="Scripts\skins\moono\dialog_ie.css" />
     <Content Include="Scripts\skins\moono\dialog_ie7.css" />
@@ -649,9 +665,7 @@
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\Countries\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

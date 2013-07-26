@@ -5,16 +5,6 @@
         </div>*@
 
             <div class="row products">
-                <div class="span3 product">
-                    <a href="@Url.Action("showyourlove", "home")">
-						<img class="lazy" 
-							 style="padding-top:10px;"
-							 data-original="@Url.Content("~/Images/syl.png")"
-							 src="@Url.Content("~/images/spinner.gif")" 
-							 alt="ShowYourLove" />
-						<h5> &nbsp; </h5>
-                    </a>
-                </div>
             @foreach(var product in Model) {
                 <div class="span3 product">
                     <a href="@Url.Action("details", new { Id=product.Id })">
@@ -24,11 +14,13 @@
 								 src="@Url.Content("~/images/spinner.gif")" 
 								 alt="@product.Name" />
                         }
-						<h5>
-							@product.Name
-						</h5>
-                        <p class="info"><span class="price">@product.Price.ToString("c")</span></p>
+						<h4>@product.Name&nbsp;<small>NEU</small></h4>
+                        <p class="info">@Html.Raw(product.ShortDescription)</p>
+                        <p class="info"><span class="price hidden">€@product.Price.ToString("n")</span></p>
                     </a>
+					@if (product.IsNew && false) {
+						<img class="new" src="@Url.Content("~/Images/new.png")" alt="Neu im Sortiment" />
+					}
                 </div>
             }
             </div>

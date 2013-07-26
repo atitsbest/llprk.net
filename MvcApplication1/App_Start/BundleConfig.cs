@@ -27,6 +27,8 @@ namespace Llprk.Web.UI
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/ckeditor.js",
+                        "~/Scripts/rx.js",
+                        "~/Scripts/rx.time.js",
                         "~/Scripts/app/admin/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(
@@ -34,6 +36,7 @@ namespace Llprk.Web.UI
                         "~/Scripts/jquery.lettering.js",
                         "~/Scripts/jquery.rotatescale.js",
                         "~/Scripts/jquery.lazyload.js",
+                        "~/Scripts/jquery.cycle.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/i18n/angular-locale_de-at.js",
@@ -54,13 +57,11 @@ namespace Llprk.Web.UI
 
             bundles.Add(new StyleBundle("~/Content/shop").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-responsive.css",
                 "~/Content/utils.css",
                 "~/Content/shop.css"));
 
             bundles.Add(new StyleBundle("~/Content/shop2").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-responsive.css",
                 "~/Content/utils.css",
                 "~/Content/shop2.css"));
 
@@ -78,7 +79,9 @@ namespace Llprk.Web.UI
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            //BundleTable.EnableOptimizations = true;
+#if !DEBUG
+            BundleTable.EnableOptimizations = true;
+#endif
         }
     }
 }

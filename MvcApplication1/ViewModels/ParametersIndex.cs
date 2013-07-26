@@ -9,11 +9,11 @@ namespace Llprk.Web.UI.ViewModels
 {
     public class ParameterIndex : Parameter
     {
-	[Remote("IsMailTemplateValid", "Parameters", HttpMethod="POST")]
+        [Remote("IsMailTemplateValid", "Parameters", HttpMethod = "POST")]
         public string MailMessageOrdered { get; set; }
-	[Remote("IsMailTemplateValid", "Parameters", HttpMethod="POST")]
+        [Remote("IsMailTemplateValid", "Parameters", HttpMethod = "POST")]
         public string MailMessagePaid { get; set; }
-	[Remote("IsMailTemplateValid", "Parameters", HttpMethod="POST")]
+        [Remote("IsMailTemplateValid", "Parameters", HttpMethod = "POST")]
         public string MailMessageShipped { get; set; }
     }
 }

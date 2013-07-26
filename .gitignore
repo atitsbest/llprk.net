@@ -52,10 +52,14 @@ TestResults/
 ######################
 *.log
 *.sqlite
+*.mdf
+*.ldf
 # OS generated files #
 ######################
 .DS_Store?
 ehthumbs.db
 Icon?
 Thumbs.db
+/packages/SpecFlow.1.9.0/lib
+/packages/SpecFlow.1.9.0/tools
 /packages/SpecFlow.1.9.0

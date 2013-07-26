@@ -10,35 +10,52 @@
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>Mail messages</legend>
 
-            <div class="control-group">
-                @Html.LabelFor(model => model.MailMessageOrdered, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextAreaFor(model => model.MailMessageOrdered, new { @class = "input-xxlarge", rows = 10 })
-		    <p>
-			@Html.ValidationMessageFor(model => model.MailMessageOrdered)
-		    </p>
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#ordered">@Html.LabelFor(m => m.MailMessageOrdered)</a></li>
+                <li><a href="#paid">@Html.LabelFor(m => m.MailMessagePaid)</a></li>
+                <li><a href="#shipped">@Html.LabelFor(m => m.MailMessageShipped)</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="ordered">
+                    <div class="row">
+                        <div class="span6">
+                            @Html.TextAreaFor(model => model.MailMessageOrdered, new { @class = "input-xxlarge" })
+                            <p>
+                                @Html.ValidationMessageFor(model => model.MailMessageOrdered)
+                            </p>
+                        </div>
+                        <div class="span6">
+                            <pre id="Output_MailMessageOrdered"></pre>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.MailMessagePaid, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextAreaFor(model => model.MailMessagePaid, new { @class = "input-xxlarge", rows = 10 })
-		    <p>
-			@Html.ValidationMessageFor(model => model.MailMessagePaid)
-		    </p>
+                <div class="tab-pane" id="paid">
+                    <div class="row">
+                        <div class="span6">
+                            @Html.TextAreaFor(model => model.MailMessagePaid, new { @class = "input-xxlarge" })
+                            <p>
+                                @Html.ValidationMessageFor(model => model.MailMessagePaid)
+                            </p>
+                        </div>
+                        <div class="span6">
+                            <pre id="Output_MailMessagePaid"></pre>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.MailMessageShipped, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextAreaFor(model => model.MailMessageShipped, new { @class="input-xxlarge", rows=15})
-		    <p>
-			@Html.ValidationMessageFor(model => model.MailMessageShipped)
-		    </p>
+                <div class="tab-pane" id="shipped">
+                    <div class="row">
+                        <div class="span6">
+                            @Html.TextAreaFor(model => model.MailMessageShipped, new { @class = "input-xxlarge" })
+                            <p>
+                                @Html.ValidationMessageFor(model => model.MailMessageShipped)
+                            </p>
+                        </div>
+                        <div class="span6">
+                            <pre id="Output_MailMessageShipped"></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -51,7 +68,38 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $('form').addClass('form-horizontal');
+    	function renderEditorTemplateAsync(editor) {
+			$.when($.post('@Url.Action("render")', { template: editor.getData() }))
+			 .then(function(result) {
+				var id = 'Output_'+editor.name;
+				$('#'+id).html(result);
+			 });
+    	}
+
+    	$(function () {
+			// Vorlagen rendern...
+			for (var i in CKEDITOR.instances) {
+				renderEditorTemplateAsync(CKEDITOR.instances[i]);
+			}
+
+    		$('#myTab a').click(function (e) {
+    			e.preventDefault();
+    			$(this).tab('show');
+    		})
+
+			// Auf Änderungen an der Vorlage reagieren...
+    		var o = Rx.Observable.create(function(observer) {
+    			for (var i in CKEDITOR.instances) {
+    				CKEDITOR.instances[i].on('key', function (e) { observer.onNext(e); });
+    			}
+    		});
+
+			// ...aber nur mit einer leichten Verzögerung.
+    		o.throttle(700)
+			 .subscribe(function (e) {
+			 	renderEditorTemplateAsync(e.editor);
+			 });
+    	});
     </script>
 }
 

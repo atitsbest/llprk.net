@@ -19,7 +19,7 @@ namespace Llprk.Web.UI.Models
 		/// </summary>
         public decimal ShippingCost(ShippingCategory category)
         {
-            if (category == null) { return 0; }
+            if (category == null) { throw new ArgumentNullException("Keine Versandkosten ohne Kategorie möglich!"); }
             return (from sc in ShippingCosts
                     where sc.ShippingCategoryId == category.Id
                     select sc.Amount).FirstOrDefault();

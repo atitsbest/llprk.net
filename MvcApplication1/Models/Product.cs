@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Llprk.Web.UI.Models
@@ -35,6 +36,8 @@ namespace Llprk.Web.UI.Models
 
         public virtual ICollection<Tag> Tags { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         /// <summary>
         /// Alle Bilder in der richtigen Reihenfolge.
         /// </summary>
@@ -53,6 +56,30 @@ namespace Llprk.Web.UI.Models
         public Picture FirstPicture
         {
             get { return OrderedPictures.FirstOrDefault(); }
+        }
+
+		/// <summary>
+		/// Liefert den ersten Satz der Beschreibung.
+		/// </summary>
+        public string ShortDescription
+        {
+            get {
+                var result = Regex.Replace((Description ?? ""), "<.*?>", string.Empty); ;
+                string[] sentences = Regex.Split(result, @"(?<=[\.!\?])\s?");
+                return sentences != null && sentences.Length > 0
+                    ? sentences[0]
+                    : "";
+            }
+        }
+
+		/// <summary>
+		/// Ist das ein neues Produkt? Ja, wenn vor weniger als zwei Wochen erstellt.
+		/// </summary>
+        public bool IsNew {
+            get {
+                var diff = DateTime.Now - CreatedAt;
+                return diff.Days < 14;
+            }
         }
 
 

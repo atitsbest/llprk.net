@@ -3,12 +3,12 @@
   <Version>10</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=(LocalDB)\v11.0;Initial Catalog="C:\USERS\MEIST.INFONIQA\GOOGLE DRIVE\DEVELOPER\MVCAPPLICATION1\MVCAPPLICATION1\APP_DATA\MVCAPPLICATION1.MODELS.SHOPDB.MDF";Integrated Security=True;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=30;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</ConnectionString>
+      <ConnectionString>Data Source=(LocalDB)\v11.0;Initial Catalog=C:\USERS\MEIST.INFONIQA\DOCUMENTS\PROGRAMMING\LLPRK\MVCAPPLICATION1\APP_DATA\MVCAPPLICATION1.MODELS.SHOPDB.MDF;Integrated Security=True;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=30;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</ConnectionString>
     </ConnectionBasedModelProvider>
   </SourceModelProvider>
   <TargetModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=p9s65l7agf.database.windows.net;Initial Catalog=llprk2alcejzim0h;Persist Security Info=True;User ID=meist;Pooling=False</ConnectionString>
+      <ConnectionString>Data Source=p9s65l7agf.database.windows.net;Initial Catalog=llprk2ALCEJZIM0h;User ID=meist@p9s65l7agf;Pooling=False</ConnectionString>
     </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
@@ -37,7 +37,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>BlockOnPossibleDataLoss</Name>
-        <Value>True</Value>
+        <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>BlockWhenDriftDetected</Name>

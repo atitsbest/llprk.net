@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Llprk.Web.UI.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -14,6 +15,8 @@ namespace Llprk.Web.UI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Filters.Add(new ValidateModelFilter());
         }
     }
 }

@@ -105,6 +105,8 @@
           <Property Name="Comment" Type="nvarchar" MaxLength="1024" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="PayPalPaymentId" Type="nchar" MaxLength="100" />
+          <Property Name="SubTotalPrice" Type="money" Nullable="false" />
+          <Property Name="ShippingCosts" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Parameters">
           <Key>
@@ -151,6 +153,7 @@
           <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="Available" Type="int" Nullable="false" />
           <Property Name="ShippingCategoryId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="ShippingCategories">
           <Key>
@@ -427,6 +430,8 @@
           <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Order" ToRole="Country" />
           <Property Type="String" Name="PayPalPaymentId" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="Decimal" Name="SubTotalPrice" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="ShippingCosts" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
@@ -469,6 +474,7 @@
           <NavigationProperty Name="Tags" Relationship="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" FromRole="Product" ToRole="Tag" />
           <Property Type="Int32" Name="ShippingCategoryId" Nullable="false" />
           <NavigationProperty Name="ShippingCategory" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" FromRole="Product" ToRole="ShippingCategory" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_dbo_Products_dbo_Categories_CategoryId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Category" Role="Category" Multiplicity="0..1">
@@ -654,6 +660,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ShippingCosts" ColumnName="ShippingCosts" />
+                <ScalarProperty Name="SubTotalPrice" ColumnName="SubTotalPrice" />
                 <ScalarProperty Name="PayPalPaymentId" ColumnName="PayPalPaymentId" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -684,6 +692,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="ShippingCategoryId" ColumnName="ShippingCategoryId" />
                 <ScalarProperty Name="Available" ColumnName="Available" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

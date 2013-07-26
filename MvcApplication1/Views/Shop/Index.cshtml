@@ -4,7 +4,20 @@
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 
     var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+    var isStartPage = HttpContext.Current.Request.RequestContext.RouteData.Values["id"] == null;
     var aboutActive = actionName == "about" ? "active" : null;
+}
+
+@if(isStartPage) {
+	<div class="container" style="margin-top: 10px;min-height:450px;margin-bottom: 3px;">
+        <div class="row">
+			<div class="slideshow span12">
+				<img src="@Url.Content("~/Images/marketing/banner-4.jpg")" alt=""  />
+				<img src="@Url.Content("~/Images/marketing/banner-3.jpg")" alt="" class="hide" />
+				<img src="@Url.Content("~/Images/marketing/banner-2.jpg")" alt="" class="hide" />
+			</div>
+        </div>
+	</div>
 }
 
 <section id="main" ng-controller="ProductsCtrl">
@@ -16,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container hide">
 			<div class="row align-center explanation">
 				<div class="span12">
 					<p>
@@ -55,6 +68,10 @@
                               ThumbailUrl = p.FirstPicture == null ? "" : p.FirstPicture.ThumbnailUrl
                           })))
             );
+
+    	$(function() {
+    		$('.slideshow').cycle();
+    	});
     </script>
 }
 

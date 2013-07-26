@@ -19,7 +19,9 @@ namespace Llprk.Web.UI.Controllers.Admin
 
         public ActionResult Index(string q)
         {
-            var products = db.Products.Include(p => p.Category).AsEnumerable();
+            var products = db.Products.Include(p => p.Category)
+                .OrderByDescending(p => p.IsPublished) // Die auch im Shop angezeigt werden zuerst.
+                .AsEnumerable();
             if (!string.IsNullOrWhiteSpace(q)) { 
 				// Suche...
                 products = products

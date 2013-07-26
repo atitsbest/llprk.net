@@ -1,4 +1,5 @@
-﻿using log4net.Config;
+﻿using Llprk.Web.UI.Migrations;
+using log4net.Config;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,10 @@ namespace Llprk.Web.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MappingConfig.RegisterMappings();
+
+
+			// Migrationen laufen lassen.
+            new _01OrderPriceInDBMigration().Execute();
         }
     }
 }

@@ -33,6 +33,9 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+#if !DEBUG
+		[OutputCache(Duration=120, NoStore=true)]
+#endif
         public ActionResult About()
         {
             return View();
@@ -42,6 +45,9 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+#if !DEBUG
+		[OutputCache(Duration=120, NoStore=true)]
+#endif
         public ActionResult ShowYourLove()
         {
             return View();
@@ -51,6 +57,9 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+#if !DEBUG
+		[OutputCache(Duration=120, NoStore=true)]
+#endif
         public ActionResult Impressum()
         {
             return View();
@@ -60,6 +69,9 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+#if !DEBUG
+		[OutputCache(Duration=120, NoStore=true)]
+#endif
         public ActionResult Agbs()
         {
             return View();
@@ -69,6 +81,9 @@ namespace Llprk.Web.UI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+#if !DEBUG
+		[OutputCache(Duration=120, NoStore=true)]
+#endif
         public ActionResult Widerrufsrecht()
         {
             return View();

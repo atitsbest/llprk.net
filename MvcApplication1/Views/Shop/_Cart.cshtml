@@ -3,8 +3,6 @@
     ng-controller="CartCtrl">
     <div class="arrow" style="left: auto; right: 65px;"></div>
 
-    <h3 class="popover-title">Warenkorb</h3>
-
     <div class="popover-content">
         <div id="step0" ng-hide="cartItemCount()">
             <h5>Der Warenkorb ist noch leer ;(</h5>
@@ -42,15 +40,17 @@
                     required
                     class="input-xlarge">
                 </select>
-                <p>Wohin sollen wir das schicken?</p>
+@*                <p>Wohin sollen wir das schicken?</p>
                 <select ng:model="countryCode"
                     required
-                    ng:options='option.Id as (option.Name + " (+ " + (option.Costs | currency) + " Versand)") for option in countries'
+                    ng:options='c.Id as c.Name for c in countriesWithShippingCosts'
                     class="input-xlarge">
-                </select>
+                </select>*@
 
                 <p>
-                    <h4 style="display: inline-block;">Dein Gesamtpreis ist&nbsp;<h4 style="display: inline-block;">{{totalPrice() | currency}}</h4>
+                    <h4 style="display: inline-block;">
+						Dein Gesamtpreis ist&nbsp;{{subTotalPrice() | currency}}&nbsp;
+						<small>exkl. Versand</small>
                     </h4>
                 </p>
                 <hr />
@@ -188,6 +188,8 @@ BIC: BYLADEM1HOF
                     {{address1}}<br />
                     {{address2}}<br />
                     {{zip}} {{city}}<br />
+                    {{countryName()}}<br />
+					<br />
                     {{email}}
                 </p>
                 <hr />
