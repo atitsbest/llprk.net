@@ -3,6 +3,18 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
+
+@* Code für den facebook "Gefällt mir" Button. *@
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+@* Facebook Ende *@
+
 <section id="main" ng-controller="ProductsCtrl" style="padding-bottom: 20px;">
     <div class="container details">
         <div class="row">
@@ -33,6 +45,14 @@
 						class="btn btn-inverse" 
                         ng:click="addToCart(@Model.Product.Id)">In den Warenkorb...</a>
                     <a href="@Url.Action("index")" class="btn btn-small">Zurück</a>
+                </p>
+                <p>
+					<div class="fb-like" 
+						data-href="@Request.Url.AbsoluteUri" 
+						data-send="true" 
+						data-width="450" 
+						data-show-faces="true" 
+						data-font="arial"></div>
                 </p>
             </div>
         </div>
