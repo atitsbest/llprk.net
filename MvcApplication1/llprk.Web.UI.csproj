@@ -190,7 +190,6 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
-    <Compile Include="Controllers\PerformanceController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Extensions\DateTime+RelativeDate.cs" />
     <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
@@ -336,10 +335,9 @@
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
     <Content Include="Images\lillypark.PNG" />
-    <Content Include="Images\marketing\banner-2.jpg" />
-    <Content Include="Images\marketing\banner-3.jpg" />
-    <Content Include="Images\marketing\banner-4.jpg" />
-    <Content Include="Images\marketing\banner1.png" />
+    <Content Include="Images\marketing\banners.lillypark.fall1.jpg" />
+    <Content Include="Images\marketing\banners.lillypark.fall2.jpg" />
+    <Content Include="Images\marketing\banners.lillypark.fall3.jpg" />
     <Content Include="Images\new.png" />
     <Content Include="Images\paid_stamp.png" />
     <Content Include="Images\shipped_stamp.png" />

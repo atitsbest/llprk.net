@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Llprk.Web.UI.Application;
 using Llprk.Web.UI.Application.Exceptions;
 using System.Globalization;
+using System.IO;
 
 namespace Llprk.Web.UI.Controllers
 {
@@ -30,6 +31,8 @@ namespace Llprk.Web.UI.Controllers
                                 && (!id.HasValue || (p.CategoryId == id.Value))
                                 && p.Available > 0) // Nur verfügbare Produkte anzeigen.
                        .ToArray();
+			var di = new DirectoryInfo(Server.MapPath("~/Images/marketing/"));
+			viewModel.BannerUrls = di.GetFiles("banner*.*").Select(s => s.Name).ToArray();
             return View(viewModel);
         }
 

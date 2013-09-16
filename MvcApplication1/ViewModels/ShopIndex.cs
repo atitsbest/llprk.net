@@ -17,5 +17,10 @@ namespace Llprk.Web.UI.ViewModels
         /// Liefert alle Produkte von Categories.
         /// </summary>
         public IEnumerable<Product> Products { get; set; }
+
+		/// <summary>
+		/// Liste mit allen Banners die angezeigt werden sollen.
+		/// </summary>
+        public IEnumerable<string> BannerUrls { get; set; }
     }
 }
