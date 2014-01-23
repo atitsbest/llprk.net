@@ -27,12 +27,13 @@ namespace Llprk.Web.UI.Controllers
             var viewModel = new ShopIndex();
             viewModel.Categories = db.Categories.ToList();
             viewModel.Products = db.Products
-                       .Where(p => p.IsPublished
+						.Where(p => p.IsPublished
                                 && (!id.HasValue || (p.CategoryId == id.Value))
                                 && p.Available > 0) // Nur verfügbare Produkte anzeigen.
-                       .ToArray();
+						.OrderBy(p => p.CreatedAt)
+						.ToArray();
 			var di = new DirectoryInfo(Server.MapPath("~/Images/marketing/"));
-			viewModel.BannerUrls = di.GetFiles("banner*.*").Select(s => s.Name).ToArray();
+			viewModel.BannerUrls = di.GetFiles("banner*.*").Select(s => s.Name).OrderBy(s => s).ToArray();
             return View(viewModel);
         }
 
