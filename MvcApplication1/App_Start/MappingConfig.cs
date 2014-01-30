@@ -14,6 +14,8 @@ namespace Llprk.Web.UI
                 .ForMember(d => d.AllPictures, o => o.Ignore());
 
             Mapper.CreateMap<Parameter, ParameterIndex>();
+
+            Mapper.CreateMap<PostOrderNew, OrderNew>();
         }
     }
 }

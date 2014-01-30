@@ -32,12 +32,12 @@
             <div class="row">
                 <div class="span12">
                     <p>
-                        Du hast die Bezahlung mit PayPal abgebrochen d.h. du kannst es @Html.ActionLink("du kannst es noch einmal versuchen", "paypal", "shop", new { orderId = ViewBag.OrderId }, null)
+                        Du hast die Bezahlung mit PayPal abgebrochen d.h. du kannst es @Html.ActionLink("du kannst es noch einmal versuchen", "create", new { orderId = ViewBag.OrderId }, null)
                         oder es lassen. Wir heben Deine Bestellung zwei Tage für Dich auf, danach stornieren wir Deine Bestellung.
                     </p>
                     <br />
                     <p>
-                        @Html.ActionLink("Zurück zum Shop", "index")
+                        @Html.ActionLink("Zurück zum Shop", "index", "shop")
                     </p>
                 </div>
             </div>

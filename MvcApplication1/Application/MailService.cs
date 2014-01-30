@@ -33,7 +33,12 @@ namespace Llprk.Web.UI.Application
                 smtpServer,
                 user: smtpUser,
                 password: smtpPwd,
-                enableSSL: true);
+#if DEBUG
+				enableSSL: false
+#else
+                enableSSL: true
+#endif
+                );
             mp.SendMail(message);
         }
 

@@ -77,10 +77,11 @@
 				<div class="span12">
                     <p>
 						<form action="@Url.Action("execute")" method="post">
-@*							@Html.Hidden("orderId", ViewBag.OrderId)
-							@Html.Hidden("token", ViewBag.Token)
-							@Html.Hidden("payerId", ViewBag.PayerId)*@
-							@Html.ActionLink("Jetzt bezahlen", "execute", null, new { @class="btn btn-warning" })
+							<input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+							<input type="hidden" name="token" value="@ViewBag.Token" />
+							<input type="hidden" name="payerId" value="@ViewBag.PayerId" />
+
+							<button type="submit" class="btn btn-warning">Jetzt bezahlen</button>
 						</form>
                     </p>
                 </div>

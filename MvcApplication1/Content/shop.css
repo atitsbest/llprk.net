@@ -317,6 +317,20 @@ footer nav {
 footer nav a {
   margin: 0 60px 0 0;
 }
-input.ng-invalid {
+input.input-validation-error {
   border-color: red;
+}
+.validation-summary-errors {
+  background: #fdd;
+  border: 1px solid #f66;
+  padding: 10px 2px;
+}
+.validation-summary-errors ul > li {
+  list-style-type: none;
+  color: red;
+}
+.field-validation-error {
+  color: red;
+  display: block;
+  padding-bottom: 10px;
 }
