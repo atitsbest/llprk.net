@@ -19,9 +19,9 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="(id, item) in items">
-                            <td>{{item.Product.Name}}</td>
-                            <td>{{item.Product.Price | currency}}</td>
-                            <td style="text-align: right;">{{item.Qty}}</td>
+                            <td ng:bind="item.Product.Name"></td>
+                            <td ng:bind="item.Product.Price | currency"></td>
+                            <td style="text-align: right;" ng:bind="item.Qty"></td>
                             <td>
                                 <i class="icon-minus-sign" ng-click="remove(item)"></i>
                                 <i class="icon-plus-sign" ng-click="add(item)"></i>
@@ -33,15 +33,15 @@
                     <tfoot style="border-top: 2px solid;">
                         <tr>
                             <th>Zwischensumme:</th>
-                            <td colspan="2" style="text-align: right;">{{subTotalPrice() | currency}}</td>
+                            <td colspan="2" style="text-align: right;" ng:bind="subTotalPrice() | currency"></td>
                         </tr>
                         <tr>
                             <th>Lieferung:</th>
-                            <td colspan="2" style="text-align: right;">{{shippingCosts() | currency}}</td>
+                            <td colspan="2" style="text-align: right;" ng:bind="shippingCosts() | currency"></td>
                         </tr>
                         <tr style="border-top: 2px solid;">
                             <th>Gesamt</th>
-                            <th colspan="2" style="text-align: right;">{{totalPrice() | currency}}</th>
+                            <th colspan="2" style="text-align: right;" ng:bind="totalPrice() | currency"></th>
                         </tr>
                     </tfoot>
                 </table>
