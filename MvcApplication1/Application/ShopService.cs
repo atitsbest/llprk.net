@@ -119,14 +119,20 @@ Dein WebShop", order.Id);
         /// Markiert einen Auftrag als bezahlt.
         /// </summary>
         /// <param name="order"></param>
-        public void PayOrder(Entities db, Order order, string mailBody)
+        public void PayOrder(Entities db, Order order, string mailBody=null)
         {
             if (order == null) { throw new ArgumentNullException("order"); }
 
             order.PaidAt = DateTime.Now; // TODO: Vielleicht hat der Kunde schon vorher gezahlt?
 
+			// Wenn kein Bestätigungs-Mail-Body angegeben wurde, 
+			// müssen wir den selber erstellen.
+            var body = mailBody == null
+                ? Nustache.Core.Render.StringToString(db.Parameters.First().MailMessagePaid, order)
+                : mailBody;
+
             // Email an den Kunden schicken.
-            MailService.SendMailToCustomer(order.Email, "Wir haben Deine Bezahlung erhalten", mailBody);
+            MailService.SendMailToCustomer(order.Email, "Wir haben Deine Bezahlung erhalten", body);
 
             db.SaveChanges();
         }

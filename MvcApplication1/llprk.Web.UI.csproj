@@ -45,12 +45,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah">
-      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah.Mvc">
-      <HintPath>..\packages\Elmah.MVC.2.0.2\lib\net40\Elmah.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
@@ -76,10 +70,18 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Nustache.Core">
       <HintPath>..\packages\Nustache.1.12.4.29\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PayPalCoreSDK.1.4.2\lib\net45\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="RestApiSDK, Version=0.7.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestApiSDK.0.7.6\lib\net45\RestApiSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -190,8 +192,10 @@
     <Compile Include="Controllers\api\ProductsController.cs" />
     <Compile Include="Controllers\api\ShopController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Controllers\Results\AjaxMessageResult.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Extensions\DateTime+RelativeDate.cs" />
     <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
@@ -217,15 +221,14 @@
     <Compile Include="Models\OrderLine.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Tag.cs" />
-    <Compile Include="Payments\PayPalRedirect.cs" />
     <Compile Include="Payments\PayPal.cs" />
-    <Compile Include="Payments\PayPalOrder.cs" />
-    <Compile Include="Payments\PayPalSettings.cs" />
     <Compile Include="ViewModels\AccountModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CheckoutIndex.cs" />
+    <Compile Include="ViewModels\PostOrderNew.cs" />
     <Compile Include="ViewModels\ShopLayout.cs" />
     <Compile Include="ViewModels\ParametersIndex.cs" />
     <Compile Include="ViewModels\ShopCategory.cs" />
@@ -241,6 +244,10 @@
     <Compile Include="ViewModels\ShopIndex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ShopDb.IntegrationTest.mdf" />
+    <Content Include="App_Data\ShopDb.IntegrationTest_log.ldf">
+      <DependentUpon>ShopDb.IntegrationTest.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\MvcApplication1.Models.ShopDb.mdf" />
     <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
@@ -337,16 +344,16 @@
     <Content Include="Images\border.png" />
     <Content Include="Images\delivered_stamp.png" />
     <Content Include="Images\lillypark.PNG" />
-    <Content Include="Images\marketing\banners.christmas5.jpg" />
-    <Content Include="Images\marketing\banners.hristmas6.jpg" />
-    <Content Include="Images\marketing\banners.lillypark.fall3.jpg" />
-    <Content Include="Images\marketing\lillypark.fall1.jpg" />
-    <Content Include="Images\marketing\lillypark.fall2.jpg" />
+    <Content Include="Images\marketing\banners.lillypark2014J.3-3.jpg" />
+    <Content Include="Images\marketing\banners.lillypark2014J.1-4.jpg" />
+    <Content Include="Images\marketing\banners.lillypark2014J.2-5.jpg" />
     <Content Include="Images\new.png" />
     <Content Include="Images\paid_stamp.png" />
+    <Content Include="Images\paypal_checkout.png" />
+    <Content Include="Images\paypal_payment.png" />
     <Content Include="Images\shipped_stamp.png" />
     <Content Include="Images\spinner.gif" />
-    <Content Include="Images\syl-banner.png" />
+    <Content Include="Images\syl-banner.jpg" />
     <Content Include="Images\syl-corner.png" />
     <Content Include="Images\syl-small.png" />
     <Content Include="Images\syl.png" />
@@ -383,6 +390,7 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\app\CheckoutCtrl.js" />
     <Content Include="Scripts\app\HeaderCtrl.js" />
     <Content Include="Scripts\app\ProductsCtrl.js" />
     <Content Include="Scripts\app\ShopServices.js" />
@@ -600,6 +608,7 @@
     <Content Include="Scripts\skins\moono\images\close.png" />
     <Content Include="Scripts\skins\moono\images\mini.png" />
     <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -666,6 +675,9 @@
     <Content Include="Views\Countries\Delete.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Checkout\thankyou.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
