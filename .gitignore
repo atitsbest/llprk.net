@@ -9,9 +9,8 @@
 *.dll.config
 *.cache
 *.suo
-# Include dlls if they’re in the NuGet packages directory
-!/packages/*/lib/*.dll
-!/packages/*/lib/*/*.dll
+# Packages
+packages
 # Include dlls if they're in the CommonReferences directory
 !*CommonReferences/*.dll
 ####################
@@ -60,6 +59,3 @@ TestResults/
 ehthumbs.db
 Icon?
 Thumbs.db
-/packages/SpecFlow.1.9.0/lib
-/packages/SpecFlow.1.9.0/tools
-/packages/SpecFlow.1.9.0
