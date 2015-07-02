@@ -1,4 +1,4 @@
-﻿html {
+html {
   margin: 0;
   padding: 0;
 }
@@ -101,6 +101,3 @@ fieldset legend.shipped {
 }
 /* Media Queries
    --------------------------------------------- */
-@media (max-width: 979px) {
-  
-}

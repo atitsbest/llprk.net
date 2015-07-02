@@ -372,10 +372,6 @@
     <Content Include="Content\fonts\crumbler-webfont.eot" />
     <Content Include="Content\fonts\crumbler-webfont.ttf" />
     <Content Include="Content\fonts\crumbler-webfont.woff" />
-    <None Include="Properties\PublishProfiles\llprk2 - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk2 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk2 - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\llprk2 - Web Deploy.pubxml" />
     <Content Include="Images\sidebar\camera.png" />
     <Content Include="Images\sidebar\house.png" />
     <Content Include="Images\sidebar\orders.png" />
@@ -555,6 +551,7 @@
     <Content Include="Scripts\i18n\angular-locale_zh-hk.js" />
     <Content Include="Scripts\i18n\angular-locale_zh-tw.js" />
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
+    <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
