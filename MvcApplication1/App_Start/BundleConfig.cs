@@ -50,13 +50,12 @@ namespace Llprk.Web.UI
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/admin").Include(
-                "~/Content/bootstrap.css",
-                "~/Content/bootstrap-responsive.css",
+                "~/Content/bootstrap/bootstrap.css",
                 "~/Content/utils.css",
                 "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/shop").Include(
-                "~/Content/bootstrap.css",
+                "~/Content/bootstrap/bootstrap.css",
                 "~/Content/utils.css",
                 "~/Content/shop.css"));
 
