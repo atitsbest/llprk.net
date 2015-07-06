@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Llprk.Web.UI.Models;
+
+namespace Llprk.Web.UI.Areas.Store.Models
+{
+    /// <summary>
+    /// ViewModel für ~/shop/index
+    /// </summary>
+    public class ShopIndex
+    {
+        public IEnumerable<Category> Categories { get; set; }
+
+        /// <summary>
+        /// Liefert alle Produkte von Categories.
+        /// </summary>
+        public IEnumerable<Product> Products { get; set; }
+
+		/// <summary>
+		/// Liste mit allen Banners die angezeigt werden sollen.
+		/// </summary>
+        public IEnumerable<string> BannerUrls { get; set; }
+    }
+}

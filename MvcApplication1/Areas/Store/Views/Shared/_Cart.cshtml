@@ -1,0 +1,41 @@
+﻿<div id="cart"
+    class="popover bottom"
+    ng-controller="CartCtrl">
+    <div class="arrow" style="left: auto; right: 65px;"></div>
+
+    <div class="popover-content">
+        <div id="step0" ng-hide="cartItemCount()">
+            <h5>Der Warenkorb ist noch leer ;(</h5>
+            <a	href="@Url.Action("index", "shop", new { id = "" })"
+                class="btn btn-small">Weiter shoppen...</a>
+        </div>
+        <div id="step1" class="collapse in" ng-show="cartItemCount()">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Preis</th>
+                        <th style="text-align: right;">Menge</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(id, item) in items">
+                        <td>{{item.Product.Name}}</td>
+                        <td>{{item.Product.Price | currency}}</td>
+                        <td style="text-align: right;">{{item.Qty}}</td>
+                        <td>
+                            <i class="icon-minus-sign" ng-click="remove(item)"></i>
+                            <i class="icon-plus-sign" ng-click="add(item)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+			<a	href="@Url.Action("index", "shop", new { id = "" })"
+				class="btn btn-small">Weiter shoppen...</a>
+			<small class="muted">oder</small>
+			<a href="@Url.Action("index", "checkout")" class="btn btn-warning">Zur Kasse...</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@model Llprk.Web.UI.Areas.Admin.Models.ProductEdit
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Name, new { @class = "input-xxlarge" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Price, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Price)
+                    @Html.ValidationMessageFor(model => model.Price)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Available, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Available)
+                    @Html.ValidationMessageFor(model => model.Available)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.CategoryId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("CategoryId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.CategoryId)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.ShippingCategoryId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("ShippingCategoryId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.ShippingCategoryId)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.IsPublished, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.IsPublished)
+                    @Html.ValidationMessageFor(model => model.IsPublished)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class = "control-label">Tags</label>
+                <div class="controls">
+                    @foreach (var tag in Model.AllTags) {
+                        <div class="span2">
+                            <label class="checkbox">
+                                <input type="checkbox" 
+                                       name="tagIds" 
+                                       value="@tag.Id" 
+                                       @if(Model.Tags.Contains(tag)) { <text>checked="checked"</text> }
+                                    /> @tag.Name
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Pictures, new { @class = "control-label" })
+                <div class="controls">
+                    <ul class="thumbnails">
+                        <li class="span1" ng-repeat="picture in assignedPictures">
+                            <div>
+                                <img ng-src="{{picture.ThumbnailUrl}}" alt="" class="img-polaroid">
+                            </div>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-small btn-warning" data-toggle="modal" data-target="#myModal">Choose Pictures</button>
+                    <span class="help-block muted">Drag images to change their position.</span>
+                    <input type="hidden" name="pictureIds" value="{{assignedIdsAsString()}}" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.Description, 10, 50, new { @class = "input-xxlarge" })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Save" class="btn btn-small btn-success" />
+                <small class="muted">or</small>
+                @Html.ActionLink("Back to List", "Index")
+            </div>

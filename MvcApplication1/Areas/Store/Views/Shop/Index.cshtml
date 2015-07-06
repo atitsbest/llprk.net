@@ -1,0 +1,77 @@
+﻿@model Llprk.Web.UI.Areas.Store.Models.ShopIndex
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "../shared/_LayoutShop.cshtml";
+
+    var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+    var isStartPage = HttpContext.Current.Request.RequestContext.RouteData.Values["id"] == null;
+    var aboutActive = actionName == "about" ? "active" : null;
+}
+
+@if(isStartPage) {
+	<div class="container" style="margin-top: 10px;min-height:450px;margin-bottom: 3px;">
+        <div class="row">
+			<div class="slideshow col-xs-12">
+				@foreach(var bannerUrl in Model.BannerUrls) {
+					<img src="@Url.Content("~/Images/marketing/" + bannerUrl)" alt="" style="display:none;"  />
+				}
+			</div>
+        </div>
+	</div>
+}
+
+<section id="main" ng-controller="ProductsCtrl">
+	@if(Model.Products.Count() > 0) {
+		<div class="container">
+			<div class="row align-center">
+				<div class="col-xs-12">
+						@Html.Partial("_Category", Model.Products)
+				</div>
+			</div>
+		</div>
+		<div class="container hide">
+			<div class="row align-center explanation">
+				<div class="col-xs-12">
+					<p>
+						Jede Tasche ist einzigartig.<br />
+						Darum gibt es sie auch nur genau ein mal.
+				   
+						<br />
+						Schnapp dir deine tasche!
+			   
+					</p>
+				</div>
+			</div>
+		</div>
+	}
+	else {
+		<div class="container">
+			<div class="row align-center explanation">
+				<div class="col-xs-12">
+				<p>Hoppla!</p>
+				<p>Leider keine Produkte in dieser Kategorie.</p>
+				</div>
+			</div>
+		</div>
+	}
+
+</section>
+
+@section scripts {
+    <script type="text/javascript">
+    	angular.module('ShopApp.Values')
+            .value('products', @Html.Raw(Json.Encode(Model.Products.Select(p => new {
+                              Name = p.Name,
+                              Price = p.Price,
+                              Id = p.Id,
+							  ShippingCategoryId = p.ShippingCategoryId,
+                              ThumbailUrl = p.FirstPicture == null ? "" : p.FirstPicture.ThumbnailUrl
+                          })))
+            );
+
+    	$(function() {
+    		$('.slideshow').cycle();
+    	});
+    </script>
+}
+

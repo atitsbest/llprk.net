@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using Llprk.Web.UI.Models;
-using Llprk.Web.UI.ViewModels;
+using Llprk.Web.UI.Areas.Admin.Models;
 
 namespace Llprk.Web.UI
 {

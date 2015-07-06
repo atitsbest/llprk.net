@@ -1,4 +1,5 @@
-﻿using Llprk.Web.UI.Migrations;
+﻿using Llprk.Web.UI.Areas.Store;
+using Llprk.Web.UI.Migrations;
 using log4net.Config;
 using Newtonsoft.Json;
 using System;
@@ -29,6 +30,7 @@ namespace Llprk.Web.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MappingConfig.RegisterMappings();
+
 
 
 			// Migrationen laufen lassen.

@@ -185,7 +185,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationViewPage.cs" />
+    <Compile Include="Areas\Store\ApplicationViewPage.cs" />
     <Compile Include="Application\Exceptions\AppException.cs" />
     <Compile Include="Application\MailService.cs" />
     <Compile Include="Application\ShopService.cs" />
@@ -195,26 +195,28 @@
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Admin\CategoriesController.cs" />
-    <Compile Include="Controllers\Admin\CountriesController.cs" />
-    <Compile Include="Controllers\Admin\ShippingCostsController.cs" />
-    <Compile Include="Controllers\Admin\ParametersController.cs" />
-    <Compile Include="Controllers\Admin\TagsController.cs" />
-    <Compile Include="Controllers\Admin\SingleValueController.cs" />
-    <Compile Include="Controllers\Admin\OrdersController.cs" />
-    <Compile Include="Controllers\Admin\PicturesController.cs" />
-    <Compile Include="Controllers\Admin\ProductsController.cs" />
-    <Compile Include="Controllers\api\CategoriesController.cs" />
-    <Compile Include="Controllers\api\PicturesController.cs" />
-    <Compile Include="Controllers\api\ProductsController.cs" />
-    <Compile Include="Controllers\api\ShopController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CountriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShippingCostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ParametersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SingleValueController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PicturesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\api\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\api\PicturesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\api\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\api\ShopController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\CheckoutController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Areas\Store\Controllers\CheckoutController.cs" />
+    <Compile Include="Areas\Store\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Store\Controllers\PayPalController.cs" />
     <Compile Include="Controllers\Results\AjaxMessageResult.cs" />
-    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Areas\Store\Controllers\ShopController.cs" />
     <Compile Include="Extensions\DateTime+RelativeDate.cs" />
     <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
     <Compile Include="Filters\ValidateModelFilter.cs" />
@@ -240,32 +242,28 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Payments\PayPal.cs" />
-    <Compile Include="ViewModels\AccountModels.cs" />
+    <Compile Include="Areas\Store\Models\AccountModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CheckoutIndex.cs" />
-    <Compile Include="ViewModels\PostOrderNew.cs" />
-    <Compile Include="ViewModels\ShopLayout.cs" />
-    <Compile Include="ViewModels\ParametersIndex.cs" />
-    <Compile Include="ViewModels\ShopCategory.cs" />
-    <Compile Include="ViewModels\OrderStatusChange.cs" />
-    <Compile Include="ViewModels\HomeIndex.cs" />
-    <Compile Include="ViewModels\ProductDelete.cs" />
-    <Compile Include="ViewModels\OrderNew.cs" />
-    <Compile Include="ViewModels\PictureDelete.cs" />
+    <Compile Include="Areas\Store\Models\CheckoutIndex.cs" />
+    <Compile Include="Areas\Admin\Models\PostOrderNew.cs" />
+    <Compile Include="Areas\Store\Models\ShopLayout.cs" />
+    <Compile Include="Areas\Admin\Models\ParametersIndex.cs" />
+    <Compile Include="Areas\Store\Models\ShopCategory.cs" />
+    <Compile Include="Areas\Admin\Models\OrderStatusChange.cs" />
+    <Compile Include="Areas\Store\Models\HomeIndex.cs" />
+    <Compile Include="Areas\Admin\Models\ProductDelete.cs" />
+    <Compile Include="Areas\Admin\Models\OrderNew.cs" />
+    <Compile Include="Areas\Admin\Models\PictureDelete.cs" />
     <Compile Include="Models\Product_Picture.cs" />
-    <Compile Include="ViewModels\ShopDetail.cs" />
-    <Compile Include="ViewModels\ProductCreate.cs" />
-    <Compile Include="ViewModels\ProductEdit.cs" />
-    <Compile Include="ViewModels\ShopIndex.cs" />
+    <Compile Include="Areas\Store\Models\ShopDetail.cs" />
+    <Compile Include="Areas\Admin\Models\ProductCreate.cs" />
+    <Compile Include="Areas\Admin\Models\ProductEdit.cs" />
+    <Compile Include="Areas\Store\Models\ShopIndex.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShopDb.IntegrationTest.mdf" />
-    <Content Include="App_Data\ShopDb.IntegrationTest_log.ldf">
-      <DependentUpon>ShopDb.IntegrationTest.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\MvcApplication1.Models.ShopDb.mdf" />
     <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
@@ -489,6 +487,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\elements.less" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Store\Views\Web.config" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -555,68 +555,70 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Store\Views\Shop\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Pictures\Index.cshtml" />
-    <Content Include="Views\Pictures\Details.cshtml" />
-    <Content Include="Views\Pictures\Create.cshtml" />
-    <Content Include="Views\Pictures\Edit.cshtml" />
-    <Content Include="Views\Pictures\Delete.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Shared\_LayoutShop.cshtml" />
-    <Content Include="Views\Shop\Details.cshtml" />
-    <Content Include="Views\Orders\Details.cshtml" />
-    <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\Products\_Form.cshtml" />
-    <Content Include="Views\Products\_PictureDlg.cshtml" />
-    <Content Include="Views\Orders\Delete.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shop\_Cart.cshtml" />
-    <Content Include="Views\Orders\StatusChange.cshtml" />
-    <Content Include="Views\Tags\Create.cshtml" />
-    <Content Include="Views\Tags\Delete.cshtml" />
-    <Content Include="Views\Tags\Edit.cshtml" />
-    <Content Include="Views\Tags\Index.cshtml" />
-    <Content Include="Views\Parameters\Index.cshtml" />
-    <Content Include="Views\Home\Impressum.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Pictures\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Pictures\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Pictures\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Pictures\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Pictures\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Store\Views\Shared\_LayoutShop.cshtml" />
+    <Content Include="Areas\Store\Views\Shop\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\_Form.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\_PictureDlg.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Store\Views\Shop\_Cart.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\StatusChange.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tags\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Parameters\Index.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Impressum.cshtml" />
+    <Content Include="Areas\Store\Views\Home\About.cshtml" />
     <Content Include="Scripts\skins\moono\readme.md" />
-    <Content Include="Views\Shop\_Category.cshtml" />
-    <Content Include="Views\Home\Agbs.cshtml" />
-    <Content Include="Views\Home\Widerrufsrecht.cshtml" />
-    <Content Include="Views\Home\Blog.cshtml" />
-    <Content Include="Views\Home\ShowYourLove.cshtml" />
-    <Content Include="Views\PayPal\Confirmed.cshtml" />
-    <Content Include="Views\PayPal\Canceled.cshtml" />
-    <Content Include="Views\PayPal\Paid.cshtml" />
-    <Content Include="Views\ShippingCosts\Create.cshtml" />
-    <Content Include="Views\ShippingCosts\Delete.cshtml" />
-    <Content Include="Views\ShippingCosts\Edit.cshtml" />
-    <Content Include="Views\ShippingCosts\Index.cshtml" />
-    <Content Include="Views\Countries\Create.cshtml" />
-    <Content Include="Views\Countries\Delete.cshtml" />
-    <Content Include="Views\Countries\Edit.cshtml" />
-    <Content Include="Views\Countries\Index.cshtml" />
-    <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\Checkout\thankyou.cshtml" />
+    <Content Include="Areas\Store\Views\Shop\_Category.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Agbs.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Widerrufsrecht.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Blog.cshtml" />
+    <Content Include="Areas\Store\Views\Home\ShowYourLove.cshtml" />
+    <Content Include="Areas\Store\Views\PayPal\Confirmed.cshtml" />
+    <Content Include="Areas\Store\Views\PayPal\Canceled.cshtml" />
+    <Content Include="Areas\Store\Views\PayPal\Paid.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingCosts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingCosts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingCosts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingCosts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Countries\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Countries\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Countries\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Countries\Index.cshtml" />
+    <Content Include="Areas\Store\Views\Checkout\Index.cshtml" />
+    <Content Include="Areas\Store\Views\Checkout\thankyou.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\Admin\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

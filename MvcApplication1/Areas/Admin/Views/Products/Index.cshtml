@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Llprk.Web.UI.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+
+    var grid = new WebGrid(Model, 
+        rowsPerPage: 15);
+}
+
+<div class="col-xs-12">
+    <div class="buttons">
+		<form class="form-search">
+			<input type="search" name="q" value="@ViewBag.q" class="input-small search-query" />
+			<input type="submit" class="btn btn-small" value="Search" />
+		</form>
+        @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-medium btn-success" })
+    </div>
+    @grid.GetHtml(
+        tableStyle : "table table-striped table-bordered",
+        columns: grid.Columns(
+            grid.Column("", format:@<text>@if(item.FirstPicture != null) {<img src="@item.FirstPicture.ThumbnailUrl" width="60" />}</text>),
+            grid.Column("Name", format:@<text><a href="@Url.Action("edit", new { id = item.Id})"><b>@item.Name</b></a></text>),
+            grid.Column("Price"),
+            grid.Column("Available"),
+            grid.Column("Category", format:@<text>@item.Category.Name</text>),
+            grid.Column("Published", format: @<text> @if(item.IsPublished) { <i class="icon-ok"></i> } </text>),
+            grid.Column(format: 
+                @<text>
+                    <a href='@Url.Action("Delete", new { id=item.Id })' title="Delete"><i class="icon-trash"></i></a>
+                </text>)
+            ))
+</div>
