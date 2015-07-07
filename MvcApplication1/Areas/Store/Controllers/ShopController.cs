@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Llprk.Web.UI.ViewModels;
 using System.Collections.Generic;
+using Llprk.Web.UI.Liquid;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
@@ -39,6 +40,9 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             var templateName = "index.liquid";
             var layoutPath = Server.MapPath(Path.Combine("Themes", themeName, layoutName));
             var templatePath = Server.MapPath(Path.Combine("Themes", themeName, templateName));
+
+            Template.RegisterFilter(typeof(ScriptTagFilter));
+            Template.RegisterFilter(typeof(StylesheetTagFilter));
 
             // Template lesen. TODO: Cache.
             var layout = Template.Parse(System.IO.File.ReadAllText(layoutPath));

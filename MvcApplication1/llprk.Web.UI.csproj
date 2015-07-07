@@ -228,6 +228,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Liquid\StylesheetTagFilter.cs" />
+    <Compile Include="Liquid\ScriptTagFilter.cs" />
     <Compile Include="Migrations\01OrderPriceInDBMigration.cs" />
     <Compile Include="Models\ShippingCost.cs" />
     <Compile Include="Models\ShippingCategory.cs" />
@@ -552,6 +554,8 @@
     <Content Include="Scripts\skins\moono\images\mini.png" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Themes\minimal\assets\scripts\jquery-1.9.1.js" />
+    <Content Include="Themes\minimal\assets\styles\bootstrap.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -625,7 +629,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Admin\" />
-    <Folder Include="Liquid\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

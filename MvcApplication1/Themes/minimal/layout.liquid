@@ -9,7 +9,8 @@
     <meta name="keywords" lang="de" content="lillypark,Tasche,Taschen,Bag,Sak Saum">
     <meta name="description" lang="de" content="Fair Trade gegen Menschenhandel - Handgemachte, Unikate Taschen & Accessories ab 9 €. Mehr als nur schöne Taschen - Unterstütze Frauen die von Menschenhandel betroffen sind!">
 
-	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+	{{ 'http://fonts.googleapis.com/css?family=Droid+Sans:400,700' | stylesheet_tag }}
+	{{ 'bootstrap.css' | stylesheet_tag }}
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -21,5 +22,7 @@
     <![endif]-->
 
 	{{ content_for_layout }}
+
+	{{ 'jquery-1.9.1.js' | script_tag }}
 </body>
 </html>
