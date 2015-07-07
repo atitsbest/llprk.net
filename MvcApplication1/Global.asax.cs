@@ -22,7 +22,9 @@ namespace Llprk.Web.UI
         {
             // BasicConfigurator replaced with XmlConfigurator.
             log4net.Config.XmlConfigurator.Configure();
-            
+
+            AutoMapper.Mapper.AddProfile<AutoMapperProfile>();
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

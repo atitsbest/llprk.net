@@ -1,0 +1,18 @@
+﻿<h1>Hallo</h1>
+<p>
+	Anzahl der Produkte: {{ products | size }}
+</p>
+
+{% comment %} 
+	Das wird die Liste der Produkte.
+	Derzeit funktioniert das noch nicht. Warum?
+{% endcomment %}
+
+{% for product in products %}
+	<h3>
+		{{ product.name }}
+	</h3>
+	Nur {{ product.price | price }}
+
+	{{product.description | prettyprint | paragraph }}
+{% endfor %}

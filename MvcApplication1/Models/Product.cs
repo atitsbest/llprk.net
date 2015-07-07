@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotLiquid;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +9,7 @@ using System.Web;
 
 namespace Llprk.Web.UI.Models
 {
+    [LiquidType]
     public class Product
     {
         public int Id { get; set; }

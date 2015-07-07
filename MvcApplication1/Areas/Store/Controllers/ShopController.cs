@@ -1,9 +1,13 @@
-﻿using Llprk.Web.UI.Areas.Store.Models;
+﻿using DotLiquid;
+using Llprk.Web.UI.Areas.Store.Models;
 using Llprk.Web.UI.Controllers;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using Llprk.Web.UI.ViewModels;
+using System.Collections.Generic;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
@@ -20,15 +24,36 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             var viewModel = new ShopIndex();
             viewModel.Categories = db.Categories.ToList();
-            viewModel.Products = db.Products
+            viewModel.Products = Mapper.Map<IEnumerable<LiquidProduct>>(db.Products
 						.Where(p => p.IsPublished
                                 && (!id.HasValue || (p.CategoryId == id.Value))
                                 && p.Available > 0) // Nur verfügbare Produkte anzeigen.
 						.OrderBy(p => p.CreatedAt)
-						.ToArray();
+						.ToArray());
 			var di = new DirectoryInfo(Server.MapPath("~/Images/marketing/"));
 			viewModel.BannerUrls = di.GetFiles("banner*.*").Select(s => s.Name).OrderBy(s => s).ToArray();
-            return View(viewModel);
+
+            // Template-Name:
+            var themeName = "minimal";
+            var layoutName = "layout.liquid";
+            var templateName = "index.liquid";
+            var layoutPath = Server.MapPath(Path.Combine("Themes", themeName, layoutName));
+            var templatePath = Server.MapPath(Path.Combine("Themes", themeName, templateName));
+
+            // Template lesen. TODO: Cache.
+            var layout = Template.Parse(System.IO.File.ReadAllText(layoutPath));
+            var template = Template.Parse(System.IO.File.ReadAllText(templatePath));
+
+            // Render Template.
+            var templateHtml = template.Render(Hash.FromAnonymousObject(new {
+                products = viewModel.Products
+            }));
+
+            var layoutHtml = layout.Render(Hash.FromAnonymousObject(new {
+                content_for_layout = templateHtml
+            }));
+
+            return Content(layoutHtml);
         }
 
         /// <summary>
