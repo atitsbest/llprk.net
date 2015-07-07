@@ -10,7 +10,7 @@ using Llprk.Web.UI.Models;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class CountriesController : SingleValueController<Country, string>
+    public partial class CountriesController : SingleValueController<Country, string>
     {
         public CountriesController()
             : base((e) => e.Countries)

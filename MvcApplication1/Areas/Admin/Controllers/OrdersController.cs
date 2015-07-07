@@ -14,7 +14,7 @@ using Llprk.Web.UI.Areas.Admin.Models;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class OrdersController : ApplicationController
+    public partial class OrdersController : ApplicationController
     {
         public enum Filter
         {
@@ -23,7 +23,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         //
         // GET: /Orders/
-        public ActionResult Index(Filter? filter, string q)
+        public virtual ActionResult Index(Filter? filter, string q)
         {
             IEnumerable<Order> result;
             var sortedOrders = db.Orders.OrderByDescending(o => o.Id);
@@ -80,7 +80,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         //
         // GET: /Orders/Details/5
-        public ActionResult Details(int id = 0)
+        public virtual ActionResult Details(int id = 0)
         {
             var order = db.Orders
                 .Include(i => i.OrderLines)
@@ -95,7 +95,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Orders/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public virtual ActionResult Delete(int id = 0)
         {
             var order = db.Orders.Find(id);
             if (order == null)
@@ -109,7 +109,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // POST: /Orders/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public virtual ActionResult DeleteConfirmed(int id)
         {
             var order = db.Orders.Find(id);
             db.Orders.Remove(order);
@@ -123,7 +123,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Pay(int id)
+        public virtual ActionResult Pay(int id)
         {
             var order = db.Orders.Find(id);
             var renderedMailBody = Nustache.Core.Render.StringToString(db.Parameters.First().MailMessagePaid, order);
@@ -143,7 +143,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost, ValidateInput(false)]
-        public ActionResult Paid(int id, string mailBody)
+        public virtual ActionResult Paid(int id, string mailBody)
         {
             var order = db.Orders.Find(id);
             new ShopService().PayOrder(db, order, mailBody);
@@ -156,7 +156,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Ship(int id)
+        public virtual ActionResult Ship(int id)
         {
             var order = db.Orders
                 .Include(o => o.OrderLines)
@@ -180,7 +180,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost, ValidateInput(false)]
-        public ActionResult Shipped(int id, string mailBody)
+        public virtual ActionResult Shipped(int id, string mailBody)
         {
             var order = db.Orders.Find(id);
             new ShopService().ShipOrder(db, order, mailBody);
@@ -193,7 +193,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost, ValidateInput(false)]
-        public ActionResult Comment(int id, string comment) 
+        public virtual ActionResult Comment(int id, string comment) 
         {
             var order = db.Orders.Find(id);
             order.Comment = comment;

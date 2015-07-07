@@ -9,12 +9,12 @@ using System.Web.Mvc;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
-    public class HomeController : ApplicationController
+    public partial class HomeController : ApplicationController
     {
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View(new HomeIndex() {
                 Products = db.Products.Take(4).ToArray()
@@ -26,18 +26,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Blog(int id) {
-            return View();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-#if !DEBUG
-		[OutputCache(Duration=120, NoStore=true)]
-#endif
-        public ActionResult About()
+        public virtual ActionResult Blog(int id)
         {
             return View();
         }
@@ -49,7 +38,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, NoStore=true)]
 #endif
-        public ActionResult ShowYourLove()
+        public virtual ActionResult About()
         {
             return View();
         }
@@ -61,7 +50,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, NoStore=true)]
 #endif
-        public ActionResult Impressum()
+        public virtual ActionResult ShowYourLove()
         {
             return View();
         }
@@ -73,7 +62,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, NoStore=true)]
 #endif
-        public ActionResult Agbs()
+        public virtual ActionResult Impressum()
         {
             return View();
         }
@@ -85,7 +74,19 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, NoStore=true)]
 #endif
-        public ActionResult Widerrufsrecht()
+        public virtual ActionResult Agbs()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+#if !DEBUG
+		[OutputCache(Duration=120, NoStore=true)]
+#endif
+        public virtual ActionResult Widerrufsrecht()
         {
             return View();
         }

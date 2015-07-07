@@ -5,13 +5,13 @@ using System.Web.Security;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public partial class AccountController : Controller
     {
         //
         // GET: /Account/Login
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public virtual ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -23,7 +23,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public virtual ActionResult Login(LoginModel model, string returnUrl)
         {
             if (FormsAuthentication.Authenticate(model.UserName, model.Password))
             {
@@ -40,7 +40,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // GET: /Account/LogOff
 
         //[ValidateAntiForgeryToken]
-        public ActionResult Logout()
+        public virtual ActionResult Logout()
         {
             FormsAuthentication.SignOut();
 

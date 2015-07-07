@@ -12,7 +12,7 @@ using Llprk.Web.UI.Liquid;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
-    public class ShopController : ApplicationController
+    public partial class ShopController : ApplicationController
     {
         /// <summary>
         /// 
@@ -21,7 +21,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
 #endif
-        public ActionResult Index(int? id)
+        public virtual ActionResult Index(int? id)
         {
             var viewModel = new ShopIndex();
             viewModel.Categories = db.Categories.ToList();
@@ -43,6 +43,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
             Template.RegisterFilter(typeof(ScriptTagFilter));
             Template.RegisterFilter(typeof(StylesheetTagFilter));
+            Template.RegisterFilter(typeof(ImageUrlFilter));
 
             // Template lesen. TODO: Cache.
             var layout = Template.Parse(System.IO.File.ReadAllText(layoutPath));
@@ -68,7 +69,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
 #endif
-        public ActionResult Categories(int id)
+        public virtual ActionResult Categories(int id)
         {
             var viewModel = new ShopCategory();
             viewModel.Category = db.Categories.First(c => c.Id == id);
@@ -88,7 +89,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
 #endif
-        public ActionResult Details(int id)
+        public virtual ActionResult Details(int id)
         {
             var viewModel = new ShopDetail();
             viewModel.Product = db.Products

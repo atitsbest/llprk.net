@@ -19,12 +19,12 @@ using Llprk.Web.UI.Areas.Admin.Models;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class PicturesController : ApplicationController
+    public partial class PicturesController : ApplicationController
     {
         //
         // GET: /Pictures/
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View(db.Pictures.OrderBy(p => p.Name).ToList());
         }
@@ -32,7 +32,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Pictures/Details/5
 
-        public ActionResult Details(Guid id)
+        public virtual ActionResult Details(Guid id)
         {
             Picture picture = db.Pictures.Find(id);
             if (picture == null)
@@ -45,7 +45,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Pictures/Create
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
@@ -54,7 +54,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // POST: /Pictures/Create
 
         [HttpPost]
-        public ActionResult Create(IEnumerable<HttpPostedFileBase> files)
+        public virtual ActionResult Create(IEnumerable<HttpPostedFileBase> files)
         {
             if (files == null || files.Count() == 0) {
                 ModelState.AddModelError("Picture", "You need to select at least one picture!");
@@ -75,7 +75,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         //
         // GET: /Pictures/Delete/5
-        public ActionResult Delete(Guid id)
+        public virtual ActionResult Delete(Guid id)
         {
             Picture picture = db.Pictures.Find(id);
             if (picture == null)
@@ -95,7 +95,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // POST: /Pictures/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(Guid id)
+        public virtual ActionResult DeleteConfirmed(Guid id)
         {
             Picture picture = db.Pictures.Find(id);
             

@@ -1,4 +1,5 @@
-﻿<h1>Hallo</h1>
+﻿<img src="{{ 'lillypark.png' | image_url }}" class="img img-thumbnail"></img>
+<h1>Hallo</h1>
 <p>
 	Anzahl der Produkte: {{ products | size }}
 </p>
@@ -10,7 +11,7 @@
 
 {% for product in products %}
 	<h3>
-		{{ product.name }}
+    <a href="{{ product.url }}">{{ product.name }}</a>
 	</h3>
 	Nur {{ product.price | price }}
 

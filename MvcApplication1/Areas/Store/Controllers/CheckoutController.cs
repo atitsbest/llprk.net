@@ -12,13 +12,13 @@ using System.Web.Mvc;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
-    public class CheckoutController : ApplicationController
+    public partial class CheckoutController : ApplicationController
     {
         //
         // GET: /Checkout/
 
         [HttpGet]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var vm = new OrderNew(db.Countries.ToList());
             return View(vm);
@@ -26,7 +26,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(PostOrderNew viewModel)
+        public virtual ActionResult Index(PostOrderNew viewModel)
         {
             if (ModelState.IsValid) {
 
@@ -68,13 +68,13 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
 
         [HttpGet]
-        public ActionResult Success(Guid id) 
+        public virtual ActionResult Success(Guid id) 
         {
             return View();
         }
 
         [HttpGet]
-        public ActionResult Thankyou() 
+        public virtual ActionResult Thankyou() 
         {
             return View();
         }

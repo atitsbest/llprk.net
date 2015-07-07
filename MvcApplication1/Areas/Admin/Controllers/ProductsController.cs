@@ -13,12 +13,12 @@ using Llprk.Web.UI.Areas.Admin.Models;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class ProductsController : ApplicationController
+    public partial class ProductsController : ApplicationController
     {
         //
         // GET: /Products/
 
-        public ActionResult Index(string q)
+        public virtual ActionResult Index(string q)
         {
             var products = db.Products.Include(p => p.Category)
                 .OrderByDescending(p => p.IsPublished) // Die auch im Shop angezeigt werden zuerst.
@@ -38,7 +38,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Products/Details/5
 
-        public ActionResult Details(int id = 0)
+        public virtual ActionResult Details(int id = 0)
         {
             Product product = db.Products
                 .Where(p => p.Id == id)
@@ -52,7 +52,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Products/Create
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             var viewModel = new ProductCreate();
             viewModel.AllPictures = db.Pictures.ToArray();
@@ -67,7 +67,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // POST: /Products/Create
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Create(Product product, string pictureIds, int[] tagIds)
+        public virtual ActionResult Create(Product product, string pictureIds, int[] tagIds)
         {
             if (ModelState.IsValid) {
                 // Produkt mit den Bildern anreichern.
@@ -87,7 +87,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Products/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public virtual ActionResult Edit(int id = 0)
         {
             Product product = db.Products
                 .Include(i => i.Pictures)
@@ -112,7 +112,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // POST: /Products/Edit/5
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Edit(Product product, string pictureIds, int[] tagIds)
+        public virtual ActionResult Edit(Product product, string pictureIds, int[] tagIds)
         {
             if (ModelState.IsValid) {
                 var p = db.Products
@@ -144,7 +144,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         //
         // GET: /Products/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public virtual ActionResult Delete(int id = 0)
         {
             Product product = db.Products.Find(id);
             if (product == null) {
@@ -163,7 +163,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // POST: /Products/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public virtual ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);

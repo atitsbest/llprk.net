@@ -10,7 +10,7 @@ using Llprk.Web.UI.Models;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class TagsController : SingleValueController<Tag, int>
+    public partial class TagsController : SingleValueController<Tag, int>
     {
         public TagsController()
             : base((e) => e.Tags)

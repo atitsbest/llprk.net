@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Llprk.Web.UI.Controllers
 {
-    public class ApplicationController : Controller
+    public partial class ApplicationController : Controller
     {
         protected Entities db = new Entities();
 

@@ -18,7 +18,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 	/// Kümmert sich um die Bezahlung per PayPal mit alle dafür nötigen Schritten:
     ///		Create -> Confirmed/Canceled -> Execute -> Paid
 	/// </summary>
-    public class PayPalController : ApplicationController
+    public partial class PayPalController : ApplicationController
     {
         private PayPalPayment _PayPal;
 
@@ -33,7 +33,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
         [HttpPost]
 #endif
-        public ActionResult Create(int orderId) 
+        public virtual ActionResult Create(int orderId) 
         {
             var order = _GetUnpaidOrder(orderId);
 
@@ -65,7 +65,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 		/// </summary>
 		/// <param name="orderId"></param>
 		/// <returns></returns>
-        public ActionResult Confirmed(int orderId, string token, string payerId)
+        public virtual ActionResult Confirmed(int orderId, string token, string payerId)
         {
             var order = _GetUnpaidOrder(orderId);
 
@@ -84,7 +84,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 		/// <param name="payerId"></param>
 		/// <returns></returns>
 		[HttpPost]
-        public ActionResult Execute(int orderId, string token, string payerId)
+        public virtual ActionResult Execute(int orderId, string token, string payerId)
         {
             var order = _GetUnpaidOrder(orderId);
             if (string.IsNullOrWhiteSpace(token) ||
@@ -119,7 +119,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 		/// </summary>
 		/// <param name="orderId"></param>
 		/// <returns></returns>
-        public ActionResult Paid(int orderId)
+        public virtual ActionResult Paid(int orderId)
         {
             var order = db.Orders.FirstOrDefault(o => o.Id == orderId);
             if (order == null) {
@@ -136,7 +136,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 		/// <param name="token"></param>
 		/// <param name="payerId"></param>
 		/// <returns></returns>
-        public ActionResult Canceled(int orderId)
+        public virtual ActionResult Canceled(int orderId)
         {
             var order = db.Orders.FirstOrDefault(o => o.Id == orderId);
             if (order == null) { 

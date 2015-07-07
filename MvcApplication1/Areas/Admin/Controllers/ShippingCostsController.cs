@@ -11,14 +11,15 @@ using System.Text.RegularExpressions;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public class ShippingCostsController : SingleValueController<ShippingCategory, int>
+    public partial class ShippingCostsController : SingleValueController<ShippingCategory, int>
     {
         public ShippingCostsController()
             : base((e) => e.ShippingCategories)
         { }
 
 		[HttpPost]
-        public ActionResult ShippingCosts() {
+        public virtual ActionResult ShippingCosts()
+        {
             if (ModelState.IsValid) { 
 				var scKeys = Request.Form.AllKeys.Where(k => k.StartsWith("sc_"));
 

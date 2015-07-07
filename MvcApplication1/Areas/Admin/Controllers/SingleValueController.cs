@@ -10,10 +10,18 @@ using Llprk.Web.UI.Controllers;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize, T4MVC(false)]
     public abstract class SingleValueController<T, IDT> : ApplicationController where T: class
     {
         private Func<Entities, DbSet<T>> _CollectionFn;
+
+        /// <summary>
+        /// Brauchen wir nicht, aber T4MVC schon.
+        /// </summary>
+        public SingleValueController()
+        {
+            //throw new NotImplementedException();
+        }
 
         /// <summary>
         /// CTR

@@ -15,9 +15,9 @@ using Llprk.Web.UI.Areas.Admin.Models;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize, OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-    public class ParametersController : ApplicationController
+    public partial class ParametersController : ApplicationController
     {
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             ViewBag.DummyOrder = _CreateDummyOrder();
 
@@ -27,7 +27,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Index(ParameterIndex config)
+        public virtual ActionResult Index(ParameterIndex config)
         {
             if (ModelState.IsValid) {
                 var c = db.Parameters.First();
@@ -44,7 +44,8 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Render(string template) { 
+        public virtual ActionResult Render(string template)
+        { 
             var order = _CreateDummyOrder();
 			string result = "";
 
@@ -60,7 +61,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public JsonResult IsMailTemplateValid()
+        public virtual JsonResult IsMailTemplateValid()
         {
             var order = _CreateDummyOrder();
             var template = Request.Unvalidated.Form[0];
