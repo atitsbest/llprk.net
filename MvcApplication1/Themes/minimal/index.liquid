@@ -1,19 +1,10 @@
 ﻿<img src="{{ 'lillypark.png' | image_url }}" class="img img-thumbnail"></img>
-<h1>Hallo</h1>
+<img src="{{ 'banners/01.jpg' | image_url }}"></img>
+<h1>{{ page_title }}</h1>
 <p>
 	Anzahl der Produkte: {{ products | size }}
 </p>
 
-{% comment %} 
-	Das wird die Liste der Produkte.
-	Derzeit funktioniert das noch nicht. Warum?
-{% endcomment %}
-
 {% for product in products %}
-	<h3>
-    <a href="{{ product.url }}">{{ product.name }}</a>
-	</h3>
-	Nur {{ product.price | price }}
-
-	{{product.description | prettyprint | paragraph }}
+  {% include snippets/product_item with product %}
 {% endfor %}

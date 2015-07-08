@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3DEC51
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLiquid-2010", "DotLiquid\DotLiquid-2010.csproj", "{429C3908-6AEA-4EE6-9450-06A196DC87DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{A6722793-84A0-4D25-9F88-386C19DC4028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6722793-84A0-4D25-9F88-386C19DC4028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6722793-84A0-4D25-9F88-386C19DC4028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429C3908-6AEA-4EE6-9450-06A196DC87DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429C3908-6AEA-4EE6-9450-06A196DC87DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429C3908-6AEA-4EE6-9450-06A196DC87DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429C3908-6AEA-4EE6-9450-06A196DC87DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

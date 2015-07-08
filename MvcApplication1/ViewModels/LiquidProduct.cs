@@ -17,6 +17,20 @@ namespace Llprk.Web.UI.ViewModels
         public int Available { get; set; }
         public DateTime CreatedAt { get; set; }
 
+        public IEnumerable<LiquidProductPicture> Pictures { get; set; }
+        public LiquidProductPicture FeaturedPicture
+        {
+            get {
+                return HasPicture
+                    ? Pictures.First()
+                    : null;
+        }
+        }
+        public bool HasPicture
+        {
+            get { return Pictures != null && Pictures.Count() > 0; }
+        }
+
         /// <summary>
         /// Unter dieser Url ist der Artikel zu erreichen.
         /// </summary>
