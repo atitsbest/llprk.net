@@ -23,15 +23,15 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Llprk.Web.UI.Areas.Admin.Controllers
+namespace Llprk.Web.UI.Areas.Store.Controllers
 {
-    public partial class AccountController
+    public partial class CartController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AccountController() { }
+        public CartController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected AccountController(Dummy d) { }
+        protected CartController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -61,19 +61,19 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Login()
+        public virtual System.Web.Mvc.ActionResult Index()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AccountController Actions { get { return MVC.Admin.Account; } }
+        public CartController Actions { get { return MVC.Store.Cart; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Admin";
+        public readonly string Area = "Store";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Account";
+        public readonly string Name = "Cart";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Account";
+        public const string NameConst = "Cart";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,26 +81,23 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Login = "Login";
-            public readonly string Logout = "Logout";
+            public readonly string Index = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Login = "Login";
-            public const string Logout = "Logout";
+            public const string Index = "Index";
         }
 
 
-        static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Login
+        public class ActionParamsClass_Index
         {
-            public readonly string returnUrl = "returnUrl";
-            public readonly string model = "model";
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -112,50 +109,24 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Login = "Login";
             }
-            public readonly string Login = "~/Areas/Admin/Views/Account/Login.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_AccountController : Llprk.Web.UI.Areas.Admin.Controllers.AccountController
+    public partial class T4MVC_CartController : Llprk.Web.UI.Areas.Store.Controllers.CartController
     {
-        public T4MVC_AccountController() : base(Dummy.Instance) { }
+        public T4MVC_CartController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string returnUrl);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Login(string returnUrl)
+        public override System.Web.Mvc.ActionResult Index(int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            LoginOverride(callInfo, returnUrl);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Web.UI.Areas.Admin.Models.LoginModel model, string returnUrl);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Login(Llprk.Web.UI.Areas.Admin.Models.LoginModel model, string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            LoginOverride(callInfo, model, returnUrl);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void LogoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Logout()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Logout);
-            LogoutOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            IndexOverride(callInfo, id);
             return callInfo;
         }
 

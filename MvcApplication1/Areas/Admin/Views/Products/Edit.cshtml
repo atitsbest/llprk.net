@@ -4,21 +4,21 @@
     ViewBag.Title = "Edit";
 }
 
+
+
 <div ng-controller="PicturesCtrl" class="col-xs-12">
 
     @using (Html.BeginForm()) {
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>Edit</legend>
-
             @Html.HiddenFor(model => model.Id)
 
-            @Html.Partial("~/Views/Products/_Form.cshtml", Model)
+            @Html.Partial("_Form", Model)
         </fieldset>
     }
 
-    @Html.Partial("~/Views/Products/_PictureDlg.cshtml")
+    @Html.Partial("_PictureDlg")
 </div>
 
 @section Scripts {
@@ -27,7 +27,6 @@
         var assignedPictureIds = @Html.Raw(Json.Encode(Model.AssignedPictureIds))
 
         $('ul.thumbnails').sortable();
-        $('form').addClass('form-horizontal');
 
         angular.bootstrap($('html'));
     </script>

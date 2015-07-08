@@ -222,6 +222,7 @@
     <Compile Include="ApplicationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
     <Compile Include="Areas\Store\ApplicationViewPage.cs" />
     <Compile Include="Application\Exceptions\AppException.cs" />
     <Compile Include="Application\MailService.cs" />
@@ -284,7 +285,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Payments\PayPal.cs" />
-    <Compile Include="Areas\Store\Models\AccountModels.cs" />
+    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Picture.cs" />
@@ -299,12 +300,14 @@
     <Compile Include="Areas\Admin\Models\ProductDelete.cs" />
     <Compile Include="Areas\Admin\Models\OrderNew.cs" />
     <Compile Include="Areas\Admin\Models\PictureDelete.cs" />
-    <Compile Include="Models\Product_Picture.cs" />
     <Compile Include="Areas\Store\Models\ShopDetail.cs" />
     <Compile Include="Areas\Admin\Models\ProductCreate.cs" />
     <Compile Include="Areas\Admin\Models\ProductEdit.cs" />
     <Compile Include="Areas\Store\Models\ShopIndex.cs" />
     <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Store.CartController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Store.CheckoutController.generated.cs">
@@ -450,6 +453,8 @@
     <Content Include="Images\syl-corner.png" />
     <Content Include="Images\syl-small.png" />
     <Content Include="Images\syl.png" />
+    <Content Include="Migrations\sql\201507082116.sql" />
+    <Content Include="Migrations\sql\201507082118.sql" />
     <Content Include="Models\llprk.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>llprk.edmx</DependentUpon>
@@ -556,6 +561,7 @@
     <Content Include="Content\elements.less" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Store\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -696,6 +702,8 @@
     <Content Include="Themes\minimal\layout.liquid" />
     <None Include="T4MVC.tt.hooks.t4" />
     <Content Include="Themes\minimal\snippets\product_item.liquid" />
+    <Content Include="Themes\minimal\cart.liquid" />
+    <Content Include="Themes\minimal\product.liquid" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotLiquid\DotLiquid-2010.csproj">
@@ -709,6 +717,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

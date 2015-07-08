@@ -9,6 +9,9 @@ namespace Llprk.Web.UI.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public int Pos { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
         public string ThumbnailUrl
         {

@@ -11,12 +11,9 @@
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Width="1.5" PointX="8.375" PointY="14.125" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" Width="1.5" PointX="8.875" PointY="7.75" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Product_Picture" Width="1.5" PointX="0.73211230930504967" PointY="27.081318882797529" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" Width="1.5" PointX="1.4018527480782255" PointY="0.25462749612267477" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Picture" />
-        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Product" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" Width="1.5" PointX="1.330163045474404" PointY="18.913874664769448" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" />
@@ -26,6 +23,7 @@
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Picture_Product" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

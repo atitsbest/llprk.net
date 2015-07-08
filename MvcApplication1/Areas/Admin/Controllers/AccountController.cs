@@ -1,4 +1,5 @@
-﻿using Llprk.Web.UI.Areas.Store.Models;
+﻿using Llprk.Web.UI.Areas.Admin.Models;
+using Llprk.Web.UI.Areas.Store.Models;
 using System.Web.Mvc;
 using System.Web.Security;
 

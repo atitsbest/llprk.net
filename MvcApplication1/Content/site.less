@@ -1,4 +1,9 @@
-﻿html {
+﻿// Core variables and mixins
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+@import "bootstrap/forms.less";
+
+html {
     margin: 0;
     padding: 0;
 }
@@ -125,6 +130,19 @@ fieldset {
             background: url('../images/border.png') repeat-x 0px 36px;
         }
     }
+
+    > hr {
+        border: 1px solid #f1f1f1;
+        margin: 30px 0 30px;
+    }
+}
+
+/* Form
+   --------------------------------------------- */
+input[type="text"],
+input[type="number"],
+select {
+    .form-control;
 }
 
 .field-validation-error {

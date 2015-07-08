@@ -56,6 +56,7 @@ namespace T4MVC
     public class StoreClass
     {
         public readonly string Name = "Store";
+        public Llprk.Web.UI.Areas.Store.Controllers.CartController Cart = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_CartController();
         public Llprk.Web.UI.Areas.Store.Controllers.CheckoutController Checkout = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_CheckoutController();
         public Llprk.Web.UI.Areas.Store.Controllers.HomeController Home = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_HomeController();
         public Llprk.Web.UI.Areas.Store.Controllers.PayPalController PayPal = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_PayPalController();

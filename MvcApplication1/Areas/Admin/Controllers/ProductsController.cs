@@ -223,17 +223,19 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var gs = guids.ToArray();
 
             // Erstmal alle Bilder vom Produkt entfernen, die nicht mehr dazu gehören.
-            var toRemove = product.Pictures.Where(p => !guids.Contains(p.Picture.Id)).ToArray();
+            var toRemove = product.Pictures.Where(p => !guids.Contains(p.Id)).ToArray();
             foreach (var p in toRemove) { product.Pictures.Remove(p); }
 
             for(var i=0; i<gs.Count(); i+=1) {
                 var id = gs[i];
-                var pp = product.Pictures.FirstOrDefault(p => p.Picture.Id == id);
+                var pp = product.Pictures.FirstOrDefault(p => p.Id == id);
                 if (pp == null) {
-                    pp = new Product_Picture() {
-                        Product = product,
-                        Picture = _GetPictureById(id)
+                    pp = new Picture() {
+                        ProductId = product.Id,
+                        //Picture = _GetPictureById(id)
                     };
+
+                    throw new NotImplementedException();
 
                     product.Pictures.Add(pp);
                 }

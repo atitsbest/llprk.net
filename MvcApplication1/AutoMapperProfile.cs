@@ -16,8 +16,8 @@ namespace Llprk.Web.UI
                 .ForMember(d => d.Pictures, o => o.MapFrom(s => s.Pictures
                     .OrderBy(p => p.Pos)
                     .Select(p => new LiquidProductPicture { 
-                        Url = p.Picture.PictureUrl, 
-                        ThumbnailUrl = p.Picture.ThumbnailUrl 
+                        Url = p.PictureUrl, 
+                        ThumbnailUrl = p.ThumbnailUrl 
                     }).ToArray()));
         }
 

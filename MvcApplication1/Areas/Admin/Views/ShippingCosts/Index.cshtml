@@ -4,7 +4,8 @@
     ViewBag.Title = "Index";
     IEnumerable<Llprk.Web.UI.Models.Country> countries = null;
     IEnumerable<Llprk.Web.UI.Models.ShippingCategory> shippingCategories = null;
-	using (var db = new Llprk.Web.UI.Models.Entities()) {
+    using (var db = new Llprk.Web.UI.Models.Entities())
+    {
         countries = db.Countries.Include("ShippingCosts").ToArray();
         shippingCategories = db.ShippingCategories.ToArray();
     }
@@ -12,7 +13,7 @@
 
 <div class="col-xs-12">
     <div class="buttons">
-        @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-small btn-success" })
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-small btn-success" })
     </div>
     <table class="table table-striped table-bordered">
         <thead>
@@ -22,66 +23,56 @@
             </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-                </td>
-            </tr>
-        }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
 
 <div class="col-xs-12">
-	@using(Html.BeginForm("shippingcosts", "shippingcosts")) {
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th></th>
-					@foreach (var country in countries) { 
-						<th>@country.Name</th>
-					}
-				</tr>
-			</thead>
-			<tbody>
-				@foreach (var sc in shippingCategories) { 
-					<tr>
-						<th>@sc.Name</th>	
-						@foreach (var c in countries) { 
-							<td>
-								<div class="input-prepend input-append">
-									<span class="add-on">€</span>
-									@{
-										var id = string.Format("sc_{0}_{1}", c.Id, sc.Id);
-									}
-									<input	type="text" 
-										id="@id" 
-										name="@id" 
-										value="@c.ShippingCost(sc).ToString("n")" 
-										class="input-small"
-										data-val="true"
-										data-val-number="Must be a price!"
-										style="text-align:right;margin-bottom:0;"
-									/>
-									<span class="field-validation-valid" data-valmsg-for="id" data-valmsg-replace="true"></span>
-								</div>
-							</td>
-						}
-					</tr>
-				}
-			</tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="@(countries.Count() + 1)">
-                        <input type="submit" value="Save" class="btn btn-small btn-success pull-right" />
-                    </td>
-                </tr>
-            </tfoot>
-		</table>
-	}
+    @using (Html.BeginForm("shippingcosts", "shippingcosts"))
+    {
+        foreach (var c in countries)
+        { 
+        <div class="panel panel-default">
+            <div class="panel-head">
+                <h4>@c.Name</h4>
+            </div>
+            <div class="panel-body">
+                @foreach (var sc in shippingCategories)
+                { 
+                    <label>@sc.Name</label>	
+                    <div class="input-prepend input-append">
+                        <span class="add-on">€</span>
+                        @{
+                    var id = string.Format("sc_{0}_{1}", c.Id, sc.Id);
+                        }
+                        <input	type="text" 
+                            id="@id" 
+                            name="@id" 
+                            value="@c.ShippingCost(sc).ToString("n")" 
+                            class="input-small"
+                            data-val="true"
+                            data-val-number="Must be a price!"
+                            style="text-align:right;margin-bottom:0;"
+                        />
+                        <span class="field-validation-valid" data-valmsg-for="id" data-valmsg-replace="true"></span>
+                    </div>
+                }
+
+            </div>
+        </div>
+        }
+        <input type="submit" value="Save" class="btn btn-small btn-success pull-right" />
+    }
 </div>

@@ -29,12 +29,17 @@ namespace Llprk.Web.UI.Models
         [Display(Name="published?")]
         public bool IsPublished { get; set; }
 
+        public string PageTitle { get; set; }
+        public string MetaDescription { get; set; }
+        public string UrlHandle { get; set; }
+
+
         /// <summary>
         /// Wieviele davon sind verfügbar.
         /// </summary>
         public int Available { get; set; }
 
-        public virtual ICollection<Product_Picture> Pictures { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
 
@@ -47,8 +52,7 @@ namespace Llprk.Web.UI.Models
             get
             {
                 return Pictures
-                    .OrderBy(p => p.Pos)
-                    .Select(p => p.Picture);
+                    .OrderBy(p => p.Pos);
             }
         } 
 
@@ -91,7 +95,7 @@ namespace Llprk.Web.UI.Models
         public Product()
         {
             Available = 1;
-            Pictures = new HashSet<Product_Picture>();
+            Pictures = new HashSet<Picture>();
             Tags = new HashSet<Tag>();
         }
 

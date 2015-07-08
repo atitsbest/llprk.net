@@ -12,7 +12,6 @@
           <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Parameters" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Parameters" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Product_Picture" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Picture" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product_Tag" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ShippingCategories" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCategories" store:Type="Tables" Schema="dbo" />
@@ -34,13 +33,9 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_Picture_Picture" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Product_Picture_Picture">
-            <End Role="Pictures" EntitySet="Pictures" />
-            <End Role="Product_Picture" EntitySet="Product_Picture" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Picture_Product" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Product_Picture_Product">
+          <AssociationSet Name="FK_Picture_Product" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Picture_Product">
             <End Role="Products" EntitySet="Products" />
-            <End Role="Product_Picture" EntitySet="Product_Picture" />
+            <End Role="Pictures" EntitySet="Pictures" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Tag_Product" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Product_Tag_Product">
             <End Role="Products" EntitySet="Products" />
@@ -123,14 +118,7 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Product_Picture">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="PictureId" />
-          </Key>
-          <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="PictureId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
           <Property Name="Pos" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Product_Tag">
@@ -154,6 +142,9 @@
           <Property Name="Available" Type="int" Nullable="false" />
           <Property Name="ShippingCategoryId" Type="int" Nullable="false" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
+          <Property Name="PageTitle" Type="nchar" MaxLength="70" />
+          <Property Name="MetaDescription" Type="nchar" MaxLength="160" />
+          <Property Name="UrlHandle" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ShippingCategories">
           <Key>
@@ -232,26 +223,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_Picture_Picture">
-          <End Role="Pictures" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" Multiplicity="1" />
-          <End Role="Product_Picture" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Picture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pictures">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product_Picture">
-              <PropertyRef Name="PictureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Picture_Product">
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="1" />
-          <End Role="Product_Picture" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Picture" Multiplicity="*" />
+        <Association Name="FK_Picture_Product">
+          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Product_Picture">
+            <Dependent Role="Pictures">
               <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -334,7 +313,6 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderLine" EntitySet="OrderLines" />
           </AssociationSet>
-          <EntitySet Name="Product_Picture" EntityType="Llprk.Web.UI.Models.ShopDbModel.Product_Picture" />
           <EntitySet Name="Products" EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" />
           <AssociationSet Name="FK_dbo_Products_dbo_Categories_CategoryId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId">
             <End Role="Category" EntitySet="Categories" />
@@ -343,14 +321,6 @@
           <AssociationSet Name="FK_dbo_OrderLines_dbo_Products_ProductId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId">
             <End Role="Product" EntitySet="Products" />
             <End Role="OrderLine" EntitySet="OrderLines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Picture_Picture" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Picture">
-            <End Role="Picture" EntitySet="Pictures" />
-            <End Role="Product_Picture" EntitySet="Product_Picture" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Picture_Product" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Product_Picture" EntitySet="Product_Picture" />
           </AssociationSet>
           <AssociationSet Name="Product_Tag" Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag">
             <End Role="Product" EntitySet="Products" />
@@ -375,6 +345,10 @@
           <AssociationSet Name="FK_Products_ShippingCategory" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory">
             <End Role="ShippingCategory" EntitySet="ShippingCategories" />
             <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Product" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Picture_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
@@ -408,6 +382,9 @@
           </Key>
           <Property Type="Guid" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ProductId" />
+          <Property Type="Int32" Name="Pos" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Picture_Product" FromRole="Picture" ToRole="Product" />
           </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -447,17 +424,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Product_Picture">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="PictureId" />
-          </Key>
-          <Property Type="Int32" Name="ProductId" Nullable="false" />
-          <Property Type="Guid" Name="PictureId" Nullable="false" />
-          <Property Type="Int32" Name="Pos" Nullable="false" />
-          <NavigationProperty Name="Picture" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Picture" FromRole="Product_Picture" ToRole="Picture" />
-          <NavigationProperty Name="Product" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Product" FromRole="Product_Picture" ToRole="Product" />
-        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -470,11 +436,14 @@
           <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Int32" Name="Available" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Pictures" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Product_Picture_Product" FromRole="Product" ToRole="Product_Picture" />
           <NavigationProperty Name="Tags" Relationship="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" FromRole="Product" ToRole="Tag" />
           <Property Type="Int32" Name="ShippingCategoryId" Nullable="false" />
           <NavigationProperty Name="ShippingCategory" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" FromRole="Product" ToRole="ShippingCategory" />
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Pictures" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Picture_Product" FromRole="Product" ToRole="Picture" />
+          <Property Type="String" Name="PageTitle" MaxLength="70" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="MetaDescription" MaxLength="160" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="UrlHandle" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_Products_dbo_Categories_CategoryId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Category" Role="Category" Multiplicity="0..1">
@@ -500,30 +469,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="OrderLine">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Picture_Picture">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Picture" Role="Picture" Multiplicity="1" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product_Picture" Role="Product_Picture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Picture">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product_Picture">
-              <PropertyRef Name="PictureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Picture_Product">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product_Picture" Role="Product_Picture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product_Picture">
               <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -617,6 +562,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Picture_Product">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Picture" Role="Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -652,6 +609,8 @@
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Picture">
               <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="Pos" ColumnName="Pos" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -680,18 +639,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product_Picture">
-            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Product_Picture">
-              <MappingFragment StoreEntitySet="Product_Picture">
-                <ScalarProperty Name="Pos" ColumnName="Pos" />
-                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="UrlHandle" ColumnName="UrlHandle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="ShippingCategoryId" ColumnName="ShippingCategoryId" />
                 <ScalarProperty Name="Available" ColumnName="Available" />
