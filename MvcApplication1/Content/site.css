@@ -588,13 +588,24 @@ footer {
 }
 /* Fieldsets
    --------------------------------------------- */
-fieldset legend.shipped {
+form {
+  margin-top: 15px;
+}
+form fieldset legend.shipped {
   border-bottom: none;
   background: url('../images/border.png') repeat-x 0px 36px;
 }
-fieldset > hr {
+form fieldset > hr {
   border: 1px solid #f1f1f1;
   margin: 30px 0 30px;
+}
+form fieldset .col-xs-3 > h3 {
+  margin-top: 0;
+}
+form fieldset .validationElement {
+  background: #f2dede;
+  color: #a94442;
+  border-color: #ebccd1;
 }
 /* Form
    --------------------------------------------- */

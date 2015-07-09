@@ -123,17 +123,31 @@ footer {
 
 /* Fieldsets
    --------------------------------------------- */
-fieldset {
-    legend {
-        &.shipped {
-            border-bottom: none;
-            background: url('../images/border.png') repeat-x 0px 36px;
-        }
-    }
+form {
+    margin-top: 15px;
 
-    > hr {
-        border: 1px solid #f1f1f1;
-        margin: 30px 0 30px;
+    fieldset {
+        legend {
+            &.shipped {
+                border-bottom: none;
+                background: url('../images/border.png') repeat-x 0px 36px;
+            }
+        }
+
+        > hr {
+            border: 1px solid #f1f1f1;
+            margin: 30px 0 30px;
+        }
+
+        .col-xs-3 > h3 {
+            margin-top: 0;
+        }
+
+        .validationElement {
+            background: @alert-danger-bg;
+            color: @alert-danger-text;
+            border-color: @alert-danger-border;
+        }
     }
 }
 

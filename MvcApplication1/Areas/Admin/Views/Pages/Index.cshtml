@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Pages";
+}
+
+<a href="@Url.Action(MVC.Admin.Pages.New())" class="btn btn-success pull-right">Add Page</a>
+<div class="row">
+    <table class="table table-hover" data-bind="with:pages">
+        <thead>
+            <tr>
+                <th style="" data-bind="sorter: 'Title'">Title</th>
+                <th style="" data-bind="sorter: 'CreatedAt'">Last modified</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: data">
+            <tr data-bind="click: $root.gotoEditPage.bind($data, id)">
+                <td>
+                    <a data-bind="attr: {href:'@Url.Action(MVC.Admin.Pages.Edit())/'+id},text:title"></a>
+                    <p data-bind="text:content"></p>
+                </td>
+                <td data-bind="text: createdAt" />
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <pagernumberofitems params="source: pages, text: 'Anzahl Einträge'"></pagernumberofitems>
+        </div>
+        <div class="col-xs-6">
+            <pager params="source: pages, visiblePages: 10" class="pull-right"></pager>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        require(["app/pages/index"], function (main) {
+            main({
+                pagesUrl: '@Url.Action(MVC.Admin.Sources.Pages())'
+            });
+        });
+    </script>
+}

@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers.api
 {

@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 using AutoMapper;
 using Llprk.Web.UI.Controllers;
 using Llprk.Web.UI.Areas.Admin.Models;

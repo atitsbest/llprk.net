@@ -158,7 +158,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 		/// </summary>
 		/// <param name="orderId"></param>
 		/// <returns></returns>
-        private Llprk.Web.UI.Models.Order _GetUnpaidOrder(int orderId)
+        private Llprk.DataAccess.Models.Order _GetUnpaidOrder(int orderId)
         {
             var order = db.Orders.FirstOrDefault(o => o.Id == orderId);
             if (order == null) {

@@ -1,4 +1,4 @@
-﻿using Llprk.Web.UI.Models;
+﻿using Llprk.DataAccess.Models;
 using System.Linq;
 using System.Web.Mvc;
 

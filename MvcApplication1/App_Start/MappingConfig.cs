@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 using Llprk.Web.UI.Areas.Admin.Models;
 
 namespace Llprk.Web.UI

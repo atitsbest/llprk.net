@@ -2,6 +2,7 @@
 using Llprk.Web.UI.Migrations;
 using log4net.Config;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Llprk.Web.UI
             log4net.Config.XmlConfigurator.Configure();
 
             AutoMapper.Mapper.AddProfile<AutoMapperProfile>();
+            AutoMapper.Mapper.AddProfile<Llprk.Application.AutoMapperProfile>();
 
             AreaRegistration.RegisterAllAreas();
 
@@ -33,10 +35,16 @@ namespace Llprk.Web.UI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MappingConfig.RegisterMappings();
 
+            // Create Json.Net formatter serializing DateTime using the ISO 8601 format
+            var config = GlobalConfiguration.Configuration;
+            var settings = config.Formatters.JsonFormatter.SerializerSettings;
+            settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
 
 
 			// Migrationen laufen lassen.
-            new _01OrderPriceInDBMigration().Execute();
+            //new _01OrderPriceInDBMigration().Execute();
         }
     }
 }

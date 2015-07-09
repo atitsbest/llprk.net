@@ -3,7 +3,7 @@ using Llprk.Web.UI.Application;
 using Llprk.Web.UI.Application.Exceptions;
 using Llprk.Web.UI.Areas.Admin.Models;
 using Llprk.Web.UI.Controllers;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;

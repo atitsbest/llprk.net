@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 using Llprk.Web.UI.ViewModels;
 using System;
 using System.Collections.Generic;

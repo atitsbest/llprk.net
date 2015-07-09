@@ -107,7 +107,7 @@
     @RenderSection("scripts", required: false)
 
     @{
-        var allCountries = new Llprk.Web.UI.Models.Entities().Countries
+        var allCountries = new Llprk.DataAccess.Models.Entities().Countries
             .Include("ShippingCosts")
             .OrderBy(c => c.Name)
             .Select(c => new {

@@ -5,17 +5,30 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Llprk.Web.UI.Models;
+using Llprk.DataAccess.Models;
 using AutoMapper;
 using Llprk.Web.UI.Application;
 using Llprk.Web.UI.Controllers;
 using Llprk.Web.UI.Areas.Admin.Models;
+using Llprk.Application.DTOs.Responses;
+using Llprk.Application.Services;
+using Llprk.Web.UI.Controllers.Results;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
     public partial class PagesController : ApplicationController
     {
+        protected IPageService _PageService;
+
+        /// <summary>
+        /// CTR
+        /// </summary>
+        public PagesController()
+        {
+            _PageService = new PageService();
+        }
+
         //
         // GET: /Pages/
         public virtual ActionResult Index()
@@ -24,10 +37,28 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Pages/Details/5
-        public virtual ActionResult Details(int id = 0)
+        // GET: /Pages/
+        public virtual ActionResult New()
         {
             return View();
+        }
+
+        //
+        // GET: /Pages/Edit/5
+        public virtual ActionResult Edit(int id = 0)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult Create(NewPageResponse info)
+        {
+            if (ModelState.IsValid)
+            {
+                _PageService.CreatePage(info);
+                return new EntityResult(MVC.Admin.Pages.Index(), string.Format("Page '{0}' added.", info.Title));
+            }
+            return new Http400Result(ModelState);
         }
 
         //

@@ -1,8 +1,6 @@
-﻿using Llprk.Web.UI.Controllers.Results;
-using Llprk.Web.UI.Models;
+﻿using Llprk.DataAccess.Models;
+using Llprk.Web.UI.Controllers.Results;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -54,6 +52,7 @@ namespace Llprk.Web.UI.Controllers
         {
             return new AjaxMessageResult(message, AjaxMessageResult.AjaxMessageType.Warning);
         }
+
 
         /// <summary>
         /// Wie der Name schon sagt: Der Browser soll die Antwort auf keinen Fall cachen. 

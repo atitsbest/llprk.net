@@ -28,9 +28,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
     public partial class PagesController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public PagesController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected PagesController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -61,6 +58,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Create()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult DeleteConfirmed()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
@@ -82,7 +85,9 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Details = "Details";
+            public readonly string New = "New";
+            public readonly string Edit = "Edit";
+            public readonly string Create = "Create";
             public readonly string Delete = "Delete";
             public readonly string DeleteConfirmed = "Delete";
         }
@@ -91,19 +96,29 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Details = "Details";
+            public const string New = "New";
+            public const string Edit = "Edit";
+            public const string Create = "Create";
             public const string Delete = "Delete";
             public const string DeleteConfirmed = "Delete";
         }
 
 
-        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Details
+        public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string info = "info";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -131,7 +146,11 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Index = "Index";
+                public readonly string New = "New";
             }
+            public readonly string Index = "~/Areas/Admin/Views/Pages/Index.cshtml";
+            public readonly string New = "~/Areas/Admin/Views/Pages/New.cshtml";
         }
     }
 
@@ -152,14 +171,37 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+        partial void NewOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Details(int id)
+        public override System.Web.Mvc.ActionResult New()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.New);
+            NewOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DetailsOverride(callInfo, id);
+            EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Application.DTOs.Responses.NewPageResponse info);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(Llprk.Application.DTOs.Responses.NewPageResponse info)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "info", info);
+            CreateOverride(callInfo, info);
             return callInfo;
         }
 

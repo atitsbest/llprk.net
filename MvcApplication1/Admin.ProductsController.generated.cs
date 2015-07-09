@@ -227,10 +227,10 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Web.UI.Models.Product product, string pictureIds, int[] tagIds);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.DataAccess.Models.Product product, string pictureIds, int[] tagIds);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Llprk.Web.UI.Models.Product product, string pictureIds, int[] tagIds)
+        public override System.Web.Mvc.ActionResult Create(Llprk.DataAccess.Models.Product product, string pictureIds, int[] tagIds)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "product", product);
@@ -253,10 +253,10 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Web.UI.Models.Product product, string pictureIds, int[] tagIds);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.DataAccess.Models.Product product, string pictureIds, int[] tagIds);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Llprk.Web.UI.Models.Product product, string pictureIds, int[] tagIds)
+        public override System.Web.Mvc.ActionResult Edit(Llprk.DataAccess.Models.Product product, string pictureIds, int[] tagIds)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "product", product);
