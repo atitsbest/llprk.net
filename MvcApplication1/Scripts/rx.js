@@ -5566,7 +5566,7 @@
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     root.Rx = Rx;
 
-    define(function() {
+    define("rx", function() {
       return Rx;
     });
   } else if (freeExports && freeModule) {

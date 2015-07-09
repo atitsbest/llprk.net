@@ -37,8 +37,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var xs = _CollectionFn(db);
-            return View(xs.ToList());
+            if (_CollectionFn != null)
+            {
+                var xs = _CollectionFn(db);
+                return View(xs.ToList());
+            }
+            return View(new List<T>());
         }
 
         //

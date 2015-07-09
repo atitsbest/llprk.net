@@ -47,6 +47,13 @@ namespace Llprk.Web.UI.Areas.Admin.Models
         public ICollection<Tag> Tags { get; set; }
         public IEnumerable<Tag> AllTags { get; set; }
 
+		[Display(Name="Page Title")]
+        public string PageTitle { get; set; }
+		[Display(Name="Meta Description")]
+        public string MetaDescription { get; set; }
+		[Display(Name="Url")]
+        public string UrlHandle { get; set; }
+
         /// <summary>
         /// CTR
         /// </summary>

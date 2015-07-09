@@ -12,6 +12,8 @@ namespace Llprk.Web.UI.Models
 
         public virtual ICollection<ShippingCost> ShippingCosts { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
 		/// <summary>
 		/// Wie hoch sind die Versandkosten für die angegebene 
         /// Kategorie in dieses Land?

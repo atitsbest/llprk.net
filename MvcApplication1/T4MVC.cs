@@ -45,6 +45,7 @@ namespace T4MVC
         public Llprk.Web.UI.Areas.Admin.Controllers.CategoriesController Categories = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_CategoriesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.CountriesController Countries = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_CountriesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.OrdersController Orders = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_OrdersController();
+        public Llprk.Web.UI.Areas.Admin.Controllers.PagesController Pages = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_PagesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.ParametersController Parameters = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ParametersController();
         public Llprk.Web.UI.Areas.Admin.Controllers.PicturesController Pictures = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_PicturesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.ProductsController Products = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ProductsController();

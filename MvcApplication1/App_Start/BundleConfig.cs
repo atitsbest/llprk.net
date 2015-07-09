@@ -19,17 +19,19 @@ namespace Llprk.Web.UI
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/globalize/globalize.js",
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-{version}.js",
-                        "~/Scripts/angular.js",
-                        "~/Scripts/angular-resource.js",
-                        "~/Scripts/i18n/angular-locale_de-at.js",
+                        "~/Scripts/knockout-3.3.0.js",
+                        "~/Scripts/knockout.mapping.js",
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/ckeditor.js",
+                        "~/Scripts/utils.js",
                         "~/Scripts/rx.js",
-                        "~/Scripts/rx.time.js",
-                        "~/Scripts/app/admin/*.js"));
+                        "~/Scripts/rx.time.js")
+                        .IncludeDirectory("~/Scripts/ko.extenders", "*.js", true)
+                        .IncludeDirectory("~/Areas/Admin/Scripts", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(
                         "~/Scripts/jquery-{version}.js",
@@ -37,9 +39,6 @@ namespace Llprk.Web.UI
                         "~/Scripts/jquery.rotatescale.js",
                         "~/Scripts/jquery.lazyload.js",
                         "~/Scripts/jquery.cycle.js",
-                        "~/Scripts/angular.js",
-                        "~/Scripts/angular-resource.js",
-                        "~/Scripts/i18n/angular-locale_de-at.js",
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/app/*.js"));

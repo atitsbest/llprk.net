@@ -74,3 +74,13 @@
 				</text>)
 	))
 </div>
+
+@section scripts {
+    <script type="text/javascript">
+        require(["app/orders/index"], function (main) {
+            main({
+                ordersUrl: '@Url.Action(MVC.Admin.Orders.Index())'
+            });
+        });
+    </script>
+}

@@ -43,6 +43,8 @@ namespace Llprk.Web.UI.Models
 
         public virtual ICollection<Tag> Tags { get; set; }
 
+        public virtual ICollection<OrderLine> OrderLines { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         /// <summary>

@@ -2,9 +2,11 @@
 <!DOCTYPE html>
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    var cultureName = System.Globalization.CultureInfo.CurrentCulture.Name;
 
     var categoriesActive = controllerName == "categories" ? "active" : null;
     var productsActive = controllerName == "products" ? "active" : null;
+    var pagesActive = controllerName == "pages" ? "active" : null;
     var ordersActive = controllerName == "orders" ? "active" : null;
 }
 <html lang="en">
@@ -25,6 +27,7 @@
 <body>
     <header class="container">
         <h2>lillypark</h2>
+        <a href="@Url.Action(MVC.Admin.Pages.Index())" class="@productsActive">Pages</a>
         <a href="@Url.Action(MVC.Admin.Products.Index())" class="@productsActive">Products</a>
         <a href="@Url.Action(MVC.Admin.Orders.Index())" class="orders @ordersActive">Orders</a>
         <ul class="orders dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
@@ -35,12 +38,12 @@
           <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="ready"})">Read to ship</a></li>
           <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="overdue"})">Overdue</a></li>
         </ul>
-        <a href="@Url.Action(MVC.Admin.Categories.Index())" class="config @categoriesActive">Config</a>
+        <a href="#" class="config @categoriesActive">Config</a>
         <ul class="config dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Categories.Index())">Categories</a></li>
-          <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Tags.Index())">Tags</a></li>
-          <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Countries.Index())">Countries</a></li>
-          <li><a tabindex="-1" href="@Url.Action(MVC.Admin.ShippingCosts.Index())">Shipping Costs</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "categories")">Categories</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "tags")">Tags</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "countries")">Countries</a></li>
+          <li><a tabindex="-1" href="@Url.Action("index", "shippingcosts")">Shipping Costs</a></li>
           <li class="divider"></li>
           <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Parameters.Index())">Mail messages</a></li>
         </ul>
@@ -61,7 +64,19 @@
         </div>
     </footer>
 
+    <script src="@Url.Content("~/Scripts/almond.js")"></script>
     @Scripts.Render("~/bundles/admin")
+
+    <script src="@Url.Content(string.Format("~/Scripts/globalize/cultures/globalize.culture.{0}.js", cultureName))"></script>
+
+    <script type="text/javascript">
+        var culture = '@cultureName';
+        Globalize.culture(culture);
+
+        require(["app/main"], function (main, toastr) {
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
     <script>
         CKEDITOR.basePath = '@Url.Content("~/Scripts")/';
@@ -69,7 +84,7 @@
             config.customConfig = '';
             config.autoGrow_onStartup = true;
             config.contentsCss = '';
-            config.height = '500px';
+            config.height = '300px';
             config.toolbarGroups = [
                 { name: 'document', groups: ['mode', 'document', 'doctools'] },
                 // On the basic preset, clipboard and undo is handled by keyboard.
