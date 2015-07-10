@@ -1,0 +1,33 @@
+﻿@model Llprk.Application.DTOs.Requests.EditPageRequest
+@using Newtonsoft.Json.Converters
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "New";
+}
+
+<form method="post" action="@Url.Action(MVC.Admin.Pages.Update())" class="form" data-bind="submit:submit,with:model">
+    <fieldset>
+        @Html.Partial(MVC.Admin.Pages.Views._Form)
+
+        <hr />
+
+        <div class="row">
+            <div class="col-xs-9 col-xs-offset-3">
+                <button type="submit" class="btn btn-success">Save Page</button>
+                <small>or</small>
+                <a href="@Url.Action(MVC.Admin.Pages.Index())">Cancel</a>
+                <a href="@Url.Action(MVC.Admin.Pages.Delete(Model.Id))" class="btn btn-default pull-right">Delete Page</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+@section scripts {
+    <script type="text/javascript">
+        require(["app/pages/edit"], function (main) {
+            main({
+                model: @Html.Raw(JsonConvert.SerializeObject(Model, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
+            });
+        });
+    </script>
+}

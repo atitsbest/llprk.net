@@ -4,55 +4,15 @@
 
 <form method="post" action="@Url.Action(MVC.Admin.Pages.Create())" class="form" data-bind="submit:submit,with:model">
     <fieldset>
-        <div class="row">
-            <div class="col-xs-3">
-                <h3>Write your page</h3>
-                <p class="text-muted">
-                    Add title and the content of the page.
-                </p>
-            </div>
-            <div class="col-xs-9">
-                <textbox params="label:'Title',value:title,attr:{ placeholder:'Give the page a title...'}"></textbox>
-                <textbox params="label:'Content',value:content,rows:5"></textbox>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="col-xs-3">
-                <h3>Visibility</h3>
-                <p>Is the page ready for primetime?</p>
-            </div>
-            <div class="col-xs-9">
-                <radiobuttons params="label:'Currently',value:isPublished,options:['Published', 'Hidden'],inline:false"></radiobuttons>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="col-xs-3">
-                <h3>Search Engines</h3>
-                <p class="text-muted">
-                    Enter page titles, meta description, url
-                </p>
-            </div>
-            <div class="col-xs-9">
-                <formgroup params="label:'Url',value:$data">
-                    <div class="input-group">
-                          <div class="input-group-addon">@Url.ActionAbsolute(MVC.Store.Pages.Index())</div>
-                          <input type="text" data-bind="value:value.urlHandle" class="form-control">
-                    </div>
-                </formgroup>
-            </div>
-        </div>
+        @Html.Partial(MVC.Admin.Pages.Views._Form)
 
         <hr />
 
         <div class="row">
             <div class="col-xs-9 col-xs-offset-3">
                 <button type="submit" class="btn btn-success">Add Page</button>
+                <small>or</small>
+                <a href="@Url.Action(MVC.Admin.Pages.Index())">Cancel</a>
             </div>
         </div>
     </fieldset>

@@ -12,6 +12,7 @@ using Llprk.Web.UI.Controllers;
 using Llprk.Web.UI.Areas.Admin.Models;
 using Llprk.Application.Parameters;
 using Llprk.Application;
+using Llprk.Web.UI.Controllers.Results;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
@@ -23,7 +24,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         [HttpGet]
         public virtual JsonResult Pages(QueryParams ps)
         {
-            return Json(new Result<Page>(ps, db.Pages), JsonRequestBehavior.AllowGet);
+            return JsonNet(new Result<Page>(ps, db.Pages));
         }
     }
 }

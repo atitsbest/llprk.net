@@ -336,11 +336,17 @@
     </Content>
     <Content Include="Areas\Admin\Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />
+    <Content Include="Areas\Admin\Scripts\app\pages\pages.edit.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.new.js" />
     <Content Include="Areas\Admin\Scripts\app\orders\orders.index.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.index.js" />
     <Content Include="Areas\Admin\Scripts\bootstrap.datepicker.js" />
     <Content Include="Areas\Admin\Scripts\knockout.validation.js" />
+    <Content Include="Scripts\ko.bindings\ko.date.js" />
+    <Content Include="Scripts\ko.bindings\ko.datepicker.js" />
+    <Content Include="Scripts\ko.bindings\ko.numericValue.js" />
+    <Content Include="Scripts\ko.bindings\ko.sorter.js" />
+    <Content Include="Scripts\ko.bindings\ko.stopBubble.js" />
     <Content Include="Areas\Admin\Scripts\ko.components.js" />
     <Content Include="Areas\Admin\Scripts\source.js" />
     <Content Include="Content\bootstrap\bootstrap.css">
@@ -555,6 +561,8 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\New.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\_Form.cshtml" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\ko.extenders\ko.withPrevious.js" />

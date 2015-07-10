@@ -33,6 +33,7 @@ namespace Llprk.Web.UI
                         "~/Scripts/rx.js",
                         "~/Scripts/rx.time.js")
                         .IncludeDirectory("~/Scripts/ko.extenders", "*.js", true)
+                        .IncludeDirectory("~/Scripts/ko.bindings", "*.js", true)
                         .IncludeDirectory("~/Areas/Admin/Scripts", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/shop").Include(

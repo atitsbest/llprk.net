@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Write your page</h3>
+        <p class="text-muted">
+            Add title and the content of the page.
+        </p>
+    </div>
+    <div class="col-xs-9">
+        <textbox params="label:'Title',value:title,attr:{ placeholder:'Give the page a title...'}"></textbox>
+        <textbox params="label:'Content',value:content,rows:5"></textbox>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Visibility</h3>
+        <p>Is the page ready for primetime?</p>
+    </div>
+    <div class="col-xs-9">
+        <radiobuttons params="label:'Currently',options:[{name:'Published', value:'true'}, {name:'Hidden', value:'false'}],value:$parent.publishedProxy, inline:false"></radiobuttons>
+        <span data-bind="text:isPublished"></span>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Search Engines</h3>
+        <p class="text-muted">
+            Enter page titles, meta description, url
+        </p>
+    </div>
+    <div class="col-xs-9">
+        <formgroup params="label:'Url',value:$data">
+                    <div class="input-group">
+                          <div class="input-group-addon">@Url.ActionAbsolute(MVC.Store.Pages.Index())</div>
+                          <input type="text" data-bind="value: value.urlHandle" class="form-control">
+                    </div>
+                </formgroup>
+    </div>
+</div>

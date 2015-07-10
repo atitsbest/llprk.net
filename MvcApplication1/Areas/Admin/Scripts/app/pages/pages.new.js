@@ -1,4 +1,4 @@
-﻿define("app/pages/new", ["knockout", "underscore", "app/BaseViewModel"], function (ko, _, BaseViewModel) {
+﻿define("app/pages/new", ["knockout", "underscore", "app/BaseViewModel", "app/pages/form"], function (ko, _, BaseViewModel, Form) {
     function Vm(settings) {
         var self = this;
 
@@ -8,22 +8,11 @@
         self.model = {
             title: ko.observable(),
             content: ko.observable(),
-            isPublished: ko.observable('Hidden'),
+            isPublished: ko.observable(false),
             urlHandle: ko.observable()
         };
 
-        // Update url handle if title changes
-        self.model.title.subscribe(function (title) {
-            var handle = (title || "")
-                .replace(/\s/g, '_')
-                .replace(/[äÄ]/g, 'ae')
-                .replace(/[öÖ]/g, 'oe')
-                .replace(/[üÜ]/g, 'ue')
-                .replace(/ß/g, 'ss')
-                .toLowerCase();
-            self.model.urlHandle(handle);
-        });
-
+        _.extend(self, new Form(self.model));
         _.extend(self, new BaseViewModel(self.model));
     }
 

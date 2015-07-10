@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Llprk.Application.DTOs.Requests;
 using Llprk.Application.DTOs.Responses;
 using Llprk.DataAccess.Models;
 using System;
@@ -14,6 +15,13 @@ namespace Llprk.Application
         {
             Mapper.CreateMap<NewPageResponse, Page>()
                 .ForMember(d => d.Id, o => o.Ignore());
+
+            Mapper.CreateMap<EditPageResponse, Page>()
+                .ForMember(d => d.Id, o => o.Ignore())
+                .ForMember(d => d.CreatedAt, o => o.Ignore());
+
+
+            Mapper.CreateMap<Page, EditPageRequest>();
         }
 
     }

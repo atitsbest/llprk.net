@@ -58,9 +58,21 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Edit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Create()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Update()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,6 +100,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string New = "New";
             public readonly string Edit = "Edit";
             public readonly string Create = "Create";
+            public readonly string Update = "Update";
             public readonly string Delete = "Delete";
             public readonly string DeleteConfirmed = "Delete";
         }
@@ -99,6 +112,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public const string New = "New";
             public const string Edit = "Edit";
             public const string Create = "Create";
+            public const string Update = "Update";
             public const string Delete = "Delete";
             public const string DeleteConfirmed = "Delete";
         }
@@ -117,6 +131,14 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
+        {
+            public readonly string info = "info";
+        }
+        static readonly ActionParamsClass_Update s_params_Update = new ActionParamsClass_Update();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Update UpdateParams { get { return s_params_Update; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Update
         {
             public readonly string info = "info";
         }
@@ -146,9 +168,13 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Form = "_Form";
+                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
                 public readonly string New = "New";
             }
+            public readonly string _Form = "~/Areas/Admin/Views/Pages/_Form.cshtml";
+            public readonly string Edit = "~/Areas/Admin/Views/Pages/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Pages/Index.cshtml";
             public readonly string New = "~/Areas/Admin/Views/Pages/New.cshtml";
         }
@@ -202,6 +228,18 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "info", info);
             CreateOverride(callInfo, info);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Application.DTOs.Responses.EditPageResponse info);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Update(Llprk.Application.DTOs.Responses.EditPageResponse info)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "info", info);
+            UpdateOverride(callInfo, info);
             return callInfo;
         }
 

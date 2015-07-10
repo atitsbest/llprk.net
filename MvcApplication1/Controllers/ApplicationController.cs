@@ -53,6 +53,15 @@ namespace Llprk.Web.UI.Controllers
             return new AjaxMessageResult(message, AjaxMessageResult.AjaxMessageType.Warning);
         }
 
+        /// <summary>
+        /// Json-Pendant für Json.Net.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        protected JsonNetResult JsonNet(object data)
+        {
+            return new JsonNetResult(data);
+        }
 
         /// <summary>
         /// Wie der Name schon sagt: Der Browser soll die Antwort auf keinen Fall cachen. 

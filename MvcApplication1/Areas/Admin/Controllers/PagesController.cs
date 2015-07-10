@@ -45,9 +45,10 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         //
         // GET: /Pages/Edit/5
-        public virtual ActionResult Edit(int id = 0)
+        public virtual ActionResult Edit(int id)
         {
-            return View();
+            var vm = _PageService.GetPageForEdit(id);
+            return View(vm);
         }
 
         [HttpPost]
@@ -57,6 +58,17 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             {
                 _PageService.CreatePage(info);
                 return new EntityResult(MVC.Admin.Pages.Index(), string.Format("Page '{0}' added.", info.Title));
+            }
+            return new Http400Result(ModelState);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Update(EditPageResponse info)
+        {
+            if (ModelState.IsValid)
+            {
+                _PageService.UpdatePage(info);
+                return new EntityResult(MVC.Admin.Pages.Index(), string.Format("Page '{0}' saved.", info.Title));
             }
             return new Http400Result(ModelState);
         }

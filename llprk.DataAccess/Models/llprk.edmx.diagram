@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Category" Width="1.5" PointX="8.97680893772133" PointY="21.201173509099135" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" Width="1.5" PointX="3.2335020821697555" PointY="5.7351650026324972" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Width="1.5" PointX="9.4146594374508865" PointY="23.921569194608168" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" Width="1.5" PointX="3.5857287811048928" PointY="4.7134612373604723" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" Width="1.5" PointX="0.875" PointY="4.625" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Page" Width="1.5" PointX="10.345675555218792" PointY="22.275308813096633" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Parameter" Width="1.5" PointX="0.962341195420521" PointY="25.060218539582667" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" Width="1.5" PointX="5.9766025068129425" PointY="30.422874002914352" />

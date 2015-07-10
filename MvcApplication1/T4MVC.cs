@@ -522,6 +522,18 @@ namespace Links
         public static readonly string knockout_3_3_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-3.3.0.min.js") ? Url("knockout-3.3.0.min.js") : Url("knockout-3.3.0.js");
         public static readonly string knockout_mapping_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.mapping.min.js") ? Url("knockout.mapping.min.js") : Url("knockout.mapping.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class ko_bindings {
+            private const string URLPATH = "~/Scripts/ko.bindings";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string ko_date_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.date.min.js") ? Url("ko.date.min.js") : Url("ko.date.js");
+            public static readonly string ko_datepicker_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.datepicker.min.js") ? Url("ko.datepicker.min.js") : Url("ko.datepicker.js");
+            public static readonly string ko_numericValue_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.numericValue.min.js") ? Url("ko.numericValue.min.js") : Url("ko.numericValue.js");
+            public static readonly string ko_sorter_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.sorter.min.js") ? Url("ko.sorter.min.js") : Url("ko.sorter.js");
+            public static readonly string ko_stopBubble_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.stopBubble.min.js") ? Url("ko.stopBubble.min.js") : Url("ko.stopBubble.js");
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class ko_extenders {
             private const string URLPATH = "~/Scripts/ko.extenders";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -828,6 +840,13 @@ namespace Links
         public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
              
         public static readonly string site_min_css = Url("site.min.css");
+        public static readonly string table_less = Url("table.less");
+        public static readonly string Copy_of_site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Copy of site.min.css") ? Url("Copy of site.min.css") : Url("Copy of site.css");
+             
+        public static readonly string Copy_of_site_min_css = Url("Copy of site.min.css");
+        public static readonly string table_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/table.min.css") ? Url("table.min.css") : Url("table.css");
+             
+        public static readonly string table_min_css = Url("table.min.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
             private const string URLPATH = "~/Content/themes";
@@ -973,6 +992,7 @@ namespace Links
                         private const string URLPATH = "~/Areas/Admin/Scripts/app/pages";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string pages_edit_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.edit.min.js") ? Url("pages.edit.min.js") : Url("pages.edit.js");
                         public static readonly string pages_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.index.min.js") ? Url("pages.index.min.js") : Url("pages.index.js");
                         public static readonly string pages_new_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.new.min.js") ? Url("pages.new.min.js") : Url("pages.new.js");
                     }
@@ -1378,6 +1398,17 @@ namespace Links
                 public static class Assets
                 {
                     public const string globalize_js = "~/Scripts/globalize/globalize.js"; 
+                }
+            }
+            public static partial class ko_bindings 
+            {
+                public static class Assets
+                {
+                    public const string ko_date_js = "~/Scripts/ko.bindings/ko.date.js"; 
+                    public const string ko_datepicker_js = "~/Scripts/ko.bindings/ko.datepicker.js"; 
+                    public const string ko_numericValue_js = "~/Scripts/ko.bindings/ko.numericValue.js"; 
+                    public const string ko_sorter_js = "~/Scripts/ko.bindings/ko.sorter.js"; 
+                    public const string ko_stopBubble_js = "~/Scripts/ko.bindings/ko.stopBubble.js"; 
                 }
             }
             public static partial class ko_extenders 

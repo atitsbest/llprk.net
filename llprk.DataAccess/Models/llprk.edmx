@@ -108,11 +108,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nchar" Nullable="false" MaxLength="100" />
           <Property Name="Content" Type="text" Nullable="false" />
           <Property Name="UrlHandle" Type="nchar" MaxLength="100" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
+          <Property Name="IsPublished" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Parameters">
           <Key>
@@ -424,6 +425,7 @@
           <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="UrlHandle" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="0" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
         </EntityType>
         <EntityType Name="Parameter">
           <Key>
@@ -658,6 +660,7 @@
           <EntitySetMapping Name="Pages">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Page">
               <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UrlHandle" ColumnName="UrlHandle" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

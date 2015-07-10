@@ -1,0 +1,90 @@
+﻿@import url(bootstrap/variables.less);
+@import url(bootstrap/mixins.less);
+@import url(bootstrap/forms.less);
+
+table {
+    thead {
+        tr {
+            th {
+                position: relative;
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                &:hover {
+                    background: #fafafa;
+                }
+
+                span.desc {
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-bottom: 5px solid #000;
+                    margin-top: -12px;
+                }
+
+                span.asc {
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid #000;
+                    margin-top: -6px;
+                }
+
+                span.sign {
+                    opacity: .2;
+                    position: absolute;
+                    top: 70%;
+                    right: 5px;
+                    font-size: 12px;
+                    color: inherit;
+                }
+
+                &.sorted {
+                    &.desc {
+                        span.asc.sign {
+                            opacity: .2;
+                        }
+                        span.desc.sign {
+                            opacity: 1;
+                        }
+                    }
+
+                    span.asc.sign {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &.filter > td {
+                border: none;
+
+                > input {
+                    .form-control;
+                    .input-sm;
+                }
+            }
+        }
+    }
+}
+
+.pagesize {
+    padding-bottom: 10px;
+
+    label {
+        font-weight: normal;
+    }
+}
+.pagerNumberOfItems {
+    line-height: 28px;
+
+    label {
+        font-weight: normal;
+    }
+}
