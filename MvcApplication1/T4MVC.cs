@@ -52,6 +52,7 @@ namespace T4MVC
         public Llprk.Web.UI.Areas.Admin.Controllers.ShippingCostsController ShippingCosts = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ShippingCostsController();
         public Llprk.Web.UI.Areas.Admin.Controllers.SourcesController Sources = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_SourcesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.TagsController Tags = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_TagsController();
+        public Llprk.Web.UI.Areas.Admin.Controllers.ThemesController Themes = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ThemesController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -993,6 +994,7 @@ namespace Links
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string pages_edit_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.edit.min.js") ? Url("pages.edit.min.js") : Url("pages.edit.js");
+                        public static readonly string pages_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.form.min.js") ? Url("pages.form.min.js") : Url("pages.form.js");
                         public static readonly string pages_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.index.min.js") ? Url("pages.index.min.js") : Url("pages.index.js");
                         public static readonly string pages_new_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pages.new.min.js") ? Url("pages.new.min.js") : Url("pages.new.js");
                     }

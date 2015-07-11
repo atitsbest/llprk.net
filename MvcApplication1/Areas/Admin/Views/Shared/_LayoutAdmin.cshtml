@@ -7,6 +7,7 @@
     var categoriesActive = controllerName == "categories" ? "active" : null;
     var productsActive = controllerName == "products" ? "active" : null;
     var pagesActive = controllerName == "pages" ? "active" : null;
+    var themesActive = controllerName == "themes" ? "active" : null;
     var ordersActive = controllerName == "orders" ? "active" : null;
 }
 <html lang="en">
@@ -38,6 +39,7 @@
           <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="ready"})">Read to ship</a></li>
           <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="overdue"})">Overdue</a></li>
         </ul>
+        <a href="@Url.Action(MVC.Admin.Themes.Index())" class="orders @themesActive">Themes</a>
         <a href="#" class="config @categoriesActive">Config</a>
         <ul class="config dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li><a tabindex="-1" href="@Url.Action("index", "categories")">Categories</a></li>

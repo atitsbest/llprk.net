@@ -225,9 +225,13 @@
     <Compile Include="Admin.TagsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.ThemesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\ThemesController.cs" />
     <Compile Include="Areas\Admin\Controllers\Results\EntityResult.cs" />
     <Compile Include="Areas\Admin\Controllers\Results\Http400Result.cs" />
     <Compile Include="Areas\Admin\Controllers\Results\Http500JsonResult.cs" />
@@ -336,12 +340,25 @@
     </Content>
     <Content Include="Areas\Admin\Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />
+    <Content Include="Areas\Admin\Scripts\app\pages\pages.form.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.edit.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.new.js" />
     <Content Include="Areas\Admin\Scripts\app\orders\orders.index.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.index.js" />
     <Content Include="Areas\Admin\Scripts\bootstrap.datepicker.js" />
     <Content Include="Areas\Admin\Scripts\knockout.validation.js" />
+    <Content Include="Content\Copy of site.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Copy of site.min.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
+    <Content Include="Content\table.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
+    <Content Include="Content\table.min.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
     <Content Include="Scripts\ko.bindings\ko.date.js" />
     <Content Include="Scripts\ko.bindings\ko.datepicker.js" />
     <Content Include="Scripts\ko.bindings\ko.numericValue.js" />
@@ -563,6 +580,9 @@
     <Content Include="Areas\Admin\Views\Pages\New.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\_Form.cshtml" />
+    <Content Include="Content\table.less" />
+    <Content Include="Areas\Admin\Views\Themes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Themes\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\ko.extenders\ko.withPrevious.js" />
