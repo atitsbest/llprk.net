@@ -1,0 +1,22 @@
+﻿@model Llprk.Web.UI.Areas.Admin.Models.ThemeContent
+@using Newtonsoft.Json.Converters
+@using Newtonsoft.Json
+@{
+    Layout = null;
+}
+<div class="fileactions">
+    <div class="row">
+        <div class="col-xs-6">
+            <strong>@Model.Id</strong>
+        </div>
+        <div class="col-xs-6 text-right">
+            <a href="#" class="">Rename</a>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <img src="@Url.Content(System.IO.Path.Combine("~/Themes/", Model.Theme, Model.Type+"s", Model.Id))" alt="" />
+</div>
+
+<script type="text/javascript">
+</script>

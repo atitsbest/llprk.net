@@ -62,6 +62,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Content()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Content);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ThemesController Actions { get { return MVC.Admin.Themes; } }
@@ -80,6 +86,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Edit = "Edit";
+            public readonly string Content = "Content";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,6 +94,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string Edit = "Edit";
+            public const string Content = "Content";
         }
 
 
@@ -97,6 +105,16 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Content s_params_Content = new ActionParamsClass_Content();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Content ContentParams { get { return s_params_Content; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Content
+        {
+            public readonly string id = "id";
+            public readonly string type = "type";
+            public readonly string theme = "theme";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -113,6 +131,25 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             }
             public readonly string Edit = "~/Areas/Admin/Views/Themes/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Themes/Index.cshtml";
+            static readonly _EditorsClass s_Editors = new _EditorsClass();
+            public _EditorsClass Editors { get { return s_Editors; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _EditorsClass
+            {
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass
+                {
+                    public readonly string _404 = "_404";
+                    public readonly string _Image = "_Image";
+                    public readonly string _Text = "_Text";
+                    public readonly string _Unsupported = "_Unsupported";
+                }
+                public readonly string _404 = "~/Areas/Admin/Views/Themes/Editors/_404.cshtml";
+                public readonly string _Image = "~/Areas/Admin/Views/Themes/Editors/_Image.cshtml";
+                public readonly string _Text = "~/Areas/Admin/Views/Themes/Editors/_Text.cshtml";
+                public readonly string _Unsupported = "~/Areas/Admin/Views/Themes/Editors/_Unsupported.cshtml";
+            }
         }
     }
 
@@ -141,6 +178,20 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ContentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string type, string theme);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Content(string id, string type, string theme)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Content);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "type", type);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "theme", theme);
+            ContentOverride(callInfo, id, type, theme);
             return callInfo;
         }
 

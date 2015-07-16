@@ -1,0 +1,37 @@
+﻿@model Llprk.Web.UI.Areas.Admin.Models.ThemeContent
+@using Newtonsoft.Json.Converters
+@using Newtonsoft.Json
+@{
+    Layout = null;
+}
+<div class="fileactions">
+    <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-6 text-right">
+            <a href="#" class="">Rename</a>
+            <a href="#" class="btn btn-success">Save</a>
+        </div>
+    </div>
+</div>
+<div id="@Model.UID" class="content"> </div>
+
+<script type="text/javascript">
+    require(["jquery",
+        "codemirror",
+        "codemirror/addons/modes/overlay",
+        "codemirror/modes/htmlmixed/htmlmixed",
+        "codemirror/modes/liquid/liquid"], function ($, CodeMirror) {
+
+        $('.nav-tabs a:last').tab('show');
+
+        var editor = new CodeMirror($('#@Model.UID')[0], {
+            mode: '@Model.EditorMode',
+            lineNumbers: true,
+            autofocus: true,
+            height: 'auto',
+            value: @Html.Raw(JsonConvert.SerializeObject(Model.Content))
+        });
+        setTimeout(function() { editor.refresh(); }, 1);
+    });
+</script>

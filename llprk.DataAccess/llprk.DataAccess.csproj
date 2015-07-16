@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\01OrderPriceInDBMigration.cs" />
+    <Compile Include="MimeTypeMap.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\llprk.Context.cs">

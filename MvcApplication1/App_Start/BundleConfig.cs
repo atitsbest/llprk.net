@@ -32,6 +32,7 @@ namespace Llprk.Web.UI
                         "~/Scripts/utils.js",
                         "~/Scripts/rx.js",
                         "~/Scripts/rx.time.js")
+                        .IncludeDirectory("~/Scripts/bootstrap", "*.js", true)
                         .IncludeDirectory("~/Scripts/ko.extenders", "*.js", true)
                         .IncludeDirectory("~/Scripts/ko.bindings", "*.js", true)
                         .IncludeDirectory("~/Areas/Admin/Scripts", "*.js", true));
@@ -54,7 +55,9 @@ namespace Llprk.Web.UI
             bundles.Add(new StyleBundle("~/Content/admin").Include(
                 "~/Content/bootstrap/bootstrap.css",
                 "~/Content/utils.css",
-                "~/Content/site.css"));
+                "~/Areas/Admin/Content/codemirror.css",
+                "~/Content/site.css")
+                .IncludeDirectory("~/Areas/Admin/Scripts/codemirror/", "*.css", true));
 
             bundles.Add(new StyleBundle("~/Content/shop").Include(
                 "~/Content/bootstrap/bootstrap.css",

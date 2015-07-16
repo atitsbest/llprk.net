@@ -59,8 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperProfile.cs" />
-    <Compile Include="DTOs\Request\ThemesRequest.cs" />
-    <Compile Include="DTOs\Request\EditPageRequest.cs" />
+    <Compile Include="DTOs\Requests\EditThemeRequest.cs" />
+    <Compile Include="DTOs\Requests\ThemesRequest.cs" />
+    <Compile Include="DTOs\Requests\EditPageRequest.cs" />
     <Compile Include="DTOs\Responses\EditPageResponse.cs" />
     <Compile Include="DTOs\Responses\NewPageResponse.cs" />
     <Compile Include="IQueryable+OrderByName.cs" />

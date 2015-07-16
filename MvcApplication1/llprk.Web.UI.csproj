@@ -239,6 +239,7 @@
     <Compile Include="Areas\Admin\Controllers\Results\JsonNetResult.cs" />
     <Compile Include="Areas\Admin\Controllers\SourcesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Models\ThemeContent.cs" />
     <Compile Include="Areas\Store\ApplicationViewPage.cs" />
     <Compile Include="Application\Exceptions\AppException.cs" />
     <Compile Include="Application\MailService.cs" />
@@ -284,6 +285,7 @@
     <Compile Include="Liquid\StylesheetTagFilter.cs" />
     <Compile Include="Liquid\ScriptTagFilter.cs" />
     <Compile Include="Migrations\01OrderPriceInDBMigration.cs" />
+    <Compile Include="MimeTypeMap.cs" />
     <Compile Include="Payments\PayPal.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -338,6 +340,8 @@
     <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Content\codemirror.css" />
+    <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
     <Content Include="Areas\Admin\Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.form.js" />
@@ -345,8 +349,20 @@
     <Content Include="Areas\Admin\Scripts\app\pages\pages.new.js" />
     <Content Include="Areas\Admin\Scripts\app\orders\orders.index.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.index.js" />
+    <Content Include="Areas\Admin\Scripts\app\themes\themes.edit.js" />
     <Content Include="Areas\Admin\Scripts\bootstrap.datepicker.js" />
+    <Content Include="Areas\Admin\Scripts\codemirror\codemirror.js" />
     <Content Include="Areas\Admin\Scripts\knockout.validation.js" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\css\css.js" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\css\index.html" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\css\less.html" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\htmlmixed\htmlmixed.js" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\javascript\index.html" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\javascript\javascript.js" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\javascript\json-ld.html" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\liquid\liquid.css" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\liquid\liquid.js" />
+    <Content Include="Areas\Admin\Scripts\codemirror\modes\xml\xml.js" />
     <Content Include="Content\Copy of site.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
@@ -359,6 +375,12 @@
     <Content Include="Content\table.min.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap\alert.js" />
+    <Content Include="Scripts\bootstrap\button.js" />
+    <Content Include="Scripts\bootstrap\dropdown.js" />
+    <Content Include="Scripts\bootstrap\modal.js" />
+    <Content Include="Scripts\bootstrap\tab.js" />
+    <Content Include="Scripts\bootstrap\transition.js" />
     <Content Include="Scripts\ko.bindings\ko.date.js" />
     <Content Include="Scripts\ko.bindings\ko.datepicker.js" />
     <Content Include="Scripts\ko.bindings\ko.numericValue.js" />
@@ -583,6 +605,10 @@
     <Content Include="Content\table.less" />
     <Content Include="Areas\Admin\Views\Themes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Themes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Themes\Editors\_Image.cshtml" />
+    <Content Include="Areas\Admin\Views\Themes\Editors\_404.cshtml" />
+    <Content Include="Areas\Admin\Views\Themes\Editors\_Unsupported.cshtml" />
+    <Content Include="Areas\Admin\Views\Themes\Editors\_Text.cshtml" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\ko.extenders\ko.withPrevious.js" />
@@ -1000,12 +1026,12 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <None Include="T4MVC.tt.settings.xml" />
-    <Content Include="Themes\minimal\assets\images\banners\01.jpg" />
-    <Content Include="Themes\minimal\assets\images\banners\02.jpg" />
-    <Content Include="Themes\minimal\assets\images\banners\03.jpg" />
-    <Content Include="Themes\minimal\assets\images\lillypark.png" />
-    <Content Include="Themes\minimal\assets\scripts\jquery-1.9.1.js" />
-    <Content Include="Themes\minimal\assets\styles\bootstrap.css" />
+    <Content Include="Themes\minimal\assets\banner-01.jpg" />
+    <Content Include="Themes\minimal\assets\banner-02.jpg" />
+    <Content Include="Themes\minimal\assets\banner-03.jpg" />
+    <Content Include="Themes\minimal\assets\lillypark.png" />
+    <Content Include="Themes\minimal\assets\jquery-1.9.1.js" />
+    <Content Include="Themes\minimal\assets\bootstrap.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1074,12 +1100,12 @@
     <Content Include="Areas\Store\Views\Checkout\Index.cshtml" />
     <Content Include="Areas\Store\Views\Checkout\thankyou.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Themes\minimal\index.liquid" />
-    <Content Include="Themes\minimal\layout.liquid" />
+    <Content Include="Themes\minimal\templates\index.liquid" />
+    <Content Include="Themes\minimal\layouts\layout.liquid" />
     <None Include="T4MVC.tt.hooks.t4" />
     <Content Include="Themes\minimal\snippets\product_item.liquid" />
-    <Content Include="Themes\minimal\cart.liquid" />
-    <Content Include="Themes\minimal\product.liquid" />
+    <Content Include="Themes\minimal\templates\cart.liquid" />
+    <Content Include="Themes\minimal\templates\product.liquid" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotLiquid\DotLiquid-2010.csproj">
