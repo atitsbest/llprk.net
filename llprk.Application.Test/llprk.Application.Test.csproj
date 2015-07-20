@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA4A897A-6166-4192-8D45-142B4A219A7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>llprk.Application.Test</RootNamespace>
+    <AssemblyName>llprk.Application.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Services\ThemeServiceTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\llprk.Application\llprk.Application.csproj">
+      <Project>{a966ae33-2a64-432d-b553-a3c8d6bcc147}</Project>
+      <Name>llprk.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\llprk.DataAccess\llprk.DataAccess.csproj">
+      <Project>{2589d591-9c40-41f0-9320-8310e81cfdff}</Project>
+      <Name>llprk.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\minimal\assets\banner-01.jpg" />
+    <Content Include="Fixtures\Themes\minimal\assets\banner-02.jpg" />
+    <Content Include="Fixtures\Themes\minimal\assets\bootstrap.css" />
+    <Content Include="Fixtures\Themes\minimal\assets\jquery-1.9.1.js" />
+    <Content Include="Fixtures\Themes\minimal\assets\lillypark.png" />
+    <Content Include="Fixtures\Themes\theme2\20150720215912\assets\asset1.js" />
+    <Content Include="Fixtures\Themes\theme2\20150720215912\assets\asset2.css" />
+    <Content Include="Fixtures\Themes\theme2\20150720215912\assets\asset3.png" />
+    <Content Include="Fixtures\Themes\theme2\_unpublished\assets\asset1.js" />
+    <Content Include="Fixtures\Themes\theme2\_unpublished\assets\asset2.css" />
+    <Content Include="Fixtures\Themes\theme2\_unpublished\assets\asset3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\minimal\layouts\layout.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\minimal\snippets\product_item.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\minimal\templates\cart.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\minimal\templates\index.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\minimal\templates\product.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\20150720215912\layouts\layout.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\20150720215912\snippets\snippet1.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\20150720215912\templates\template1.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\20150720215912\templates\template2.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\20150720215912\snippets\snippet2.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme3\layouts\layout.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme3\templates\template1.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme3\templates\template2.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fixtures\Themes\theme3\assets\" />
+    <Folder Include="Fixtures\Themes\theme3\snippets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\_unpublished\layouts\layout.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\_unpublished\snippets\snippet1.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\_unpublished\snippets\snippet2.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\_unpublished\templates\template1.liquid" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fixtures\Themes\theme2\_unpublished\templates\template2.liquid" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,18 @@
+﻿<h3>
+  <a href="{{ product.url }}">{{ product.name }}</a>
+</h3>
+Nur {{ product.price | price }}
+
+{% if product.has_picture %}
+  <img src="{{ product.featured_picture.url }}"></img>
+  <ul>
+    {% for picture in product.pictures %}
+    <li>
+      <img src="{{ picture.thumbnail_url }}" />
+    </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+  
+
+{{product.description | prettyprint | paragraph }}

@@ -1,0 +1,14 @@
+﻿{% comment %}
+For the checkout and update buttons to work, they need to use
+a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
+{% endcomment %}
+
+<h1>{{ product.name }}</h1>
+
+{% if product.has_picture %}
+	<img src="{{ product.featured_picture.url }}" />
+{% endif %} 
+
+<form action="{{ add_to_cart_url }}" method="post" enctype="multipart/form-data">
+	<input type="submit" name="add" id="add" class="primary button" value="In den Warenkorb">
+</form>

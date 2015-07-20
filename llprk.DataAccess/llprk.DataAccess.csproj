@@ -76,6 +76,7 @@
     <Compile Include="Models\ShippingCategory.cs" />
     <Compile Include="Models\ShippingCost.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Theme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
