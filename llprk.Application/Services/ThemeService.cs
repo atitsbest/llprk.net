@@ -31,10 +31,10 @@ namespace Llprk.Application.Services
         /// Get Quid Information to all available Themes.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Theme> GetAllThemes()
+        public IEnumerable<ITheme> GetAllThemes()
         {
             return Directory.EnumerateDirectories(_Root.AbsolutePath).Select(path =>
-                new Theme(new Uri(path))
+                new FileSystemBasedTheme(new Uri(path))
             );
         }
 
@@ -43,12 +43,25 @@ namespace Llprk.Application.Services
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Theme GetTheme(string name)
+        public ITheme GetTheme(string name)
         {
             var themePath = Path.Combine(_Root.AbsolutePath, name);
             if (!Directory.Exists(themePath)) throw new ArgumentException(string.Format("Cannot find theme '{0}'.", name));
 
-            return new Theme(new Uri(themePath));
+            return new FileSystemBasedTheme(new Uri(themePath));
+        }
+
+        /// <summary>
+        /// Get a single Theme, with all functions and infos.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public ITheme GetUnpublishedTheme(string name)
+        {
+            var themePath = Path.Combine(_Root.AbsolutePath, name);
+            if (!Directory.Exists(themePath)) throw new ArgumentException(string.Format("Cannot find theme '{0}'.", name));
+
+            return new FileSystemBasedTheme(new Uri(themePath)).Unpublished;
         }
 
     }

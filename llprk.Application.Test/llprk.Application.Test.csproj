@@ -64,75 +64,59 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\minimal\assets\banner-01.jpg" />
-    <Content Include="Fixtures\Themes\minimal\assets\banner-02.jpg" />
-    <Content Include="Fixtures\Themes\minimal\assets\bootstrap.css" />
-    <Content Include="Fixtures\Themes\minimal\assets\jquery-1.9.1.js" />
-    <Content Include="Fixtures\Themes\minimal\assets\lillypark.png" />
-    <Content Include="Fixtures\Themes\theme2\20150720215912\assets\asset1.js" />
-    <Content Include="Fixtures\Themes\theme2\20150720215912\assets\asset2.css" />
-    <Content Include="Fixtures\Themes\theme2\20150720215912\assets\asset3.png" />
-    <Content Include="Fixtures\Themes\theme2\_unpublished\assets\asset1.js" />
-    <Content Include="Fixtures\Themes\theme2\_unpublished\assets\asset2.css" />
-    <Content Include="Fixtures\Themes\theme2\_unpublished\assets\asset3.png" />
+    <Content Include="Fixtures\Themes\minimal\current\assets\banner-01.jpg" />
+    <Content Include="Fixtures\Themes\minimal\current\assets\banner-02.jpg" />
+    <Content Include="Fixtures\Themes\minimal\current\assets\bootstrap.css" />
+    <Content Include="Fixtures\Themes\minimal\current\assets\jquery-1.9.1.js" />
+    <Content Include="Fixtures\Themes\minimal\current\assets\lillypark.png" />
+    <Content Include="Fixtures\Themes\theme2\current\assets\asset1.js" />
+    <Content Include="Fixtures\Themes\theme2\current\assets\asset2.css" />
+    <Content Include="Fixtures\Themes\theme2\current\assets\asset3.png" />
+    <Content Include="Fixtures\Themes\theme2\unpublished\assets\asset1.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\minimal\layouts\layout.liquid" />
+    <Content Include="Fixtures\Themes\theme2\current\layouts\layout.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\minimal\snippets\product_item.liquid" />
+    <Content Include="Fixtures\Themes\theme2\current\snippets\snippet1.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\minimal\templates\cart.liquid" />
+    <Content Include="Fixtures\Themes\theme2\current\templates\template1.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\minimal\templates\index.liquid" />
+    <Content Include="Fixtures\Themes\theme2\current\templates\template2.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\minimal\templates\product.liquid" />
+    <Content Include="Fixtures\Themes\theme2\current\snippets\snippet2.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\20150720215912\layouts\layout.liquid" />
+    <Folder Include="Fixtures\Themes\theme3\current\assets\" />
+    <Folder Include="Fixtures\Themes\theme3\current\snippets\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\20150720215912\snippets\snippet1.liquid" />
+    <Content Include="Fixtures\Themes\theme2\unpublished\layouts\layout.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\20150720215912\templates\template1.liquid" />
+    <Content Include="Fixtures\Themes\theme2\unpublished\snippets\snippet1.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\20150720215912\templates\template2.liquid" />
+    <Content Include="Fixtures\Themes\theme2\unpublished\snippets\snippet2.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\20150720215912\snippets\snippet2.liquid" />
+    <Content Include="Fixtures\Themes\theme2\unpublished\templates\template1.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme3\layouts\layout.liquid" />
+    <Content Include="Fixtures\Themes\theme2\unpublished\templates\template2.liquid" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\Themes\theme3\templates\template1.liquid" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fixtures\Themes\theme3\templates\template2.liquid" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fixtures\Themes\theme3\assets\" />
-    <Folder Include="Fixtures\Themes\theme3\snippets\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\_unpublished\layouts\layout.liquid" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\_unpublished\snippets\snippet1.liquid" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\_unpublished\snippets\snippet2.liquid" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\_unpublished\templates\template1.liquid" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fixtures\Themes\theme2\_unpublished\templates\template2.liquid" />
+    <None Include="Fixtures\Themes\minimal\current\layouts\layout.liquid" />
+    <None Include="Fixtures\Themes\minimal\current\snippets\product_item.liquid" />
+    <None Include="Fixtures\Themes\minimal\current\templates\cart.liquid" />
+    <None Include="Fixtures\Themes\minimal\current\templates\index.liquid" />
+    <None Include="Fixtures\Themes\minimal\current\templates\product.liquid" />
+    <None Include="Fixtures\Themes\theme3\current\layouts\layout.liquid" />
+    <None Include="Fixtures\Themes\theme3\current\templates\template1.liquid" />
+    <None Include="Fixtures\Themes\theme3\current\templates\template2.liquid" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
