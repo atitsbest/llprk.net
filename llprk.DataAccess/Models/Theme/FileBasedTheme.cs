@@ -5,48 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Llprk.DataAccess.Models
+namespace Llprk.DataAccess.Models.Theme
 {
-    /// <summary>
-    /// So soll ein Thema funktionieren:
-    /// Es gibt das aktuelle (publizierte) Thema und dann noch ein
-    /// Thema, dass in Arbeit ist, oder anders: nicht-publiziert.
-    /// 
-    /// Sobald ein Thema bearbeitet wird, wird mit der nicht-publizierten 
-    /// Variante gearbeitet.
-    /// </summary>
-    public interface ITheme
-    {
-
-        string Name { get; set; }
-        IThemeItem[] Assets { get; }
-        IThemeItem[] Layouts { get; }
-        IThemeItem[] Snippets { get; }
-        IThemeItem[] Templates { get; }
-
-        IUnpublishedTheme Unpublished { get; }
-    }
-
-    public interface IUnpublishedTheme : ITheme
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>An instance of the published theme</returns>
-        ITheme Publish();
-    }
-
-    public interface IThemeItem
-    {
-        string Name { get; set; }
-        string Type { get; set; }
-    }
-
     /// <summary>
     /// Domain Class für ein Theme. Enthält alle Funktion und Information
     /// zum Thema "Theme".
     /// </summary>
-    public class FileSystemBasedTheme : ITheme
+    public class FileBasedTheme : ITheme
     {
         public class Item : IThemeItem {
             public string Name { get; set; }
@@ -70,17 +35,17 @@ namespace Llprk.DataAccess.Models
             get
             {
                 return _UnPublishedVersion = _UnPublishedVersion
-                    ?? new UnpublishedFileSystemBasedTheme(new Uri(Path.Combine(_Root, @"unpublished")), Name);
+                    ?? new UnpublishedFileBasedTheme(new Uri(Path.Combine(_Root, @"unpublished")), Name);
             }
         }
-        private UnpublishedFileSystemBasedTheme _UnPublishedVersion;
+        private UnpublishedFileBasedTheme _UnPublishedVersion;
 
 
         /// <summary>
         /// CTR
         /// </summary>
         /// <param name="root"></param>
-        public FileSystemBasedTheme(Uri root, string name = null)
+        public FileBasedTheme(Uri root, string name = null)
         {
             if (root == null) throw new ArgumentNullException("root");
             if (!root.IsFile) throw new ArgumentException("Root must be a path name.");
@@ -96,12 +61,12 @@ namespace Llprk.DataAccess.Models
         /// <param name="path"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        private FileSystemBasedTheme.Item[] _EnumerateItems(string path, string type)
+        private FileBasedTheme.Item[] _EnumerateItems(string path, string type)
         {
             var typePath = _isUnpublished(path)
                 ? Path.Combine(path, type)
                 : Path.Combine(path, "current", type);
-            return Directory.EnumerateFiles(typePath).Select(fi => new FileSystemBasedTheme.Item { Name = fi, Type = "layout" }).ToArray();
+            return Directory.EnumerateFiles(typePath).Select(fi => new FileBasedTheme.Item { Name = fi, Type = "layout" }).ToArray();
         }
 
         /// <summary>
@@ -132,7 +97,7 @@ namespace Llprk.DataAccess.Models
     /// <summary>
     /// An unpublished Theme. Can be published.
     /// </summary>
-    class UnpublishedFileSystemBasedTheme : FileSystemBasedTheme, IUnpublishedTheme
+    class UnpublishedFileBasedTheme : FileBasedTheme, IUnpublishedTheme
     {
         /// <summary>
         /// Semaphore to regulate theme access, while publishing the theme.
@@ -143,7 +108,7 @@ namespace Llprk.DataAccess.Models
         /// CTR
         /// </summary>
         /// <param name="root"></param>
-        public UnpublishedFileSystemBasedTheme(Uri root, string name = null)
+        public UnpublishedFileBasedTheme(Uri root, string name = null)
             : base(root, name)
         { }
 
@@ -160,7 +125,7 @@ namespace Llprk.DataAccess.Models
                 Directory.Move(_Root, currentPath);
                 Directory.Delete(currentTmpPath, true);
 
-                return new FileSystemBasedTheme(new Uri(Path.Combine(_Root, @"..\")));
+                return new FileBasedTheme(new Uri(Path.Combine(_Root, @"..\")));
             }
         }
     }

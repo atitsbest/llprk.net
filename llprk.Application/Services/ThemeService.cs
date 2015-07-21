@@ -1,4 +1,5 @@
 ﻿using Llprk.DataAccess.Models;
+using Llprk.DataAccess.Models.Theme;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +35,7 @@ namespace Llprk.Application.Services
         public IEnumerable<ITheme> GetAllThemes()
         {
             return Directory.EnumerateDirectories(_Root.AbsolutePath).Select(path =>
-                new FileSystemBasedTheme(new Uri(path))
+                new FileBasedTheme(new Uri(path))
             );
         }
 
@@ -48,7 +49,7 @@ namespace Llprk.Application.Services
             var themePath = Path.Combine(_Root.AbsolutePath, name);
             if (!Directory.Exists(themePath)) throw new ArgumentException(string.Format("Cannot find theme '{0}'.", name));
 
-            return new FileSystemBasedTheme(new Uri(themePath));
+            return new FileBasedTheme(new Uri(themePath));
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace Llprk.Application.Services
             var themePath = Path.Combine(_Root.AbsolutePath, name);
             if (!Directory.Exists(themePath)) throw new ArgumentException(string.Format("Cannot find theme '{0}'.", name));
 
-            return new FileSystemBasedTheme(new Uri(themePath)).Unpublished;
+            return new FileBasedTheme(new Uri(themePath)).Unpublished;
         }
 
     }
