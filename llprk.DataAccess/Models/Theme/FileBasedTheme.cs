@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MimeTypes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,13 @@ namespace Llprk.DataAccess.Models.Theme
     {
         public class Item : IThemeItem {
             public string Name { get; set; }
+            public string AbsolutePath { get; set; }
             public string Type { get; set; }
+            public string ContentType { get; set; }
+
+            public string ReadContent() {
+                return File.ReadAllText(AbsolutePath);
+            }
         }
 
         protected string _Root;
@@ -44,6 +51,12 @@ namespace Llprk.DataAccess.Models.Theme
         /// <summary>
         /// CTR
         /// </summary>
+        protected FileBasedTheme()
+        { }
+
+        /// <summary>
+        /// CTR
+        /// </summary>
         /// <param name="root"></param>
         public FileBasedTheme(Uri root, string name = null)
         {
@@ -54,6 +67,23 @@ namespace Llprk.DataAccess.Models.Theme
             _Initialize(name);
         }
 
+        /// <summary>
+        /// Returns a single Item if found.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public IThemeItem GetItem(string name, string type)
+        {
+            IThemeItem result = null;
+
+            result = result ?? Assets.SingleOrDefault(x => x.Name == name && x.Type == type);
+            result = result ?? Layouts.SingleOrDefault(x => x.Name == name && x.Type == type);
+            result = result ?? Templates.SingleOrDefault(x => x.Name == name && x.Type == type);
+            result = result ?? Snippets.SingleOrDefault(x => x.Name == name && x.Type == type);
+
+            return result;
+        }
 
         /// <summary>
         /// Get all the Items of a Theme type (i.e.: Assets, Templates, ...)
@@ -66,15 +96,20 @@ namespace Llprk.DataAccess.Models.Theme
             var typePath = _isUnpublished(path)
                 ? Path.Combine(path, type)
                 : Path.Combine(path, "current", type);
-            return Directory.EnumerateFiles(typePath).Select(fi => new FileBasedTheme.Item { Name = fi, Type = "layout" }).ToArray();
+            return Directory.EnumerateFiles(typePath).Select(fi => new FileBasedTheme.Item { 
+                Name = Path.GetFileName(fi),
+                AbsolutePath = fi,
+                Type = type,
+                ContentType = MimeTypeMap.GetMimeType(Path.GetExtension(fi))
+            }).ToArray();
         }
 
         /// <summary>
         /// Loads alls the Theme-Information.
         /// </summary>
-        private void _Initialize(string name = null)
+        protected void _Initialize(string name = null)
         {
-            if (!Directory.Exists(_Root)) throw new ArgumentException(string.Format("Cannot find theme '{0}'.", Path.GetFileName(_Root)));
+            if (!Directory.Exists(_Root)) throw new ArgumentException(string.Format("Cannot find {0} of theme '{1}'.", Path.GetFileName(_Root), name));
 
             Name = name ?? Path.GetFileName(_Root);
             Layouts = _EnumerateItems(_Root, "layouts");
@@ -109,8 +144,17 @@ namespace Llprk.DataAccess.Models.Theme
         /// </summary>
         /// <param name="root"></param>
         public UnpublishedFileBasedTheme(Uri root, string name = null)
-            : base(root, name)
-        { }
+        {
+            // Copy current version, if unpublished doesnt exist.
+            if (!Directory.Exists(root.AbsolutePath))
+            {
+                var currentPath = Path.Combine(root.AbsolutePath, @"..\current");
+                _copyDirectory(currentPath, root.AbsolutePath, true);
+            }
+
+            _Root = root.AbsolutePath;
+            _Initialize(name);
+        }
 
         public ITheme Publish()
         {
@@ -128,5 +172,50 @@ namespace Llprk.DataAccess.Models.Theme
                 return new FileBasedTheme(new Uri(Path.Combine(_Root, @"..\")));
             }
         }
+
+        /// <summary>
+        /// Copy a whole directory.
+        /// </summary>
+        /// <param name="sourceDirName"></param>
+        /// <param name="destDirName"></param>
+        /// <param name="copySubDirs"></param>
+        private static void _copyDirectory(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            // If the destination directory doesn't exist, create it. 
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location. 
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    _copyDirectory(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
+
     }
 }

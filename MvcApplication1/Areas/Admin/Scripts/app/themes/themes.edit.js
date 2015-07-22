@@ -17,18 +17,25 @@
             //_.extend(self, new BaseViewModel(self.model));
 
             self.openFiles = ko.observableArray();
+            self.currentFile = ko.observable();
 
             self.openFileInTab = function (item) {
                 $.when($.get(settings.itemContentUrl, { id: item.name, type: item.type, theme: settings.themeName })).then(function (content) {
                     item.content = content;
                     item.handle = item.name().replace(/\./, '');
-                    self.openFiles.push(item)
+                    self.openFiles.push(item);
+                    // Show new file in tab (open it).
+                    self.currentFile(item);
                 });
             };
 
             self.closeFileTab = function (item) {
                 if (confirm('Close ' + item.name() + '?\nAll unsaved changes will be lost!')) {
                     var idx = self.openFiles().indexOf(item);
+
+                    if (self.currentFile() === item) {
+                        self.currentFile(_.first(self.openFiles()));
+                    }
                     self.openFiles.splice(idx, 1);
                 }
             }
@@ -55,10 +62,5 @@
         return function (settings) {
             var vm = new Vm(settings);
             ko.applyBindings(vm);
-
-            $('.nav-tabs').on('click', 'a', function (e) {
-                e.preventDefault()
-                $(this).tab('show')
-            });
         };
     });

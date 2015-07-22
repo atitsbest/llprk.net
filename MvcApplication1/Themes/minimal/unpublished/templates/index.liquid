@@ -1,0 +1,10 @@
+﻿<img src="{{ 'lillypark.png' | image_url }}" class="img img-thumbnail"></img>
+<img src="{{ 'banners/01.jpg' | image_url }}"></img>
+<h1>{{ page_title }}</h1>
+<p>
+	Anzahl der Produkte: {{ products | size }}
+</p>
+
+{% for product in products %}
+  {% include snippets/product_item with product %}
+{% endfor %}

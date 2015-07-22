@@ -73,6 +73,27 @@ namespace llprk.Application.Test.Services
         }
 
         [TestMethod]
+        public void Create_Unpublished_Theme_if_not_existent()
+        {
+            try
+            {
+                var sut = _createSut();
+
+                var theme = sut.GetTheme("theme3");
+                var work = theme.Unpublished;
+
+                Assert.AreEqual(theme.Assets.Count(), work.Assets.Count());
+                Assert.AreEqual(theme.Snippets.Count(), work.Snippets.Count());
+                Assert.AreEqual(theme.Layouts.Count(), work.Layouts.Count());
+                Assert.AreEqual(theme.Templates.Count(), work.Templates.Count());
+            }
+            finally
+            {
+                Directory.Delete(Path.Combine(_ThemesPath, "theme3", "unpublished"), true);
+            }
+        }
+
+        [TestMethod]
         public void Publish_Theme()
         {
             var sut = _createSut();

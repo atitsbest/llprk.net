@@ -1026,12 +1026,12 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <None Include="T4MVC.tt.settings.xml" />
-    <Content Include="Themes\minimal\assets\banner-01.jpg" />
-    <Content Include="Themes\minimal\assets\banner-02.jpg" />
-    <Content Include="Themes\minimal\assets\banner-03.jpg" />
-    <Content Include="Themes\minimal\assets\lillypark.png" />
-    <Content Include="Themes\minimal\assets\jquery-1.9.1.js" />
-    <Content Include="Themes\minimal\assets\bootstrap.css" />
+    <Content Include="Themes\minimal\current\assets\banner-01.jpg" />
+    <Content Include="Themes\minimal\current\assets\banner-02.jpg" />
+    <Content Include="Themes\minimal\current\assets\banner-03.jpg" />
+    <Content Include="Themes\minimal\current\assets\lillypark.png" />
+    <Content Include="Themes\minimal\current\assets\jquery-1.9.1.js" />
+    <Content Include="Themes\minimal\current\assets\bootstrap.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1100,12 +1100,12 @@
     <Content Include="Areas\Store\Views\Checkout\Index.cshtml" />
     <Content Include="Areas\Store\Views\Checkout\thankyou.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Themes\minimal\templates\index.liquid" />
-    <Content Include="Themes\minimal\layouts\layout.liquid" />
+    <Content Include="Themes\minimal\current\templates\index.liquid" />
+    <Content Include="Themes\minimal\current\layouts\layout.liquid" />
     <None Include="T4MVC.tt.hooks.t4" />
-    <Content Include="Themes\minimal\snippets\product_item.liquid" />
-    <Content Include="Themes\minimal\templates\cart.liquid" />
-    <Content Include="Themes\minimal\templates\product.liquid" />
+    <Content Include="Themes\minimal\current\snippets\product_item.liquid" />
+    <Content Include="Themes\minimal\current\templates\cart.liquid" />
+    <Content Include="Themes\minimal\current\templates\product.liquid" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotLiquid\DotLiquid-2010.csproj">

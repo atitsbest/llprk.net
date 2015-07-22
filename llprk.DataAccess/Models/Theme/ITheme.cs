@@ -24,6 +24,8 @@ namespace Llprk.DataAccess.Models.Theme
         IThemeItem[] Templates { get; }
 
         IUnpublishedTheme Unpublished { get; }
+
+        IThemeItem GetItem(string name, string type);
     }
 
     public interface IUnpublishedTheme : ITheme
@@ -38,7 +40,11 @@ namespace Llprk.DataAccess.Models.Theme
     public interface IThemeItem
     {
         string Name { get; set; }
+        string AbsolutePath { get; set; }
         string Type { get; set; }
+        string ContentType { get; set; }
+
+        string ReadContent();
     }
 
 

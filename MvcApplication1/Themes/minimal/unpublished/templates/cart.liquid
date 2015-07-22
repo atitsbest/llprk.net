@@ -1,0 +1,23 @@
+﻿{% comment %}
+For the checkout and update buttons to work, they need to use
+a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
+{% endcomment %}
+
+<h1>Shopping Cart</h1>
+
+{% if cart.item_count > 0 %}
+
+  <form action="{{ cart_url }}" method="post">
+    {% for item in cart.items %}
+      <input type="number" name="updates[]" id="updates_{{ item.id }}" class="quantity" value="{{ item.quantity }}" />
+      <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+    {% endfor %}
+    <input type="submit" name="update" value="Update cart" />
+    <span class="or">or</span>
+    <input type="submit" name="checkout" value="Check out" />
+  </form>
+{% else %}
+  <div>
+    <h2>Warenkorb leer</h2>
+  </div>
+{% endif %}
