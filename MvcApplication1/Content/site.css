@@ -669,7 +669,7 @@ header ul.config:hover {
 }
 footer {
   clear: both;
-  height: 100px;
+  margin-top: 30px;
   text-align: center;
   font-size: .8em;
 }

@@ -30,6 +30,9 @@
             lineNumbers: true,
             autofocus: true,
             height: 'auto',
+            extraKeys: {
+                "Ctrl-S": function(instance) { $('a.save_@Model.UID').click(); }
+            },
             value: @Html.Raw(JsonConvert.SerializeObject(Model.Content))
         });
         setTimeout(function() { editor.refresh(); }, 1);
@@ -40,6 +43,7 @@
                 id : '@Model.Id',
                 type : '@Model.Type',
                 theme : '@Model.Theme',
+                
                 content : editor.getValue()
             };
 

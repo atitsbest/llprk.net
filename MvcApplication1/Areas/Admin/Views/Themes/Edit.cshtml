@@ -47,16 +47,13 @@
             margin-bottom: 15px;
         }
 
-    .nav-sidebar {
-        margin-right: -21px; /* 20px padding + 1px border */
-        margin-bottom: 20px;
-        margin-left: -20px;
-    }
+            .nav-filetree > li > a > i {
+                padding-right: 2px;
+            }
 
-        .nav-sidebar > li > a {
-            padding: 5px 20px;
-            display: inline-block;
-        }
+    .nav-filetree > li.add-new > a {
+        color: #999;
+    }
 
         .nav-filetree > .active > a,
         .nav-filetree > .active > a:hover,
@@ -101,13 +98,21 @@
 <script type="text/template" id="templateFile">
     <i class="glyphicon glyphicon-folder-open"></i>
     <strong data-bind="text:name"></strong>
-    <ul class="nav nav-filetree" data-bind="foreach: items">
+    <ul class="nav nav-filetree">
+        <li class="add-new">
+            <a href="#">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Neue Datei</span>
+            </a>
+        </li>
+        <!-- ko foreach: items -->
         <li data-bind="css: {active: $root.currentFile() === $data}">
             <a data-bind="click:$root.openFileInTab.bind($data, $data), attr: { href: '#/' + $parent.name + '/' + name }">
                 <i data-bind="attr: { 'class': $root.iconFromMimetype($data) }"></i>
                 <span data-bind="text:name"></span>
             </a>
         </li>
+        <!-- /ko -->
     </ul>
 </script>
 
