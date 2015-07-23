@@ -122,6 +122,26 @@ namespace llprk.Application.Test.Services
             }
         }
 
+        [TestMethod]
+        public void Update_Item()
+        {
+            var sut = _createSut();
+
+            var theme = sut.GetTheme("theme2").Unpublished;
+            var item = theme.GetItem("snippet1.liquid", "snippets");
+            var backup = item.ReadContent();
+
+            try
+            {
+                item.Update("1234");
+                Assert.AreEqual("1234", File.ReadAllText(Path.Combine(_ThemesPath, "theme2", "unpublished", "snippets", "snippet1.liquid")));
+            }
+            finally
+            {
+                item.Update(backup);
+            }
+        }
+
         /// <summary>
         /// Create Sut.
         /// </summary>

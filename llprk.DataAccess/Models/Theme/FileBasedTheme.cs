@@ -73,7 +73,7 @@ namespace Llprk.DataAccess.Models.Theme
         /// <param name="name"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public IThemeItem GetItem(string name, string type)
+        public virtual IThemeItem GetItem(string name, string type)
         {
             IThemeItem result = null;
 
@@ -134,6 +134,27 @@ namespace Llprk.DataAccess.Models.Theme
     /// </summary>
     class UnpublishedFileBasedTheme : FileBasedTheme, IUnpublishedTheme
     {
+        public class UnpublishedItem : FileBasedTheme.Item, IUnpublishedThemeItem {
+            /// <summary>
+            /// Copy CTR
+            /// </summary>
+            public UnpublishedItem(IThemeItem item)
+            {
+                AbsolutePath = item.AbsolutePath;
+                Name = item.Name;
+                Type = item.Type;
+                ContentType = item.ContentType;
+            }
+
+            /// <summary>
+            /// Write changes to file.
+            /// </summary>
+            /// <param name="content"></param>
+            public void Update(string content)
+            {
+                File.WriteAllText(AbsolutePath, content);
+            }
+        }
         /// <summary>
         /// Semaphore to regulate theme access, while publishing the theme.
         /// </summary>
@@ -154,6 +175,11 @@ namespace Llprk.DataAccess.Models.Theme
 
             _Root = root.AbsolutePath;
             _Initialize(name);
+        }
+
+        public IUnpublishedThemeItem GetItem(string name, string type)
+        {
+            return new UnpublishedFileBasedTheme.UnpublishedItem(base.GetItem(name, type));
         }
 
         public ITheme Publish()

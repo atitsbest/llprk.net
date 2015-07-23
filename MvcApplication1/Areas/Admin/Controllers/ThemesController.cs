@@ -3,6 +3,7 @@ using Llprk.Application.Services;
 using Llprk.DataAccess.Models.Theme;
 using Llprk.Web.UI.Areas.Admin.Models;
 using Llprk.Web.UI.Controllers;
+using Llprk.Web.UI.Controllers.Results;
 using System;
 using System.IO;
 using System.Linq;
@@ -56,6 +57,16 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public virtual ActionResult UpdateItem(string id, string type, string theme, string content)
+        {
+            var themeInst = _ThemeService.GetTheme(theme).Unpublished;
+            var item = themeInst.GetItem(id, type);
+
+            item.Update(content);
+
+            return new EntityResult(string.Format("{0} saved.", id));
         }
 
         //

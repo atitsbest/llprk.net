@@ -56,6 +56,7 @@ namespace Llprk.Web.UI
                 "~/Content/bootstrap/bootstrap.css",
                 "~/Content/utils.css",
                 "~/Areas/Admin/Content/codemirror.css",
+                "~/Areas/Admin/Content/toastr.css",
                 "~/Content/site.css")
                 .IncludeDirectory("~/Areas/Admin/Scripts/codemirror/", "*.css", true));
 

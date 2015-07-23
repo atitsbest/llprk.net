@@ -10,18 +10,18 @@
         </div>
         <div class="col-xs-6 text-right">
             <a href="#" class="">Rename</a>
-            <a href="#" class="btn btn-success">Save</a>
+            <a href="#" class="btn btn-success save_@Model.UID">Save</a>
         </div>
     </div>
 </div>
 <div id="@Model.UID" class="content"> </div>
 
 <script type="text/javascript">
-    require(["jquery",
+    require(["jquery", "toastr",
         "codemirror",
         "codemirror/addons/modes/overlay",
         "codemirror/modes/htmlmixed/htmlmixed",
-        "codemirror/modes/liquid/liquid"], function ($, CodeMirror) {
+        "codemirror/modes/liquid/liquid"], function ($, toastr, CodeMirror) {
 
         $('.nav-tabs a:last').tab('show');
 
@@ -33,5 +33,19 @@
             value: @Html.Raw(JsonConvert.SerializeObject(Model.Content))
         });
         setTimeout(function() { editor.refresh(); }, 1);
+
+        // Save...
+        $('a.save_@Model.UID').click(function() {
+            var payload = {
+                id : '@Model.Id',
+                type : '@Model.Type',
+                theme : '@Model.Theme',
+                content : editor.getValue()
+            };
+
+            $.when($.postJSON('@Url.Action(MVC.Admin.Themes.UpdateItem())', payload))
+            .then(function() { toastr.success('Saved'); })
+            .fail(function() { toastr.error('O_o'); });
+        });
     });
 </script>

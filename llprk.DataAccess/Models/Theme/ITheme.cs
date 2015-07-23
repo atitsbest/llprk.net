@@ -35,6 +35,8 @@ namespace Llprk.DataAccess.Models.Theme
         /// </summary>
         /// <returns>An instance of the published theme</returns>
         ITheme Publish();
+
+        IUnpublishedThemeItem GetItem(string name, string type);
     }
 
     public interface IThemeItem
@@ -45,6 +47,11 @@ namespace Llprk.DataAccess.Models.Theme
         string ContentType { get; set; }
 
         string ReadContent();
+    }
+
+    public interface IUnpublishedThemeItem : IThemeItem
+    {
+        void Update(string content);
     }
 
 

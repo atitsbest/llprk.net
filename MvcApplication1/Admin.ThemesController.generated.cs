@@ -64,6 +64,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UpdateItem()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateItem);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Content()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Content);
@@ -86,6 +92,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Edit = "Edit";
+            public readonly string UpdateItem = "UpdateItem";
             public readonly string Content = "Content";
         }
 
@@ -94,6 +101,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string Edit = "Edit";
+            public const string UpdateItem = "UpdateItem";
             public const string Content = "Content";
         }
 
@@ -105,6 +113,17 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_UpdateItem s_params_UpdateItem = new ActionParamsClass_UpdateItem();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateItem UpdateItemParams { get { return s_params_UpdateItem; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateItem
+        {
+            public readonly string id = "id";
+            public readonly string type = "type";
+            public readonly string theme = "theme";
+            public readonly string content = "content";
         }
         static readonly ActionParamsClass_Content s_params_Content = new ActionParamsClass_Content();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -178,6 +197,21 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateItemOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string type, string theme, string content);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UpdateItem(string id, string type, string theme, string content)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateItem);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "type", type);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "theme", theme);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "content", content);
+            UpdateItemOverride(callInfo, id, type, theme, content);
             return callInfo;
         }
 

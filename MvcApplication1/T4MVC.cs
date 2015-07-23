@@ -1125,6 +1125,7 @@ namespace Links
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string codemirror_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/codemirror.min.css") ? Url("codemirror.min.css") : Url("codemirror.css");
                      
+                public static readonly string toastr_less = Url("toastr.less");
             }
         
         }

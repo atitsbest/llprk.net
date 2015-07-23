@@ -634,6 +634,7 @@
     <Content Include="Areas\Admin\Views\Themes\Editors\_404.cshtml" />
     <Content Include="Areas\Admin\Views\Themes\Editors\_Unsupported.cshtml" />
     <Content Include="Areas\Admin\Views\Themes\Editors\_Text.cshtml" />
+    <Content Include="Areas\Admin\Content\toastr.less" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\ko.extenders\ko.withPrevious.js" />
