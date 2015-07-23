@@ -14,7 +14,7 @@ namespace Llprk.Web.UI
         public void RegisterServices(SimpleInjector.Container container)
         {
             //container.Register<ILehrerRepository, LehrerRepository>();
-            container.RegisterSingle<Uri>(new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\Themes")));
+            container.RegisterSingle<Uri>(new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Themes")));
         }
     }
 }

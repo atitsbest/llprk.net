@@ -26,7 +26,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header class="container">
+    <header class="container-fluid">
         <h2>lillypark</h2>
         <a href="@Url.Action(MVC.Admin.Pages.Index())" class="@productsActive">Pages</a>
         <a href="@Url.Action(MVC.Admin.Products.Index())" class="@productsActive">Products</a>
@@ -51,7 +51,7 @@
         </ul>
     </header>
 
-    <div id="main" class="container">
+    <div id="main" class="container-fluid">
         @RenderSection("featured", required: false)
         <div class="row">
             @RenderBody()

@@ -13,24 +13,25 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
     [Authorize]
     public partial class ThemesController : ApplicationController
     {
+        private ThemeService _ThemeService;
+
         /// <summary>
         /// CTR
         /// </summary>
-        public ThemesController(/*ThemeService themes*/)
+        public ThemesController(ThemeService themes)
         {
-            //if (themes == null) throw new ArgumentNullException("themes");
+            if (themes == null) throw new ArgumentNullException("themes");
 
-            //_ThemeService = new ThemeService(new Uri(Server.MapPath("Themes")));
+            _ThemeService = themes;
         }
 
         //
         // GET: /Themes/
         public virtual ActionResult Index()
         {
-            var themeService = new ThemeService(new Uri(Server.MapPath("~/Themes")));
             var viewModel = new ThemesRequest
             {
-                Themes = themeService.GetAllThemes().Select(t =>
+                Themes = _ThemeService.GetAllThemes().Select(t =>
                     new ThemesRequest.Theme
                     {
                         Name = t.Name,
@@ -45,8 +46,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // GET: /Themes/Edit/{id}
         public virtual ActionResult Edit(string id)
         {
-            var themeService = new ThemeService(new Uri(Server.MapPath("~/Themes")));
-            var theme = themeService.GetTheme(id).Unpublished;
+            var theme = _ThemeService.GetTheme(id).Unpublished;
             var viewModel = new EditThemeRequest(id)
             {
                 Layouts = theme.Layouts.Select(i => new EditThemeRequest.Item(i.Name, i.Type)),
@@ -62,9 +62,8 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         // GET: /Themes/Edit/{id}
         public virtual ActionResult Content(string id, string type, string theme)
         {
-            var themeService = new ThemeService(new Uri(Server.MapPath("~/Themes")));
             var mimeGroup = "unsupported";
-            var themeInst = themeService.GetTheme(theme).Unpublished;
+            var themeInst = _ThemeService.GetTheme(theme).Unpublished;
 
             IThemeItem item = themeInst.GetItem(id, type);
 

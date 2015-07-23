@@ -20,13 +20,15 @@
             self.currentFile = ko.observable();
 
             self.openFileInTab = function (item) {
-                $.when($.get(settings.itemContentUrl, { id: item.name, type: item.type, theme: settings.themeName })).then(function (content) {
-                    item.content = content;
-                    item.handle = item.name().replace(/\./, '');
-                    self.openFiles.push(item);
-                    // Show new file in tab (open it).
-                    self.currentFile(item);
-                });
+                if (!_(self.openFiles()).some(function (f) { return f === item; })) {
+                    $.when($.get(settings.itemContentUrl, { id: item.name, type: item.type, theme: settings.themeName })).then(function (content) {
+                        item.content = content;
+                        item.handle = item.name().replace(/\./, '');
+                        self.openFiles.push(item);
+                    });
+                }
+                // Show new file in tab (open it).
+                self.currentFile(item);
             };
 
             self.closeFileTab = function (item) {
