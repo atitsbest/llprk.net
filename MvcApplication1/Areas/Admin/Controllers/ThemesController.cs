@@ -82,6 +82,52 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         /// <summary>
+        /// Crete an new item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="theme"></param>
+        /// <returns></returns>
+        public virtual ActionResult CreateItem(string id, string type, string theme)
+        { 
+            var themeInst = _ThemeService.GetTheme(theme);
+            var item = themeInst.CreateUnpublishedItem(id, type);
+
+            return JsonNet(item);
+        }
+
+
+        /// <summary>
+        /// Delete an item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="theme"></param>
+        /// <returns></returns>
+        public virtual ActionResult DeleteItem(string id, string type, string theme)
+        { 
+            var themeInst = _ThemeService.GetTheme(theme);
+            themeInst.DeleteUnpublishedItem(id, type);
+
+            return JsonNet(new { });
+        }
+
+        /// <summary>
+        /// Delete an item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="theme"></param>
+        /// <returns></returns>
+        public virtual ActionResult RenameItem(string id, string type, string theme, string newName)
+        { 
+            var themeInst = _ThemeService.GetTheme(theme);
+            var item = themeInst.RenameUnpublishedItem(id, type, newName);
+
+            return JsonNet(item);
+        }
+
+        /// <summary>
         /// Returns the content of the unpublished item.
         /// </summary>
         /// <param name="id"></param>

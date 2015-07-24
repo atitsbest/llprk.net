@@ -17,8 +17,6 @@
         }
 
     .fileactions {
-        padding: 5px;
-        border-bottom: 1px solid #d8d8d8;
     }
 
     #editor {
@@ -38,59 +36,81 @@
         padding: 20px;
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #333;
-        border-right: 1px solid #eee;
+        background-color: transparent;
+        /*border-right: 1px solid #eee;*/
     }
 
         .filetree .directory {
             margin-bottom: 15px;
-            color: #f1f1f1;
+            /*color: #f1f1f1;*/
         }
 
             .filetree .directory .dir-name {
                 text-transform: uppercase;
-                color: #999;
+                /*color: #999;*/
             }
 
-            .nav-filetree > li > a > i {
-                padding-right: 2px;
-            }
+    .nav-filetree > li > a > i {
+        padding-right: 2px;
+    }
 
     .nav-filetree > li.add-new > a {
         color: #999;
     }
 
-        .nav> li > a:hover {
-            color: #fff;
-            background: #444;
-        }
-        .nav > .active > a,
-        .nav> .active > a:hover,
-        .nav> .active > a:focus {
-            color: #fff;
-            background: #444;
-        }
+    .nav-filetree > li > a:hover {
+        /*color: #fff;*/
+        /*background: #444;*/
+    }
 
-    .nav > li > a {
-        color: #fff;
+    .nav-filetree > .active > a,
+    .nav-filetree > .active > a:hover,
+    .nav-filetree > .active > a:focus {
+        /*color: #fff;*/
+        /*background: #444;*/
+    }
+
+    .nav-filetree > li .file-menu {
+        display: none;
+        top: -20px;
+        right: 5px;
+    }
+
+    .nav-filetree > li:hover .file-menu {
+        display: block;
+        position: absolute;
+        margin-top: 28px;
+    }
+
+    .nav-filetree > li > a {
+        /*color: #fff;*/
         padding: 5px 15px;
         white-space: nowrap;
     }
 
+
     .main {
-        padding: 0;
+        padding: 10px 20px 10px 10px;
     }
 </style>
 
 <div class="row">
     <div class="col-sm-3 col-md-2 filetree">
-        <h3>@Model.Name</h3>
+        <h3>
+            @Model.Name 
+            <a href="@Url.Action(MVC.Store.Shop.Index())?theme=@Model.Name&unpublished=1" target="_blank" class="btn btn-xs btn-warning">
+                Preview
+            </a>
+        </h3>
         <!-- ko foreach: itemKeys -->
-            <div class="directory" data-bind="template: { name: 'templateFile', data: { name: $data, items: $parent.items[$data] } }"></div>
+            <div class="directory" data-bind="template: { 
+                    name: 'templateFile', 
+                    data: { name: $data, items: $parent.items[$data] } 
+                }">
+            </div>
         <!-- /ko -->
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <a href="@Url.Action(MVC.Store.Shop.Index())?theme=@Model.Name&unpublished=1" target="_blank" class="btn btn-warning">Preview...</a>
         <ul class="nav nav-tabs" role="tablist" data-bind="foreach: openFiles">
             <li role="presentation" data-bind="css: { active: $root.currentFile() === $data }">
                 <a data-bind="click:$root.currentFile, attr: { href: '#'+handle }" style="display:inline-block;">
@@ -99,28 +119,38 @@
                 </a>
             </li>
         </ul>
-        <div class="tab-content" data-bind="foreach: openFiles">
-            <div role="tabpanel" class="tab-pane" data-bind="css: {active: $root.currentFile() === $data }, attr: { id: handle },html: content">
+        <div class="panel panel-default" style="border-top:none;">
+            <div class="panel-body">
+                <div class="tab-content" data-bind="foreach: openFiles">
+                    <div role="tabpanel" class="tab-pane" data-bind="css: {active: $root.currentFile() === $data }, attr: { id: handle },html: content">
+                </div>
             </div>
+        </div>
     </div>
 </div>    
 
 <script type="text/template" id="templateFile">
     @*<i class="glyphicon glyphicon-folder-open"></i>*@
-    <strong class="dir-name" data-bind="text:name"></strong>
+    <small class="dir-name" data-bind="text:name"></small>
     <ul class="nav nav-filetree">
         <li class="add-new">
-            <a href="#">
+            <a href="" data-bind="click:$root.addItem.bind($data)">
                 <i class="glyphicon glyphicon-plus"></i>
                 <span>Neue Datei</span>
             </a>
         </li>
         <!-- ko foreach: items -->
         <li data-bind="css: {active: $root.currentFile() === $data}">
-            <a data-bind="click:$root.openFileInTab.bind($data, $data), attr: { href: '#/' + $parent.name + '/' + name }">
+            <a data-bind="attr: { href: '#/' + $parent.name + '/' + name() }">
                 <i data-bind="attr: { 'class': $root.iconFromMimetype($data) }"></i>
-                <span data-bind="text:name"></span>
+                <span data-bind="click:$root.openFileInTab.bind($data, $data), text:name"></span>
             </a>
+
+                <i class="glyphicon glyphicon-option-vertical file-menu" data-toggle="dropdown"></i>
+                <ul class="dropdown-menu">
+                      <li><a href="#" data-bind="click:$root.renameItem.bind($parent, $parent, $data)">Rename</a></li>
+                      <li><a href="#" data-bind="click:$root.deleteItem.bind($parent, $parent, $data)">Delete</a></li>
+                </ul>
         </li>
         <!-- /ko -->
     </ul>
@@ -132,6 +162,9 @@
             main({
                 themeName: '@Model.Name',
                 itemContentUrl: '@Url.Action(MVC.Admin.Themes.Content())',
+                createItemUrl: '@Url.Action(MVC.Admin.Themes.CreateItem())',
+                deleteItemUrl: '@Url.Action(MVC.Admin.Themes.DeleteItem())',
+                renameItemUrl: '@Url.Action(MVC.Admin.Themes.RenameItem())',
                 items: @Html.Raw(JsonConvert.SerializeObject(Model, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
                 });
         });

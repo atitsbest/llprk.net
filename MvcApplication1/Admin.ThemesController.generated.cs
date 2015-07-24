@@ -70,6 +70,24 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CreateItem()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateItem);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DeleteItem()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteItem);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RenameItem()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenameItem);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Content()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Content);
@@ -93,6 +111,9 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string Index = "Index";
             public readonly string Edit = "Edit";
             public readonly string UpdateItem = "UpdateItem";
+            public readonly string CreateItem = "CreateItem";
+            public readonly string DeleteItem = "DeleteItem";
+            public readonly string RenameItem = "RenameItem";
             public readonly string Content = "Content";
         }
 
@@ -102,6 +123,9 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public const string Index = "Index";
             public const string Edit = "Edit";
             public const string UpdateItem = "UpdateItem";
+            public const string CreateItem = "CreateItem";
+            public const string DeleteItem = "DeleteItem";
+            public const string RenameItem = "RenameItem";
             public const string Content = "Content";
         }
 
@@ -124,6 +148,37 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string type = "type";
             public readonly string theme = "theme";
             public readonly string content = "content";
+        }
+        static readonly ActionParamsClass_CreateItem s_params_CreateItem = new ActionParamsClass_CreateItem();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateItem CreateItemParams { get { return s_params_CreateItem; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateItem
+        {
+            public readonly string id = "id";
+            public readonly string type = "type";
+            public readonly string theme = "theme";
+        }
+        static readonly ActionParamsClass_DeleteItem s_params_DeleteItem = new ActionParamsClass_DeleteItem();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteItem DeleteItemParams { get { return s_params_DeleteItem; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteItem
+        {
+            public readonly string id = "id";
+            public readonly string type = "type";
+            public readonly string theme = "theme";
+        }
+        static readonly ActionParamsClass_RenameItem s_params_RenameItem = new ActionParamsClass_RenameItem();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RenameItem RenameItemParams { get { return s_params_RenameItem; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RenameItem
+        {
+            public readonly string id = "id";
+            public readonly string type = "type";
+            public readonly string theme = "theme";
+            public readonly string newName = "newName";
         }
         static readonly ActionParamsClass_Content s_params_Content = new ActionParamsClass_Content();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -212,6 +267,49 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "theme", theme);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "content", content);
             UpdateItemOverride(callInfo, id, type, theme, content);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateItemOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string type, string theme);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateItem(string id, string type, string theme)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateItem);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "type", type);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "theme", theme);
+            CreateItemOverride(callInfo, id, type, theme);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteItemOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string type, string theme);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DeleteItem(string id, string type, string theme)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteItem);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "type", type);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "theme", theme);
+            DeleteItemOverride(callInfo, id, type, theme);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RenameItemOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string type, string theme, string newName);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RenameItem(string id, string type, string theme, string newName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenameItem);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "type", type);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "theme", theme);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newName", newName);
+            RenameItemOverride(callInfo, id, type, theme, newName);
             return callInfo;
         }
 

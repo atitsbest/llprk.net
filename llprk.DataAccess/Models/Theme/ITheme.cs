@@ -30,6 +30,8 @@ namespace Llprk.DataAccess.Models.Theme
         IThemeItem GetItem(string name, string type);
         IUnpublishedThemeItem GetUnpublishedItem(string name, string type);
         IUnpublishedThemeItem CreateUnpublishedItem(string name, string type, string content = null);
+        IUnpublishedThemeItem RenameUnpublishedItem(string name, string type, string newName);
+        void DeleteUnpublishedItem(string name, string type);
     }
 
     public interface IThemeItem

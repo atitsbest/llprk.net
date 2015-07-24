@@ -15,7 +15,8 @@ namespace Llprk.DataAccess.Models.Theme
     /// </summary>
     public class FileBasedTheme : ITheme
     {
-        public class Item : IThemeItem {
+        public class Item : IThemeItem
+        {
             public string Name { get; protected set; }
             public string AbsolutePath { get; private set; }
             public string Type { get; private set; }
@@ -39,7 +40,8 @@ namespace Llprk.DataAccess.Models.Theme
             /// Get Item-Content.
             /// </summary>
             /// <returns></returns>
-            public string ReadContent() {
+            public string ReadContent()
+            {
                 return File.ReadAllText(AbsolutePath);
             }
         }
@@ -92,7 +94,7 @@ namespace Llprk.DataAccess.Models.Theme
         protected string _CurrentRoot;
         protected string _UnpublishedRoot;
 
-        public string Name { get; private set;  }
+        public string Name { get; private set; }
 
         public IThemeItem[] Layouts { get { return _Items["layouts"].Values.ToArray(); } }
         public IThemeItem[] Assets { get { return _Items["assets"].Values.ToArray(); } }
@@ -102,7 +104,8 @@ namespace Llprk.DataAccess.Models.Theme
         /// <summary>
         /// All the unpublished items.
         /// </summary>
-        public Dictionary<string, Dictionary<string, IUnpublishedThemeItem>> UnpublishedItems {
+        public Dictionary<string, Dictionary<string, IUnpublishedThemeItem>> UnpublishedItems
+        {
             get
             {
                 return _UnpublishedItems.ToDictionary(
@@ -170,11 +173,11 @@ namespace Llprk.DataAccess.Models.Theme
             if (GetUnpublishedItem(name, type) == null)
             {
                 // Create file...
-                var path = Path.Combine(_Root, type, name);
+                var path = Path.Combine(_UnpublishedRoot, type, name);
                 File.WriteAllText(path, content);
 
                 // ..re-enumerate file-system.
-                _UnpublishedItems[type] = _EnumerateItems(_Root, type, (f) => new UnpublishedItem(
+                _UnpublishedItems[type] = _EnumerateItems(_UnpublishedRoot, type, (f) => new UnpublishedItem(
                     name: Path.GetFileName(f),
                     type: type,
                     absolutePath: f));
@@ -183,6 +186,56 @@ namespace Llprk.DataAccess.Models.Theme
             }
             else throw new ArgumentException(string.Format("File {0}/{1} already exists!", type, name));
         }
+
+
+        /// <summary>
+        /// Renames an item inside its type
+        /// A new item can only be unpublished.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public IUnpublishedThemeItem RenameUnpublishedItem(string name, string type, string newName)
+        {
+            if (GetUnpublishedItem(name, type) != null)
+            {
+                // Create file...
+                var path = Path.Combine(_UnpublishedRoot, type, name);
+                var newPath = Path.Combine(_UnpublishedRoot, type, newName);
+                File.Move(path, newPath);
+
+                // ..re-enumerate file-system.
+                _UnpublishedItems[type] = _EnumerateItems(_UnpublishedRoot, type, (f) => new UnpublishedItem(
+                    name: Path.GetFileName(f),
+                    type: type,
+                    absolutePath: f));
+
+                return _UnpublishedItems[type][newName];
+            }
+            else throw new ArgumentException(string.Format("File {0}/{1} doesn't exists!", type, name));
+        }
+
+
+        /// <summary>
+        /// Delete an unpublished item.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public void DeleteUnpublishedItem(string name, string type)
+        {
+            // Create file...
+            var path = Path.Combine(_UnpublishedRoot, type, name);
+            File.Delete(path);
+
+            // ..re-enumerate file-system.
+            _UnpublishedItems[type] = _EnumerateItems(_UnpublishedRoot, type, (f) => new UnpublishedItem(
+                name: Path.GetFileName(f),
+                type: type,
+                absolutePath: f));
+        }
+
 
         /// <summary>
         /// Replaces current version with the unpublished one.
@@ -216,7 +269,10 @@ namespace Llprk.DataAccess.Models.Theme
         {
             if (items != null && items.ContainsKey(type))
             {
-                return items[type][name];
+                if (items[type].ContainsKey(name))
+                {
+                    return items[type][name];
+                }
             }
 
             return null;
@@ -228,7 +284,7 @@ namespace Llprk.DataAccess.Models.Theme
         /// <param name="path"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected Dictionary<string, T> _EnumerateItems<T>(string path, string type, Func<string, T> createItemFn) 
+        protected Dictionary<string, T> _EnumerateItems<T>(string path, string type, Func<string, T> createItemFn)
             where T : Item
         {
             var typePath = _isUnpublished(path)
