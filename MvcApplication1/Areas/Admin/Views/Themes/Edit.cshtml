@@ -47,7 +47,18 @@
 
             .filetree .directory .dir-name {
                 text-transform: uppercase;
-                /*color: #999;*/
+                font-weight: bold;
+            }
+
+        .filetree .dropdown-menu {
+            min-width: 100px;
+            right: 0;
+            text-align: left;
+            margin-top: -5px;
+            left: auto;
+        }
+            .filetree .dropdown-menu i {
+                margin-right: 5px;
             }
 
     .nav-filetree > li > a > i {
@@ -55,7 +66,10 @@
     }
 
     .nav-filetree > li.add-new > a {
-        color: #999;
+        opacity: .25;
+    }
+    .nav-filetree > li.add-new:hover > a {
+        opacity: .5;
     }
 
     .nav-filetree > li > a:hover {
@@ -83,7 +97,7 @@
     }
 
     .nav-filetree > li > a {
-        /*color: #fff;*/
+        opacity: .75;
         padding: 5px 15px;
         white-space: nowrap;
     }
@@ -94,14 +108,8 @@
     }
 </style>
 
-<div class="row">
+<div class="">
     <div class="col-sm-3 col-md-2 filetree">
-        <h3>
-            @Model.Name 
-            <a href="@Url.Action(MVC.Store.Shop.Index())?theme=@Model.Name&unpublished=1" target="_blank" class="btn btn-xs btn-warning">
-                Preview
-            </a>
-        </h3>
         <!-- ko foreach: itemKeys -->
             <div class="directory" data-bind="template: { 
                     name: 'templateFile', 
@@ -111,6 +119,12 @@
         <!-- /ko -->
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2>
+            @Model.Name 
+            <a href="@Url.Action(MVC.Store.Shop.Index())?theme=@Model.Name&unpublished=1" target="_blank" class="btn btn-sm btn-warning pull-right">
+                Preview
+            </a>
+        </h2>
         <ul class="nav nav-tabs" role="tablist" data-bind="foreach: openFiles">
             <li role="presentation" data-bind="css: { active: $root.currentFile() === $data }">
                 <a data-bind="click:$root.currentFile, attr: { href: '#'+handle }" style="display:inline-block;">
@@ -123,6 +137,7 @@
             <div class="panel-body">
                 <div class="tab-content" data-bind="foreach: openFiles">
                     <div role="tabpanel" class="tab-pane" data-bind="css: {active: $root.currentFile() === $data }, attr: { id: handle },html: content">
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,8 +150,8 @@
     <ul class="nav nav-filetree">
         <li class="add-new">
             <a href="" data-bind="click:$root.addItem.bind($data)">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Neue Datei</span>
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <span>Add item...</span>
             </a>
         </li>
         <!-- ko foreach: items -->
@@ -148,8 +163,18 @@
 
                 <i class="glyphicon glyphicon-option-vertical file-menu" data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
-                      <li><a href="#" data-bind="click:$root.renameItem.bind($parent, $parent, $data)">Rename</a></li>
-                      <li><a href="#" data-bind="click:$root.deleteItem.bind($parent, $parent, $data)">Delete</a></li>
+                      <li>
+                          <a href="#" data-bind="click:$root.renameItem.bind($parent, $parent, $data)">
+                              <i class="glyphicon glyphicon-retweet"></i>
+                            Rename
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" data-bind="click:$root.deleteItem.bind($parent, $parent, $data)">
+                              <i class="glyphicon glyphicon-trash"></i>
+                              Delete
+                          </a>
+                      </li>
                 </ul>
         </li>
         <!-- /ko -->
