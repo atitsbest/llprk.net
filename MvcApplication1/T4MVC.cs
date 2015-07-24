@@ -1126,6 +1126,9 @@ namespace Links
                 public static readonly string codemirror_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/codemirror.min.css") ? Url("codemirror.min.css") : Url("codemirror.css");
                      
                 public static readonly string toastr_less = Url("toastr.less");
+                public static readonly string toastr_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/toastr.min.css") ? Url("toastr.min.css") : Url("toastr.css");
+                     
+                public static readonly string toastr_min_css = Url("toastr.min.css");
             }
         
         }

@@ -26,29 +26,32 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header class="container-fluid">
+    <header class="persistent top">
         <h2>lillypark</h2>
-        <a href="@Url.Action(MVC.Admin.Pages.Index())" class="@productsActive">Pages</a>
-        <a href="@Url.Action(MVC.Admin.Products.Index())" class="@productsActive">Products</a>
-        <a href="@Url.Action(MVC.Admin.Orders.Index())" class="orders @ordersActive">Orders</a>
-        <ul class="orders dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Orders.Index())">All</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="paid"})">Paid</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="shipped"})">Shipped</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="ready"})">Read to ship</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="overdue"})">Overdue</a></li>
-        </ul>
-        <a href="@Url.Action(MVC.Admin.Themes.Index())" class="orders @themesActive">Themes</a>
-        <a href="#" class="config @categoriesActive">Config</a>
-        <ul class="config dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li><a tabindex="-1" href="@Url.Action("index", "categories")">Categories</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "tags")">Tags</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "countries")">Countries</a></li>
-          <li><a tabindex="-1" href="@Url.Action("index", "shippingcosts")">Shipping Costs</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Parameters.Index())">Mail messages</a></li>
-        </ul>
+        <nav class="">
+            <h2>&nbsp;</h2>
+            <a href="@Url.Action(MVC.Admin.Pages.Index())" class="@productsActive">Pages</a>
+            <a href="@Url.Action(MVC.Admin.Products.Index())" class="@productsActive">Products</a>
+            <a href="@Url.Action(MVC.Admin.Orders.Index())" class="orders @ordersActive">Orders</a>
+            <ul class="orders dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+              <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Orders.Index())">All</a></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="paid"})">Paid</a></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="shipped"})">Shipped</a></li>
+              <li class="divider"></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="ready"})">Read to ship</a></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "orders", new {filter="overdue"})">Overdue</a></li>
+            </ul>
+            <a href="@Url.Action(MVC.Admin.Themes.Index())" class="orders @themesActive">Themes</a>
+            <a href="#" class="config @categoriesActive">Config</a>
+            <ul class="config dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+              <li><a tabindex="-1" href="@Url.Action("index", "categories")">Categories</a></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "tags")">Tags</a></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "countries")">Countries</a></li>
+              <li><a tabindex="-1" href="@Url.Action("index", "shippingcosts")">Shipping Costs</a></li>
+              <li class="divider"></li>
+              <li><a tabindex="-1" href="@Url.Action(MVC.Admin.Parameters.Index())">Mail messages</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div id="main" class="container-fluid">

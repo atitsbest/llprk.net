@@ -366,6 +366,12 @@
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\codemirror.css" />
+    <Content Include="Areas\Admin\Content\toastr.css">
+      <DependentUpon>toastr.less</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Content\toastr.min.css">
+      <DependentUpon>toastr.less</DependentUpon>
+    </Content>
     <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
     <Content Include="Areas\Admin\Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />

@@ -29,7 +29,6 @@
         }
 
     .filetree {
-        background: #f1f1f1;
         position: fixed;
         top: 71px;
         bottom: 0;
@@ -39,13 +38,19 @@
         padding: 20px;
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #f5f5f5;
+        background-color: #333;
         border-right: 1px solid #eee;
     }
 
         .filetree .directory {
             margin-bottom: 15px;
+            color: #f1f1f1;
         }
+
+            .filetree .directory .dir-name {
+                text-transform: uppercase;
+                color: #999;
+            }
 
             .nav-filetree > li > a > i {
                 padding-right: 2px;
@@ -55,14 +60,19 @@
         color: #999;
     }
 
-        .nav-filetree > .active > a,
-        .nav-filetree > .active > a:hover,
-        .nav-filetree > .active > a:focus {
+        .nav> li > a:hover {
             color: #fff;
-            background-color: #428bca;
+            background: #444;
+        }
+        .nav > .active > a,
+        .nav> .active > a:hover,
+        .nav> .active > a:focus {
+            color: #fff;
+            background: #444;
         }
 
     .nav > li > a {
+        color: #fff;
         padding: 5px 15px;
         white-space: nowrap;
     }
@@ -96,8 +106,8 @@
 </div>    
 
 <script type="text/template" id="templateFile">
-    <i class="glyphicon glyphicon-folder-open"></i>
-    <strong data-bind="text:name"></strong>
+    @*<i class="glyphicon glyphicon-folder-open"></i>*@
+    <strong class="dir-name" data-bind="text:name"></strong>
     <ul class="nav nav-filetree">
         <li class="add-new">
             <a href="#">

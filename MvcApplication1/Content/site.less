@@ -10,11 +10,25 @@ html {
 }
 
 body {
-    padding: 10px 20px;
-    background: #fff;
+    padding: 0;
+    margin-top: 70px;
+    background: #f9f9f9;
 }
 
 header {
+    position: fixed;
+    background: #fff;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 99;
+    padding: 0 20px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+
     h2 {
         display: inline-block;
         margin-right: .5em;
@@ -25,46 +39,51 @@ header {
         font-family: 'Arial Black', Arial, sans-serif;
     }
 
-    > a {
-        margin: 0 .5em;
-        color: #999;
-        font-size: 16pt;
-        font-family: Pacifico, Georgia, serif;
+    nav {
+        float: right;
 
-        &.active {
-            color: #333;
+        > a {
+            margin: 0 .5em;
+            color: #999;
+            display: inline-block;
+            font-size: 15px;
+            font-weight: bold;
+
+            &.active {
+                color: #333;
+            }
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            &.orders:hover + ul.orders {
+                display: block;
+            }
+
+            &.config:hover + ul.config {
+                display: block;
+            }
         }
 
-        &:hover {
-            text-decoration: none;
+        ul.orders {
+            position: absolute;
+            left: 410px;
+            margin-top: -10px;
+
+            &:hover {
+                display: block;
+            }
         }
 
-        &.orders:hover + ul.orders {
-            display: block;
-        }
+        ul.config {
+            position: absolute;
+            left: 495px;
+            margin-top: -10px;
 
-        &.config:hover + ul.config {
-            display: block;
-        }
-    }
-
-    ul.orders {
-        position: absolute;
-        left: 410px;
-        margin-top: -10px;
-
-        &:hover {
-            display: block;
-        }
-    }
-
-    ul.config {
-        position: absolute;
-        left: 495px;
-        margin-top: -10px;
-
-        &:hover {
-            display: block;
+            &:hover {
+                display: block;
+            }
         }
     }
 }
