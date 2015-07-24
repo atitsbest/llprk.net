@@ -11,11 +11,28 @@ using System.Collections.Generic;
 using Llprk.Web.UI.Liquid;
 using DotLiquid.FileSystems;
 using System;
+using Llprk.Application.Services;
+using Llprk.Web.UI.Filters;
+using Llprk.DataAccess.Models.Theme;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
+    [ThemeFilter]
     public partial class ShopController : ApplicationController
     {
+        private ThemeService _ThemeService;
+
+        /// <summary>
+        /// CTR
+        /// </summary>
+        /// <param name="themes"></param>
+        public ShopController(ThemeService themes)
+        {
+            if (themes == null) throw new ArgumentNullException("themes");
+
+            _ThemeService = themes;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -23,6 +40,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
 #endif
+        [ThemeFilter]
         public virtual ActionResult Index(int? id)
         {
             var viewModel = new ShopIndex();
@@ -33,22 +51,24 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                                 && p.Available > 0) // Nur verfügbare Produkte anzeigen.
 						.OrderBy(p => p.CreatedAt)
 						.ToArray());
-            // Template-Name:
-            var themeName = "minimal";
-            var layoutName = "layout.liquid";
-            var templateName = "index.liquid";
-            var layoutPath = Server.MapPath(Path.Combine("~/Themes", themeName, layoutName));
-            var templatePath = Server.MapPath(Path.Combine("~/Themes", themeName, templateName));
 
-            Template.FileSystem = new LiquidFileSystem(AppDomain.CurrentDomain.BaseDirectory);
+            // Templating:
+            var theme = _ThemeService.GetTheme(ViewBag.ThemeName);
+            if (ViewBag.Unpublished != null) {
+                theme = theme.Unpublished;
+            }
+            var layoutItem = theme.GetItem("layout.liquid", "layouts");
+            var templateItem = theme.GetItem("index.liquid", "templates");
+
+            Template.FileSystem = new LiquidFileSystem(theme);
 
             Template.RegisterFilter(typeof(ScriptTagFilter));
             Template.RegisterFilter(typeof(StylesheetTagFilter));
             Template.RegisterFilter(typeof(ImageUrlFilter));
 
             // Template lesen. TODO: Cache.
-            var layout = Template.Parse(System.IO.File.ReadAllText(layoutPath));
-            var template = Template.Parse(System.IO.File.ReadAllText(templatePath));
+            var layout = Template.Parse(layoutItem.ReadContent());
+            var template = Template.Parse(templateItem.ReadContent());
 
             // Render Template.
             template.Registers.Add("file_system", Template.FileSystem);
@@ -106,25 +126,21 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
     public class LiquidFileSystem : IFileSystem
     {
-        string _Root;
+        private ITheme _Theme;
 
-        public LiquidFileSystem(string root)
+        public LiquidFileSystem(ITheme theme)
         {
-            if (string.IsNullOrEmpty(root)) throw new ArgumentNullException("root");
-            _Root = root;
+            if (theme == null) throw new ArgumentNullException("theme");
+            _Theme = theme;
         }
 
         public string ReadTemplateFile(Context context, string templateName)
         {
-            var themeName = "minimal";
-
             var fileName = Path.HasExtension(templateName)
                 ? templateName
                 : Path.ChangeExtension(templateName, ".liquid");
 
-            var templatePath = Path.Combine(_Root, "Themes", themeName, fileName);
-
-            return System.IO.File.ReadAllText(templatePath);
+            return _Theme.GetItem(fileName, "snippets").ReadContent();
         }
     }
 

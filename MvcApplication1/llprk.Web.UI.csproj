@@ -302,6 +302,7 @@
     <Compile Include="DependencyInjectionConfig.cs" />
     <Compile Include="Extensions\DateTime+RelativeDate.cs" />
     <Compile Include="Extensions\HtmlHelper+Analytics.cs" />
+    <Compile Include="Filters\ThemeFilter.cs" />
     <Compile Include="Filters\ValidateModelFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

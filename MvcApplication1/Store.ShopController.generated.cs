@@ -28,9 +28,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     public partial class ShopController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ShopController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ShopController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
