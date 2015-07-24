@@ -17,42 +17,35 @@ namespace Llprk.DataAccess.Models.Theme
     public interface ITheme
     {
 
-        string Name { get; set; }
+        string Name { get; }
         IThemeItem[] Assets { get; }
         IThemeItem[] Layouts { get; }
         IThemeItem[] Snippets { get; }
         IThemeItem[] Templates { get; }
 
-        IUnpublishedTheme Unpublished { get; }
+        Dictionary<string, Dictionary<string, IUnpublishedThemeItem>> UnpublishedItems { get; }
 
-        IThemeItem GetItem(string name, string type);
-    }
-
-    public interface IUnpublishedTheme : ITheme
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>An instance of the published theme</returns>
         ITheme Publish();
 
-        IUnpublishedThemeItem GetItem(string name, string type);
+        IThemeItem GetItem(string name, string type);
+        IUnpublishedThemeItem GetUnpublishedItem(string name, string type);
+        IUnpublishedThemeItem CreateUnpublishedItem(string name, string type, string content = null);
     }
 
     public interface IThemeItem
     {
-        string Name { get; set; }
-        string AbsolutePath { get; set; }
-        string Type { get; set; }
-        string ContentType { get; set; }
+        string Name { get; }
+        string AbsolutePath { get; }
+        string Type { get; }
+        string ContentType { get; }
 
         string ReadContent();
     }
 
     public interface IUnpublishedThemeItem : IThemeItem
     {
-        void Update(string content);
+        void WriteContent(string content);
+        void Rename(string newName);
     }
-
 
 }

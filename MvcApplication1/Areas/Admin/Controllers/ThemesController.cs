@@ -26,8 +26,10 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             _ThemeService = themes;
         }
 
-        //
-        // GET: /Themes/
+        /// <summary>
+        /// See the active and all inactive themes.
+        /// </summary>
+        /// <returns></returns>
         public virtual ActionResult Index()
         {
             var viewModel = new ThemesRequest
@@ -43,41 +45,53 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-        //
-        // GET: /Themes/Edit/{id}
+        /// <summary>
+        /// Edit unpublished theme.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual ActionResult Edit(string id)
         {
-            var theme = _ThemeService.GetTheme(id).Unpublished;
+            var theme = _ThemeService.GetTheme(id);
             var viewModel = new EditThemeRequest(id)
             {
-                Layouts = theme.Layouts.Select(i => new EditThemeRequest.Item(i.Name, i.Type)),
-                Assets = theme.Assets.Select(i => new EditThemeRequest.Item(i.Name, i.Type)),
-                Snippets = theme.Snippets.Select(i => new EditThemeRequest.Item(i.Name, i.Type)),
-                Templates = theme.Templates.Select(i => new EditThemeRequest.Item(i.Name, i.Type)),
+                //Items = theme.UnpublishedItems.Keys
             };
 
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Updates the content of the unpublished item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="theme"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public virtual ActionResult UpdateItem(string id, string type, string theme, string content)
         {
-            var themeInst = _ThemeService.GetTheme(theme).Unpublished;
-            var item = themeInst.GetItem(id, type);
+            var themeInst = _ThemeService.GetTheme(theme);
+            var item = themeInst.GetUnpublishedItem(id, type);
 
-            item.Update(content);
+            item.WriteContent(content);
 
             return new EntityResult(string.Format("{0} saved.", id));
         }
 
-        //
-        // GET: /Themes/Edit/{id}
+        /// <summary>
+        /// Returns the content of the unpublished item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="theme"></param>
+        /// <returns></returns>
         public virtual ActionResult Content(string id, string type, string theme)
         {
             var mimeGroup = "unsupported";
-            var themeInst = _ThemeService.GetTheme(theme).Unpublished;
+            var themeInst = _ThemeService.GetTheme(theme);
 
-            IThemeItem item = themeInst.GetItem(id, type);
-
+            IThemeItem item = themeInst.GetUnpublishedItem(id, type);
 
             var viewModel = new ThemeContent
             {

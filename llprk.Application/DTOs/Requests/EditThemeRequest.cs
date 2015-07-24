@@ -31,10 +31,7 @@ namespace Llprk.Application.DTOs.Requests
         /// </summary>
         public string Name { get; set; }
 
-        public IEnumerable<Item> Assets { get; set; }
-        public IEnumerable<Item> Layouts { get; set; }
-        public IEnumerable<Item> Templates { get; set; }
-        public IEnumerable<Item> Snippets { get; set; }
+        public Dictionary<string, Item[]> Items { get; set; }
 
         public EditThemeRequest(string name)
         {

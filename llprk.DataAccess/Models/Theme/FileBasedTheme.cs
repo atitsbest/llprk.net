@@ -1,6 +1,7 @@
 ﻿using MimeTypes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,44 +16,109 @@ namespace Llprk.DataAccess.Models.Theme
     public class FileBasedTheme : ITheme
     {
         public class Item : IThemeItem {
-            public string Name { get; set; }
-            public string AbsolutePath { get; set; }
-            public string Type { get; set; }
-            public string ContentType { get; set; }
+            public string Name { get; protected set; }
+            public string AbsolutePath { get; private set; }
+            public string Type { get; private set; }
+            public string ContentType { get; private set; }
 
+            /// <summary>
+            /// CTR
+            /// </summary>
+            /// <param name="name"></param>
+            /// <param name="type"></param>
+            /// <param name="absolutePath"></param>
+            public Item(string name, string type, string absolutePath)
+            {
+                Name = name;
+                Type = type;
+                AbsolutePath = absolutePath;
+                ContentType = MimeTypeMap.GetMimeType(Path.GetExtension(name));
+            }
+
+            /// <summary>
+            /// Get Item-Content.
+            /// </summary>
+            /// <returns></returns>
             public string ReadContent() {
                 return File.ReadAllText(AbsolutePath);
             }
         }
 
-        protected string _Root;
-
-        public string Name { get; set; }
-
-        public IThemeItem[] Layouts { get; private set; }
-        public IThemeItem[] Assets { get; private set; }
-        public IThemeItem[] Templates { get; private set; }
-        public IThemeItem[] Snippets { get; private set; }
-
         /// <summary>
-        /// Get unpublished version of the Theme.
+        /// The unpublished version of an theme-item.
+        /// Has the ability to change (rename, update).
         /// </summary>
-        public IUnpublishedTheme Unpublished
+        public class UnpublishedItem : Item, IUnpublishedThemeItem
         {
-            get
+            /// <summary>
+            /// CTR
+            /// </summary>
+            /// <param name="name"></param>
+            /// <param name="type"></param>
+            /// <param name="absolutePath"></param>
+            public UnpublishedItem(string name, string type, string absolutePath)
+                : base(name, type, absolutePath)
+            { }
+            /// <summary>
+            /// Updates the files content.
+            /// </summary>
+            /// <param name="content"></param>
+            public void WriteContent(string content)
             {
-                return _UnPublishedVersion = _UnPublishedVersion
-                    ?? new UnpublishedFileBasedTheme(new Uri(Path.Combine(_Root, @"unpublished")), Name);
+                File.WriteAllText(AbsolutePath, content);
+            }
+
+            /// <summary>
+            /// Renames the file.
+            /// </summary>
+            /// <param name="newName"></param>
+            public void Rename(string newName)
+            {
+                var newPath = Path.Combine(Path.GetFullPath(AbsolutePath), newName);
+                File.Move(AbsolutePath, newPath);
+                Name = newName;
             }
         }
-        private UnpublishedFileBasedTheme _UnPublishedVersion;
-
 
         /// <summary>
-        /// CTR
+        /// Semaphore to regulate theme access, while publishing the theme.
         /// </summary>
-        protected FileBasedTheme()
-        { }
+        protected static string _PublishLock = "lock";
+
+        /// <summary>
+        /// Root of the Theme (without 'current' or 'unpublished')
+        /// </summary>
+        protected string _Root;
+        protected string _CurrentRoot;
+        protected string _UnpublishedRoot;
+
+        public string Name { get; private set;  }
+
+        public IThemeItem[] Layouts { get { return _Items["layouts"].Values.ToArray(); } }
+        public IThemeItem[] Assets { get { return _Items["assets"].Values.ToArray(); } }
+        public IThemeItem[] Templates { get { return _Items["templates"].Values.ToArray(); } }
+        public IThemeItem[] Snippets { get { return _Items["snippets"].Values.ToArray(); } }
+
+        /// <summary>
+        /// All the unpublished items.
+        /// </summary>
+        public Dictionary<string, Dictionary<string, IUnpublishedThemeItem>> UnpublishedItems {
+            get
+            {
+                return _UnpublishedItems.ToDictionary(
+                    k => k.Key,
+                    v => v.Value.ToDictionary(
+                        k1 => k1.Key,
+                        v1 => (IUnpublishedThemeItem)v1.Value));
+            }
+        }
+
+        /// <summary>
+        /// Contains ALL items.
+        /// Key: type/name
+        /// </summary>
+        protected Dictionary<string, Dictionary<string, Item>> _Items;
+        protected Dictionary<string, Dictionary<string, UnpublishedItem>> _UnpublishedItems;
 
         /// <summary>
         /// CTR
@@ -64,6 +130,8 @@ namespace Llprk.DataAccess.Models.Theme
             if (!root.IsFile) throw new ArgumentException("Root must be a path name.");
 
             _Root = root.AbsolutePath;
+            _CurrentRoot = Path.Combine(_Root, "current");
+            _UnpublishedRoot = Path.Combine(_Root, "unpublished");
             _Initialize(name);
         }
 
@@ -73,16 +141,85 @@ namespace Llprk.DataAccess.Models.Theme
         /// <param name="name"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public virtual IThemeItem GetItem(string name, string type)
+        public IThemeItem GetItem(string name, string type)
         {
-            IThemeItem result = null;
+            return _GetItem(_Items, name, type);
+        }
 
-            result = result ?? Assets.SingleOrDefault(x => x.Name == name && x.Type == type);
-            result = result ?? Layouts.SingleOrDefault(x => x.Name == name && x.Type == type);
-            result = result ?? Templates.SingleOrDefault(x => x.Name == name && x.Type == type);
-            result = result ?? Snippets.SingleOrDefault(x => x.Name == name && x.Type == type);
+        /// <summary>
+        /// Returns a single unpublished Item if found.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public IUnpublishedThemeItem GetUnpublishedItem(string name, string type)
+        {
+            return _GetItem(_UnpublishedItems, name, type);
+        }
 
-            return result;
+        /// <summary>
+        /// Creates a new, unpublished item.
+        /// A new item can only be unpublished.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public IUnpublishedThemeItem CreateUnpublishedItem(string name, string type, string content = "")
+        {
+            if (GetUnpublishedItem(name, type) == null)
+            {
+                // Create file...
+                var path = Path.Combine(_Root, type, name);
+                File.WriteAllText(path, content);
+
+                // ..re-enumerate file-system.
+                _UnpublishedItems[type] = _EnumerateItems(_Root, type, (f) => new UnpublishedItem(
+                    name: Path.GetFileName(f),
+                    type: type,
+                    absolutePath: f));
+
+                return _UnpublishedItems[type][name];
+            }
+            else throw new ArgumentException(string.Format("File {0}/{1} already exists!", type, name));
+        }
+
+        /// <summary>
+        /// Replaces current version with the unpublished one.
+        /// </summary>
+        /// <returns></returns>
+        public ITheme Publish()
+        {
+            lock (_PublishLock)
+            {
+                var currentTmpPath = Path.Combine(_Root, @"current_tmp");
+
+                // Swap current and unpublished ...
+                // ...and then delete the old current.
+                Directory.Move(_CurrentRoot, currentTmpPath);
+                Directory.Move(_UnpublishedRoot, _CurrentRoot);
+                Directory.Delete(currentTmpPath, true);
+
+                return new FileBasedTheme(new Uri(_Root));
+            }
+        }
+
+        /// <summary>
+        /// Generic method to get an item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private T _GetItem<T>(Dictionary<string, Dictionary<string, T>> items, string name, string type) where T : class
+        {
+            if (items != null && items.ContainsKey(type))
+            {
+                return items[type][name];
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -91,17 +228,16 @@ namespace Llprk.DataAccess.Models.Theme
         /// <param name="path"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        private FileBasedTheme.Item[] _EnumerateItems(string path, string type)
+        protected Dictionary<string, T> _EnumerateItems<T>(string path, string type, Func<string, T> createItemFn) 
+            where T : Item
         {
             var typePath = _isUnpublished(path)
                 ? Path.Combine(path, type)
                 : Path.Combine(path, "current", type);
-            return Directory.EnumerateFiles(typePath).Select(fi => new FileBasedTheme.Item { 
-                Name = Path.GetFileName(fi),
-                AbsolutePath = fi,
-                Type = type,
-                ContentType = MimeTypeMap.GetMimeType(Path.GetExtension(fi))
-            }).ToArray();
+
+            return Directory.EnumerateFiles(typePath)
+                .Select(f => createItemFn(f))
+                .ToDictionary(i => i.Name);
         }
 
         /// <summary>
@@ -112,10 +248,29 @@ namespace Llprk.DataAccess.Models.Theme
             if (!Directory.Exists(_Root)) throw new ArgumentException(string.Format("Cannot find {0} of theme '{1}'.", Path.GetFileName(_Root), name));
 
             Name = name ?? Path.GetFileName(_Root);
-            Layouts = _EnumerateItems(_Root, "layouts");
-            Assets = _EnumerateItems(_Root, "assets");
-            Templates = _EnumerateItems(_Root, "templates");
-            Snippets = _EnumerateItems(_Root, "snippets");
+            _Items = new Dictionary<string, Dictionary<string, Item>>();
+            _UnpublishedItems = new Dictionary<string, Dictionary<string, UnpublishedItem>>();
+
+            if (!Directory.Exists(_UnpublishedRoot))
+            {
+                // Create Unpublished if non existent.
+                var currentPath = Path.Combine(_Root, @"current");
+                var unpublishedPath = Path.Combine(_Root, @"unpublished");
+                _copyDirectory(currentPath, _UnpublishedRoot, true);
+            }
+
+            foreach (var type in new string[] { "layouts", "assets", "templates", "snippets" })
+            {
+                _Items.Add(type, _EnumerateItems(_Root, type, (f) => new Item(
+                    name: Path.GetFileName(f),
+                    type: type,
+                    absolutePath: f)));
+
+                _UnpublishedItems.Add(type, _EnumerateItems(_UnpublishedRoot, type, (f) => new UnpublishedItem(
+                    name: Path.GetFileName(f),
+                    type: type,
+                    absolutePath: f)));
+            }
         }
 
         /// <summary>
@@ -126,77 +281,6 @@ namespace Llprk.DataAccess.Models.Theme
         private static bool _isUnpublished(string path)
         {
             return "unpublished" == Path.GetFileName(path);
-        }
-    }
-
-    /// <summary>
-    /// An unpublished Theme. Can be published.
-    /// </summary>
-    class UnpublishedFileBasedTheme : FileBasedTheme, IUnpublishedTheme
-    {
-        public class UnpublishedItem : FileBasedTheme.Item, IUnpublishedThemeItem {
-            /// <summary>
-            /// Copy CTR
-            /// </summary>
-            public UnpublishedItem(IThemeItem item)
-            {
-                AbsolutePath = item.AbsolutePath;
-                Name = item.Name;
-                Type = item.Type;
-                ContentType = item.ContentType;
-            }
-
-            /// <summary>
-            /// Write changes to file.
-            /// </summary>
-            /// <param name="content"></param>
-            public void Update(string content)
-            {
-                File.WriteAllText(AbsolutePath, content);
-            }
-        }
-        /// <summary>
-        /// Semaphore to regulate theme access, while publishing the theme.
-        /// </summary>
-        protected static string _PublishLock = "lock";
-
-        /// <summary>
-        /// CTR
-        /// </summary>
-        /// <param name="root"></param>
-        public UnpublishedFileBasedTheme(Uri root, string name = null)
-        {
-            // Copy current version, if unpublished doesnt exist.
-            if (!Directory.Exists(root.AbsolutePath))
-            {
-                var currentPath = Path.Combine(root.AbsolutePath, @"..\current");
-                _copyDirectory(currentPath, root.AbsolutePath, true);
-            }
-
-            _Root = root.AbsolutePath;
-            _Initialize(name);
-        }
-
-        public IUnpublishedThemeItem GetItem(string name, string type)
-        {
-            return new UnpublishedFileBasedTheme.UnpublishedItem(base.GetItem(name, type));
-        }
-
-        public ITheme Publish()
-        {
-            lock (_PublishLock)
-            {
-                var currentPath = Path.Combine(_Root, @"..\current");
-                var currentTmpPath = Path.Combine(_Root, @"..\current_tmp");
-
-                // Swap current and unpublished ...
-                // ...and then delete the old current.
-                Directory.Move(currentPath, currentTmpPath);
-                Directory.Move(_Root, currentPath);
-                Directory.Delete(currentTmpPath, true);
-
-                return new FileBasedTheme(new Uri(Path.Combine(_Root, @"..\")));
-            }
         }
 
         /// <summary>
@@ -242,6 +326,5 @@ namespace Llprk.DataAccess.Models.Theme
                 }
             }
         }
-
     }
 }

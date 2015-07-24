@@ -52,18 +52,5 @@ namespace Llprk.Application.Services
             return new FileBasedTheme(new Uri(themePath));
         }
 
-        /// <summary>
-        /// Get a single Theme, with all functions and infos.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public ITheme GetUnpublishedTheme(string name)
-        {
-            var themePath = Path.Combine(_Root.AbsolutePath, name);
-            if (!Directory.Exists(themePath)) throw new ArgumentException(string.Format("Cannot find theme '{0}'.", name));
-
-            return new FileBasedTheme(new Uri(themePath)).Unpublished;
-        }
-
     }
 }

@@ -65,11 +65,11 @@ namespace llprk.Application.Test.Services
 
             var theme = sut.GetTheme("theme2");
 
-            var work = theme.Unpublished;
-            Assert.AreEqual(1, work.Layouts.Count());
-            Assert.AreEqual(1, work.Assets.Count());
-            Assert.AreEqual(2, work.Templates.Count());
-            Assert.AreEqual(2, work.Snippets.Count());
+            var work = theme.UnpublishedItems;
+            Assert.AreEqual(1, work["layouts"].Keys.Count());
+            Assert.AreEqual(1, work["assets"].Keys.Count());
+            Assert.AreEqual(2, work["templates"].Keys.Count());
+            Assert.AreEqual(2, work["snippets"].Keys.Count());
         }
 
         [TestMethod]
@@ -80,12 +80,12 @@ namespace llprk.Application.Test.Services
                 var sut = _createSut();
 
                 var theme = sut.GetTheme("theme3");
-                var work = theme.Unpublished;
+                var work = theme.UnpublishedItems;
 
-                Assert.AreEqual(theme.Assets.Count(), work.Assets.Count());
-                Assert.AreEqual(theme.Snippets.Count(), work.Snippets.Count());
-                Assert.AreEqual(theme.Layouts.Count(), work.Layouts.Count());
-                Assert.AreEqual(theme.Templates.Count(), work.Templates.Count());
+                Assert.AreEqual(theme.Assets.Count(), work["assets"].Count());
+                Assert.AreEqual(theme.Snippets.Count(), work["snippets"].Count());
+                Assert.AreEqual(theme.Layouts.Count(), work["layouts"].Count());
+                Assert.AreEqual(theme.Templates.Count(), work["templates"].Count());
             }
             finally
             {
@@ -107,10 +107,9 @@ namespace llprk.Application.Test.Services
 
                 // Create copy of theme for publishing
                 var theme = sut.GetTheme("theme_test");
-                var unpublished = theme.Unpublished;
 
                 // Act
-                theme = unpublished.Publish();
+                theme = theme.Publish();
 
                 // Assert
                 Assert.AreEqual(1, theme.Assets.Count());
@@ -127,18 +126,18 @@ namespace llprk.Application.Test.Services
         {
             var sut = _createSut();
 
-            var theme = sut.GetTheme("theme2").Unpublished;
-            var item = theme.GetItem("snippet1.liquid", "snippets");
+            var theme = sut.GetTheme("theme2");
+            var item = theme.GetUnpublishedItem("snippet1.liquid", "snippets");
             var backup = item.ReadContent();
 
             try
             {
-                item.Update("1234");
+                item.WriteContent("1234");
                 Assert.AreEqual("1234", File.ReadAllText(Path.Combine(_ThemesPath, "theme2", "unpublished", "snippets", "snippet1.liquid")));
             }
             finally
             {
-                item.Update(backup);
+                item.WriteContent(backup);
             }
         }
 
