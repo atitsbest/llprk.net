@@ -29,7 +29,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             if (FormsAuthentication.Authenticate(model.UserName, model.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                return Redirect(FormsAuthentication.DefaultUrl);
+                return Redirect(returnUrl ?? FormsAuthentication.DefaultUrl);
             }
 
             // If we got this far, something failed, redisplay form

@@ -55,7 +55,9 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var theme = _ThemeService.GetTheme(id);
             var viewModel = new EditThemeRequest(id)
             {
-                //Items = theme.UnpublishedItems.Keys
+                Items = theme.UnpublishedItems.ToDictionary(
+                    k => k.Key,
+                    v => v.Value.Values.ToArray())
             };
 
             return View(viewModel);

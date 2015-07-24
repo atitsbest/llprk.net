@@ -54,11 +54,18 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
             // Templating:
             var theme = _ThemeService.GetTheme(ViewBag.ThemeName);
-            if (ViewBag.Unpublished != null) {
-                theme = theme.Unpublished;
+            IThemeItem layoutItem;
+            IThemeItem templateItem;
+            if (ViewBag.Unpublished != null)
+            {
+                layoutItem = theme.GetUnpublishedItem("layout.liquid", "layouts");
+                templateItem = theme.GetUnpublishedItem("index.liquid", "templates");
             }
-            var layoutItem = theme.GetItem("layout.liquid", "layouts");
-            var templateItem = theme.GetItem("index.liquid", "templates");
+            else
+            {
+                layoutItem = theme.GetItem("layout.liquid", "layouts");
+                templateItem = theme.GetItem("index.liquid", "templates");
+            }
 
             Template.FileSystem = new LiquidFileSystem(theme);
 

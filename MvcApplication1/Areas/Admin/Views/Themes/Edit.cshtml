@@ -85,10 +85,9 @@
 <div class="row">
     <div class="col-sm-3 col-md-2 filetree">
         <h3>@Model.Name</h3>
-        <div class="directory" data-bind="template: { name: 'templateFile', data: { name: 'Layouts', items: layouts } }"></div>
-        <div class="directory" data-bind="template: { name: 'templateFile', data: { name: 'Assets', items: assets } }"></div>
-        <div class="directory" data-bind="template: { name: 'templateFile', data: { name: 'Templates', items: templates } }"></div>
-        <div class="directory" data-bind="template: { name: 'templateFile', data: { name: 'Snippets', items: snippets } }"></div>
+        <!-- ko foreach: itemKeys -->
+            <div class="directory" data-bind="template: { name: 'templateFile', data: { name: $data, items: $parent.items[$data] } }"></div>
+        <!-- /ko -->
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <a href="@Url.Action(MVC.Store.Shop.Index())?theme=@Model.Name&unpublished=1" target="_blank" class="btn btn-warning">Preview...</a>
