@@ -7,7 +7,7 @@ namespace Llprk.DataAccess.Models
 {
     public class Cart
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public virtual ICollection<LineItem> LineItems { get; set; }
@@ -18,7 +18,7 @@ namespace Llprk.DataAccess.Models
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            return this.Id == ((Country)obj).Id;
+            return this.Id == ((Cart)obj).Id;
         }
 
         /// <summary>

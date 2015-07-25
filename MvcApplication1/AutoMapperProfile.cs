@@ -19,6 +19,9 @@ namespace Llprk.Web.UI
                         Url = p.PictureUrl, 
                         ThumbnailUrl = p.ThumbnailUrl 
                     }).ToArray()));
+
+            Mapper.CreateMap<LineItem, LiquidLineItem>()
+                .ForMember(d => d.Product, o => o.MapFrom(s => Mapper.Map<LiquidProduct>(s.Product)));
         }
 
     }

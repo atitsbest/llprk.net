@@ -43,6 +43,8 @@ namespace Llprk.DataAccess.Models
 
         public virtual ICollection<OrderLine> OrderLines { get; set; }
 
+        public virtual ICollection<LineItem> LineItems { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         /// <summary>

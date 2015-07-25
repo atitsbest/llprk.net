@@ -13,6 +13,8 @@ namespace Llprk.Application
         public void RegisterServices(SimpleInjector.Container container)
         {
             container.Register<ThemeService>();
+            container.Register<ICartService, CartService>();
+            container.Register<IPageService, PageService>();
         }
     }
 }

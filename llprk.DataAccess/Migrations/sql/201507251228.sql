@@ -1,13 +1,14 @@
-﻿CREATE TABLE [dbo].[LineItems]
-(
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [ProductId] INT NOT NULL, 
-    [CartId] INT NULL, 
-    [OrderId] INT NOT NULL, 
-    [Price] DECIMAL(18, 2) NOT NULL DEFAULT (0), 
-    [CreatedAt] DATE NOT NULL DEFAULT (getdate()), 
-    [Qty] INT NOT NULL DEFAULT (1), 
-    CONSTRAINT [FK_LineItems_Products] FOREIGN KEY ([ProductId]) REFERENCES [Products]([Id]),
-    CONSTRAINT [FK_LineItems_Cart] FOREIGN KEY ([CartId]) REFERENCES [Carts]([Id]),
-    CONSTRAINT [FK_LineItems_Orders] FOREIGN KEY ([OrderId]) REFERENCES [Orders]([Id])
-)
+﻿CREATE TABLE [dbo].[LineItems] (
+    [Id]        INT             NOT NULL IDENTITY,
+    [ProductId] INT             NOT NULL,
+    [CartId]    INT             NULL,
+    [OrderId]   INT             NULL,
+    [Price]     DECIMAL (18, 2) DEFAULT ((0)) NOT NULL,
+    [CreatedAt] DATE            DEFAULT (getdate()) NOT NULL,
+    [Qty]       INT             DEFAULT ((1)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_LineItems_Products] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Products] ([Id]),
+    CONSTRAINT [FK_LineItems_Cart] FOREIGN KEY ([CartId]) REFERENCES [dbo].[Carts] ([Id]),
+    CONSTRAINT [FK_LineItems_Orders] FOREIGN KEY ([OrderId]) REFERENCES [dbo].[Orders] ([Id])
+);
+

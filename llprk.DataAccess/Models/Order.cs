@@ -55,6 +55,8 @@ namespace Llprk.DataAccess.Models
 
         public virtual ICollection<OrderLine> OrderLines { get; set; }
 
+        public virtual ICollection<LineItem> LineItems { get; set; }
+
 		/// <summary>
 		/// Wenn mit PayPal gezahlt wurde, dann wird hier die PaymentId gespeichert.
 		/// </summary>

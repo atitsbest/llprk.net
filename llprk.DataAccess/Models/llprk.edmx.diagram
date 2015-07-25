@@ -25,8 +25,8 @@
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Cart" Width="1.5" PointX="5.32971880274346" PointY="20.093947822271822" />
-        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.LineItem" Width="1.5" PointX="2.3461901854473122" PointY="8.5839564095176559" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Cart" Width="1.5" PointX="5.0667783436676386" PointY="21.195781017279149" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.LineItem" Width="1.5" PointX="7.9958641137908515" PointY="1.9663982549525789" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Products" />

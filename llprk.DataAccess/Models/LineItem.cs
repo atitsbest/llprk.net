@@ -7,13 +7,16 @@ namespace Llprk.DataAccess.Models
 {
     public class LineItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public decimal Price { get; set; }
         public int Qty { get; set; }
         public DateTime CreatedAt { get; set; }
 
+        public int ProductId { get; set; }
         public Product Product { get; set; }
+        public int? CartId { get; set; }
         public Cart Cart { get; set; }
+        public int? OrderId { get; set; }
         public Order Order { get; set; }
 
         /// </summary>
@@ -22,7 +25,7 @@ namespace Llprk.DataAccess.Models
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            return this.Id == ((Country)obj).Id;
+            return this.Id == ((LineItem)obj).Id;
         }
 
         /// <summary>

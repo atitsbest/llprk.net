@@ -13,6 +13,7 @@ using Llprk.Application.Services;
 using System;
 using Llprk.DataAccess.Models.Theme;
 using Llprk.Web.UI.Filters;
+using Llprk.DataAccess.Models;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
@@ -20,27 +21,46 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     public partial class CartController : ApplicationController
     {
         private ThemeService _ThemeService;
+        private ICartService _CartService;
 
         /// <summary>
         /// CTR
         /// </summary>
         /// <param name="themes"></param>
-        public CartController(ThemeService themes)
+        public CartController(ThemeService themes, ICartService carts)
         {
             if (themes == null) throw new ArgumentNullException("themes");
+            if (carts == null) throw new ArgumentNullException("carts");
 
             _ThemeService = themes;
+            _CartService = carts;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-#if !DEBUG
-		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
-#endif
-        public virtual ActionResult Index(int? id)
+        public virtual ActionResult Index()
         {
+            // TODO: Mach einen Filter oder sowas draus.
+            int cartId;
+            if (Session["cartId"] == null)
+            {
+                cartId = _CartService.CreateCart().Id;
+                Session["cartId"] = cartId;
+            }
+            else
+            {
+                cartId = (int)Session["cartId"];
+            }
+
+            var viewModel = new CartIndex
+            {
+                LineItems = Mapper.Map<IEnumerable<LiquidLineItem>>(db.LineItems
+                        .Include(li => li.Product)
+                        .Where(li => li.CartId == cartId))
+            };
+
             var theme = _ThemeService.GetTheme(ViewBag.ThemeName);
             IThemeItem layoutItem;
             IThemeItem templateItem;
@@ -69,6 +89,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             template.Registers.Add("file_system", Template.FileSystem);
             var templateHtml = template.Render(Hash.FromAnonymousObject(new
             {
+                cart = viewModel,
                 cart_url = Url.Action(MVC.Store.Cart.Update()),
                 page_title = "Warenkorb",
                 template = "cart"
@@ -86,6 +107,19 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         [HttpPost]
         public virtual ActionResult Add(int id, int qty)
         {
+            int cartId;
+            if (Session["cartId"] == null)
+            {
+                cartId = _CartService.CreateCart().Id;
+                Session["cartId"] = cartId;
+            }
+            else
+            {
+                cartId = (int)Session["cartId"];
+            }
+
+            _CartService.AddProduct(cartId, id, qty);
+
             return RedirectToAction(MVC.Store.Cart.Index());
         }
 
