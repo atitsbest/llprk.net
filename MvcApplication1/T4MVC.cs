@@ -719,121 +719,8 @@ namespace Links
         private const string URLPATH = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class bootstrap {
-            private const string URLPATH = "~/Content/bootstrap";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string alerts_less = Url("alerts.less");
-            public static readonly string badges_less = Url("badges.less");
-            public static readonly string bootstrap_less = Url("bootstrap.less");
-            public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
-                 
-            public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
-            public static readonly string breadcrumbs_less = Url("breadcrumbs.less");
-            public static readonly string button_groups_less = Url("button-groups.less");
-            public static readonly string buttons_less = Url("buttons.less");
-            public static readonly string carousel_less = Url("carousel.less");
-            public static readonly string close_less = Url("close.less");
-            public static readonly string code_less = Url("code.less");
-            public static readonly string component_animations_less = Url("component-animations.less");
-            public static readonly string dropdowns_less = Url("dropdowns.less");
-            public static readonly string forms_less = Url("forms.less");
-            public static readonly string glyphicons_less = Url("glyphicons.less");
-            public static readonly string grid_less = Url("grid.less");
-            public static readonly string input_groups_less = Url("input-groups.less");
-            public static readonly string jumbotron_less = Url("jumbotron.less");
-            public static readonly string labels_less = Url("labels.less");
-            public static readonly string list_group_less = Url("list-group.less");
-            public static readonly string media_less = Url("media.less");
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class mixins {
-                private const string URLPATH = "~/Content/bootstrap/mixins";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string alerts_less = Url("alerts.less");
-                public static readonly string background_variant_less = Url("background-variant.less");
-                public static readonly string border_radius_less = Url("border-radius.less");
-                public static readonly string buttons_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/buttons.min.css") ? Url("buttons.min.css") : Url("buttons.css");
-                     
-                public static readonly string buttons_less = Url("buttons.less");
-                public static readonly string buttons_min_css = Url("buttons.min.css");
-                public static readonly string center_block_less = Url("center-block.less");
-                public static readonly string clearfix_less = Url("clearfix.less");
-                public static readonly string forms_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/forms.min.css") ? Url("forms.min.css") : Url("forms.css");
-                     
-                public static readonly string forms_less = Url("forms.less");
-                public static readonly string forms_min_css = Url("forms.min.css");
-                public static readonly string gradients_less = Url("gradients.less");
-                public static readonly string grid_framework_less = Url("grid-framework.less");
-                public static readonly string grid_less = Url("grid.less");
-                public static readonly string hide_text_less = Url("hide-text.less");
-                public static readonly string image_less = Url("image.less");
-                public static readonly string labels_less = Url("labels.less");
-                public static readonly string list_group_less = Url("list-group.less");
-                public static readonly string nav_divider_less = Url("nav-divider.less");
-                public static readonly string nav_vertical_align_less = Url("nav-vertical-align.less");
-                public static readonly string opacity_less = Url("opacity.less");
-                public static readonly string pagination_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pagination.min.css") ? Url("pagination.min.css") : Url("pagination.css");
-                     
-                public static readonly string pagination_less = Url("pagination.less");
-                public static readonly string pagination_min_css = Url("pagination.min.css");
-                public static readonly string panels_less = Url("panels.less");
-                public static readonly string progress_bar_less = Url("progress-bar.less");
-                public static readonly string reset_filter_less = Url("reset-filter.less");
-                public static readonly string resize_less = Url("resize.less");
-                public static readonly string responsive_visibility_less = Url("responsive-visibility.less");
-                public static readonly string size_less = Url("size.less");
-                public static readonly string tab_focus_less = Url("tab-focus.less");
-                public static readonly string table_row_less = Url("table-row.less");
-                public static readonly string text_emphasis_less = Url("text-emphasis.less");
-                public static readonly string text_overflow_less = Url("text-overflow.less");
-                public static readonly string vendor_prefixes_less = Url("vendor-prefixes.less");
-            }
-        
-            public static readonly string mixins_less = Url("mixins.less");
-            public static readonly string modals_less = Url("modals.less");
-            public static readonly string navbar_less = Url("navbar.less");
-            public static readonly string navs_less = Url("navs.less");
-            public static readonly string normalize_less = Url("normalize.less");
-            public static readonly string pager_less = Url("pager.less");
-            public static readonly string pagination_less = Url("pagination.less");
-            public static readonly string panels_less = Url("panels.less");
-            public static readonly string popovers_less = Url("popovers.less");
-            public static readonly string print_less = Url("print.less");
-            public static readonly string progress_bars_less = Url("progress-bars.less");
-            public static readonly string responsive_embed_less = Url("responsive-embed.less");
-            public static readonly string responsive_utilities_less = Url("responsive-utilities.less");
-            public static readonly string scaffolding_less = Url("scaffolding.less");
-            public static readonly string tables_less = Url("tables.less");
-            public static readonly string theme_less = Url("theme.less");
-            public static readonly string thumbnails_less = Url("thumbnails.less");
-            public static readonly string tooltip_less = Url("tooltip.less");
-            public static readonly string type_less = Url("type.less");
-            public static readonly string utilities_less = Url("utilities.less");
-            public static readonly string variables_less = Url("variables.less");
-            public static readonly string wells_less = Url("wells.less");
-        }
-    
         public static readonly string cart_spinner_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/cart-spinner.min.css") ? Url("cart-spinner.min.css") : Url("cart-spinner.css");
              
-        public static readonly string elements_less = Url("elements.less");
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class fonts {
-            private const string URLPATH = "~/Content/fonts";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string crumbler_webfont_eot = Url("crumbler-webfont.eot");
-            public static readonly string crumbler_webfont_svg = Url("crumbler-webfont.svg");
-            public static readonly string crumbler_webfont_ttf = Url("crumbler-webfont.ttf");
-            public static readonly string crumbler_webfont_woff = Url("crumbler-webfont.woff");
-            public static readonly string glyphicons_halflings_regular_eot = Url("glyphicons-halflings-regular.eot");
-            public static readonly string glyphicons_halflings_regular_svg = Url("glyphicons-halflings-regular.svg");
-            public static readonly string glyphicons_halflings_regular_ttf = Url("glyphicons-halflings-regular.ttf");
-            public static readonly string glyphicons_halflings_regular_woff = Url("glyphicons-halflings-regular.woff");
-            public static readonly string glyphicons_halflings_regular_woff2 = Url("glyphicons-halflings-regular.woff2");
-        }
-    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class images {
             private const string URLPATH = "~/Content/images";
@@ -854,17 +741,6 @@ namespace Links
         public static readonly string shop_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shop.min.css") ? Url("shop.min.css") : Url("shop.css");
              
         public static readonly string shop_min_css = Url("shop.min.css");
-        public static readonly string site_less = Url("site.less");
-        public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
-             
-        public static readonly string site_min_css = Url("site.min.css");
-        public static readonly string table_less = Url("table.less");
-        public static readonly string Copy_of_site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Copy of site.min.css") ? Url("Copy of site.min.css") : Url("Copy of site.css");
-             
-        public static readonly string Copy_of_site_min_css = Url("Copy of site.min.css");
-        public static readonly string table_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/table.min.css") ? Url("table.min.css") : Url("table.css");
-             
-        public static readonly string table_min_css = Url("table.min.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
             private const string URLPATH = "~/Content/themes";
@@ -969,8 +845,6 @@ namespace Links
         
         }
     
-        public static readonly string utils_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/utils.min.css") ? Url("utils.min.css") : Url("utils.css");
-             
     }
 
 
@@ -1127,12 +1001,138 @@ namespace Links
                 private const string URLPATH = "~/Areas/Admin/Content";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string admin_less = Url("admin.less");
+                public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
+                     
+                public static readonly string site_min_css = Url("site.min.css");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class bootstrap {
+                    private const string URLPATH = "~/Areas/Admin/Content/bootstrap";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string alerts_less = Url("alerts.less");
+                    public static readonly string badges_less = Url("badges.less");
+                    public static readonly string bootstrap_less = Url("bootstrap.less");
+                    public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
+                         
+                    public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+                    public static readonly string breadcrumbs_less = Url("breadcrumbs.less");
+                    public static readonly string button_groups_less = Url("button-groups.less");
+                    public static readonly string buttons_less = Url("buttons.less");
+                    public static readonly string carousel_less = Url("carousel.less");
+                    public static readonly string close_less = Url("close.less");
+                    public static readonly string code_less = Url("code.less");
+                    public static readonly string component_animations_less = Url("component-animations.less");
+                    public static readonly string dropdowns_less = Url("dropdowns.less");
+                    public static readonly string forms_less = Url("forms.less");
+                    public static readonly string glyphicons_less = Url("glyphicons.less");
+                    public static readonly string grid_less = Url("grid.less");
+                    public static readonly string input_groups_less = Url("input-groups.less");
+                    public static readonly string jumbotron_less = Url("jumbotron.less");
+                    public static readonly string labels_less = Url("labels.less");
+                    public static readonly string list_group_less = Url("list-group.less");
+                    public static readonly string media_less = Url("media.less");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class mixins {
+                        private const string URLPATH = "~/Areas/Admin/Content/bootstrap/mixins";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string alerts_less = Url("alerts.less");
+                        public static readonly string background_variant_less = Url("background-variant.less");
+                        public static readonly string border_radius_less = Url("border-radius.less");
+                        public static readonly string buttons_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/buttons.min.css") ? Url("buttons.min.css") : Url("buttons.css");
+                             
+                        public static readonly string buttons_less = Url("buttons.less");
+                        public static readonly string buttons_min_css = Url("buttons.min.css");
+                        public static readonly string center_block_less = Url("center-block.less");
+                        public static readonly string clearfix_less = Url("clearfix.less");
+                        public static readonly string forms_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/forms.min.css") ? Url("forms.min.css") : Url("forms.css");
+                             
+                        public static readonly string forms_less = Url("forms.less");
+                        public static readonly string forms_min_css = Url("forms.min.css");
+                        public static readonly string gradients_less = Url("gradients.less");
+                        public static readonly string grid_framework_less = Url("grid-framework.less");
+                        public static readonly string grid_less = Url("grid.less");
+                        public static readonly string hide_text_less = Url("hide-text.less");
+                        public static readonly string image_less = Url("image.less");
+                        public static readonly string labels_less = Url("labels.less");
+                        public static readonly string list_group_less = Url("list-group.less");
+                        public static readonly string nav_divider_less = Url("nav-divider.less");
+                        public static readonly string nav_vertical_align_less = Url("nav-vertical-align.less");
+                        public static readonly string opacity_less = Url("opacity.less");
+                        public static readonly string pagination_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pagination.min.css") ? Url("pagination.min.css") : Url("pagination.css");
+                             
+                        public static readonly string pagination_less = Url("pagination.less");
+                        public static readonly string pagination_min_css = Url("pagination.min.css");
+                        public static readonly string panels_less = Url("panels.less");
+                        public static readonly string progress_bar_less = Url("progress-bar.less");
+                        public static readonly string reset_filter_less = Url("reset-filter.less");
+                        public static readonly string resize_less = Url("resize.less");
+                        public static readonly string responsive_visibility_less = Url("responsive-visibility.less");
+                        public static readonly string size_less = Url("size.less");
+                        public static readonly string tab_focus_less = Url("tab-focus.less");
+                        public static readonly string table_row_less = Url("table-row.less");
+                        public static readonly string text_emphasis_less = Url("text-emphasis.less");
+                        public static readonly string text_overflow_less = Url("text-overflow.less");
+                        public static readonly string vendor_prefixes_less = Url("vendor-prefixes.less");
+                    }
+                
+                    public static readonly string mixins_less = Url("mixins.less");
+                    public static readonly string modals_less = Url("modals.less");
+                    public static readonly string navbar_less = Url("navbar.less");
+                    public static readonly string navs_less = Url("navs.less");
+                    public static readonly string normalize_less = Url("normalize.less");
+                    public static readonly string pager_less = Url("pager.less");
+                    public static readonly string pagination_less = Url("pagination.less");
+                    public static readonly string panels_less = Url("panels.less");
+                    public static readonly string popovers_less = Url("popovers.less");
+                    public static readonly string print_less = Url("print.less");
+                    public static readonly string progress_bars_less = Url("progress-bars.less");
+                    public static readonly string responsive_embed_less = Url("responsive-embed.less");
+                    public static readonly string responsive_utilities_less = Url("responsive-utilities.less");
+                    public static readonly string scaffolding_less = Url("scaffolding.less");
+                    public static readonly string tables_less = Url("tables.less");
+                    public static readonly string theme_less = Url("theme.less");
+                    public static readonly string thumbnails_less = Url("thumbnails.less");
+                    public static readonly string tooltip_less = Url("tooltip.less");
+                    public static readonly string type_less = Url("type.less");
+                    public static readonly string utilities_less = Url("utilities.less");
+                    public static readonly string variables_less = Url("variables.less");
+                    public static readonly string wells_less = Url("wells.less");
+                }
+            
                 public static readonly string codemirror_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/codemirror.min.css") ? Url("codemirror.min.css") : Url("codemirror.css");
                      
+                public static readonly string elements_less = Url("elements.less");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class fonts {
+                    private const string URLPATH = "~/Areas/Admin/Content/fonts";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string crumbler_webfont_eot = Url("crumbler-webfont.eot");
+                    public static readonly string crumbler_webfont_svg = Url("crumbler-webfont.svg");
+                    public static readonly string crumbler_webfont_ttf = Url("crumbler-webfont.ttf");
+                    public static readonly string crumbler_webfont_woff = Url("crumbler-webfont.woff");
+                    public static readonly string glyphicons_halflings_regular_eot = Url("glyphicons-halflings-regular.eot");
+                    public static readonly string glyphicons_halflings_regular_svg = Url("glyphicons-halflings-regular.svg");
+                    public static readonly string glyphicons_halflings_regular_ttf = Url("glyphicons-halflings-regular.ttf");
+                    public static readonly string glyphicons_halflings_regular_woff = Url("glyphicons-halflings-regular.woff");
+                    public static readonly string glyphicons_halflings_regular_woff2 = Url("glyphicons-halflings-regular.woff2");
+                }
+            
+                public static readonly string table_less = Url("table.less");
+                public static readonly string Copy_of_site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Copy of site.min.css") ? Url("Copy of site.min.css") : Url("Copy of site.css");
+                     
+                public static readonly string Copy_of_site_min_css = Url("Copy of site.min.css");
+                public static readonly string table_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/table.min.css") ? Url("table.min.css") : Url("table.css");
+                     
+                public static readonly string table_min_css = Url("table.min.css");
                 public static readonly string toastr_less = Url("toastr.less");
                 public static readonly string toastr_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/toastr.min.css") ? Url("toastr.min.css") : Url("toastr.css");
                      
                 public static readonly string toastr_min_css = Url("toastr.min.css");
+                public static readonly string utils_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/utils.min.css") ? Url("utils.min.css") : Url("utils.css");
+                     
             }
         
         }
@@ -1695,30 +1695,6 @@ namespace Links
         }
         public static partial class Content 
         {
-            public static partial class bootstrap 
-            {
-                public static partial class mixins 
-                {
-                    public static class Assets
-                    {
-                        public const string buttons_css = "~/Content/bootstrap/mixins/buttons.css";
-                        public const string buttons_min_css = "~/Content/bootstrap/mixins/buttons.min.css";
-                        public const string forms_css = "~/Content/bootstrap/mixins/forms.css";
-                        public const string forms_min_css = "~/Content/bootstrap/mixins/forms.min.css";
-                        public const string pagination_css = "~/Content/bootstrap/mixins/pagination.css";
-                        public const string pagination_min_css = "~/Content/bootstrap/mixins/pagination.min.css";
-                    }
-                }
-                public static class Assets
-                {
-                }
-            }
-            public static partial class fonts 
-            {
-                public static class Assets
-                {
-                }
-            }
             public static partial class images 
             {
                 public static partial class shop 
@@ -1792,7 +1768,6 @@ namespace Links
             public static class Assets
             {
                 public const string cart_spinner_css = "~/Content/cart-spinner.css";
-                public const string utils_css = "~/Content/utils.css";
             }
         }
     }

@@ -81,7 +81,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             var templateHtml = template.Render(Hash.FromAnonymousObject(new
             {
                 cart = viewModel,
-                cart_url = Url.Action(MVC.Store.Cart.Update()),
+                cart_url = Url.Action("action"), // Spielt mit den HttpParamAction von Update und Checkout zusammen.
                 update_line_item_url = Url.Action(MVC.Store.Cart.Change()),
                 page_title = "Warenkorb",
                 template = "cart"
@@ -136,8 +136,11 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost, HttpParamAction]
-        public virtual ActionResult Checkout(KeyValuePair<int, int>[] updates)
+        public virtual ActionResult Checkout(CartUpdate info)
         {
+            var cartId = _EnsureCart();
+
+            _CartService.UpdateLineItemQty(cartId, info.Updates);
             return RedirectToAction(MVC.Store.Checkout.Index());
         }
 

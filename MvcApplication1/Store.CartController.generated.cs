@@ -146,7 +146,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Checkout
         {
-            public readonly string updates = "updates";
+            public readonly string info = "info";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -217,14 +217,14 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void CheckoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.KeyValuePair<int,int>[] updates);
+        partial void CheckoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Web.UI.Areas.Store.Models.CartUpdate info);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Checkout(System.Collections.Generic.KeyValuePair<int,int>[] updates)
+        public override System.Web.Mvc.ActionResult Checkout(Llprk.Web.UI.Areas.Store.Models.CartUpdate info)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Checkout);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "updates", updates);
-            CheckoutOverride(callInfo, updates);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "info", info);
+            CheckoutOverride(callInfo, info);
             return callInfo;
         }
 

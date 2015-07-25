@@ -53,11 +53,11 @@ namespace Llprk.Web.UI
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/admin").Include(
-                "~/Content/bootstrap/bootstrap.css",
-                "~/Content/utils.css",
+                "~/Areas/Admin/Content/bootstrap/bootstrap.css",
+                "~/Areas/Admin/Content/utils.css",
                 "~/Areas/Admin/Content/codemirror.css",
                 "~/Areas/Admin/Content/toastr.css",
-                "~/Content/site.css")
+                "~/Areas/Admin/Content/admin.css")
                 .IncludeDirectory("~/Areas/Admin/Scripts/codemirror/", "*.css", true));
 
             bundles.Add(new StyleBundle("~/Content/shop").Include(

@@ -434,16 +434,16 @@
     <Content Include="Areas\Admin\Scripts\codemirror\modes\liquid\liquid.css" />
     <Content Include="Areas\Admin\Scripts\codemirror\modes\liquid\liquid.js" />
     <Content Include="Areas\Admin\Scripts\codemirror\modes\xml\xml.js" />
-    <Content Include="Content\Copy of site.css">
+    <Content Include="Areas\Admin\Content\Copy of site.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
-    <Content Include="Content\Copy of site.min.css">
+    <Content Include="Areas\Admin\Content\Copy of site.min.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
-    <Content Include="Content\table.css">
+    <Content Include="Areas\Admin\Content\table.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
-    <Content Include="Content\table.min.css">
+    <Content Include="Areas\Admin\Content\table.min.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap\alert.js" />
@@ -461,21 +461,21 @@
     <Content Include="Scripts\ko.bindings\ko.stopBubble.js" />
     <Content Include="Areas\Admin\Scripts\ko.components.js" />
     <Content Include="Areas\Admin\Scripts\source.js" />
-    <Content Include="Content\bootstrap\bootstrap.css">
+    <Content Include="Areas\Admin\Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap\bootstrap.min.css">
+    <Content Include="Areas\Admin\Content\bootstrap\bootstrap.min.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap\mixins\buttons.css" />
-    <Content Include="Content\bootstrap\mixins\buttons.min.css" />
-    <Content Include="Content\bootstrap\mixins\forms.css" />
-    <Content Include="Content\bootstrap\mixins\forms.min.css" />
-    <Content Include="Content\bootstrap\mixins\pagination.css" />
-    <Content Include="Content\bootstrap\mixins\pagination.min.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\buttons.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\buttons.min.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\forms.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\forms.min.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\pagination.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\pagination.min.css" />
     <Content Include="Content\cart-spinner.css" />
-    <Content Include="Content\fonts\crumbler-webfont.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\Content\fonts\crumbler-webfont.svg" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\shop\bg.png" />
     <Content Include="Content\images\shop\cart-bg.gif" />
     <Content Include="Content\shop.css">
@@ -484,14 +484,14 @@
     <Content Include="Content\shop.min.css">
       <DependentUpon>shop.less</DependentUpon>
     </Content>
-    <Content Include="Content\site.css">
-      <DependentUpon>site.less</DependentUpon>
+    <Content Include="Areas\Admin\Content\site.css">
+      <DependentUpon>admin.less</DependentUpon>
     </Content>
-    <Content Include="Content\site.less" />
-    <Content Include="Content\site.min.css">
-      <DependentUpon>site.less</DependentUpon>
+    <Content Include="Areas\Admin\Content\admin.less" />
+    <Content Include="Areas\Admin\Content\site.min.css">
+      <DependentUpon>admin.less</DependentUpon>
     </Content>
-    <Content Include="Content\utils.css" />
+    <Content Include="Areas\Admin\Content\utils.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -575,9 +575,9 @@
     <Content Include="Migrations\sql\201507082116.sql" />
     <Content Include="Migrations\sql\201507082118.sql" />
     <Content Include="Content\shop.less" />
-    <Content Include="Content\fonts\crumbler-webfont.eot" />
-    <Content Include="Content\fonts\crumbler-webfont.ttf" />
-    <Content Include="Content\fonts\crumbler-webfont.woff" />
+    <Content Include="Areas\Admin\Content\fonts\crumbler-webfont.eot" />
+    <Content Include="Areas\Admin\Content\fonts\crumbler-webfont.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\crumbler-webfont.woff" />
     <Content Include="Images\sidebar\camera.png" />
     <Content Include="Images\sidebar\house.png" />
     <Content Include="Images\sidebar\orders.png" />
@@ -593,81 +593,81 @@
     <Content Include="Areas\Admin\Scripts\app\PicturesCtrl.js" />
     <Content Include="Scripts\ckeditor.js" />
     <Content Include="Scripts\contents.css" />
-    <Content Include="Content\bootstrap\alerts.less" />
-    <Content Include="Content\bootstrap\badges.less" />
-    <Content Include="Content\bootstrap\bootstrap.less" />
-    <Content Include="Content\bootstrap\breadcrumbs.less" />
-    <Content Include="Content\bootstrap\button-groups.less" />
-    <Content Include="Content\bootstrap\buttons.less" />
-    <Content Include="Content\bootstrap\carousel.less" />
-    <Content Include="Content\bootstrap\close.less" />
-    <Content Include="Content\bootstrap\code.less" />
-    <Content Include="Content\bootstrap\component-animations.less" />
-    <Content Include="Content\bootstrap\dropdowns.less" />
-    <Content Include="Content\bootstrap\forms.less" />
-    <Content Include="Content\bootstrap\glyphicons.less" />
-    <Content Include="Content\bootstrap\grid.less" />
-    <Content Include="Content\bootstrap\input-groups.less" />
-    <Content Include="Content\bootstrap\jumbotron.less" />
-    <Content Include="Content\bootstrap\labels.less" />
-    <Content Include="Content\bootstrap\list-group.less" />
-    <Content Include="Content\bootstrap\media.less" />
-    <Content Include="Content\bootstrap\mixins.less" />
-    <Content Include="Content\bootstrap\mixins\alerts.less" />
-    <Content Include="Content\bootstrap\mixins\background-variant.less" />
-    <Content Include="Content\bootstrap\mixins\border-radius.less" />
-    <Content Include="Content\bootstrap\mixins\buttons.less" />
-    <Content Include="Content\bootstrap\mixins\center-block.less" />
-    <Content Include="Content\bootstrap\mixins\clearfix.less" />
-    <Content Include="Content\bootstrap\mixins\forms.less" />
-    <Content Include="Content\bootstrap\mixins\gradients.less" />
-    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
-    <Content Include="Content\bootstrap\mixins\grid.less" />
-    <Content Include="Content\bootstrap\mixins\hide-text.less" />
-    <Content Include="Content\bootstrap\mixins\image.less" />
-    <Content Include="Content\bootstrap\mixins\labels.less" />
-    <Content Include="Content\bootstrap\mixins\list-group.less" />
-    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
-    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
-    <Content Include="Content\bootstrap\mixins\opacity.less" />
-    <Content Include="Content\bootstrap\mixins\pagination.less" />
-    <Content Include="Content\bootstrap\mixins\panels.less" />
-    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
-    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
-    <Content Include="Content\bootstrap\mixins\resize.less" />
-    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
-    <Content Include="Content\bootstrap\mixins\size.less" />
-    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
-    <Content Include="Content\bootstrap\mixins\table-row.less" />
-    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
-    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
-    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
-    <Content Include="Content\bootstrap\modals.less" />
-    <Content Include="Content\bootstrap\navbar.less" />
-    <Content Include="Content\bootstrap\navs.less" />
-    <Content Include="Content\bootstrap\normalize.less" />
-    <Content Include="Content\bootstrap\pager.less" />
-    <Content Include="Content\bootstrap\pagination.less" />
-    <Content Include="Content\bootstrap\panels.less" />
-    <Content Include="Content\bootstrap\popovers.less" />
-    <Content Include="Content\bootstrap\print.less" />
-    <Content Include="Content\bootstrap\progress-bars.less" />
-    <Content Include="Content\bootstrap\responsive-embed.less" />
-    <Content Include="Content\bootstrap\responsive-utilities.less" />
-    <Content Include="Content\bootstrap\scaffolding.less" />
-    <Content Include="Content\bootstrap\tables.less" />
-    <Content Include="Content\bootstrap\theme.less" />
-    <Content Include="Content\bootstrap\thumbnails.less" />
-    <Content Include="Content\bootstrap\tooltip.less" />
-    <Content Include="Content\bootstrap\type.less" />
-    <Content Include="Content\bootstrap\utilities.less" />
-    <Content Include="Content\bootstrap\variables.less" />
-    <Content Include="Content\bootstrap\wells.less" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\elements.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\alerts.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\badges.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\bootstrap.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\button-groups.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\buttons.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\carousel.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\close.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\code.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\component-animations.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\dropdowns.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\forms.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\glyphicons.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\grid.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\input-groups.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\jumbotron.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\labels.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\list-group.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\media.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\alerts.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\buttons.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\center-block.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\forms.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\gradients.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\grid.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\image.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\labels.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\list-group.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\opacity.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\pagination.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\panels.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\resize.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\size.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\table-row.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\modals.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\navbar.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\navs.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\normalize.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\pager.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\pagination.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\panels.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\popovers.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\print.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\progress-bars.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\responsive-embed.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\scaffolding.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\tables.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\theme.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\thumbnails.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\tooltip.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\type.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\utilities.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\variables.less" />
+    <Content Include="Areas\Admin\Content\bootstrap\wells.less" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Content\elements.less" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Store\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -675,7 +675,7 @@
     <Content Include="Areas\Admin\Views\Pages\New.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\_Form.cshtml" />
-    <Content Include="Content\table.less" />
+    <Content Include="Areas\Admin\Content\table.less" />
     <Content Include="Areas\Admin\Views\Themes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Themes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Themes\Editors\_Image.cshtml" />

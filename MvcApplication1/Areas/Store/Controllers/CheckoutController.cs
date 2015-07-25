@@ -9,11 +9,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Llprk.Application.Services;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
     public partial class CheckoutController : ApplicationController
     {
+        private ICartService _CartService;
+
+        /// <summary>
+        /// CTR
+        /// </summary>
+        /// <param name="themes"></param>
+        public CheckoutController(ICartService carts)
+        {
+            if (carts == null) throw new ArgumentNullException("carts");
+
+            _CartService = carts;
+        }
         //
         // GET: /Checkout/
 
@@ -21,6 +34,8 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public virtual ActionResult Index()
         {
             var vm = new OrderNew(db.Countries.ToList());
+            var cart = _CartService.GetCart((int)Session["cart_id"]);
+
             return View(vm);
         }
 

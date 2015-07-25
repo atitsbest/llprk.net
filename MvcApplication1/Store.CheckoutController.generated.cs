@@ -28,9 +28,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     public partial class CheckoutController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CheckoutController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected CheckoutController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
