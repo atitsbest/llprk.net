@@ -56,6 +56,8 @@
     <Compile Include="Migrations\01OrderPriceInDBMigration.cs" />
     <Compile Include="MimeTypeMap.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\LineItem.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\llprk.Context.cs">
       <DependentUpon>llprk.Context.tt</DependentUpon>
@@ -85,6 +87,8 @@
     <Content Include="Migrations\sql\201507082118.sql" />
     <Content Include="Migrations\sql\201507082145.sql" />
     <Content Include="Migrations\sql\201507082155.sql" />
+    <Content Include="Migrations\sql\201507251158.sql" />
+    <Content Include="Migrations\sql\201507251228.sql" />
     <Content Include="Models\llprk.tt">
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>

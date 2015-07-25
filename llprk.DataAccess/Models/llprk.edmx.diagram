@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e8db3d4fd4564037aeaf114accc5073c" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="e8db3d4fd4564037aeaf114accc5073c" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Category" Width="1.5" PointX="8.97680893772133" PointY="21.201173509099135" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" Width="1.5" PointX="3.2335020821697555" PointY="5.7351650026324972" />
         <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Width="1.5" PointX="9.4146594374508865" PointY="23.921569194608168" />
@@ -25,6 +25,11 @@
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" />
         <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.Cart" Width="1.5" PointX="5.32971880274346" PointY="20.093947822271822" />
+        <EntityTypeShape EntityType="Llprk.Web.UI.Models.ShopDbModel.LineItem" Width="1.5" PointX="2.3461901854473122" PointY="8.5839564095176559" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders" />
+        <AssociationConnector Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
