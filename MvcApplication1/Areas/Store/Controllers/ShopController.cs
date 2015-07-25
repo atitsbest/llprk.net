@@ -67,7 +67,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                 templateItem = theme.GetItem("index.liquid", "templates");
             }
 
-            Template.FileSystem = new LiquidFileSystem(theme);
+            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
 
             Template.RegisterFilter(typeof(ScriptTagFilter));
             Template.RegisterFilter(typeof(StylesheetTagFilter));
@@ -134,11 +134,13 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     public class LiquidFileSystem : IFileSystem
     {
         private ITheme _Theme;
+        private bool _Unpublished;
 
-        public LiquidFileSystem(ITheme theme)
+        public LiquidFileSystem(ITheme theme, bool unpublished)
         {
             if (theme == null) throw new ArgumentNullException("theme");
             _Theme = theme;
+            _Unpublished = unpublished;
         }
 
         public string ReadTemplateFile(Context context, string templateName)
@@ -147,7 +149,9 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                 ? templateName
                 : Path.ChangeExtension(templateName, ".liquid");
 
-            return _Theme.GetItem(fileName, "snippets").ReadContent();
+            return _Unpublished
+                ? _Theme.GetUnpublishedItem(fileName, "snippets").ReadContent()
+                : _Theme.GetItem(fileName, "snippets").ReadContent();
         }
     }
 

@@ -526,6 +526,8 @@ namespace Links
         public static readonly string jquery_lazyload_min_js = Url("jquery.lazyload.min.js");
         public static readonly string jquery_lettering_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.lettering.min.js") ? Url("jquery.lettering.min.js") : Url("jquery.lettering.js");
         public static readonly string jquery_rotatescale_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.rotatescale.min.js") ? Url("jquery.rotatescale.min.js") : Url("jquery.rotatescale.js");
+        public static readonly string jquery_signalR_2_2_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.signalR-2.2.0.min.js") ? Url("jquery.signalR-2.2.0.min.js") : Url("jquery.signalR-2.2.0.js");
+        public static readonly string jquery_signalR_2_2_0_min_js = Url("jquery.signalR-2.2.0.min.js");
         public static readonly string jquery_unobtrusive_ajax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.unobtrusive-ajax.min.js") ? Url("jquery.unobtrusive-ajax.min.js") : Url("jquery.unobtrusive-ajax.js");
         public static readonly string jquery_unobtrusive_ajax_min_js = Url("jquery.unobtrusive-ajax.min.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
@@ -1670,6 +1672,8 @@ namespace Links
                 public const string jquery_lazyload_min_js = "~/Scripts/jquery.lazyload.min.js"; 
                 public const string jquery_lettering_js = "~/Scripts/jquery.lettering.js"; 
                 public const string jquery_rotatescale_js = "~/Scripts/jquery.rotatescale.js"; 
+                public const string jquery_signalR_2_2_0_js = "~/Scripts/jquery.signalR-2.2.0.js"; 
+                public const string jquery_signalR_2_2_0_min_js = "~/Scripts/jquery.signalR-2.2.0.min.js"; 
                 public const string jquery_unobtrusive_ajax_js = "~/Scripts/jquery.unobtrusive-ajax.js"; 
                 public const string jquery_unobtrusive_ajax_min_js = "~/Scripts/jquery.unobtrusive-ajax.min.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 

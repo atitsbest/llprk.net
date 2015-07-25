@@ -17,7 +17,7 @@ namespace Llprk.Web.UI.Liquid
             if (!Uri.IsWellFormedUriString(input, UriKind.Absolute))
             {
                 UrlHelper helper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                url = helper.Content("~/Themes/minimal/assets/styles/" + input);
+                url = helper.Content(Path.Combine("~/Themes/minimal/unpublished/assets/", input));
             }
 
             return string.Format("<link media=\"all\" href=\"{0}\" rel=\"stylesheet\" />", url);

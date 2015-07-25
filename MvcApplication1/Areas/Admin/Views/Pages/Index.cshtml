@@ -3,37 +3,39 @@
 }
 
 <a href="@Url.Action(MVC.Admin.Pages.New())" class="btn btn-success pull-right">Add Page</a>
-<div class="row">
-    <table class="table table-hover" data-bind="with:pages">
-        <thead>
-            <tr>
-                <th style="" width="80%" data-bind="sorter: 'Title'">Title</th>
-                <th style="" width="19%" data-bind="sorter: 'CreatedAt'">Last modified</th>
-                <th style="" width="1%"></th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: data">
-            <tr>
-                <td>
-                    <strong>
-                        <a data-bind="attr: {href:'@Url.Action(MVC.Admin.Pages.Edit())/'+id},text:title"></a>
-                    </strong>
-                    <p data-bind="text:content" class="text-muted"></p>
-                </td>
-                <td data-bind="date: createdAt" />
-                <td>
-                    <i class="glyphicon glyphicon-ok text-muted" data-bind="visible:isPublished"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="panel panel-default" style="margin:15px;">
+    <div class="panel-body">
+        <table class="table table-hover" data-bind="with:pages">
+            <thead>
+                <tr>
+                    <th style="" width="80%" data-bind="sorter: 'Title'">Title</th>
+                    <th style="" width="19%" data-bind="sorter: 'CreatedAt'">Last modified</th>
+                    <th style="" width="1%"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: data">
+                <tr>
+                    <td>
+                        <strong>
+                            <a data-bind="attr: {href:'@Url.Action(MVC.Admin.Pages.Edit())/'+id},text:title"></a>
+                        </strong>
+                        <p data-bind="text:content" class="text-muted"></p>
+                    </td>
+                    <td data-bind="date: createdAt" />
+                    <td>
+                        <i class="glyphicon glyphicon-ok text-muted" data-bind="visible:isPublished"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div class="row">
-        <div class="col-xs-6">
-            <pagernumberofitems params="source: pages, text: 'Anzahl Einträge'"></pagernumberofitems>
-        </div>
-        <div class="col-xs-6">
-            <pager params="source: pages, visiblePages: 10" class="pull-right"></pager>
+        <div class="row">
+            <div class="col-xs-6">
+                <pagernumberofitems params="source: pages, text: 'Anzahl Einträge'"></pagernumberofitems>
+            </div>
+            <div class="col-xs-6">
+                <pager params="source: pages, visiblePages: 10" class="pull-right"></pager>
+            </div>
         </div>
     </div>
 

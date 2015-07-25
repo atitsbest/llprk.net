@@ -44,5 +44,16 @@
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
+
+        <script src="signalr/hubs"></script>
+        <script>
+            $(function () {
+                // Declare a proxy to reference the hub. 
+                var chat = $.connection.themeHub;
+                chat.client.broadcastMessage = function (name, message) {
+                    console.log(name, message);
+                }
+            });
+        </script>
     </body>
 </html>

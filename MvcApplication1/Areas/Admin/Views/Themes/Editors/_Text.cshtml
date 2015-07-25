@@ -30,6 +30,10 @@
         });
         setTimeout(function() { editor.refresh(); }, 1);
 
+        // Init Signalr Hub.
+        var hub = $.connection.themeHub;
+        $.connection.hub.start();
+
         // Save...
         $('a.save_@Model.UID').click(function() {
             var payload = {
@@ -41,7 +45,11 @@
             };
 
             $.when($.postJSON('@Url.Action(MVC.Admin.Themes.UpdateItem())', payload))
-            .then(function() { toastr.success('Saved'); })
+            .then(function() { 
+                // Notify all preview windows.
+                hub.server.send('@Model.Theme', '@Model.UID');
+                toastr.success('Saved'); 
+            })
             .fail(function() { toastr.error('O_o'); });
         });
     });
