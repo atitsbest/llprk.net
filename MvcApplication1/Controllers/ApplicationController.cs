@@ -1,4 +1,5 @@
-﻿using Llprk.DataAccess.Models;
+﻿using DotLiquid;
+using Llprk.DataAccess.Models;
 using Llprk.Web.UI.Controllers.Results;
 using System;
 using System.Web;
@@ -9,6 +10,35 @@ namespace Llprk.Web.UI.Controllers
     public partial class ApplicationController : Controller
     {
         protected Entities db = new Entities();
+
+
+        /// <summary>
+        /// Renders the Liquid-Template for the Shop.
+        /// </summary>
+        /// <param name="layout"></param>
+        /// <param name="templateHtml"></param>
+        /// <returns></returns>
+        public virtual ActionResult RenderTemplate(Template layout, string templateHtml)
+        {
+            var layoutHtml = layout.Render(Hash.FromAnonymousObject(new
+            {
+                content_for_layout = templateHtml,
+                theme_designer_support = ViewBag.Unpublished ? @"
+                    <script src=""/Scripts/jquery.signalR-2.2.0.min.js""></script>
+                    <script src=""/signalr/hubs""></script>
+                    <script>
+                      $(function () {
+                        var chat = $.connection.themeHub;
+                        $.connection.hub.start();
+                        chat.client.broadcastMessage = function (name, message) {
+                          window.location.reload();
+                        }
+                      });
+                    </script> " : null
+            }));
+
+            return Content(layoutHtml);
+        }
 
 
         /// <summary>

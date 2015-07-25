@@ -9,15 +9,16 @@ using AutoMapper;
 using Llprk.Web.UI.ViewModels;
 using System.Collections.Generic;
 using Llprk.Web.UI.Liquid;
-using Llprk.Application.Services;
+using DotLiquid.FileSystems;
 using System;
-using Llprk.DataAccess.Models.Theme;
+using Llprk.Application.Services;
 using Llprk.Web.UI.Filters;
+using Llprk.DataAccess.Models.Theme;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
     [ThemeFilter]
-    public partial class CartController : ApplicationController
+    public partial class ProductController : ApplicationController
     {
         private ThemeService _ThemeService;
 
@@ -25,7 +26,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         /// CTR
         /// </summary>
         /// <param name="themes"></param>
-        public CartController(ThemeService themes)
+        public ProductController(ThemeService themes)
         {
             if (themes == null) throw new ArgumentNullException("themes");
 
@@ -39,20 +40,30 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 #if !DEBUG
 		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
 #endif
-        public virtual ActionResult Index(int? id)
+        [ThemeFilter]
+        public virtual ActionResult Index(int id)
         {
+            var viewModel = new ProductIndex
+            {
+                Product = Mapper.Map<LiquidProduct>(db.Products
+                        .Single(p => p.IsPublished
+                                && p.Id == id
+                                && p.Available > 0)) // Nur verfügbare Produkte anzeigen.
+            };
+
+            // Templating:
             var theme = _ThemeService.GetTheme(ViewBag.ThemeName);
             IThemeItem layoutItem;
             IThemeItem templateItem;
             if (ViewBag.Unpublished != null)
             {
                 layoutItem = theme.GetUnpublishedItem("layout.liquid", "layouts");
-                templateItem = theme.GetUnpublishedItem("cart.liquid", "templates");
+                templateItem = theme.GetUnpublishedItem("product.liquid", "templates");
             }
             else
             {
                 layoutItem = theme.GetItem("layout.liquid", "layouts");
-                templateItem = theme.GetItem("cart.liquid", "templates");
+                templateItem = theme.GetItem("product.liquid", "templates");
             }
 
             Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
@@ -67,47 +78,16 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
             // Render Template.
             template.Registers.Add("file_system", Template.FileSystem);
-            var templateHtml = template.Render(Hash.FromAnonymousObject(new
-            {
-                cart_url = Url.Action(MVC.Store.Cart.Update()),
-                page_title = "Warenkorb",
-                template = "cart"
+            var templateHtml = template.Render(Hash.FromAnonymousObject(new {
+                product = viewModel.Product,
+                add_to_cart_url = viewModel.AddToCartUrl,
+                page_title = "Product",
+                template = "product"
             }));
 
             return RenderTemplate(layout, templateHtml);
         }
 
-        /// <summary>
-        /// Add a product to the cart.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="qty"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public virtual ActionResult Add(int id, int qty)
-        {
-            return RedirectToAction(MVC.Store.Cart.Index());
-        }
-
-        /// <summary>
-        /// Update cart information (quantities, ...)
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost, HttpParamAction]
-        public virtual ActionResult Update()
-        {
-            return RedirectToAction(MVC.Store.Cart.Index());
-        }
-
-        /// <summary>
-        /// Proceede to checkout.
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost, HttpParamAction]
-        public virtual ActionResult Checkout()
-        {
-            return RedirectToAction(MVC.Store.Checkout.Index());
-        }
     }
 
 }

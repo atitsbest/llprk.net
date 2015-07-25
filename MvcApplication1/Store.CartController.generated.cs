@@ -28,9 +28,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     public partial class CartController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CartController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected CartController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -65,6 +62,12 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Add()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public CartController Actions { get { return MVC.Store.Cart; } }
@@ -82,12 +85,18 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Add = "Add";
+            public readonly string Update = "Update";
+            public readonly string Checkout = "Checkout";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Add = "Add";
+            public const string Update = "Update";
+            public const string Checkout = "Checkout";
         }
 
 
@@ -98,6 +107,15 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public class ActionParamsClass_Index
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Add s_params_Add = new ActionParamsClass_Add();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Add AddParams { get { return s_params_Add; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Add
+        {
+            public readonly string id = "id";
+            public readonly string qty = "qty";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -127,6 +145,41 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             IndexOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, int qty);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Add(int id, int qty)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "qty", qty);
+            AddOverride(callInfo, id, qty);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Update()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
+            UpdateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Checkout()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Checkout);
+            CheckoutOverride(callInfo);
             return callInfo;
         }
 

@@ -61,9 +61,11 @@ namespace T4MVC
         public readonly string Name = "Store";
         public Llprk.Web.UI.Areas.Store.Controllers.CartController Cart = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_CartController();
         public Llprk.Web.UI.Areas.Store.Controllers.CheckoutController Checkout = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_CheckoutController();
+        public Llprk.Web.UI.Areas.Store.Controllers.CollectionController Collection = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_CollectionController();
         public Llprk.Web.UI.Areas.Store.Controllers.HomeController Home = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_HomeController();
         public Llprk.Web.UI.Areas.Store.Controllers.PagesController Pages = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_PagesController();
         public Llprk.Web.UI.Areas.Store.Controllers.PayPalController PayPal = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_PayPalController();
+        public Llprk.Web.UI.Areas.Store.Controllers.ProductController Product = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_ProductController();
         public Llprk.Web.UI.Areas.Store.Controllers.ShopController Shop = new Llprk.Web.UI.Areas.Store.Controllers.T4MVC_ShopController();
         public T4MVC.Store.SharedController Shared = new T4MVC.Store.SharedController();
     }

@@ -18,7 +18,7 @@ using Llprk.DataAccess.Models.Theme;
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
     [ThemeFilter]
-    public partial class ShopController : ApplicationController
+    public partial class CollectionController : ApplicationController
     {
         private ThemeService _ThemeService;
 
@@ -26,7 +26,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         /// CTR
         /// </summary>
         /// <param name="themes"></param>
-        public ShopController(ThemeService themes)
+        public CollectionController(ThemeService themes)
         {
             if (themes == null) throw new ArgumentNullException("themes");
 
@@ -59,12 +59,12 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             if (ViewBag.Unpublished != null)
             {
                 layoutItem = theme.GetUnpublishedItem("layout.liquid", "layouts");
-                templateItem = theme.GetUnpublishedItem("index.liquid", "templates");
+                templateItem = theme.GetUnpublishedItem("collection.liquid", "templates");
             }
             else
             {
                 layoutItem = theme.GetItem("layout.liquid", "layouts");
-                templateItem = theme.GetItem("index.liquid", "templates");
+                templateItem = theme.GetItem("collection.liquid", "templates");
             }
 
             Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
@@ -81,73 +81,17 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             template.Registers.Add("file_system", Template.FileSystem);
             var templateHtml = template.Render(Hash.FromAnonymousObject(new {
                 products = viewModel.Products,
-                page_title = "Index",
-                template = "index"
+                page_title = "Collection",
+                template = "collection"
             }));
 
-            return RenderTemplate(layout, templateHtml);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-#if !DEBUG
-		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
-#endif
-        public virtual ActionResult Categories(int id)
-        {
-            var viewModel = new ShopCategory();
-            viewModel.Category = db.Categories.First(c => c.Id == id);
-            viewModel.Products = db.Products
-                       .Where(p => p.IsPublished
-                                && p.CategoryId == id
-                                && p.Available > 0) // Nur verfügbare Produkte anzeigen.
-                       .ToArray();
-            return View(viewModel);
+            var layoutHtml = layout.Render(Hash.FromAnonymousObject(new {
+                content_for_layout = templateHtml
+            }));
+
+            return Content(layoutHtml);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-#if !DEBUG
-		[OutputCache(Duration=120, VaryByParam="id", NoStore=true)]
-#endif
-        public virtual ActionResult Details(int id)
-        {
-            var viewModel = new ShopDetail();
-            viewModel.Product = db.Products
-				.Include(p => p.Category)
-                .Single(p => p.Id == id);
-            return View(viewModel);
-        }
-
-    }
-
-    public class LiquidFileSystem : IFileSystem
-    {
-        private ITheme _Theme;
-        private bool _Unpublished;
-
-        public LiquidFileSystem(ITheme theme, bool unpublished)
-        {
-            if (theme == null) throw new ArgumentNullException("theme");
-            _Theme = theme;
-            _Unpublished = unpublished;
-        }
-
-        public string ReadTemplateFile(Context context, string templateName)
-        {
-            var fileName = Path.HasExtension(templateName)
-                ? templateName
-                : Path.ChangeExtension(templateName, ".liquid");
-
-            return _Unpublished
-                ? _Theme.GetUnpublishedItem(fileName, "snippets").ReadContent()
-                : _Theme.GetItem(fileName, "snippets").ReadContent();
-        }
     }
 
 }

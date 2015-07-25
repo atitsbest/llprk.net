@@ -39,7 +39,7 @@ namespace Llprk.Web.UI.ViewModels
             get
             {
                 var helper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                return helper.Action(MVC.Store.Shop.Details(this.Id));
+                return helper.Action(MVC.Store.Product.Index(Id));
 
             }
         }

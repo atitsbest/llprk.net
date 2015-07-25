@@ -1,7 +1,7 @@
-<h3>
+﻿<h3>
   <a href="{{ product.url }}">{{ product.name }}</a>
 </h3>
-Preis {{ product.price | price }}
+Nur {{ product.price | price }}
 
 {% if product.has_picture %}
   <img src="{{ product.featured_picture.url }}"></img>

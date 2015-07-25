@@ -23,15 +23,12 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Llprk.Web.UI.Controllers
+namespace Llprk.Web.UI.Areas.Store.Controllers
 {
-    public partial class ApplicationController
+    public partial class CollectionController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ApplicationController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ApplicationController(Dummy d) { }
+        protected CollectionController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -61,19 +58,19 @@ namespace Llprk.Web.UI.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult RenderTemplate()
+        public virtual System.Web.Mvc.ActionResult Index()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ApplicationController Actions { get { return MVC.Application; } }
+        public CollectionController Actions { get { return MVC.Store.Collection; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
+        public readonly string Area = "Store";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Application";
+        public readonly string Name = "Collection";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Application";
+        public const string NameConst = "Collection";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,24 +78,23 @@ namespace Llprk.Web.UI.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string RenderTemplate = "RenderTemplate";
+            public readonly string Index = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string RenderTemplate = "RenderTemplate";
+            public const string Index = "Index";
         }
 
 
-        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_RenderTemplate
+        public class ActionParamsClass_Index
         {
-            public readonly string layout = "layout";
-            public readonly string templateHtml = "templateHtml";
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,20 +111,19 @@ namespace Llprk.Web.UI.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ApplicationController : Llprk.Web.UI.Controllers.ApplicationController
+    public partial class T4MVC_CollectionController : Llprk.Web.UI.Areas.Store.Controllers.CollectionController
     {
-        public T4MVC_ApplicationController() : base(Dummy.Instance) { }
+        public T4MVC_CollectionController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
+        public override System.Web.Mvc.ActionResult Index(int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
-            RenderTemplateOverride(callInfo, layout, templateHtml);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            IndexOverride(callInfo, id);
             return callInfo;
         }
 

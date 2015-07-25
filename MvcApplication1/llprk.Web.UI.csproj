@@ -300,7 +300,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
+    <Compile Include="Areas\Store\Controllers\CollectionController.cs" />
+    <Compile Include="Areas\Store\Controllers\ProductController.cs" />
     <Compile Include="Areas\Store\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Store\Models\ProductIndex.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
@@ -317,6 +320,7 @@
     <Compile Include="Areas\Admin\Controllers\api\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\api\ShopController.cs" />
     <Compile Include="AutoMapperProfile.cs" />
+    <Compile Include="Filters\HttpActionParamAttribute.cs" />
     <Compile Include="Hubs\ThemeHub.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Areas\Store\Controllers\CheckoutController.cs" />
@@ -364,6 +368,9 @@
     <Compile Include="Store.CheckoutController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Store.CollectionController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Store.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -371,6 +378,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Store.PayPalController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Store.ProductController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Store.SharedController.generated.cs">
