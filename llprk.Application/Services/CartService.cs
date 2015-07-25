@@ -39,15 +39,25 @@ namespace Llprk.Application.Services
         {
             var db = new Entities();
             var product = db.Products.Single(p => p.Id == productId);
-            var lineItem = new LineItem
-            {
-                CartId = cartId,
-                ProductId = productId,
-                Qty = qty,
-                Price = product.Price
-            };
+            // Find lineitem with this product.
+            var lineItem = product.LineItems.SingleOrDefault(li => li.CartId == cartId);
 
-            db.LineItems.Add(lineItem);
+            if (lineItem != null)
+            {
+                lineItem.Qty += qty;
+            }
+            else
+            {
+                lineItem = new LineItem
+                {
+                    CartId = cartId,
+                    ProductId = productId,
+                    Qty = qty,
+                    Price = product.Price
+                };
+
+                db.LineItems.Add(lineItem);
+            }
             db.SaveChanges();    
         }
     }

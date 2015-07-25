@@ -58,6 +58,28 @@ namespace llprk.Application.Test.Services
             });
         }
 
+        [TestMethod]
+        public void Add_the_same_Product_to_Cart()
+        {
+            var db = new Entities();
+            var sut = _createSut();
+
+            AssertChangedBy(db.LineItems, () =>
+            {
+                // Add product once...
+                var product = db.Products.First();
+                sut.AddProduct(1, product.Id, 17);
+                // Add same product a second time.
+                sut.AddProduct(1, product.Id, 1);
+
+                // Assert
+                var cart = sut.GetCart(1);
+                Assert.AreEqual(1, cart.LineItems.Count());
+                Assert.AreEqual(product.Id, cart.LineItems.First().ProductId);
+                Assert.AreEqual(18, cart.LineItems.First().Qty);
+            });
+        }
+
         private CartService _createSut()
         {
             return new CartService();
