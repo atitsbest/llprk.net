@@ -1,26 +1,39 @@
 {% comment %}
 For the checkout and update buttons to work, they need to use
-a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
+a name attribute set to 'checkout' and 'update', respectively. 
+That's case-sensitive.
+
+To update a cart post to cart_url. 
+All line item values must be presented in a form 
+with input names like: 
+	updates[<zero_based_index>].id and
+	updates[<zero_based_index>].qty
+
+To update an line item call update_line_item_url with ?lineitemid=<value>&qty=<value>
 {% endcomment %}
+{% assign line_items_length = cart.line_items | size %}
 
-<h1>Shopping Cart {{ cart.line_items | size }}</h1>
+<div id="cart">
+  <h1>Warenkorb</h1>
 
-{% if cart.line_items | size > 0 %}
+  {% if line_items_length > 0 %}
 
-  <form action="{{ cart_url }}" method="post">
-    {% for item in cart.line_items %}
-    	<h4>{{ item.product.name }}</h4>
-		<input type="number" name="updates[]" id="updates_{{ item.id }}" class="quantity" value="{{ item.qty }}" />
-      	<a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
-    {% endfor %}
-    <hr/>
-    <input type="submit" name="update" value="Update cart" />
-    <span class="or">or</span>
-    <input type="submit" name="checkout" value="Check out" />
-  </form>
-{% else %}
-  <div>
-    <h2>Warenkorb leer</h2>
-    <p>Auf geht's zum Shoppen!</p>
-  </div>
-{% endif %}
+    <form action="{{ cart_url }}" method="post">
+      {% for item in cart.line_items %}
+          <h4>{{ item.product.name }}</h4>
+          <input type="hidden" name="updates[{{ forloop.index0 }}].id" value="{{ item.id }}" />
+          <input type="number" name="updates[{{ forloop.index0 }}].qty" class="quantity" value="{{ item.qty }}" />
+          <a href="{{ update_line_item_url }}?lineitemid={{ item.id }}&qty=0">Löschen</a>
+      {% endfor %}
+      <hr/>
+      <input type="submit" name="update" value="Update cart" />
+      <span class="or">or</span>
+      <input type="submit" name="checkout" value="Check out" />
+    </form>
+  {% else %}
+    <div class="empty">
+      <h2>Der Warenkorb leer</h2>
+      <p>Auf geht's zum Shoppen!</p>
+    </div>
+  {% endif %}
+</div>

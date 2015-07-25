@@ -12,7 +12,10 @@ namespace Llprk.Application.Services
         Cart CreateCart();
         Cart GetCart(int id);
 
-        void AddProduct(int cartId, int productId, int qty);
+        int AddProduct(int cartId, int productId, int qty);
+
+        void UpdateLineItemQty(int cartId, int lineItemId, int qty);
+        void UpdateLineItemQty(int cartId, UpdateLineItemQtyRequest[] update);
     }
 
     public class CartService : ICartService
@@ -35,7 +38,7 @@ namespace Llprk.Application.Services
         }
 
 
-        public void AddProduct(int cartId, int productId, int qty)
+        public int AddProduct(int cartId, int productId, int qty)
         {
             var db = new Entities();
             var product = db.Products.Single(p => p.Id == productId);
@@ -58,7 +61,40 @@ namespace Llprk.Application.Services
 
                 db.LineItems.Add(lineItem);
             }
-            db.SaveChanges();    
+            db.SaveChanges();
+
+            return lineItem.Id;
+        }
+
+
+        public void UpdateLineItemQty(int cartId, int lineItemId, int qty)
+        {
+            UpdateLineItemQty(cartId, new UpdateLineItemQtyRequest[] { 
+                new UpdateLineItemQtyRequest {
+                    Id = lineItemId,
+                    Qty = qty
+                }
+            });
+        }
+
+        public void UpdateLineItemQty(int cartId, UpdateLineItemQtyRequest[] updates)
+        {
+            var db = new Entities();
+
+            foreach (var update in updates) {
+                var lineItem = db.LineItems.Single(l => l.Id == update.Id);
+                if (update.Qty == 0)
+                {
+                    db.LineItems.Remove(lineItem);
+                }
+                else
+                {
+                    lineItem.Qty = update.Qty;
+                    db.Entry(lineItem).State = System.Data.Entity.EntityState.Modified;
+                }
+            }
+
+            db.SaveChanges();
         }
     }
 }

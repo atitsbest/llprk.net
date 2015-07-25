@@ -1,0 +1,14 @@
+body {
+  padding: 0 20px;
+}
+
+/* 	-----------------------------------------
+ 	CART
+ 	----------------------------------------- */
+#cart {
+  	text-align: center;
+}
+
+#cart .empty {
+	text-align: center;
+}

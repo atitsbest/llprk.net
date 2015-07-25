@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperProfile.cs" />
     <Compile Include="DependencyInjectionConfig.cs" />
+    <Compile Include="DTOs\Requests\UpdateLineItemQtyRequest.cs" />
     <Compile Include="DTOs\Requests\EditThemeRequest.cs" />
     <Compile Include="DTOs\Requests\ThemesRequest.cs" />
     <Compile Include="DTOs\Requests\EditPageRequest.cs" />

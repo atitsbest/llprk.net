@@ -62,6 +62,24 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Update()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Change()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Change);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Checkout()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Checkout);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public CartController Actions { get { return MVC.Store.Cart; } }
@@ -81,6 +99,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public readonly string Index = "Index";
             public readonly string Add = "Add";
             public readonly string Update = "Update";
+            public readonly string Change = "Change";
             public readonly string Checkout = "Checkout";
         }
 
@@ -90,6 +109,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public const string Index = "Index";
             public const string Add = "Add";
             public const string Update = "Update";
+            public const string Change = "Change";
             public const string Checkout = "Checkout";
         }
 
@@ -102,6 +122,31 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             public readonly string id = "id";
             public readonly string qty = "qty";
+        }
+        static readonly ActionParamsClass_Update s_params_Update = new ActionParamsClass_Update();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Update UpdateParams { get { return s_params_Update; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Update
+        {
+            public readonly string info = "info";
+        }
+        static readonly ActionParamsClass_Change s_params_Change = new ActionParamsClass_Change();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Change ChangeParams { get { return s_params_Change; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Change
+        {
+            public readonly string lineItemId = "lineItemId";
+            public readonly string qty = "qty";
+        }
+        static readonly ActionParamsClass_Checkout s_params_Checkout = new ActionParamsClass_Checkout();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Checkout CheckoutParams { get { return s_params_Checkout; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Checkout
+        {
+            public readonly string updates = "updates";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -147,24 +192,39 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.Web.UI.Areas.Store.Models.CartUpdate info);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Update()
+        public override System.Web.Mvc.ActionResult Update(Llprk.Web.UI.Areas.Store.Models.CartUpdate info)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
-            UpdateOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "info", info);
+            UpdateOverride(callInfo, info);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ChangeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int lineItemId, int qty);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Checkout()
+        public override System.Web.Mvc.ActionResult Change(int lineItemId, int qty)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Change);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lineItemId", lineItemId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "qty", qty);
+            ChangeOverride(callInfo, lineItemId, qty);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.KeyValuePair<int,int>[] updates);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Checkout(System.Collections.Generic.KeyValuePair<int,int>[] updates)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Checkout);
-            CheckoutOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "updates", updates);
+            CheckoutOverride(callInfo, updates);
             return callInfo;
         }
 

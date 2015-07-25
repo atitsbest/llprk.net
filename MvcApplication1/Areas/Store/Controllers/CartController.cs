@@ -43,16 +43,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public virtual ActionResult Index()
         {
             // TODO: Mach einen Filter oder sowas draus.
-            int cartId;
-            if (Session["cartId"] == null)
-            {
-                cartId = _CartService.CreateCart().Id;
-                Session["cartId"] = cartId;
-            }
-            else
-            {
-                cartId = (int)Session["cartId"];
-            }
+            int cartId = _EnsureCart();
 
             var viewModel = new CartIndex
             {
@@ -91,6 +82,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             {
                 cart = viewModel,
                 cart_url = Url.Action(MVC.Store.Cart.Update()),
+                update_line_item_url = Url.Action(MVC.Store.Cart.Change()),
                 page_title = "Warenkorb",
                 template = "cart"
             }));
@@ -107,16 +99,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         [HttpPost]
         public virtual ActionResult Add(int id, int qty)
         {
-            int cartId;
-            if (Session["cartId"] == null)
-            {
-                cartId = _CartService.CreateCart().Id;
-                Session["cartId"] = cartId;
-            }
-            else
-            {
-                cartId = (int)Session["cartId"];
-            }
+            var cartId = _EnsureCart();
 
             _CartService.AddProduct(cartId, id, qty);
 
@@ -128,8 +111,23 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost, HttpParamAction]
-        public virtual ActionResult Update()
+        public virtual ActionResult Update(CartUpdate info)
         {
+            var cartId = _EnsureCart();
+
+            _CartService.UpdateLineItemQty(cartId, info.Updates);
+            return RedirectToAction(MVC.Store.Cart.Index());
+        }
+
+        /// <summary>
+        /// Update a single line item, not the whole cart like Update().
+        /// </summary>
+        /// <returns></returns>
+        public virtual ActionResult Change(int lineItemId, int qty)
+        {
+            var cartId = _EnsureCart();
+
+            _CartService.UpdateLineItemQty(cartId, lineItemId, qty);
             return RedirectToAction(MVC.Store.Cart.Index());
         }
 
@@ -138,9 +136,28 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost, HttpParamAction]
-        public virtual ActionResult Checkout()
+        public virtual ActionResult Checkout(KeyValuePair<int, int>[] updates)
         {
             return RedirectToAction(MVC.Store.Checkout.Index());
+        }
+
+        /// <summary>
+        /// We ne a cart. Existent (in Sesson) or a new one.
+        /// </summary>
+        /// <returns></returns>
+        private int _EnsureCart()
+        {
+            int cartId;
+            if (Session["cartId"] == null)
+            {
+                cartId = _CartService.CreateCart().Id;
+                Session["cartId"] = cartId;
+            }
+            else
+            {
+                cartId = (int)Session["cartId"];
+            }
+            return cartId;
         }
     }
 

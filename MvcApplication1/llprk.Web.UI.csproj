@@ -304,6 +304,7 @@
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
     <Compile Include="Areas\Store\Controllers\PagesController.cs" />
     <Compile Include="Areas\Store\Models\CartIndex.cs" />
+    <Compile Include="Areas\Store\Models\CartUpdate.cs" />
     <Compile Include="Areas\Store\Models\ProductIndex.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
