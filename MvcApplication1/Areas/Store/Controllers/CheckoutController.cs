@@ -10,33 +10,64 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Llprk.Application.Services;
+using DotLiquid;
+using Llprk.Web.UI.Areas.Store.Controllers.Helpers;
+using Llprk.DataAccess.Models.Theme;
+using Llprk.Web.UI.Filters;
+using Llprk.Web.UI.Liquid;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
     public partial class CheckoutController : ApplicationController
     {
         private ICartService _CartService;
+        private ThemeService _ThemeService;
 
         /// <summary>
         /// CTR
         /// </summary>
         /// <param name="themes"></param>
-        public CheckoutController(ICartService carts)
+        public CheckoutController(ICartService carts, ThemeService themes)
         {
             if (carts == null) throw new ArgumentNullException("carts");
+            if (themes == null) throw new ArgumentNullException("themes");
 
             _CartService = carts;
+            _ThemeService = themes;
         }
         //
         // GET: /Checkout/
 
-        [HttpGet]
+        [HttpGet, ThemeFilter]
         public virtual ActionResult Index()
         {
             var vm = new OrderNew(db.Countries.ToList());
-            var cart = _CartService.GetCart((int)Session["cart_id"]);
+            var cart = _CartService.GetCart((int)Session["cartId"]);
+            var checkoutHtml = RenderViewHelper.RenderViewToString(ControllerContext, "Index", vm);
 
-            return View(vm);
+            IThemeItem layoutItem;
+            var theme = _ThemeService.GetTheme(ViewBag.ThemeName);
+            if (ViewBag.Unpublished != null)
+            {
+                layoutItem = theme.GetUnpublishedItem("layout.checkout.liquid", "layouts")
+                    ?? theme.GetUnpublishedItem("layout.liquid", "layouts");
+            }
+            else
+            {
+                layoutItem = theme.GetItem("layout.checkout.liquid", "layouts")
+                    ?? theme.GetItem("layout.liquid", "layouts");
+            }
+
+            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
+
+            Template.RegisterFilter(typeof(ScriptTagFilter));
+            Template.RegisterFilter(typeof(StylesheetTagFilter));
+            Template.RegisterFilter(typeof(ImageUrlFilter));
+
+            // Template lesen. TODO: Cache.
+            var layout = Template.Parse(layoutItem.ReadContent());
+
+            return RenderTemplate(layout, checkoutHtml);
         }
 
 

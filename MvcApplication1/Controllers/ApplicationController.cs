@@ -1,6 +1,9 @@
 ﻿using DotLiquid;
 using Llprk.DataAccess.Models;
+using Llprk.DataAccess.Models.Theme;
+using Llprk.Web.UI.Areas.Store.Controllers;
 using Llprk.Web.UI.Controllers.Results;
+using Llprk.Web.UI.Liquid;
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +14,42 @@ namespace Llprk.Web.UI.Controllers
     {
         protected Entities db = new Entities();
 
+
+        /// <summary>
+        /// Setup all necessary to later render the shop templates.
+        /// </summary>
+        /// <param name="theme"></param>
+        /// <param name="templateName"></param>
+        /// <param name="layout"></param>
+        /// <param name="template"></param>
+        public void PrepareRenderTemplate(ITheme theme, string templateName, out Template layout, out Template template)
+        {
+            IThemeItem layoutItem;
+            IThemeItem templateItem;
+            if (ViewBag.Unpublished != null)
+            {
+                layoutItem = theme.GetUnpublishedItem("layout.liquid", "layouts");
+                templateItem = theme.GetUnpublishedItem(templateName, "templates");
+            }
+            else
+            {
+                layoutItem = theme.GetItem("layout.liquid", "layouts");
+                templateItem = theme.GetItem(templateName, "templates");
+            }
+
+            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
+
+            Template.RegisterFilter(typeof(ScriptTagFilter));
+            Template.RegisterFilter(typeof(StylesheetTagFilter));
+            Template.RegisterFilter(typeof(ImageUrlFilter));
+
+            // Template lesen. TODO: Cache.
+            layout = Template.Parse(layoutItem.ReadContent());
+            template = Template.Parse(templateItem.ReadContent());
+
+            // Render Template.
+            template.Registers.Add("file_system", Template.FileSystem);
+        }
 
         /// <summary>
         /// Renders the Liquid-Template for the Shop.

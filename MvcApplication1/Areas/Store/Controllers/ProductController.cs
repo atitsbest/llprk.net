@@ -52,32 +52,11 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             };
 
             // Templating:
+            Template layout;
+            Template template;
             var theme = _ThemeService.GetTheme(ViewBag.ThemeName);
-            IThemeItem layoutItem;
-            IThemeItem templateItem;
-            if (ViewBag.Unpublished != null)
-            {
-                layoutItem = theme.GetUnpublishedItem("layout.liquid", "layouts");
-                templateItem = theme.GetUnpublishedItem("product.liquid", "templates");
-            }
-            else
-            {
-                layoutItem = theme.GetItem("layout.liquid", "layouts");
-                templateItem = theme.GetItem("product.liquid", "templates");
-            }
+            PrepareRenderTemplate(theme, "product.liquid", out layout, out template);
 
-            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
-
-            Template.RegisterFilter(typeof(ScriptTagFilter));
-            Template.RegisterFilter(typeof(StylesheetTagFilter));
-            Template.RegisterFilter(typeof(ImageUrlFilter));
-
-            // Template lesen. TODO: Cache.
-            var layout = Template.Parse(layoutItem.ReadContent());
-            var template = Template.Parse(templateItem.ReadContent());
-
-            // Render Template.
-            template.Registers.Add("file_system", Template.FileSystem);
             var templateHtml = template.Render(Hash.FromAnonymousObject(new {
                 product = viewModel.Product,
                 add_to_cart_url = viewModel.AddToCartUrl,

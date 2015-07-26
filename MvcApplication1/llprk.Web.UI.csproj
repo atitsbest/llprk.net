@@ -301,6 +301,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Controllers\CollectionController.cs" />
+    <Compile Include="Areas\Store\Controllers\Helpers\RenderViewHelper.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
     <Compile Include="Areas\Store\Controllers\PagesController.cs" />
     <Compile Include="Areas\Store\Models\CartIndex.cs" />
@@ -689,6 +690,7 @@
     <Content Include="Areas\Admin\Views\Themes\Editors\_Unsupported.cshtml" />
     <Content Include="Areas\Admin\Views\Themes\Editors\_Text.cshtml" />
     <Content Include="Areas\Admin\Content\toastr.less" />
+    <Content Include="Areas\Store\Views\Checkout\Index_old.cshtml" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\ko.extenders\ko.withPrevious.js" />

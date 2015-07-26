@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" ng-app="ShopApp">
+<html class="no-js">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -26,10 +26,9 @@
 	<img src="{{ 'lillypark.png' | image_url }}" class="img img-thumbnail"></img>
   
 	{{ content_for_layout }}
-
-	{{ 'jquery-1.9.1.js' | script_tag }}
   
-  	{{ theme_designer_support }}
+  <a href="/store/cart" class="btn btn-default">Zurück</a>
 
+  	{{ theme_designer_support }}
 </body>
 </html>

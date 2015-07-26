@@ -119,9 +119,11 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
+                public readonly string Index_old = "Index_old";
                 public readonly string thankyou = "thankyou";
             }
             public readonly string Index = "~/Areas/Store/Views/Checkout/Index.cshtml";
+            public readonly string Index_old = "~/Areas/Store/Views/Checkout/Index_old.cshtml";
             public readonly string thankyou = "~/Areas/Store/Views/Checkout/thankyou.cshtml";
         }
     }
