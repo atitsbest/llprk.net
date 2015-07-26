@@ -3,7 +3,6 @@
     ViewBag.Title = "Themes";
 }
 
-<a href="" class="btn btn-success pull-right">Upload Theme</a>
 <div class="row">
     <div class="col-xs-3">
         <h3>Available Themes</h3>
@@ -14,6 +13,7 @@
             <br />
             To upload a theme, yout need a zip-file containing the theme.
         </p>
+        <a href="" class="btn btn-success">Upload Theme...</a>
     </div>  
         <div class="col-xs-9">
     @foreach (var theme in Model.Themes)
@@ -21,7 +21,10 @@
         <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h4><a href="@Url.Action(MVC.Admin.Themes.Edit(theme.Name))">@theme.Name</a></h4>
+                    <h4><a href="@Url.Action(MVC.Admin.Themes.Edit(theme.Name))">
+                        @theme.Name
+                        <small><i class="glyphicon glyphicon-pencil"></i></small>
+                        </a></h4>
                     <hr />
                     @if (theme.IsActive)
                     {

@@ -639,22 +639,22 @@ header h2 {
   color: #333333;
   opacity: .75;
   text-transform: uppercase;
-  letter-spacing: -2px;
-  font-weight: bold;
-  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 800;
 }
 header nav {
   float: right;
 }
 header nav > a {
-  margin: 0 .5em;
   color: #999;
   display: inline-block;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 600;
+  padding: 5px 10px;
 }
 header nav > a.active {
-  color: #333;
+  color: #ffffff;
+  background: #000000;
+  border-radius: 4px;
 }
 header nav > a:hover {
   text-decoration: none;

@@ -1002,9 +1002,9 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string admin_less = Url("admin.less");
-                public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
+                public static readonly string admin_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/admin.min.css") ? Url("admin.min.css") : Url("admin.css");
                      
-                public static readonly string site_min_css = Url("site.min.css");
+                public static readonly string admin_min_css = Url("admin.min.css");
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class bootstrap {
                     private const string URLPATH = "~/Areas/Admin/Content/bootstrap";
@@ -1098,6 +1098,9 @@ namespace Links
                     public static readonly string type_less = Url("type.less");
                     public static readonly string utilities_less = Url("utilities.less");
                     public static readonly string variables_less = Url("variables.less");
+                    public static readonly string variables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/variables.min.css") ? Url("variables.min.css") : Url("variables.css");
+                         
+                    public static readonly string variables_min_css = Url("variables.min.css");
                     public static readonly string wells_less = Url("wells.less");
                 }
             

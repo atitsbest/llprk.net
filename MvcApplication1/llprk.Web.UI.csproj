@@ -405,6 +405,18 @@
     <Content Include="App_Data\MvcApplication1.Models.ShopDb_log.ldf">
       <DependentUpon>MvcApplication1.Models.ShopDb.mdf</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Content\admin.css">
+      <DependentUpon>admin.less</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Content\admin.min.css">
+      <DependentUpon>admin.less</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Content\bootstrap\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Content\bootstrap\variables.min.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
     <Content Include="Areas\Admin\Content\codemirror.css" />
     <Content Include="Areas\Admin\Content\toastr.css">
       <DependentUpon>toastr.less</DependentUpon>
@@ -484,13 +496,7 @@
     <Content Include="Content\shop.min.css">
       <DependentUpon>shop.less</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Content\site.css">
-      <DependentUpon>admin.less</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Content\admin.less" />
-    <Content Include="Areas\Admin\Content\site.min.css">
-      <DependentUpon>admin.less</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Content\utils.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

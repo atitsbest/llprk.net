@@ -35,23 +35,23 @@ header {
         color: @text-color;
         opacity: .75;
         text-transform: uppercase;
-        letter-spacing: -2px;
-        font-weight: bold;
-        font-family: 'Arial Black', Arial, sans-serif;
+        font-weight: 800;
     }
 
     nav {
         float: right;
 
         > a {
-            margin: 0 .5em;
             color: #999;
             display: inline-block;
             font-size: 15px;
-            font-weight: bold;
+            font-weight: 600;
+            padding: 5px 10px;
 
             &.active {
-                color: #333;
+                color: @btn-primary-color;
+                background: @btn-primary-bg;
+                border-radius: 4px;
             }
 
             &:hover {
