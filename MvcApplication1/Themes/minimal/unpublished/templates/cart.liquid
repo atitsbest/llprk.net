@@ -26,9 +26,9 @@ To update an line item call update_line_item_url with ?lineitemid=<value>&qty=<v
           <a href="{{ update_line_item_url }}?lineitemid={{ item.id }}&qty=0">Löschen</a>
       {% endfor %}
       <hr/>
-      <input type="submit" name="update" value="Update cart" />
+      <input type="submit" name="update" class="btn btn-default" value="Update cart" />
       <span class="or">or</span>
-      <input type="submit" name="checkout" value="Check out" />
+      <input type="submit" name="checkout" class="btn btn-primary pull-right" value="Check out" />
     </form>
   {% else %}
     <div class="empty">

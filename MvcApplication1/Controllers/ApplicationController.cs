@@ -37,7 +37,7 @@ namespace Llprk.Web.UI.Controllers
                 templateItem = theme.GetItem(templateName, "templates");
             }
 
-            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
+            Template.FileSystem = new Llprk.Web.UI.Areas.Store.Controllers.LiquidFileSystem(theme, ViewBag.Unpublished ?? false);
 
             Template.RegisterFilter(typeof(ScriptTagFilter));
             Template.RegisterFilter(typeof(StylesheetTagFilter));
@@ -62,7 +62,7 @@ namespace Llprk.Web.UI.Controllers
             var layoutHtml = layout.Render(Hash.FromAnonymousObject(new
             {
                 content_for_layout = templateHtml,
-                theme_designer_support = ViewBag.Unpublished ? @"
+                theme_designer_support = (ViewBag.Unpublished ?? false) ? @"
                     <script src=""/Scripts/jquery.signalR-2.2.0.min.js""></script>
                     <script src=""/signalr/hubs""></script>
                     <script>

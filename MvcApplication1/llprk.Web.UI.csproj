@@ -459,6 +459,10 @@
     <Content Include="Areas\Admin\Content\table.min.css">
       <DependentUpon>table.less</DependentUpon>
     </Content>
+    <Content Include="Areas\Store\Scripts\app\main.js" />
+    <Content Include="Areas\Store\Scripts\app\checkout\checkout.index.js" />
+    <Content Include="Areas\Store\Scripts\knockout.validation.js" />
+    <Content Include="Areas\Store\Scripts\ko.components.js" />
     <Content Include="Scripts\bootstrap\alert.js" />
     <Content Include="Scripts\bootstrap\button.js" />
     <Content Include="Scripts\bootstrap\dropdown.js" />

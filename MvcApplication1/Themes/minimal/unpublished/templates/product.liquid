@@ -12,8 +12,8 @@ Preis {{ product.price | price }}
 
 <form action="{{ add_to_cart_url }}" method="post" enctype="multipart/form-data">
   <label for="qty">Menge</label>
-  	<input type="text" id="qty" name="qty" value="1" />	
-  	<input type="submit" name="add" id="add" class="primary button" value="In den Warenkorb">
+  	<input type="text" id="qty" name="qty" value="1" class="form-control" />	
+  	<input type="submit" name="add" id="add" class="btn btn-primary" value="In den Warenkorb">
 </form>
 
 {% comment %} ENDE {% endcomment %}

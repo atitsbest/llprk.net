@@ -37,15 +37,15 @@ namespace Llprk.Web.UI
                         .IncludeDirectory("~/Scripts/ko.bindings", "*.js", true)
                         .IncludeDirectory("~/Areas/Admin/Scripts", "*.js", true));
 
-            bundles.Add(new ScriptBundle("~/bundles/shop").Include(
+            bundles.Add(new ScriptBundle("~/bundles/store").Include(
+                        "~/Scripts/globalize/globalize.js",
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.lettering.js",
-                        "~/Scripts/jquery.rotatescale.js",
-                        "~/Scripts/jquery.lazyload.js",
-                        "~/Scripts/jquery.cycle.js",
                         "~/Scripts/underscore.js",
-                        "~/Scripts/bootstrap.js",
-                        "~/Scripts/app/*.js"));
+                        "~/Scripts/knockout-3.3.0.js",
+                        "~/Scripts/knockout.mapping.js",
+                        "~/Areas/Store/Scripts/knockout.validation.js",
+                        "~/Scripts/utils.js")
+                        .IncludeDirectory("~/Areas/Store/Scripts", "*.js", true));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

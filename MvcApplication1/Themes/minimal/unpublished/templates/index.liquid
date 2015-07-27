@@ -6,6 +6,7 @@
 </p>
 
 {% for product in products %}
-	<hr/>
-	{% include product_item with product %}
+	<div class="col-xs-6 col-md-4 col-lg-3">
+		{% include product_item with product %}
+	</div>
 {% endfor %}

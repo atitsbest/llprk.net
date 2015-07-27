@@ -34,7 +34,7 @@ namespace Llprk.Application.Services
         public Cart GetCart(int id)
         {
             var db = new Entities();
-            return db.Carts.SingleOrDefault(c => c.Id == id);
+            return db.Carts.Include("LineItems").Include("LineItems.Product").SingleOrDefault(c => c.Id == id);
         }
 
 

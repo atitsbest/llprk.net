@@ -15,6 +15,7 @@ using Llprk.Web.UI.Areas.Store.Controllers.Helpers;
 using Llprk.DataAccess.Models.Theme;
 using Llprk.Web.UI.Filters;
 using Llprk.Web.UI.Liquid;
+using Llprk.Web.UI.Areas.Store.Models;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
@@ -41,8 +42,15 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         [HttpGet, ThemeFilter]
         public virtual ActionResult Index()
         {
-            var vm = new OrderNew(db.Countries.ToList());
+            if (Session["cartId"] == null) { 
+                return RedirectToAction(MVC.Store.Cart.Index());
+            }
             var cart = _CartService.GetCart((int)Session["cartId"]);
+            var vm = new CheckoutIndex
+            {
+                LineItems = cart.LineItems.ToArray()
+            };
+
             var checkoutHtml = RenderViewHelper.RenderViewToString(ControllerContext, "Index", vm);
 
             IThemeItem layoutItem;
@@ -58,7 +66,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                     ?? theme.GetItem("layout.liquid", "layouts");
             }
 
-            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished);
+            Template.FileSystem = new LiquidFileSystem(theme, ViewBag.Unpublished ?? false);
 
             Template.RegisterFilter(typeof(ScriptTagFilter));
             Template.RegisterFilter(typeof(StylesheetTagFilter));

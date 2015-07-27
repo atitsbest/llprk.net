@@ -1140,6 +1140,41 @@ namespace Links
         
         }
     }
+
+    public static partial class Areas {
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static partial class Store {
+            private const string URLPATH = "~/Areas/Store";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Scripts {
+                private const string URLPATH = "~/Areas/Store/Scripts";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class app {
+                    private const string URLPATH = "~/Areas/Store/Scripts/app";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class checkout {
+                        private const string URLPATH = "~/Areas/Store/Scripts/app/checkout";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string checkout_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/checkout.index.min.js") ? Url("checkout.index.min.js") : Url("checkout.index.js");
+                    }
+                
+                    public static readonly string main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.js") ? Url("main.min.js") : Url("main.js");
+                }
+            
+                public static readonly string knockout_validation_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.validation.min.js") ? Url("knockout.validation.min.js") : Url("knockout.validation.js");
+                public static readonly string ko_components_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.components.min.js") ? Url("ko.components.min.js") : Url("ko.components.js");
+            }
+        
+        }
+    }
     
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
