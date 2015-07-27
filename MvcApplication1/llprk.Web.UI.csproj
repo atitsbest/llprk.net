@@ -426,7 +426,7 @@
       <DependentUpon>toastr.less</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
-    <Content Include="Areas\Admin\Scripts\app\BaseViewModel.js" />
+    <Content Include="Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.form.js" />
     <Content Include="Areas\Admin\Scripts\app\pages\pages.edit.js" />

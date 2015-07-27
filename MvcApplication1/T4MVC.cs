@@ -125,6 +125,7 @@ namespace Links
             private const string URLPATH = "~/Scripts/app";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string BaseViewModel_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/BaseViewModel.min.js") ? Url("BaseViewModel.min.js") : Url("BaseViewModel.js");
             public static readonly string CartCtrl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/CartCtrl.min.js") ? Url("CartCtrl.min.js") : Url("CartCtrl.js");
             public static readonly string CheckoutCtrl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/CheckoutCtrl.min.js") ? Url("CheckoutCtrl.min.js") : Url("CheckoutCtrl.js");
             public static readonly string HeaderCtrl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/HeaderCtrl.min.js") ? Url("HeaderCtrl.min.js") : Url("HeaderCtrl.js");
@@ -869,7 +870,6 @@ namespace Links
                     private const string URLPATH = "~/Areas/Admin/Scripts/app";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    public static readonly string BaseViewModel_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/BaseViewModel.min.js") ? Url("BaseViewModel.min.js") : Url("BaseViewModel.js");
                     public static readonly string main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.js") ? Url("main.min.js") : Url("main.js");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class orders {
@@ -1185,6 +1185,7 @@ namespace Links
             {
                 public static class Assets
                 {
+                    public const string BaseViewModel_js = "~/Scripts/app/BaseViewModel.js"; 
                     public const string CartCtrl_js = "~/Scripts/app/CartCtrl.js"; 
                     public const string CheckoutCtrl_js = "~/Scripts/app/CheckoutCtrl.js"; 
                     public const string HeaderCtrl_js = "~/Scripts/app/HeaderCtrl.js"; 

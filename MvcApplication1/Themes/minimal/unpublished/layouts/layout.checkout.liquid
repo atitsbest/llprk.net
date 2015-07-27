@@ -14,6 +14,7 @@
 	{{ 'http://fonts.googleapis.com/css?family=Droid+Sans:400,700' | stylesheet_tag }}
 	{{ 'bootstrap.css' | stylesheet_tag }}
 	{{ 'theme.css' | stylesheet_tag }}
+  	{{ 'checkout.css' | stylesheet_tag }}
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -23,11 +24,18 @@
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
     <![endif]-->
-	<img src="{{ 'lillypark.png' | image_url }}"></img>
+  	<div id="main">
+      	<a href="/"><img src="{{ 'lillypark.png' | image_url }}"></img></a>
+
+  		{{ content_for_layout }}
   
-	{{ content_for_layout }}
+  		<a href="/store/cart" class="btn btn-default">Zurück</a>
+  	</div>
   
-  <a href="/store/cart" class="btn btn-default">Zurück</a>
+  	<footer>
+    	<span class="copyright">&copy; lillypark.com 2015</span>
+  	</footer>
+  
 
   	{{ theme_designer_support }}
 </body>

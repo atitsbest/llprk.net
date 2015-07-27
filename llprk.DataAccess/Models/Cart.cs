@@ -12,6 +12,16 @@ namespace Llprk.DataAccess.Models
 
         public virtual ICollection<LineItem> LineItems { get; set; }
 
+        public decimal Subtotal {
+            get
+            {
+                return LineItems != null
+                    ? LineItems.Sum(l => l.Subtotal)
+                    : 0;
+            }
+        }
+
+
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

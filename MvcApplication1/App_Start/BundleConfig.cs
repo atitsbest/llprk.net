@@ -8,16 +8,6 @@ namespace Llprk.Web.UI
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
-
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/globalize/globalize.js",
                         "~/Scripts/jquery-{version}.js",
@@ -31,7 +21,8 @@ namespace Llprk.Web.UI
                         "~/Scripts/ckeditor.js",
                         "~/Scripts/utils.js",
                         "~/Scripts/rx.js",
-                        "~/Scripts/rx.time.js")
+                        "~/Scripts/rx.time.js",
+                        "~/Scripts/app/BaseViewModel.js")
                         .IncludeDirectory("~/Scripts/bootstrap", "*.js", true)
                         .IncludeDirectory("~/Scripts/ko.extenders", "*.js", true)
                         .IncludeDirectory("~/Scripts/ko.bindings", "*.js", true)
@@ -44,7 +35,9 @@ namespace Llprk.Web.UI
                         "~/Scripts/knockout-3.3.0.js",
                         "~/Scripts/knockout.mapping.js",
                         "~/Areas/Store/Scripts/knockout.validation.js",
-                        "~/Scripts/utils.js")
+                        "~/Scripts/toastr.js",
+                        "~/Scripts/utils.js",
+                        "~/Scripts/app/BaseViewModel.js")
                         .IncludeDirectory("~/Areas/Store/Scripts", "*.js", true));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

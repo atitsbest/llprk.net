@@ -1,4 +1,5 @@
-﻿@model Llprk.Web.UI.Areas.Store.Models.CheckoutIndex
+﻿@using Newtonsoft.Json
+@model Llprk.Web.UI.Areas.Store.Models.CheckoutIndex
 @{
     Layout = null;
     var cultureName = System.Globalization.CultureInfo.CurrentCulture.Name;
@@ -16,64 +17,64 @@
                 </small>
             </div>
         </div>
-        <form method="post" action="@Url.Action(MVC.Store.Checkout.Index())" class="form form-horizontal">
+        <form method="post" action="@Url.Action(MVC.Store.Checkout.Index())" data-bind="submit: submit" class="form form-horizontal">
             <div class="col-xs-12 col-sm-7 delivery-address">
-                <div class="row">
-                    <% if order.errors.any? %>
+@*                <div class="row" data-bind="visible:errors.isValid">
                     <div id="error_explanation">
                         <div class="alert alert-danger">Bitte korrigieren Sie folgende Fehler:</div>
-                        <!-- <ul> -->
-                        <!--     <% order.errors.full_messages.each do |msg| %> -->
-                        <!--         <li><%= msg %></li> -->
-                        <!-- <% end %> -->
-                        <!-- </ul> -->
                     </div>
-                    <% end %>
-                </div>
+                </div>*@
 
                 <div class="row">
                     <h4>Über den Kunden</h4>
                 </div>
-                <textbox params="label:'E-Mail', value:model.email"></textbox>
+                <textbox params="label:'E-Mail', value:model.email, attr: { placeholder: 'E-Mail' }"></textbox>
 
                 <div class="row">
                     <h4>Lieferadresse</h4>
                 </div>
-                <div data-bind="template: { name: 'address-template', data: model.lieferadresse }"></div>
+                <div data-bind="template: { name: 'address-template', data: model.deliveryAddress }"></div>
 
-                <checkboxes params="options:['Rechnungsadresse wie Lieferadresse']"></checkboxes>
 
                 <div class="row">
-                    <h4>Rechnungsadresse</h4>
+                    <h4 style="display:inline-block;margin-right:2em;">Rechnungsadresse</h4>
+                    <span>
+                        <input type="checkbox" data-bind="checked:model.sameAddress" />
+                        Wie Lieferadresse
+                    </span>
                 </div>
-                <div data-bind="template: { name: 'address-template', data: model.lieferadresse }"></div>
+                @*<radiobuttons params="options:['Wie Lieferadresse', 'Andere Adresse verwenden']"></radiobuttons>*@
+                <!-- ko ifnot: model.sameAddress() -->
+                <div data-bind="template: { name: 'address-template', data: model.billingAddress }"></div>
+                <!-- /ko -->
             </div>
             <div class="col-sm-4 col-xs-12 col-sm-offset-1 summary">
             <div class="row">
                 <h4>Bestellübersicht</h4>
                 <ul>
-                @foreach(var lineItem in Model.LineItems) {
+                @foreach (var lineItem in Model.LineItems)
+                {
                     <li class="line-item">
-                        @lineItem.Qty x @lineItem.Product.Name
-                        <span><%= number_to_currency item.sub_total %></span>
+                        @lineItem.Qty x @lineItem.Name
+                        <span>@lineItem.Subtotal</span>
                     </li>
                 }
                 </ul>
                 <p class="sub-total">
                     Zwischensumme:
-                    <span data-value="<%= cart.sub_total_price %>"><%= number_to_currency cart.sub_total_price %></span>
+                    <span>@Model.SubTotal.ToString("C")</span>
                 </p>
                 <p class="shipping-cost">
                     Versand:
-                    <span><%= number_to_currency 0 %></span>
+                    <span data-bind="text:shippingCosts">@Model.ShippingCosts.ToString("C")</span>
                 </p>
                 <p class="taxes">
                     Steuern:
-                    <span><%= number_to_currency 0 %></span>
+                    <span>@Model.Tax.ToString("C")</span>
                 </p>
                 <p class="total">
                     Gesamt:
-                    <span><%= number_to_currency cart.sub_total_price %></span>
+                    <span data-bind="text:total">@Model.Total.ToString("C")</span>
                 </p>
             </div>
             <div class="row payment">
@@ -93,7 +94,7 @@
                 <div class="col-xs-12 accept-terms <%= if accepted == true then '' else 'error' end %> ">
                     <div class="row">
                         <div class="col-sm-1 col-xs-2">
-                            <input type="checkbox" />
+                            <input type="checkbox" data-bind="checked: model.accepted" />
                         </div>
                         <div class="col-sm-11 col-xs-10">
                             <p>
@@ -106,7 +107,7 @@
                 </div>
                 <div class="col-xs-12">
                     <p class="row" style="padding-top: 20px;">
-                    <button type="submit" class="btn btn-primary">Bestellung abschicken</button>
+                    <button type="submit" class="btn btn-primary" data-bind="enable: isValid">Bestellung abschicken</button>
                     </p>
                 </div>
             </div>
@@ -116,13 +117,36 @@
 </div>
 
 <script type="text/template" id="address-template">
-    <dropdown params="label:'Anrede',options:['Frau','Herr'],value:anrede"></dropdown>
-    <textbox params="label:'Vorname',value:vorname"></textbox>
-    <textbox params="label:'Nachname',value:nachname"></textbox>
-    <textbox params="label:'Adresszusatz/Firma'"></textbox>
-    <textbox params="label:'Strasse, Nr.'"></textbox>
-    <doubletext params="label:'PLZ / Ort'"></doubletext>
-    <dropdown params="label:'Land',options:['Österreich (+ €5,40)']"></dropdown>
+    <dropdown params="label:'Anrede',options:['Frau','Herr'],value:salutation"></dropdown>
+    <formgroup params="label:'Vor-/Nachname',value:$data">
+        <div class="row">
+            <div class="col-xs-6">
+                <input type="text" data-bind="text: value.firstname" class="form-control" placeholder="Vorname" />
+            </div>
+            <div class="col-xs-6">
+                <input type="text" data-bind="text: value.lastname" class="form-control" placeholder="Nachname" />
+            </div>
+        </div>
+    </formgroup>
+    <textbox params="label:'Adresszusatz/Firma',value:address1,attr:{placeholder:'Adresszusatz'}",></textbox>
+    <textbox params="label:'Strasse, Nr.', value:address2,attr:{placeholder:'Strasse, Nr'}"></textbox>
+    <formgroup params="label:'Plz/Ort',value:$data">
+        <div class="row">
+            <div class="col-xs-4">
+                <input type="text" data-bind="text: value.zip" class="form-control" placeholder="Plz" />
+            </div>
+            <div class="col-xs-8">
+                <input type="text" data-bind="text: value.city" class="form-control" placeholder="Ort" />
+            </div>
+        </div>
+    </formgroup>
+    <formgroup params="label:'Land', value:countryId">
+        <select data-bind="value:value" class="form-control">
+            @foreach(var country in @Model.Countries) {
+                <option value="@country.Id">@country.Name</option>
+            }
+        </select>
+    </formgroup>
 </script>
     
 <script src="@Url.Content("~/Scripts/almond.js")"></script>
@@ -132,7 +156,14 @@
         var culture = '@cultureName';
         Globalize.culture(culture);
 
-        index({ });
+        index({
+            lineItems: @Html.Raw(JsonConvert.SerializeObject(Model.LineItems, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings)),
+            subTotal: @JsonConvert.SerializeObject(@Model.SubTotal),
+            tax: @JsonConvert.SerializeObject(@Model.Tax),
+            shippingCosts: @JsonConvert.SerializeObject(@Model.ShippingCosts),
+            total: @JsonConvert.SerializeObject(@Model.Total),
+            checkoutShippingCostsUrl: '@Url.Action(MVC.Store.Checkout.ShippingCosts())'
+        });
     });
 </script>
 

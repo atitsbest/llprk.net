@@ -19,13 +19,12 @@ namespace Llprk.DataAccess.Models
         public int? OrderId { get; set; }
         public Order Order { get; set; }
 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
+        public decimal Subtotal
         {
-            if (obj == null) return false;
-            return this.Id == ((LineItem)obj).Id;
+            get
+            {
+                return Qty * Price;
+            }
         }
 
         /// <summary>
@@ -34,7 +33,7 @@ namespace Llprk.DataAccess.Models
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return string.Format("LineItem_{0}", Id).GetHashCode();
         }
     }
 }

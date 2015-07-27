@@ -19,6 +19,7 @@ using Llprk.Web.UI.Areas.Store.Models;
 
 namespace Llprk.Web.UI.Areas.Store.Controllers
 {
+    [SessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
     public partial class CheckoutController : ApplicationController
     {
         private ICartService _CartService;
@@ -46,10 +47,8 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                 return RedirectToAction(MVC.Store.Cart.Index());
             }
             var cart = _CartService.GetCart((int)Session["cartId"]);
-            var vm = new CheckoutIndex
-            {
-                LineItems = cart.LineItems.ToArray()
-            };
+            var vm = Mapper.Map<CheckoutIndex>(cart);
+            vm.Countries = Mapper.Map<CheckoutIndex.Country[]>(db.Countries);
 
             var checkoutHtml = RenderViewHelper.RenderViewToString(ControllerContext, "Index", vm);
 
@@ -131,6 +130,26 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public virtual ActionResult Thankyou() 
         {
             return View();
+        }
+
+        [HttpGet]
+        public virtual JsonResult ShippingCosts(string country) 
+        {
+            if (string.IsNullOrWhiteSpace(country)) throw new ArgumentNullException("country");
+
+            var db = new Entities();
+            var cart = _CartService.GetCart((int)Session["cartId"]);
+
+            var c = db.Countries.Single(x => x.Id.ToLower() == country.ToLower());
+
+            var sc = c.ShippingCost(db.ShippingCategories.First());
+
+
+            return JsonNet(new { 
+                ShippingCosts = sc,
+                Tax = 0.01,
+                Total = cart.Subtotal + sc
+            });
         }
     }
 }

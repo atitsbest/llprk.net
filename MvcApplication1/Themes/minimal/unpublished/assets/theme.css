@@ -1,6 +1,21 @@
 body {
-  background-color: #fff;
-  padding: 0 20px;
+  background-color: #000;
+  color: #d8d8d8;
+}
+
+#main {
+	background-color: #fff;
+  	color: #333;
+  	padding: 0 20px 30px;
+}
+
+footer {
+  padding: 20px;
+}
+
+footer .copyright {
+  display: block;
+  text-align: center;
 }
 
 /* 	-----------------------------------------

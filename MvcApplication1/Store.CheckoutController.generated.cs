@@ -62,6 +62,12 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Success);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ShippingCosts()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ShippingCosts);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public CheckoutController Actions { get { return MVC.Store.Checkout; } }
@@ -81,6 +87,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public readonly string Index = "Index";
             public readonly string Success = "Success";
             public readonly string Thankyou = "Thankyou";
+            public readonly string ShippingCosts = "ShippingCosts";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -89,6 +96,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public const string Index = "Index";
             public const string Success = "Success";
             public const string Thankyou = "Thankyou";
+            public const string ShippingCosts = "ShippingCosts";
         }
 
 
@@ -107,6 +115,14 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public class ActionParamsClass_Success
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ShippingCosts s_params_ShippingCosts = new ActionParamsClass_ShippingCosts();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ShippingCosts ShippingCostsParams { get { return s_params_ShippingCosts; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ShippingCosts
+        {
+            public readonly string country = "country";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -176,6 +192,18 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Thankyou);
             ThankyouOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ShippingCostsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string country);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ShippingCosts(string country)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ShippingCosts);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "country", country);
+            ShippingCostsOverride(callInfo, country);
             return callInfo;
         }
 

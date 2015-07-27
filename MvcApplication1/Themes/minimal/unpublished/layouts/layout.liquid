@@ -23,10 +23,16 @@
             <a href="http://www.google.com/chromeframe/?redirect=true">installiere Google Chrome Frame</a> um dieses Seite richtig anzuzeigen.
         </p>
     <![endif]-->
-  <a href="/"><img src="{{ 'lillypark.png' | image_url }}"></img></a>
-  
-	{{ content_for_layout }}
+  	<div id="main">
+      	<a href="/"><img src="{{ 'lillypark.png' | image_url }}"></img></a>
 
+  		{{ content_for_layout }}
+  	</div>
+  
+  	<footer>
+    	<span class="copyright">&copy; lillypark.com 2015</span>
+  	</footer>
+    
 	{{ 'jquery-1.9.1.js' | script_tag }}
   
   	{{ theme_designer_support }}

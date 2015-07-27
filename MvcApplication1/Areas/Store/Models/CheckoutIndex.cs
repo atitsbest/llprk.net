@@ -1,5 +1,4 @@
-﻿using Llprk.DataAccess.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,9 +20,45 @@ namespace Llprk.Web.UI.Areas.Store.Models
             public string Email { get; set; }
         }
 
+        public class LineItem 
+        {
+            public string Name { get; set; }
+            public int Qty { get; set; }
+            public decimal Price { get; set; }
+            public decimal Subtotal { get { return Qty * Price; } }
+        }
+
+        public class Country
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+        }
+
         public Address Lieferadresse { get; set; }
         public Address Rechnungsadresse { get; set; }
         public bool RechnungsLieferungsAdresseGleich { get; set; }
         public LineItem[] LineItems { get; set; }
+        public Country[] Countries { get; set; }
+
+        public decimal SubTotal { get; set; }
+        public decimal Tax { get; set; }
+        public decimal ShippingCosts { get; set; }
+        public decimal Total
+        {
+            get
+            {
+                return SubTotal
+                    + Tax
+                    + ShippingCosts;
+            }
+        }
+
+        /// <summary>
+        /// CTR
+        /// </summary>
+        public CheckoutIndex()
+        {
+            LineItems = new LineItem[] { };
+        }
     }
 }
