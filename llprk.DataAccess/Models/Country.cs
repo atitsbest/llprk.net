@@ -13,6 +13,7 @@ namespace Llprk.DataAccess.Models
         public virtual ICollection<ShippingCost> ShippingCosts { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Tax> Taxes { get; set; }
 
 		/// <summary>
 		/// Wie hoch sind die Versandkosten für die angegebene 

@@ -57,6 +57,7 @@
     <Compile Include="MimeTypeMap.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Tax.cs" />
     <Compile Include="Models\LineItem.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\llprk.Context.cs">
@@ -89,6 +90,8 @@
     <Content Include="Migrations\sql\201507082155.sql" />
     <Content Include="Migrations\sql\201507251158.sql" />
     <Content Include="Migrations\sql\201507251228.sql" />
+    <Content Include="Migrations\sql\201507280808.sql" />
+    <Content Include="Migrations\sql\201507280812.sql" />
     <Content Include="Models\llprk.tt">
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>

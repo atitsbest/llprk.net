@@ -31,6 +31,8 @@ namespace Llprk.DataAccess.Models
         public string MetaDescription { get; set; }
         public string UrlHandle { get; set; }
 
+        public bool ChargeTaxes { get; set; }
+
 
         /// <summary>
         /// Wieviele davon sind verfügbar.

@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
-    public partial class ShippingCostsController
+    public partial class TaxesController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ShippingCostsController(Dummy d) { }
+        protected TaxesController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -58,19 +58,25 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult Update()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RenderTemplate()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ShippingCostsController Actions { get { return MVC.Admin.ShippingCosts; } }
+        public TaxesController Actions { get { return MVC.Admin.Taxes; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "ShippingCosts";
+        public readonly string Name = "Taxes";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "ShippingCosts";
+        public const string NameConst = "Taxes";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -78,18 +84,29 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string ShippingCosts = "ShippingCosts";
+            public readonly string Index = "Index";
+            public readonly string Update = "Update";
             public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string ShippingCosts = "ShippingCosts";
+            public const string Index = "Index";
+            public const string Update = "Update";
             public const string RenderTemplate = "RenderTemplate";
         }
 
 
+        static readonly ActionParamsClass_Update s_params_Update = new ActionParamsClass_Update();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Update UpdateParams { get { return s_params_Update; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Update
+        {
+            public readonly string country = "country";
+            public readonly string percent = "percent";
+        }
         static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
@@ -109,31 +126,38 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
-                public readonly string Delete = "Delete";
-                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Areas/Admin/Views/ShippingCosts/Create.cshtml";
-            public readonly string Delete = "~/Areas/Admin/Views/ShippingCosts/Delete.cshtml";
-            public readonly string Edit = "~/Areas/Admin/Views/ShippingCosts/Edit.cshtml";
-            public readonly string Index = "~/Areas/Admin/Views/ShippingCosts/Index.cshtml";
+            public readonly string Index = "~/Areas/Admin/Views/Taxes/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ShippingCostsController : Llprk.Web.UI.Areas.Admin.Controllers.ShippingCostsController
+    public partial class T4MVC_TaxesController : Llprk.Web.UI.Areas.Admin.Controllers.TaxesController
     {
-        public T4MVC_ShippingCostsController() : base(Dummy.Instance) { }
+        public T4MVC_TaxesController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void ShippingCostsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ShippingCosts()
+        public override System.Web.Mvc.ActionResult Index()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ShippingCosts);
-            ShippingCostsOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string country, int percent);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Update(string country, int percent)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "country", country);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "percent", percent);
+            UpdateOverride(callInfo, country, percent);
             return callInfo;
         }
 

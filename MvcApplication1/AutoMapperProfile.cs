@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Llprk.DataAccess.Models;
+using Llprk.Web.UI.Areas.Admin.Models;
 using Llprk.Web.UI.Areas.Store.Models;
 using Llprk.Web.UI.ViewModels;
 using System;
@@ -38,6 +39,10 @@ namespace Llprk.Web.UI
             Mapper.CreateMap<Cart, CheckoutIndex>()
                 .ForMember(d => d.LineItems, o => o.MapFrom(s => Mapper.Map<IEnumerable<CheckoutIndex.LineItem>>(s.LineItems)))
                 .ForMember(d => d.Countries, o => o.Ignore());
+
+            Mapper.CreateMap<Country, TaxIndex.Country>()
+                .ForMember(d => d.TaxId, o => o.MapFrom(s => s.Taxes.Any() ? s.Taxes.First().Id : -1))
+                .ForMember(d => d.TaxPercent, o => o.MapFrom(s => s.Taxes.Any() ? s.Taxes.First().Percent : 0));
         }
 
     }

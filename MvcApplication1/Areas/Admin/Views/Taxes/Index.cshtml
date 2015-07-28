@@ -1,0 +1,61 @@
+﻿@model Llprk.Web.UI.Areas.Admin.Models.TaxIndex
+@using Newtonsoft.Json.Converters
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "New";
+}
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Tax settings</h3>
+        <p class="text-muted">
+            How taxes are supplied.
+        </p>
+    </div>
+    <div class="col-xs-9">
+        <textbox params="label:'Title',value:title,attr:{ placeholder:'Give the page a title...'}"></textbox>
+        <textbox params="label:'Content',value:content,rows:5"></textbox>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Tax by country</h3>
+        <p class="text-muted">
+            You can add additional countries in the <a href="@Url.Action("index", "countries")">Country settings</a>.
+            Taxes will be choosen be the delivery address.
+        </p>
+    </div>
+    <div class="col-xs-9">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @foreach (var country in Model.Countries)
+                {
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <a href="@Url.Action("edit", "countries", new { id = country.Id })"><strong>@country.Name</strong></a>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control text-right" placeholder="0,00" value="@country.TaxPercent">
+                                <div class="input-group-addon"> % </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#" class="btn btn-default">Change...</a>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        require(["app/taxes/index"], function (main) {
+            main({
+            });
+        });
+    </script>
+}

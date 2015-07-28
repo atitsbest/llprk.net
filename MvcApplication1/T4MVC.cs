@@ -52,6 +52,7 @@ namespace T4MVC
         public Llprk.Web.UI.Areas.Admin.Controllers.ShippingCostsController ShippingCosts = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ShippingCostsController();
         public Llprk.Web.UI.Areas.Admin.Controllers.SourcesController Sources = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_SourcesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.TagsController Tags = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_TagsController();
+        public Llprk.Web.UI.Areas.Admin.Controllers.TaxesController Taxes = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_TaxesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.ThemesController Themes = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ThemesController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
     }
