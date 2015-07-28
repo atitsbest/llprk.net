@@ -74,12 +74,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult RenderTemplate()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ShopController Actions { get { return MVC.Store.Shop; } }
@@ -99,7 +93,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public readonly string Index = "Index";
             public readonly string Categories = "Categories";
             public readonly string Details = "Details";
-            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -108,7 +101,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public const string Index = "Index";
             public const string Categories = "Categories";
             public const string Details = "Details";
-            public const string RenderTemplate = "RenderTemplate";
         }
 
 
@@ -135,15 +127,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         public class ActionParamsClass_Details
         {
             public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_RenderTemplate
-        {
-            public readonly string layout = "layout";
-            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -203,19 +186,6 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DetailsOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
-            RenderTemplateOverride(callInfo, layout, templateHtml);
             return callInfo;
         }
 

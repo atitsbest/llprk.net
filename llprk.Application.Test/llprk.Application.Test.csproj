@@ -80,11 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fixtures\ShopDb.Test.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Fixtures\ShopDb.Test_log.ldf">
       <DependentUpon>ShopDb.Test.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Fixtures\Themes\minimal\current\assets\banner-01.jpg" />
     <Content Include="Fixtures\Themes\minimal\current\assets\banner-02.jpg" />

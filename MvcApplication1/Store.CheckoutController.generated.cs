@@ -64,15 +64,9 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult ShippingCosts()
+        public virtual System.Web.Mvc.JsonResult VariableCosts()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ShippingCosts);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult RenderTemplate()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.VariableCosts);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,8 +87,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public readonly string Index = "Index";
             public readonly string Success = "Success";
             public readonly string Thankyou = "Thankyou";
-            public readonly string ShippingCosts = "ShippingCosts";
-            public readonly string RenderTemplate = "RenderTemplate";
+            public readonly string VariableCosts = "VariableCosts";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,8 +96,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
             public const string Index = "Index";
             public const string Success = "Success";
             public const string Thankyou = "Thankyou";
-            public const string ShippingCosts = "ShippingCosts";
-            public const string RenderTemplate = "RenderTemplate";
+            public const string VariableCosts = "VariableCosts";
         }
 
 
@@ -124,22 +116,13 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_ShippingCosts s_params_ShippingCosts = new ActionParamsClass_ShippingCosts();
+        static readonly ActionParamsClass_VariableCosts s_params_VariableCosts = new ActionParamsClass_VariableCosts();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ShippingCosts ShippingCostsParams { get { return s_params_ShippingCosts; } }
+        public ActionParamsClass_VariableCosts VariableCostsParams { get { return s_params_VariableCosts; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ShippingCosts
+        public class ActionParamsClass_VariableCosts
         {
             public readonly string country = "country";
-        }
-        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_RenderTemplate
-        {
-            public readonly string layout = "layout";
-            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -213,27 +196,14 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void ShippingCostsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string country);
+        partial void VariableCostsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string country);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult ShippingCosts(string country)
+        public override System.Web.Mvc.JsonResult VariableCosts(string country)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ShippingCosts);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.VariableCosts);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "country", country);
-            ShippingCostsOverride(callInfo, country);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
-            RenderTemplateOverride(callInfo, layout, templateHtml);
+            VariableCostsOverride(callInfo, country);
             return callInfo;
         }
 

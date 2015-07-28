@@ -478,6 +478,7 @@
     <Content Include="Scripts\bootstrap\transition.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\ko.bindings\ko.currency.js" />
     <Content Include="Scripts\ko.bindings\ko.date.js" />
     <Content Include="Scripts\ko.bindings\ko.datepicker.js" />
     <Content Include="Scripts\ko.bindings\ko.numericValue.js" />

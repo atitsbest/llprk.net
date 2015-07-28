@@ -23,19 +23,22 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     public partial class CheckoutController : ApplicationController
     {
         private ICartService _CartService;
+        private ITaxService _TaxService;
         private ThemeService _ThemeService;
 
         /// <summary>
         /// CTR
         /// </summary>
         /// <param name="themes"></param>
-        public CheckoutController(ICartService carts, ThemeService themes)
+        public CheckoutController(ICartService carts, ThemeService themes, ITaxService taxes)
         {
             if (carts == null) throw new ArgumentNullException("carts");
             if (themes == null) throw new ArgumentNullException("themes");
+            if (taxes == null) throw new ArgumentNullException("taxes");
 
             _CartService = carts;
             _ThemeService = themes;
+            _TaxService = taxes;
         }
         //
         // GET: /Checkout/
@@ -133,7 +136,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         }
 
         [HttpGet]
-        public virtual JsonResult ShippingCosts(string country) 
+        public virtual JsonResult VariableCosts(string country) 
         {
             if (string.IsNullOrWhiteSpace(country)) throw new ArgumentNullException("country");
 
@@ -142,13 +145,18 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
             var c = db.Countries.Single(x => x.Id.ToLower() == country.ToLower());
 
-            var sc = c.ShippingCost(db.ShippingCategories.First());
+            var shippingCosts = c.ShippingCost(db.ShippingCategories.First());
+            var tax = _TaxService.TaxForCountry(cart.Id, country);
 
 
+            // INFO: Bewusst werden hier keine Nummern sondern formatierte Strings
+            //       geliefert.
+            //       Es sollen nicht Server und Client dem Benutzer Preise berechnen,
+            //       denn die können auseinander liegen.
             return JsonNet(new { 
-                ShippingCosts = sc,
-                Tax = 0.01,
-                Total = cart.Subtotal + sc
+                ShippingCosts = shippingCosts.ToString("C"),
+                Tax = tax.ToString("C"),
+                Total = (cart.Subtotal + tax + shippingCosts).ToString("C")
             });
         }
     }

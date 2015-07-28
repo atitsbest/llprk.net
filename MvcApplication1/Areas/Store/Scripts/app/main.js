@@ -31,7 +31,7 @@
     $(document).ajaxError(function (event, jqxhr, settings, thrownError) {
         var code = jqxhr.status;
 
-        if (code == 500) {
+        if (code == 500 && existy(BaseViewMdel)) {
             BaseViewModel.handleServerError(jqxhr);
         }
 

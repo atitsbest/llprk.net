@@ -65,12 +65,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Pages);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult RenderTemplate()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SourcesController Actions { get { return MVC.Admin.Sources; } }
@@ -88,14 +82,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Pages = "Pages";
-            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Pages = "Pages";
-            public const string RenderTemplate = "RenderTemplate";
         }
 
 
@@ -106,15 +98,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionParamsClass_Pages
         {
             public readonly string ps = "ps";
-        }
-        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_RenderTemplate
-        {
-            public readonly string layout = "layout";
-            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -144,19 +127,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Pages);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ps", ps);
             PagesOverride(callInfo, ps);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
-            RenderTemplateOverride(callInfo, layout, templateHtml);
             return callInfo;
         }
 

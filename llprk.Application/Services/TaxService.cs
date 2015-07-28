@@ -10,6 +10,8 @@ namespace Llprk.Application.Services
     public interface ITaxService
     {
         void UpdateCountryTax(string country, int percent);
+
+        decimal TaxForCountry(int cartId, string country);
     }
 
     public class TaxService : ITaxService
@@ -38,6 +40,29 @@ namespace Llprk.Application.Services
             }
 
             db.SaveChanges();
+        }
+
+        public decimal TaxForCountry(int cartId, string country)
+        {
+            var db = new Entities();
+            var cart = db.Carts
+                .Include("LineItems")
+                .Include("LineItems.Product")
+                .Single(c => c.Id == cartId);
+            var cnt = db.Countries
+                .Include("taxes")
+                .Single(c => c.Id == country);
+
+            return cart.LineItems.Sum(li => {
+                if (li.Product.ChargeTaxes)
+                {
+                    return li.Subtotal - (li.Subtotal / ((100.0m + cnt.Taxes.First().Percent) / 100.0m));
+                }
+                else
+                {
+                    return 0;
+                }
+            });
         }
     }
 }

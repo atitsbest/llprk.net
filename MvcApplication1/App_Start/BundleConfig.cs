@@ -34,6 +34,7 @@ namespace Llprk.Web.UI
                         "~/Scripts/underscore.js",
                         "~/Scripts/knockout-3.3.0.js",
                         "~/Scripts/knockout.mapping.js",
+                        "~/Scripts/ko.bindings/ko.currency.js",
                         "~/Areas/Store/Scripts/knockout.validation.js",
                         "~/Scripts/toastr.js",
                         "~/Scripts/utils.js",

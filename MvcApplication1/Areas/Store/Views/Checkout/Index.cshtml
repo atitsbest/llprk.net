@@ -70,11 +70,13 @@
                 </p>
                 <p class="taxes">
                     Steuern:
-                    <span>@Model.Tax.ToString("C")</span>
+                    <span data-bind="text:tax">@Model.Tax.ToString("C")</span>
                 </p>
                 <p class="total">
-                    Gesamt:
-                    <span data-bind="text:total">@Model.Total.ToString("C")</span>
+                    <h4>
+                        Gesamt:
+                        <span data-bind="text:total">@Model.Total.ToString("C")</span>
+                    </h4>
                 </p>
             </div>
             <div class="row payment">
@@ -162,7 +164,7 @@
             tax: @JsonConvert.SerializeObject(@Model.Tax),
             shippingCosts: @JsonConvert.SerializeObject(@Model.ShippingCosts),
             total: @JsonConvert.SerializeObject(@Model.Total),
-            checkoutShippingCostsUrl: '@Url.Action(MVC.Store.Checkout.ShippingCosts())'
+            checkoutShippingCostsUrl: '@Url.Action(MVC.Store.Checkout.VariableCosts())'
         });
     });
 </script>

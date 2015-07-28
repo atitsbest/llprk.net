@@ -21,7 +21,6 @@ namespace Llprk.DataAccess.Models
             }
         }
 
-
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

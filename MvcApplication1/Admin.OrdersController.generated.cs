@@ -101,12 +101,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Comment);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult RenderTemplate()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OrdersController Actions { get { return MVC.Admin.Orders; } }
@@ -132,7 +126,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string Ship = "Ship";
             public readonly string Shipped = "Shipped";
             public readonly string Comment = "Comment";
-            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -147,7 +140,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public const string Ship = "Ship";
             public const string Shipped = "Shipped";
             public const string Comment = "Comment";
-            public const string RenderTemplate = "RenderTemplate";
         }
 
 
@@ -226,15 +218,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public readonly string id = "id";
             public readonly string comment = "comment";
-        }
-        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_RenderTemplate
-        {
-            public readonly string layout = "layout";
-            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -372,19 +355,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "comment", comment);
             CommentOverride(callInfo, id, comment);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
-            RenderTemplateOverride(callInfo, layout, templateHtml);
             return callInfo;
         }
 

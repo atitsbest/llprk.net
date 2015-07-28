@@ -32,7 +32,8 @@
 
         // Shipping costs
         self.shippingCosts = ko.observable(settings.shippingCosts);
-
+        // Tax
+        self.tax = ko.observable(settings.tax);
         // Total price.
         self.total = ko.observable(settings.total);
 
@@ -51,7 +52,7 @@
             .then(function(data) {
                 // Update prices.
                 self.shippingCosts(data.shippingCosts);
-                //self.tax(data.tax);
+                self.tax(data.tax);
                 self.total(data.total);
             })
             .fail(function() {
