@@ -36,8 +36,8 @@ namespace Llprk.DataAccess.Models
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ShippingCategory> ShippingCategories { get; set; }
-        public DbSet<ShippingCost> ShippingCosts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Tax> Taxes { get; set; }
+        public DbSet<ShippingCost> ShippingCosts { get; set; }
     }
 }

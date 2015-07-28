@@ -92,6 +92,7 @@
     <Content Include="Migrations\sql\201507251228.sql" />
     <Content Include="Migrations\sql\201507280808.sql" />
     <Content Include="Migrations\sql\201507280812.sql" />
+    <Content Include="Migrations\sql\201507282145.sql" />
     <Content Include="Models\llprk.tt">
       <DependentUpon>llprk.edmx</DependentUpon>
     </Content>

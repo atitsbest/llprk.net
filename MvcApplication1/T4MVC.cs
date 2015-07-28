@@ -546,6 +546,7 @@ namespace Links
             private const string URLPATH = "~/Scripts/ko.bindings";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string ko_currency_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.currency.min.js") ? Url("ko.currency.min.js") : Url("ko.currency.js");
             public static readonly string ko_date_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.date.min.js") ? Url("ko.date.min.js") : Url("ko.date.js");
             public static readonly string ko_datepicker_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.datepicker.min.js") ? Url("ko.datepicker.min.js") : Url("ko.datepicker.js");
             public static readonly string ko_numericValue_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.numericValue.min.js") ? Url("ko.numericValue.min.js") : Url("ko.numericValue.js");
@@ -1586,6 +1587,7 @@ namespace Links
             {
                 public static class Assets
                 {
+                    public const string ko_currency_js = "~/Scripts/ko.bindings/ko.currency.js"; 
                     public const string ko_date_js = "~/Scripts/ko.bindings/ko.date.js"; 
                     public const string ko_datepicker_js = "~/Scripts/ko.bindings/ko.datepicker.js"; 
                     public const string ko_numericValue_js = "~/Scripts/ko.bindings/ko.numericValue.js"; 

@@ -7,50 +7,33 @@ using System.Web;
 using System.Web.Mvc;
 using Llprk.DataAccess.Models;
 using System.Text.RegularExpressions;
+using Llprk.Web.UI.Controllers;
+using Llprk.Web.UI.Areas.Admin.Models;
+using AutoMapper;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
-    public partial class ShippingCostsController : SingleValueController<ShippingCategory, int>
+    public partial class ShippingCostsController : ApplicationController
     {
+        /// <summary>
+        /// CTR
+        /// </summary>
         public ShippingCostsController()
-            : base((e) => e.ShippingCategories)
         { }
 
-		[HttpPost]
-        public virtual ActionResult ShippingCosts()
+        /// <summary>
+        /// Show shipping costs.
+        /// </summary>
+        /// <returns></returns>
+        public virtual ActionResult Index() 
         {
-            if (ModelState.IsValid) { 
-				var scKeys = Request.Form.AllKeys.Where(k => k.StartsWith("sc_"));
-
-				foreach (var key in scKeys) { 
-					var match = Regex.Match(key, @"^sc_([a-z]*)_(\d*)$", RegexOptions.IgnoreCase);
-					var countryId = match.Groups[1].Value;
-					var categoryId = int.Parse(match.Groups[2].Value);
-					var amount = decimal.Parse(Request.Form[key]);
-
-					// Bestehende Kosten finden.
-					var cost = (from sc in db.ShippingCosts
-								where sc.ShippingCategoryId == categoryId && sc.CountryId == countryId
-									select sc).FirstOrDefault();
-
-					if (cost == null) {
-						// Neu anlegen.
-						db.ShippingCosts.Add(new ShippingCost() {
-							CountryId = countryId,
-							ShippingCategoryId = categoryId,
-							Amount = amount
-						});
-					}
-					else {
-						// Update
-						cost.Amount = amount;
-					}
-				}
-
-				db.SaveChanges();
-            }
-            return RedirectToAction("index"); 
+            var db = new Entities();
+            var vm = new ShippingCostIndex
+            {
+                Countries = Mapper.Map<ShippingCostIndex.Country[]>(db.Countries)
+            };
+            return View(vm);
         }
     }
 }

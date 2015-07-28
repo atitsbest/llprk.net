@@ -14,5 +14,6 @@ namespace Llprk.DataAccess.Models
         public virtual ShippingCategory ShippingCategory { get; set; }
 
         public decimal Amount { get; set; }
+        public decimal AdditionalAmount { get; set; }
     }
 }

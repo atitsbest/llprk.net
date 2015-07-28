@@ -43,6 +43,8 @@ namespace Llprk.Web.UI
             Mapper.CreateMap<Country, TaxIndex.Country>()
                 .ForMember(d => d.TaxId, o => o.MapFrom(s => s.Taxes.Any() ? s.Taxes.First().Id : -1))
                 .ForMember(d => d.TaxPercent, o => o.MapFrom(s => s.Taxes.Any() ? s.Taxes.First().Percent : 0));
+
+            Mapper.CreateMap<Country, ShippingCostIndex.Country>();
         }
 
     }

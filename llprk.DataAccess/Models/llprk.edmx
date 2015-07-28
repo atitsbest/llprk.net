@@ -212,6 +212,7 @@
           <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="5" />
           <Property Name="ShippingCategoryId" Type="int" Nullable="false" />
           <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="AdditionalAmount" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
@@ -422,7 +423,6 @@
           <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" />
           <EntitySet Name="Products" EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" />
           <EntitySet Name="ShippingCategories" EntityType="Llprk.Web.UI.Models.ShopDbModel.ShippingCategory" />
-          <EntitySet Name="ShippingCosts" EntityType="Llprk.Web.UI.Models.ShopDbModel.ShippingCost" />
           <EntitySet Name="Tags" EntityType="Llprk.Web.UI.Models.ShopDbModel.Tag" />
           <EntitySet Name="Taxes" EntityType="Llprk.Web.UI.Models.ShopDbModel.Tax" />
           <AssociationSet Name="FK_LineItems_Cart" Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart">
@@ -436,10 +436,6 @@
           <AssociationSet Name="FK_Orders_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country">
             <End Role="Country" EntitySet="Countries" />
             <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShippingCosts_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="ShippingCost" EntitySet="ShippingCosts" />
           </AssociationSet>
           <AssociationSet Name="FK_Tax_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Tax_Country">
             <End Role="Country" EntitySet="Countries" />
@@ -469,13 +465,18 @@
             <End Role="ShippingCategory" EntitySet="ShippingCategories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_ShippingCosts_ShippingCategory" Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory">
-            <End Role="ShippingCategory" EntitySet="ShippingCategories" />
-            <End Role="ShippingCost" EntitySet="ShippingCosts" />
-          </AssociationSet>
           <AssociationSet Name="Product_Tag" Association="Llprk.Web.UI.Models.ShopDbModel.Product_Tag">
             <End Role="Product" EntitySet="Products" />
             <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+          <EntitySet Name="ShippingCosts" EntityType="Llprk.Web.UI.Models.ShopDbModel.ShippingCost" />
+          <AssociationSet Name="FK_ShippingCosts_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="ShippingCost" EntitySet="ShippingCosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingCosts_ShippingCategory" Association="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory">
+            <End Role="ShippingCategory" EntitySet="ShippingCategories" />
+            <End Role="ShippingCost" EntitySet="ShippingCosts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cart">
@@ -501,8 +502,8 @@
           <Property Type="String" Name="Id" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Country" ToRole="Order" />
-          <NavigationProperty Name="ShippingCosts" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" FromRole="Country" ToRole="ShippingCost" />
           <NavigationProperty Name="Taxes" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Tax_Country" FromRole="Country" ToRole="Tax" />
+          <NavigationProperty Name="ShippingCosts" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" FromRole="Country" ToRole="ShippingCost" />
         </EntityType>
         <EntityType Name="LineItem">
           <Key>
@@ -618,17 +619,6 @@
           <NavigationProperty Name="Products" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Products_ShippingCategory" FromRole="ShippingCategory" ToRole="Product" />
           <NavigationProperty Name="ShippingCosts" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" FromRole="ShippingCategory" ToRole="ShippingCost" />
         </EntityType>
-        <EntityType Name="ShippingCost">
-          <Key>
-            <PropertyRef Name="CountryId" />
-            <PropertyRef Name="ShippingCategoryId" />
-          </Key>
-          <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ShippingCategoryId" Nullable="false" />
-          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" FromRole="ShippingCost" ToRole="Country" />
-          <NavigationProperty Name="ShippingCategory" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" FromRole="ShippingCost" ToRole="ShippingCategory" />
-        </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="Id" />
@@ -680,18 +670,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShippingCosts_Country">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Country" Role="Country" Multiplicity="1" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.ShippingCost" Role="ShippingCost" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ShippingCost">
               <PropertyRef Name="CountryId" />
             </Dependent>
           </ReferentialConstraint>
@@ -784,6 +762,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Product_Tag">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Tag" Role="Tag" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ShippingCost">
+          <Key>
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="ShippingCategoryId" />
+          </Key>
+          <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ShippingCategoryId" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="AdditionalAmount" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" FromRole="ShippingCost" ToRole="Country" />
+          <NavigationProperty Name="ShippingCategory" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_ShippingCategory" FromRole="ShippingCost" ToRole="ShippingCategory" />
+        </EntityType>
+        <Association Name="FK_ShippingCosts_Country">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.ShippingCost" Role="ShippingCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShippingCost">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ShippingCosts_ShippingCategory">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.ShippingCategory" Role="ShippingCategory" Multiplicity="1" />
           <End Type="Llprk.Web.UI.Models.ShopDbModel.ShippingCost" Role="ShippingCost" Multiplicity="*" />
@@ -795,10 +801,6 @@
               <PropertyRef Name="ShippingCategoryId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="Product_Tag">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Tag" Role="Tag" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -935,15 +937,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ShippingCosts">
-            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.ShippingCost">
-              <MappingFragment StoreEntitySet="ShippingCosts">
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="ShippingCategoryId" ColumnName="ShippingCategoryId" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Tag">
               <MappingFragment StoreEntitySet="Tags">
@@ -969,6 +962,16 @@
               <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ShippingCosts">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.ShippingCost">
+              <MappingFragment StoreEntitySet="ShippingCosts">
+                <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ShippingCategoryId" ColumnName="ShippingCategoryId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -72,13 +72,13 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string ShippingCosts = "ShippingCosts";
+            public readonly string Index = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string ShippingCosts = "ShippingCosts";
+            public const string Index = "Index";
         }
 
 
@@ -110,13 +110,13 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public T4MVC_ShippingCostsController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void ShippingCostsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ShippingCosts()
+        public override System.Web.Mvc.ActionResult Index()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ShippingCosts);
-            ShippingCostsOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
