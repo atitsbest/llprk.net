@@ -282,6 +282,7 @@
     <Compile Include="ApplicationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\Helpers\RenderJsonNetHelper.cs" />
     <Compile Include="Areas\Admin\Controllers\TaxesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemesController.cs" />
     <Compile Include="Areas\Admin\Controllers\Results\EntityResult.cs" />
@@ -430,6 +431,7 @@
     <Content Include="Areas\Admin\Content\toastr.min.css">
       <DependentUpon>toastr.less</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Scripts\app\taxes\taxes.index.js" />
     <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
     <Content Include="Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />

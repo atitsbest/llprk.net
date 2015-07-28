@@ -12,8 +12,6 @@
         </p>
     </div>
     <div class="col-xs-9">
-        <textbox params="label:'Title',value:title,attr:{ placeholder:'Give the page a title...'}"></textbox>
-        <textbox params="label:'Content',value:content,rows:5"></textbox>
     </div>
 </div>
 
@@ -27,25 +25,22 @@
     </div>
     <div class="col-xs-9">
         <div class="panel panel-default">
-            <div class="panel-body">
-                @foreach (var country in Model.Countries)
-                {
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <a href="@Url.Action("edit", "countries", new { id = country.Id })"><strong>@country.Name</strong></a>
-                        </div>
-                        <div class="col-xs-2">
-                            <div class="input-group">
-                                <input type="text" class="form-control text-right" placeholder="0,00" value="@country.TaxPercent">
-                                <div class="input-group-addon"> % </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-2">
-                            <a href="#" class="btn btn-default">Change...</a>
+            <div class="panel-body" data-bind="foreach:countries">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <a data-bind="attr: { href: '@Url.Action("edit", "countries")/id' }"><strong data-bind="text:name"></strong></a>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control text-right" placeholder="0,00" data-bind="value:taxPercent">
+                            <div class="input-group-addon"> % </div>
                         </div>
                     </div>
-                    <hr />
-                }
+                    <div class="col-xs-2">
+                        <a href="#" class="btn btn-default" data-bind="click:$parent.changeCountryTax.bind($data, $data)">Change...</a>
+                    </div>
+                </div>
+                <hr />
             </div>
         </div>
     </div>
@@ -55,6 +50,8 @@
     <script type="text/javascript">
         require(["app/taxes/index"], function (main) {
             main({
+                changeCountryTaxUrl: '@Url.Action(MVC.Admin.Taxes.Update())',
+                countries: @Html.Raw(JsonConvert.SerializeObject(Model.Countries, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
             });
         });
     </script>

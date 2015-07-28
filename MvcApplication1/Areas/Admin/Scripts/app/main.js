@@ -1,4 +1,4 @@
-﻿define("app/main", ["knockout.validation"], function (validation) {
+﻿define("app/main", ["knockout.validation", "app/BaseViewModel"], function (validation, BaseViewModel) {
     // JSON-Datum in DotNet und ISO Format nach JavaScript Date() konvertieren.
     (function () {
         var iso8601Regex = new RegExp("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}([\\.\\d]*\\+\\d{2}:\\d{2})?)", 'gm'),
