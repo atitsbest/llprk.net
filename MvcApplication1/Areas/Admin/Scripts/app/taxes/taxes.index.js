@@ -18,12 +18,16 @@
 
             if (_.isFinite(parseInt(newPercent, 10))) {
 
-                $.when($.post(settings.changeCountryTaxUrl, { country: country.id(), percent: parseInt(newPercent, 10) }))
-                    .then(function(result) {
-                        country.taxPercent(newPercent);
-                        self.handleEntityResult(result);
-                    })
-                    .fail(function() { toastr.error('O_o'); });
+                // Let user confirm.
+                if (confirm('Change taxes for ' + country.id() + ' from ' + country.taxPercent() + '% to ' + newPercent + '% ?')) {
+
+                    $.when($.post(settings.changeCountryTaxUrl, { country: country.id(), percent: parseInt(newPercent, 10) }))
+                        .then(function (result) {
+                            country.taxPercent(newPercent);
+                            self.handleEntityResult(result);
+                        })
+                        .fail(function () { toastr.error('O_o'); });
+                }
             }
             
         }
