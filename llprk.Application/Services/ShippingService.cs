@@ -18,6 +18,8 @@ namespace Llprk.Application.Services
         void DeleteShippingCost(int id);
 
         void UpdateShippingCosts(UpdateShippingCostsRequest data);
+
+        decimal CalculateShippingCosts(int cartId, string country);
     }
 
     public class ShippingService : IShippingService
@@ -91,6 +93,34 @@ namespace Llprk.Application.Services
             }
 
             db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Und so wird's berechnet:
+        ///  * Die höchste Basis-Rate wird ermittelt.
+        ///  * für alle wieter Produkte wir die AdditionalAmount addiert.
+        /// </summary>
+        /// <param name="cartId"></param>
+        /// <param name="country"></param>
+        /// <returns></returns>
+        public decimal CalculateShippingCosts(int cartId, string countryCode)
+        {
+            var db = new Entities();
+            var cart = db.Carts
+                .Include("LineItems")
+                .Include("LineItems.Product")
+                .Include("LineItems.Product.ShippingCategory")
+                .Include("LineItems.Product.ShippingCategory.ShippingCosts")
+                .Single(c => c.Id == cartId);
+
+            var highest = cart.LineItems.Max(l => {
+                if (l.Product.ShippingCategory == null) throw new ApplicationException("Product has no shipping category. Cannot calculate shipping costs!");
+                var cost = l.Product.ShippingCategory.ShippingCosts.Single(sc => sc.CountryId == countryCode);
+                return cost.Amount - cost.AdditionalAmount;
+            });
+            var additional = cart.LineItems.Sum(l => l.Product.ShippingCategory.ShippingCosts.Single(sc => sc.CountryId == countryCode).AdditionalAmount * l.Qty);
+
+            return highest + additional;
         }
     }
 }

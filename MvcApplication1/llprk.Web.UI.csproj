@@ -282,6 +282,7 @@
     <Compile Include="ApplicationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\Helpers\RenderJsonNetHelper.cs" />
     <Compile Include="Areas\Admin\Controllers\TaxesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemesController.cs" />
@@ -481,6 +482,7 @@
     <Content Include="Scripts\bootstrap\transition.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\ko.bindings\ko.valueNumber.js" />
     <Content Include="Scripts\ko.bindings\ko.currency.js" />
     <Content Include="Scripts\ko.bindings\ko.date.js" />
     <Content Include="Scripts\ko.bindings\ko.datepicker.js" />

@@ -24,21 +24,19 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
     {
         private ICartService _CartService;
         private ITaxService _TaxService;
+        private IShippingService _ShippingService;
         private ThemeService _ThemeService;
 
         /// <summary>
         /// CTR
         /// </summary>
         /// <param name="themes"></param>
-        public CheckoutController(ICartService carts, ThemeService themes, ITaxService taxes)
+        public CheckoutController(ICartService carts, ThemeService themes, ITaxService taxes, IShippingService shipping)
         {
-            if (carts == null) throw new ArgumentNullException("carts");
-            if (themes == null) throw new ArgumentNullException("themes");
-            if (taxes == null) throw new ArgumentNullException("taxes");
-
             _CartService = carts;
             _ThemeService = themes;
             _TaxService = taxes;
+            _ShippingService = shipping;
         }
         //
         // GET: /Checkout/
@@ -145,7 +143,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
 
             var c = db.Countries.Single(x => x.Id.ToLower() == country.ToLower());
 
-            var shippingCosts = c.ShippingCost(db.ShippingCategories.First());
+            var shippingCosts = _ShippingService.CalculateShippingCosts(cart.Id, country);
             var tax = _TaxService.TaxForCountry(cart.Id, country);
 
 

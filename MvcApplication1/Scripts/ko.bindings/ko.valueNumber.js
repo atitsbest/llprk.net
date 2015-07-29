@@ -1,4 +1,4 @@
-﻿require(["jquery", "knockout"], function ($, ko) {
+﻿require(["jquery", "knockout", "underscore"], function ($, ko, _) {
     ko.bindingHandlers.valueNumber = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             // This will be called when the binding is first applied to an element
@@ -12,7 +12,7 @@
                 },
                 write: function (newValue) {
                     var number = Globalize.parseFloat(newValue);
-                    if (number) {
+                    if (!_.isNaN(number)) {
                         observable(number);
                     }
                 }

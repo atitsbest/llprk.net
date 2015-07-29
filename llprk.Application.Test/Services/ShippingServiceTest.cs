@@ -82,6 +82,44 @@ namespace llprk.Application.Test.Services
             }
         }
 
+        [TestMethod]
+        public void Calculate_Shipping_Costs()
+        {
+            using (new TransactionScope())
+            {
+                var db = new Entities();
+                var sut = _createSut();
+                var cartService = new CartService();
+
+                var product = db.Products.First(p => p.Id == 1);
+                cartService.AddProduct(1, product.Id, 17);
+
+                // Act.
+                var resultAt = sut.CalculateShippingCosts(1, "at");
+                var resultDe = sut.CalculateShippingCosts(1, "de");
+                
+                // Assert
+                Assert.AreEqual(6.75m + 16 * 1.5m, resultAt);
+                Assert.AreEqual(8m + 16 * 2.0m, resultDe);
+                
+                // Add another product with a different shipping category.
+                product = db.Products.First(p => p.Id == 5);
+                cartService.AddProduct(1, product.Id, 2);
+
+                // Act.
+                resultAt = sut.CalculateShippingCosts(1, "at");
+                resultDe = sut.CalculateShippingCosts(1, "de");
+                
+                // Assert
+                Assert.AreEqual((6.75m + 16 * 1.5m) + (1.1m * 2), resultAt);
+                Assert.AreEqual((8m + 16 * 2.0m) + (2.2m *2), resultDe);
+            }
+        }
+
+        /// <summary>
+        /// Create SUT
+        /// </summary>
+        /// <returns></returns>
         private ShippingService _createSut()
         {
             return new ShippingService();
