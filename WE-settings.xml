@@ -89,11 +89,12 @@
     <JsHintErrorLocation>2</JsHintErrorLocation>
     <JsHintRunOnBuild>false</JsHintRunOnBuild>
     <KeepImportantComments>false</KeepImportantComments>
-    <LessCompileOnBuild>true</LessCompileOnBuild>
+    <LessCompileOnBuild>false</LessCompileOnBuild>
     <LessCompileToFolder>false</LessCompileToFolder>
     <LessGenerateCssFile>true</LessGenerateCssFile>
     <LessMinify>true</LessMinify>
     <LessShowPreviewWindow>true</LessShowPreviewWindow>
+    <LessStrictMath>false</LessStrictMath>
     <ScssGenerateCssFile>True</ScssGenerateCssFile>
     <ScssMinify>True</ScssMinify>
     <ScssShowPreviewWindow>True</ScssShowPreviewWindow>

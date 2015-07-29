@@ -894,6 +894,14 @@ namespace Links
                 
                     public static readonly string PicturesCtrl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PicturesCtrl.min.js") ? Url("PicturesCtrl.min.js") : Url("PicturesCtrl.js");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class shippingcosts {
+                        private const string URLPATH = "~/Areas/Admin/Scripts/app/shippingcosts";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string shippingcosts_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shippingcosts.index.min.js") ? Url("shippingcosts.index.min.js") : Url("shippingcosts.index.js");
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class taxes {
                         private const string URLPATH = "~/Areas/Admin/Scripts/app/taxes";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }

@@ -56,6 +56,24 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult Update()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult UpdateShippingCategory()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateShippingCategory);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult CreateShippingCategory()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateShippingCategory);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ShippingCostsController Actions { get { return MVC.Admin.ShippingCosts; } }
@@ -73,15 +91,46 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Update = "Update";
+            public readonly string UpdateShippingCategory = "UpdateShippingCategory";
+            public readonly string CreateShippingCategory = "CreateShippingCategory";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Update = "Update";
+            public const string UpdateShippingCategory = "UpdateShippingCategory";
+            public const string CreateShippingCategory = "CreateShippingCategory";
         }
 
 
+        static readonly ActionParamsClass_Update s_params_Update = new ActionParamsClass_Update();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Update UpdateParams { get { return s_params_Update; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Update
+        {
+            public readonly string data = "data";
+        }
+        static readonly ActionParamsClass_UpdateShippingCategory s_params_UpdateShippingCategory = new ActionParamsClass_UpdateShippingCategory();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateShippingCategory UpdateShippingCategoryParams { get { return s_params_UpdateShippingCategory; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateShippingCategory
+        {
+            public readonly string id = "id";
+            public readonly string name = "name";
+        }
+        static readonly ActionParamsClass_CreateShippingCategory s_params_CreateShippingCategory = new ActionParamsClass_CreateShippingCategory();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateShippingCategory CreateShippingCategoryParams { get { return s_params_CreateShippingCategory; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateShippingCategory
+        {
+            public readonly string name = "name";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -117,6 +166,43 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, Llprk.Web.UI.Areas.Admin.Models.ShippingCostUpdate data);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Update(Llprk.Web.UI.Areas.Admin.Models.ShippingCostUpdate data)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "data", data);
+            UpdateOverride(callInfo, data);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateShippingCategoryOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id, string name);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult UpdateShippingCategory(int id, string name)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateShippingCategory);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
+            UpdateShippingCategoryOverride(callInfo, id, name);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateShippingCategoryOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string name);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult CreateShippingCategory(string name)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateShippingCategory);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
+            CreateShippingCategoryOverride(callInfo, name);
             return callInfo;
         }
 

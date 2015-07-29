@@ -16,6 +16,7 @@ namespace Llprk.Application
             container.Register<ICartService, CartService>();
             container.Register<IPageService, PageService>();
             container.Register<ITaxService, TaxService>();
+            container.Register<IShippingService, ShippingService>();
         }
     }
 }

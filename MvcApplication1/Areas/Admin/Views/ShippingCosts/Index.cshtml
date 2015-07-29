@@ -11,25 +11,25 @@
             All of your product fall exactly into one of the these categories.
         </p>
     </div>
-    <div class="col-xs-9" style="margin-top:20px;">
-                <!-- ko foreach: ['Small','Medium','Large','Calendar'] -->
-                <div class="row" style="margin-bottom:4px;">
-                    <div class="col-xs-3">
-                        <input type="text" class="form-control" placeholder="0,00" data-bind="value:$data">
-                    </div>
-                    <div class="col-xs-2">
-                        <a href="#" class="btn" data-bind="">Change...</a>
-                    </div>
+    <div class="col-xs-9" style="margin-top: 20px;">
+        <!-- ko foreach: shippingCategories -->
+        <div class="row" style="margin-bottom: 4px;">
+            <div class="col-xs-3">
+                <input type="text" class="form-control" placeholder="0,00" disabled data-bind="value:name">
+            </div>
+            <div class="col-xs-2">
+                <a href="#" class="btn" data-bind="click:$parent.changeShippingCategory.bind($data, $data)">Change...</a>
+            </div>
 
-                </div>
-                <!-- /ko -->
+        </div>
+        <!-- /ko -->
         <hr />
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="#" class="btn btn-default" data-bind="">Add new Category</a>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="#" class="btn btn-default" data-bind="click:addShippingCategory">Add new Category</a>
 
-                    </div>
-                </div>
+            </div>
+        </div>
     </div>
 </div>
 <hr />
@@ -41,58 +41,60 @@
             You can add additional countries in the <a href="@Url.Action("index", "countries")">Country settings</a>.
         </p>
     </div>
-    <div class="col-xs-9" style="margin-top:20px;">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-2">Country</div>
-                    <div class="col-xs-2 text-right">Category</div>
-                    <div class="col-xs-3 text-center">Rate</div>
-                    <div class="col-xs-3 text-center">Rate add. item</div>
-                    <div class="col-xs-2 text-right">
-                        <a href="#" class="btn btn-primary">Save</a>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body" data-bind="foreach:countries">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <a data-bind="attr: { href: '@Url.Action("edit", "countries")/id' }"><strong data-bind="    text:name"></strong></a>
-                    </div>
-                </div>
-                <!-- ko foreach: ['Small','Medium','Large','Calendar'] -->
-                <div class="row" style="margin-bottom: 4px;">
-                    <div class="col-xs-offset-2 col-xs-2 text-right">
-                        <span data-bind="text:$data" style="margin-top: 5px; display: block;"></span>
-                    </div>
-                    <div class="col-xs-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control text-right" placeholder="0,00" data-bind="">
-                            <div class="input-group-addon">€ </div>
+    <div class="col-xs-9" style="margin-top: 20px;">
+        <form action="@Url.Action(MVC.Admin.ShippingCosts.Update())" method="post" data-bind="submit:submit">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">Country</div>
+                        <div class="col-xs-2 text-right">Category</div>
+                        <div class="col-xs-3 text-center">Rate</div>
+                        <div class="col-xs-3 text-center">Rate add. item</div>
+                        <div class="col-xs-2 text-right">
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
-                    <div class="col-xs-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control text-right" placeholder="0,00" data-bind="">
-                            <div class="input-group-addon">€ </div>
+                </div>
+                <div class="panel-body" data-bind="foreach:countries">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <a data-bind="attr: { href: '@Url.Action("edit", "countries")/id' }"><strong data-bind="text:name"></strong></a>
                         </div>
                     </div>
-                    <div class="col-xs-2">
+                    <!-- ko foreach: shippingCosts -->
+                    <div class="row" style="margin-bottom: 4px;">
+                        <div class="col-xs-offset-2 col-xs-2 text-right">
+                            <span data-bind="text:name" style="margin-top: 5px; display: block;"></span>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control text-right" placeholder="0,00" data-bind="valueNumber:amount">
+                                <div class="input-group-addon">€ </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control text-right" placeholder="0,00" data-bind="valueNumber:additionalAmount">
+                                <div class="input-group-addon">€ </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                        </div>
                     </div>
+                    <!-- /ko -->
+                    <hr />
                 </div>
-                <!-- /ko -->
-                <hr />
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
 @section scripts {
     <script type="text/javascript">
         require(["app/shippingcosts/index"], function (main) {
-            main({
-                countries: @Html.Raw(JsonConvert.SerializeObject(Model.Countries, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
-                });
+            main(
+                @Html.Raw(JsonConvert.SerializeObject(Model, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
+            );
         });
     </script>
 }

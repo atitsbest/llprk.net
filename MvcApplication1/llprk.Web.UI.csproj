@@ -292,6 +292,7 @@
     <Compile Include="Areas\Admin\Controllers\Results\JsonNetResult.cs" />
     <Compile Include="Areas\Admin\Controllers\SourcesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Models\ShippingCostUpdate.cs" />
     <Compile Include="Areas\Admin\Models\ShippingCostIndex.cs" />
     <Compile Include="Areas\Admin\Models\TaxIndex.cs" />
     <Compile Include="Areas\Admin\Models\ThemeContent.cs" />
@@ -432,6 +433,7 @@
     <Content Include="Areas\Admin\Content\toastr.min.css">
       <DependentUpon>toastr.less</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Scripts\app\shippingcosts\shippingcosts.index.js" />
     <Content Include="Areas\Admin\Scripts\app\taxes\taxes.index.js" />
     <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
     <Content Include="Scripts\app\BaseViewModel.js" />

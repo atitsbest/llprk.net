@@ -11,7 +11,7 @@ legend {
   margin-bottom: 18px;
   font-size: 19.5px;
   line-height: inherit;
-  color: #666666;
+  color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -55,7 +55,7 @@ output {
   padding-top: 7px;
   font-size: 13px;
   line-height: 1.42857143;
-  color: #888888;
+  color: #555555;
 }
 .form-control {
   display: block;
@@ -64,7 +64,7 @@ output {
   padding: 6px 12px;
   font-size: 13px;
   line-height: 1.42857143;
-  color: #888888;
+  color: #555555;
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
@@ -90,7 +90,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   opacity: 1;
 }
 .form-control[disabled],
@@ -406,7 +406,7 @@ select[multiple].form-group-lg .form-control {
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
-  color: #a6a6a6;
+  color: #737373;
 }
 @media (min-width: 768px) {
   .form-inline .form-group {
@@ -550,7 +550,7 @@ table thead tr.filter > td > input {
   padding: 6px 12px;
   font-size: 13px;
   line-height: 1.42857143;
-  color: #888888;
+  color: #555555;
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
@@ -580,7 +580,7 @@ table thead tr.filter > td > input::-webkit-input-placeholder {
 table thead tr.filter > td > input[disabled],
 table thead tr.filter > td > input[readonly],
 fieldset[disabled] table thead tr.filter > td > input {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   opacity: 1;
 }
 table thead tr.filter > td > input[disabled],
@@ -618,6 +618,7 @@ body {
   padding: 0;
   background: #f9f9f9;
   margin: 70px 20px 0;
+  -webkit-font-smoothing: antialiased;
 }
 header {
   position: fixed;
@@ -637,7 +638,7 @@ header {
 header h2 {
   display: inline-block;
   margin-right: .5em;
-  color: #666666;
+  color: #333333;
   opacity: .75;
   text-transform: uppercase;
   font-weight: 800;
@@ -755,7 +756,7 @@ select {
   padding: 6px 12px;
   font-size: 13px;
   line-height: 1.42857143;
-  color: #888888;
+  color: #555555;
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
@@ -795,7 +796,7 @@ select[readonly],
 fieldset[disabled] input[type="text"],
 fieldset[disabled] input[type="number"],
 fieldset[disabled] select {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   opacity: 1;
 }
 input[type="text"][disabled],

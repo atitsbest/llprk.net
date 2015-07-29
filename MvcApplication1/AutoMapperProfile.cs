@@ -44,7 +44,11 @@ namespace Llprk.Web.UI
                 .ForMember(d => d.TaxId, o => o.MapFrom(s => s.Taxes.Any() ? s.Taxes.First().Id : -1))
                 .ForMember(d => d.TaxPercent, o => o.MapFrom(s => s.Taxes.Any() ? s.Taxes.First().Percent : 0));
 
-            Mapper.CreateMap<Country, ShippingCostIndex.Country>();
+            Mapper.CreateMap<Country, ShippingCostIndex.Country>()
+                .ForMember(d => d.ShippingCosts, o => o.MapFrom(s => Mapper.Map<ShippingCostIndex.ShippingCost[]>(s.ShippingCosts)));
+            Mapper.CreateMap<ShippingCategory, ShippingCostIndex.ShippingCategory>();
+            Mapper.CreateMap<ShippingCost, ShippingCostIndex.ShippingCost>();
+
         }
 
     }
