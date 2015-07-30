@@ -10,7 +10,11 @@ namespace Llprk.DataAccess.Models
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
 
+        public int? OrderId { get; set; }
+
         public virtual ICollection<LineItem> LineItems { get; set; }
+
+        public virtual Order Order { get; set; }
 
         public decimal Subtotal {
             get

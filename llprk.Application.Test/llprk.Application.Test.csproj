@@ -62,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Services\OrderServiceTest.cs" />
     <Compile Include="Services\CartServiceTest.cs" />
     <Compile Include="Services\ShippingServiceTest.cs" />
     <Compile Include="Services\TaxServiceTest.cs" />
@@ -86,6 +87,10 @@
     <Content Include="Fixtures\ShopDb.Test_log.ldf">
       <DependentUpon>ShopDb.Test.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fixtures\ShopDb.Test_2014.mdf" />
+    <Content Include="Fixtures\ShopDb.Test_2014_log.ldf">
+      <DependentUpon>ShopDb.Test_2014.mdf</DependentUpon>
     </Content>
     <Content Include="Fixtures\Themes\minimal\current\assets\banner-01.jpg" />
     <Content Include="Fixtures\Themes\minimal\current\assets\banner-02.jpg" />

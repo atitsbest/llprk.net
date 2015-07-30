@@ -4,110 +4,38 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Llprk.Web.UI.Models.ShopDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="LlprkWebUIModelsShopDbModelStoreContainer">
-          <EntitySet Name="Carts" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Carts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Categories" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Categories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Countries" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="LineItems" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.LineItems" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="OrderLines" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.OrderLines" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Pages" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Pages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Parameters" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Parameters" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Product_Tag" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Products" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Products" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ShippingCategories" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCategories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ShippingCosts" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCosts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Tags" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Tags" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Taxes" EntityType="Llprk.Web.UI.Models.ShopDbModel.Store.Taxes" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_dbo_OrderLines_dbo_Orders_OrderId" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_dbo_OrderLines_dbo_Orders_OrderId">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderLines" EntitySet="OrderLines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_OrderLines_dbo_Products_ProductId" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_dbo_OrderLines_dbo_Products_ProductId">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="OrderLines" EntitySet="OrderLines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Products_dbo_Categories_CategoryId" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_dbo_Products_dbo_Categories_CategoryId">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LineItems_Cart" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_LineItems_Cart">
-            <End Role="Carts" EntitySet="Carts" />
-            <End Role="LineItems" EntitySet="LineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LineItems_Orders" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_LineItems_Orders">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="LineItems" EntitySet="LineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LineItems_Products" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_LineItems_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="LineItems" EntitySet="LineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Country" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Orders_Country">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Picture_Product" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Picture_Product">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Pictures" EntitySet="Pictures" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Tag_Product" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Product_Tag_Product">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Product_Tag" EntitySet="Product_Tag" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Tag_Tag" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Product_Tag_Tag">
-            <End Role="Tags" EntitySet="Tags" />
-            <End Role="Product_Tag" EntitySet="Product_Tag" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_ShippingCategory" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Products_ShippingCategory">
-            <End Role="ShippingCategories" EntitySet="ShippingCategories" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShippingCosts_Country" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_ShippingCosts_Country">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="ShippingCosts" EntitySet="ShippingCosts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShippingCosts_ShippingCategory" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_ShippingCosts_ShippingCategory">
-            <End Role="ShippingCategories" EntitySet="ShippingCategories" />
-            <End Role="ShippingCosts" EntitySet="ShippingCosts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tax_Country" Association="Llprk.Web.UI.Models.ShopDbModel.Store.FK_Tax_Country">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Taxes" EntitySet="Taxes" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="Llprk.Web.UI.Models.ShopDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Carts">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="Id" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LineItems">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="CartId" Type="int" />
           <Property Name="OrderId" Type="int" />
-          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
           <Property Name="Qty" Type="int" Nullable="false" />
         </EntityType>
@@ -115,7 +43,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Qty" Type="int" Nullable="false" />
@@ -124,7 +52,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Salutation" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Firstname" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
@@ -132,7 +60,7 @@
           <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
           <Property Name="City" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="CountryId" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="PaidAt" Type="datetime" />
           <Property Name="ShippedAt" Type="datetime" />
@@ -141,13 +69,15 @@
           <Property Name="PayPalPaymentId" Type="nchar" MaxLength="100" />
           <Property Name="SubTotalPrice" Type="money" Nullable="false" />
           <Property Name="ShippingCosts" Type="money" Nullable="false" />
+          <Property Name="Total" Type="money" Nullable="false" />
+          <Property Name="Tax" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Pages">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
           <Property Name="UrlHandle" Type="nchar" MaxLength="100" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
@@ -157,7 +87,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MailMessagePaid" Type="text" Nullable="false" />
           <Property Name="MailMessageShipped" Type="text" Nullable="false" />
           <Property Name="MailMessageOrdered" Type="text" Nullable="false" />
@@ -183,12 +113,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="IsPublished" Type="bit" Nullable="false" />
           <Property Name="CategoryId" Type="int" />
-          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Available" Type="int" Nullable="false" />
           <Property Name="ShippingCategoryId" Type="int" Nullable="false" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
@@ -201,15 +131,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="ShippingCosts">
           <Key>
             <PropertyRef Name="CountryId" />
             <PropertyRef Name="ShippingCategoryId" />
           </Key>
-          <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="CountryId" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="ShippingCategoryId" Type="int" Nullable="false" />
           <Property Name="Amount" Type="money" Nullable="false" />
           <Property Name="AdditionalAmount" Type="money" Nullable="false" />
@@ -218,22 +148,34 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Taxes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Percent" Type="int" Nullable="false" />
-          <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="CountryId" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Carts_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Carts" Type="Self.Carts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Carts">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
-          <End Role="Orders" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" Multiplicity="1">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderLines" Type="Llprk.Web.UI.Models.ShopDbModel.Store.OrderLines" Multiplicity="*" />
+          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="Id" />
@@ -244,10 +186,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_OrderLines_dbo_Products_ProductId">
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="1">
+          <End Role="Products" Type="Self.Products" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderLines" Type="Llprk.Web.UI.Models.ShopDbModel.Store.OrderLines" Multiplicity="*" />
+          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -258,10 +200,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Products_dbo_Categories_CategoryId">
-          <End Role="Categories" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Categories" Multiplicity="0..1">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="*" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="Id" />
@@ -272,8 +214,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LineItems_Cart">
-          <End Role="Carts" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Carts" Multiplicity="0..1" />
-          <End Role="LineItems" Type="Llprk.Web.UI.Models.ShopDbModel.Store.LineItems" Multiplicity="*" />
+          <End Role="Carts" Type="Self.Carts" Multiplicity="0..1" />
+          <End Role="LineItems" Type="Self.LineItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Carts">
               <PropertyRef Name="Id" />
@@ -284,8 +226,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LineItems_Orders">
-          <End Role="Orders" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" Multiplicity="0..1" />
-          <End Role="LineItems" Type="Llprk.Web.UI.Models.ShopDbModel.Store.LineItems" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="LineItems" Type="Self.LineItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="Id" />
@@ -296,8 +238,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LineItems_Products">
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="1" />
-          <End Role="LineItems" Type="Llprk.Web.UI.Models.ShopDbModel.Store.LineItems" Multiplicity="*" />
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="LineItems" Type="Self.LineItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -308,8 +250,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Country">
-          <End Role="Countries" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" Multiplicity="1" />
-          <End Role="Orders" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Orders" Multiplicity="*" />
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
               <PropertyRef Name="Id" />
@@ -320,8 +262,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Picture_Product">
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="0..1" />
-          <End Role="Pictures" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Pictures" Multiplicity="*" />
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -332,10 +274,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Tag_Product">
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="1">
+          <End Role="Products" Type="Self.Products" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Product_Tag" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" Multiplicity="*" />
+          <End Role="Product_Tag" Type="Self.Product_Tag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -346,10 +288,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Tag_Tag">
-          <End Role="Tags" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Tags" Multiplicity="1">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Product_Tag" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Product_Tag" Multiplicity="*" />
+          <End Role="Product_Tag" Type="Self.Product_Tag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tags">
               <PropertyRef Name="Id" />
@@ -360,8 +302,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_ShippingCategory">
-          <End Role="ShippingCategories" Type="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCategories" Multiplicity="1" />
-          <End Role="Products" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Products" Multiplicity="*" />
+          <End Role="ShippingCategories" Type="Self.ShippingCategories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShippingCategories">
               <PropertyRef Name="Id" />
@@ -372,8 +314,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShippingCosts_Country">
-          <End Role="Countries" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" Multiplicity="1" />
-          <End Role="ShippingCosts" Type="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCosts" Multiplicity="*" />
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="ShippingCosts" Type="Self.ShippingCosts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
               <PropertyRef Name="Id" />
@@ -384,8 +326,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShippingCosts_ShippingCategory">
-          <End Role="ShippingCategories" Type="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCategories" Multiplicity="1" />
-          <End Role="ShippingCosts" Type="Llprk.Web.UI.Models.ShopDbModel.Store.ShippingCosts" Multiplicity="*" />
+          <End Role="ShippingCategories" Type="Self.ShippingCategories" Multiplicity="1" />
+          <End Role="ShippingCosts" Type="Self.ShippingCosts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShippingCategories">
               <PropertyRef Name="Id" />
@@ -396,8 +338,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tax_Country">
-          <End Role="Countries" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Countries" Multiplicity="1" />
-          <End Role="Taxes" Type="Llprk.Web.UI.Models.ShopDbModel.Store.Taxes" Multiplicity="*" />
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Taxes" Type="Self.Taxes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
               <PropertyRef Name="Id" />
@@ -407,50 +349,109 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="LlprkWebUIModelsShopDbModelStoreContainer">
+          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LineItems" EntityType="Self.LineItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Tag" EntityType="Self.Product_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingCategories" EntityType="Self.ShippingCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingCosts" EntityType="Self.ShippingCosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taxes" EntityType="Self.Taxes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Carts_Orders" Association="Self.FK_Carts_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Carts" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OrderLines_dbo_Orders_OrderId" Association="Self.FK_dbo_OrderLines_dbo_Orders_OrderId">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OrderLines_dbo_Products_ProductId" Association="Self.FK_dbo_OrderLines_dbo_Products_ProductId">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Products_dbo_Categories_CategoryId" Association="Self.FK_dbo_Products_dbo_Categories_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItems_Cart" Association="Self.FK_LineItems_Cart">
+            <End Role="Carts" EntitySet="Carts" />
+            <End Role="LineItems" EntitySet="LineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItems_Orders" Association="Self.FK_LineItems_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="LineItems" EntitySet="LineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItems_Products" Association="Self.FK_LineItems_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="LineItems" EntitySet="LineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Country" Association="Self.FK_Orders_Country">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Product" Association="Self.FK_Picture_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Tag_Product" Association="Self.FK_Product_Tag_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Tag" EntitySet="Product_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Tag_Tag" Association="Self.FK_Product_Tag_Tag">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Product_Tag" EntitySet="Product_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ShippingCategory" Association="Self.FK_Products_ShippingCategory">
+            <End Role="ShippingCategories" EntitySet="ShippingCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingCosts_Country" Association="Self.FK_ShippingCosts_Country">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="ShippingCosts" EntitySet="ShippingCosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingCosts_ShippingCategory" Association="Self.FK_ShippingCosts_ShippingCategory">
+            <End Role="ShippingCategories" EntitySet="ShippingCategories" />
+            <End Role="ShippingCosts" EntitySet="ShippingCosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tax_Country" Association="Self.FK_Tax_Country">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Taxes" EntitySet="Taxes" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Llprk.Web.UI.Models.ShopDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Carts" EntityType="Llprk.Web.UI.Models.ShopDbModel.Cart" />
           <EntitySet Name="Categories" EntityType="Llprk.Web.UI.Models.ShopDbModel.Category" />
           <EntitySet Name="Countries" EntityType="Llprk.Web.UI.Models.ShopDbModel.Country" />
           <EntitySet Name="LineItems" EntityType="Llprk.Web.UI.Models.ShopDbModel.LineItem" />
           <EntitySet Name="OrderLines" EntityType="Llprk.Web.UI.Models.ShopDbModel.OrderLine" />
-          <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" />
           <EntitySet Name="Pages" EntityType="Llprk.Web.UI.Models.ShopDbModel.Page" />
           <EntitySet Name="Parameters" EntityType="Llprk.Web.UI.Models.ShopDbModel.Parameter" />
           <EntitySet Name="Pictures" EntityType="Llprk.Web.UI.Models.ShopDbModel.Picture" />
           <EntitySet Name="Products" EntityType="Llprk.Web.UI.Models.ShopDbModel.Product" />
           <EntitySet Name="Tags" EntityType="Llprk.Web.UI.Models.ShopDbModel.Tag" />
           <EntitySet Name="Taxes" EntityType="Llprk.Web.UI.Models.ShopDbModel.Tax" />
-          <AssociationSet Name="FK_LineItems_Cart" Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart">
-            <End Role="Cart" EntitySet="Carts" />
-            <End Role="LineItem" EntitySet="LineItems" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_Products_dbo_Categories_CategoryId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_Products_dbo_Categories_CategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Tax_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Tax_Country">
             <End Role="Country" EntitySet="Countries" />
             <End Role="Tax" EntitySet="Taxes" />
           </AssociationSet>
-          <AssociationSet Name="FK_LineItems_Orders" Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="LineItem" EntitySet="LineItems" />
-          </AssociationSet>
           <AssociationSet Name="FK_LineItems_Products" Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="LineItem" EntitySet="LineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_OrderLines_dbo_Orders_OrderId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderLine" EntitySet="OrderLines" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_OrderLines_dbo_Products_ProductId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId">
             <End Role="Product" EntitySet="Products" />
@@ -478,15 +479,29 @@
             <End Role="ShippingCategory" EntitySet="ShippingCategories" />
             <End Role="ShippingCost" EntitySet="ShippingCosts" />
           </AssociationSet>
+          <EntitySet Name="Carts" EntityType="Llprk.Web.UI.Models.ShopDbModel.Cart" />
+          <EntitySet Name="Orders" EntityType="Llprk.Web.UI.Models.ShopDbModel.Order" />
+          <AssociationSet Name="FK_Carts_Orders" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Carts_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItems_Cart" Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart">
+            <End Role="Cart" EntitySet="Carts" />
+            <End Role="LineItem" EntitySet="LineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Country" Association="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItems_Orders" Association="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="LineItem" EntitySet="LineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OrderLines_dbo_Orders_OrderId" Association="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="0" />
-          <NavigationProperty Name="LineItems" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart" FromRole="Cart" ToRole="LineItem" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -501,9 +516,9 @@
           </Key>
           <Property Type="String" Name="Id" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Orders" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Country" ToRole="Order" />
           <NavigationProperty Name="Taxes" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Tax_Country" FromRole="Country" ToRole="Tax" />
           <NavigationProperty Name="ShippingCosts" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_ShippingCosts_Country" FromRole="Country" ToRole="ShippingCost" />
+          <NavigationProperty Name="Orders" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Country" ToRole="Order" />
         </EntityType>
         <EntityType Name="LineItem">
           <Key>
@@ -516,9 +531,9 @@
           <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="0" />
           <Property Type="Int32" Name="Qty" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Products" FromRole="LineItem" ToRole="Product" />
           <NavigationProperty Name="Cart" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart" FromRole="LineItem" ToRole="Cart" />
           <NavigationProperty Name="Order" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders" FromRole="LineItem" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Products" FromRole="LineItem" ToRole="Product" />
         </EntityType>
         <EntityType Name="OrderLine">
           <Key>
@@ -528,33 +543,8 @@
           <Property Type="Int32" Name="OrderId" Nullable="false" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
           <Property Type="Int32" Name="Qty" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="OrderLine" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Products_ProductId" FromRole="OrderLine" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Salutation" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Address1" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Address2" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Zip" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="City" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="PaidAt" Precision="3" />
-          <Property Type="DateTime" Name="ShippedAt" Precision="3" />
-          <Property Type="String" Name="Comment" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" />
-          <Property Type="String" Name="PayPalPaymentId" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Type="Decimal" Name="SubTotalPrice" Nullable="false" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="ShippingCosts" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Order" ToRole="Country" />
-          <NavigationProperty Name="LineItems" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders" FromRole="Order" ToRole="LineItem" />
-          <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="Order" ToRole="OrderLine" />
+          <NavigationProperty Name="Order" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="OrderLine" ToRole="Order" />
         </EntityType>
         <EntityType Name="Page">
           <Key>
@@ -627,18 +617,6 @@
           <Property Type="String" Name="CountryId" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Tax_Country" FromRole="Tax" ToRole="Country" />
         </EntityType>
-        <Association Name="FK_LineItems_Cart">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Cart" Role="Cart" Multiplicity="0..1" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.LineItem" Role="LineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cart">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="LineItem">
-              <PropertyRef Name="CartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_Products_dbo_Categories_CategoryId">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Category" Role="Category" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -650,18 +628,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_Country">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Country" Role="Country" Multiplicity="1" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CountryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -677,18 +643,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LineItems_Orders">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="0..1" />
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.LineItem" Role="LineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="LineItem">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LineItems_Products">
           <End Type="Llprk.Web.UI.Models.ShopDbModel.Product" Role="Product" Multiplicity="1" />
           <End Type="Llprk.Web.UI.Models.ShopDbModel.LineItem" Role="LineItem" Multiplicity="*" />
@@ -698,20 +652,6 @@
             </Principal>
             <Dependent Role="LineItem">
               <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Role="OrderLine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderLine">
-              <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -802,20 +742,112 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderId" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Carts_Orders" FromRole="Cart" ToRole="Order" />
+          <NavigationProperty Name="LineItems" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Cart" FromRole="Cart" ToRole="LineItem" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Salutation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaidAt" Type="DateTime" Precision="3" />
+          <Property Name="ShippedAt" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PayPalPaymentId" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="SubTotalPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ShippingCosts" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Tax" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Carts" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Carts_Orders" FromRole="Order" ToRole="Cart" />
+          <NavigationProperty Name="Country" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_Orders_Country" FromRole="Order" ToRole="Country" />
+          <NavigationProperty Name="LineItems" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_LineItems_Orders" FromRole="Order" ToRole="LineItem" />
+          <NavigationProperty Name="OrderLines" Relationship="Llprk.Web.UI.Models.ShopDbModel.FK_dbo_OrderLines_dbo_Orders_OrderId" FromRole="Order" ToRole="OrderLine" />
+        </EntityType>
+        <Association Name="FK_Carts_Orders">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineItems_Cart">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Cart" Role="Cart" Multiplicity="0..1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.LineItem" Role="LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Country">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineItems_Orders">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.LineItem" Role="LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OrderLines_dbo_Orders_OrderId">
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.Order" Role="Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Llprk.Web.UI.Models.ShopDbModel.OrderLine" Role="OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LlprkWebUIModelsShopDbModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Cart">
-              <MappingFragment StoreEntitySet="Carts">
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Category">
               <MappingFragment StoreEntitySet="Categories">
@@ -851,29 +883,6 @@
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="ShippingCosts" ColumnName="ShippingCosts" />
-                <ScalarProperty Name="SubTotalPrice" ColumnName="SubTotalPrice" />
-                <ScalarProperty Name="PayPalPaymentId" ColumnName="PayPalPaymentId" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="ShippedAt" ColumnName="ShippedAt" />
-                <ScalarProperty Name="PaidAt" ColumnName="PaidAt" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -972,6 +981,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Cart">
+              <MappingFragment StoreEntitySet="Carts">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Llprk.Web.UI.Models.ShopDbModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ShippingCosts" ColumnName="ShippingCosts" />
+                <ScalarProperty Name="SubTotalPrice" ColumnName="SubTotalPrice" />
+                <ScalarProperty Name="PayPalPaymentId" ColumnName="PayPalPaymentId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ShippedAt" ColumnName="ShippedAt" />
+                <ScalarProperty Name="PaidAt" ColumnName="PaidAt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -989,6 +1032,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -25,12 +25,10 @@ namespace Llprk.DataAccess.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Cart> Carts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
-        public DbSet<Order> Orders { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
         public DbSet<Picture> Pictures { get; set; }
@@ -39,5 +37,7 @@ namespace Llprk.DataAccess.Models
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<ShippingCost> ShippingCosts { get; set; }
         public DbSet<ShippingCategory> ShippingCategories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

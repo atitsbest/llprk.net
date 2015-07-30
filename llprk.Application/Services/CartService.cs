@@ -4,6 +4,7 @@ using Llprk.Application.DTOs.Responses;
 using Llprk.DataAccess.Models;
 using System;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Llprk.Application.Services
 {
@@ -37,7 +38,9 @@ namespace Llprk.Application.Services
         {
             using (var db = new Entities())
             {
-                return db.Carts.Include("LineItems").Include("LineItems.Product").SingleOrDefault(c => c.Id == id);
+                return db.Carts
+                    .Include(i => i.LineItems.Select(l => l.Product))
+                    .SingleOrDefault(c => c.Id == id);
             }
         }
 

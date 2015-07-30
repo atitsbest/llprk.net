@@ -1,15 +1,15 @@
 ﻿define("app/checkout/index", ["jquery", "knockout", "underscore", "app/BaseViewModel"], function ($, ko, _, BaseViewModel) {
     function Address() {
         var self = this;
-        self.salutation = ko.observable().extend({ required: true });
-        self.firstname = ko.observable().extend({ required: true });
-        self.lastname = ko.observable().extend({ required: true });
+        self.salutation = ko.observable();
+        self.firstname = ko.observable();
+        self.lastname = ko.observable();
         self.address1 = ko.observable();
-        self.address2 = ko.observable().extend({ required: true });
-        self.zip = ko.observable().extend({ required: true });
-        self.city = ko.observable().extend({ required: true });
+        self.address2 = ko.observable();
+        self.zip = ko.observable();
+        self.city = ko.observable();
         
-        self.countryId = ko.observable().extend({ required: true });
+        self.countryId = ko.observable();
 
         return self;
     };
@@ -21,13 +21,13 @@
             hasKeys('lineItems', 'subTotal', 'tax', 'shippingCosts', 'total', 'checkoutShippingCostsUrl'));
 
         self.model = {
-            email: ko.observable().extend({ required: true, email: true}),
+            email: ko.observable(),
 
             deliveryAddress: new Address(),
             billingAddress: new Address(),
             sameAddress: ko.observable(true),
 
-            accepted: ko.observable().extend({ required: true })
+            accepted: ko.observable()
         }
 
         // Shipping costs

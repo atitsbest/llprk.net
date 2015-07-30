@@ -50,12 +50,17 @@ namespace Llprk.DataAccess.Models
         public DateTime? PaidAt { get; set; }
         public DateTime? ShippedAt { get; set; }
 
+        public decimal Total { get; set; }
+        public decimal Tax { get; set; }
+
         [MaxLength(1024)]
         public string Comment { get; set; }
 
         public virtual ICollection<OrderLine> OrderLines { get; set; }
 
         public virtual ICollection<LineItem> LineItems { get; set; }
+
+        public virtual ICollection<Cart> Carts { get; set; }
 
 		/// <summary>
 		/// Wenn mit PayPal gezahlt wurde, dann wird hier die PaymentId gespeichert.
