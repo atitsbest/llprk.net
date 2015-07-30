@@ -16,35 +16,39 @@ namespace llprk.Application.Test.Services
         [TestMethod]
         public void Update_Country_Tax()
         {
-            var db = new Entities();
-            var sut = _createSut();
+            using (var db = new Entities())
+            {
+                var sut = _createSut();
 
-            sut.UpdateCountryTax("de", 22);
+                sut.UpdateCountryTax("de", 22);
 
-            Assert.AreEqual(22, db.Taxes.Single(t => t.CountryId == "de").Percent);
+                Assert.AreEqual(22, db.Taxes.Single(t => t.CountryId == "de").Percent);
+            }
         }
 
         [TestMethod]
         public void Calculate_Tax_for_Country()
         {
-            var db = new Entities();
-            var sut = _createSut();
-
-            using (new TransactionScope())
+            using (var db = new Entities())
             {
-                var cartService = new CartService();
-                var cart = cartService.CreateCart();
-                var product = db.Products.First(p => p.ChargeTaxes);
-                var product2 = db.Products.First(p => !p.ChargeTaxes);
-                product.Price = 10;
-                product2.Price = 10;
-                db.SaveChanges();
-                cartService.AddProduct(cart.Id, product.Id, 2);
-                cartService.AddProduct(cart.Id, product2.Id, 2);
+                var sut = _createSut();
 
-                var tax = sut.TaxForCountry(cart.Id, "at");
+                using (new TransactionScope())
+                {
+                    var cartService = new CartService();
+                    var cart = cartService.CreateCart();
+                    var product = db.Products.First(p => p.ChargeTaxes);
+                    var product2 = db.Products.First(p => !p.ChargeTaxes);
+                    product.Price = 10;
+                    product2.Price = 10;
+                    db.SaveChanges();
+                    cartService.AddProduct(cart.Id, product.Id, 2);
+                    cartService.AddProduct(cart.Id, product2.Id, 2);
 
-                Assert.AreEqual(3.3f, (float)tax, 0.04f);
+                    var tax = sut.TaxForCountry(cart.Id, "at");
+
+                    Assert.AreEqual(3.3f, (float)tax, 0.04f);
+                }
             }
         }
 

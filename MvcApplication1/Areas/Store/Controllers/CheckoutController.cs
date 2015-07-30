@@ -138,24 +138,27 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
         {
             if (string.IsNullOrWhiteSpace(country)) throw new ArgumentNullException("country");
 
-            var db = new Entities();
-            var cart = _CartService.GetCart((int)Session["cartId"]);
+            using (var db = new Entities())
+            {
+                var cart = _CartService.GetCart((int)Session["cartId"]);
 
-            var c = db.Countries.Single(x => x.Id.ToLower() == country.ToLower());
+                var c = db.Countries.Single(x => x.Id.ToLower() == country.ToLower());
 
-            var shippingCosts = _ShippingService.CalculateShippingCosts(cart.Id, country);
-            var tax = _TaxService.TaxForCountry(cart.Id, country);
+                var shippingCosts = _ShippingService.CalculateShippingCosts(cart.Id, country);
+                var tax = _TaxService.TaxForCountry(cart.Id, country);
 
 
-            // INFO: Bewusst werden hier keine Nummern sondern formatierte Strings
-            //       geliefert.
-            //       Es sollen nicht Server und Client dem Benutzer Preise berechnen,
-            //       denn die können auseinander liegen.
-            return JsonNet(new { 
-                ShippingCosts = shippingCosts.ToString("C"),
-                Tax = tax.ToString("C"),
-                Total = (cart.Subtotal + tax + shippingCosts).ToString("C")
-            });
+                // INFO: Bewusst werden hier keine Nummern sondern formatierte Strings
+                //       geliefert.
+                //       Es sollen nicht Server und Client dem Benutzer Preise berechnen,
+                //       denn die können auseinander liegen.
+                return JsonNet(new
+                {
+                    ShippingCosts = shippingCosts.ToString("C"),
+                    Tax = tax.ToString("C"),
+                    Total = (cart.Subtotal + tax + shippingCosts).ToString("C")
+                });
+            }
         }
     }
 }

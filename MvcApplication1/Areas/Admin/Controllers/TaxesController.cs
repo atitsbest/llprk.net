@@ -36,12 +36,14 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// <returns></returns>
         public virtual ActionResult Index()
         {
-            var db = new Entities();
-            var vm = new TaxIndex
+            using (var db = new Entities())
             {
-                Countries = Mapper.Map<TaxIndex.Country[]>(db.Countries)
-            };
-            return View(vm);
+                var vm = new TaxIndex
+                {
+                    Countries = Mapper.Map<TaxIndex.Country[]>(db.Countries)
+                };
+                return View(vm);
+            }
         }
 
         /// <summary>

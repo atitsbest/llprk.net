@@ -19,53 +19,67 @@ namespace llprk.Application.Test.Services
         {
             using (new TransactionScope())
             {
-                var db = new Entities();
-                var sut = _createSut();
+                int catId = 0;
+                using (var db = new Entities())
+                {
+                    var sut = _createSut();
 
-                var catId = db.ShippingCategories.First().Id;
-                sut.UpdateShippingCategory(catId, "das ist ein test");
+                    catId = db.ShippingCategories.First().Id;
+                    sut.UpdateShippingCategory(catId, "das ist ein test");
+                }
 
-                Assert.AreEqual("das ist ein test", db.ShippingCategories.Single(c => c.Id == catId).Name);
+                // Komisch: Damit die geänderte Kateogrie auch wirklich geladen wird, muss der EF-Kontext
+                //          neu erstellt werden. Identity-Map schlägt zu? Warum nur hier?
+                using (var db = new Entities())
+                {
+                    Assert.AreEqual("das ist ein test", db.ShippingCategories.Single(c => c.Id == catId).Name);
+                }
             }
         }
 
         [TestMethod]
         public void Create_ShippingCategory()
         {
-            var db = new Entities();
-            var sut = _createSut();
-
-            AssertChangedBy(db.ShippingCategories, () =>
+            using (var db = new Entities())
             {
-                sut.CreateShippingCategory("_delme");
-            });
+                var sut = _createSut();
+
+                AssertChangedBy(db.ShippingCategories, () =>
+                {
+                    sut.CreateShippingCategory("_delme");
+                });
+            }
         }
 
         [TestMethod]
         public void Delete_ShippingCategory()
         {
-            var db = new Entities();
-            var sut = _createSut();
-
-            AssertChangedBy(db.ShippingCategories, () =>
+            using (var db = new Entities())
             {
-                var cat = sut.CreateShippingCategory("tester");
+                var sut = _createSut();
 
-                sut.DeleteShippingCost(cat.Id);
-            }, 0);
+                AssertChangedBy(db.ShippingCategories, () =>
+                {
+                    var cat = sut.CreateShippingCategory("tester");
+
+                    sut.DeleteShippingCost(cat.Id);
+                }, 0);
+            }
         }
 
         [TestMethod]
         public void Update_Shipping_Costs_simple()
         {
-            var db = new Entities();
-            var sut = _createSut();
-            var scId = db.ShippingCategories.First().Id;
-
-            using (new TransactionScope())
+            using (var db = new Entities())
             {
-                sut.UpdateShippingCosts(new UpdateShippingCostsRequest { 
-                    Countries = new UpdateShippingCostsRequest.Country[] {
+                var sut = _createSut();
+                var scId = db.ShippingCategories.First().Id;
+
+                using (new TransactionScope())
+                {
+                    sut.UpdateShippingCosts(new UpdateShippingCostsRequest
+                    {
+                        Countries = new UpdateShippingCostsRequest.Country[] {
                         new UpdateShippingCostsRequest.Country { 
                             Id = "at", 
                             ShippingCosts = new UpdateShippingCostsRequest.ShippingCost[] {
@@ -76,9 +90,10 @@ namespace llprk.Application.Test.Services
                             }
                         }
                     }
-                });
+                    });
 
-                Assert.AreEqual(9, db.Countries.Single(c => c.Id == "at").ShippingCosts.Single(s => s.ShippingCategoryId == scId).Amount);
+                    Assert.AreEqual(9, db.Countries.Single(c => c.Id == "at").ShippingCosts.Single(s => s.ShippingCategoryId == scId).Amount);
+                }
             }
         }
 
@@ -87,32 +102,34 @@ namespace llprk.Application.Test.Services
         {
             using (new TransactionScope())
             {
-                var db = new Entities();
-                var sut = _createSut();
-                var cartService = new CartService();
+                using (var db = new Entities())
+                {
+                    var sut = _createSut();
+                    var cartService = new CartService();
 
-                var product = db.Products.First(p => p.Id == 1);
-                cartService.AddProduct(1, product.Id, 17);
+                    var product = db.Products.First(p => p.Id == 1);
+                    cartService.AddProduct(1, product.Id, 17);
 
-                // Act.
-                var resultAt = sut.CalculateShippingCosts(1, "at");
-                var resultDe = sut.CalculateShippingCosts(1, "de");
-                
-                // Assert
-                Assert.AreEqual(6.75m + 16 * 1.5m, resultAt);
-                Assert.AreEqual(8m + 16 * 2.0m, resultDe);
-                
-                // Add another product with a different shipping category.
-                product = db.Products.First(p => p.Id == 5);
-                cartService.AddProduct(1, product.Id, 2);
+                    // Act.
+                    var resultAt = sut.CalculateShippingCosts(1, "at");
+                    var resultDe = sut.CalculateShippingCosts(1, "de");
 
-                // Act.
-                resultAt = sut.CalculateShippingCosts(1, "at");
-                resultDe = sut.CalculateShippingCosts(1, "de");
-                
-                // Assert
-                Assert.AreEqual((6.75m + 16 * 1.5m) + (1.1m * 2), resultAt);
-                Assert.AreEqual((8m + 16 * 2.0m) + (2.2m *2), resultDe);
+                    // Assert
+                    Assert.AreEqual(6.75m + 16 * 1.5m, resultAt);
+                    Assert.AreEqual(8m + 16 * 2.0m, resultDe);
+
+                    // Add another product with a different shipping category.
+                    product = db.Products.First(p => p.Id == 5);
+                    cartService.AddProduct(1, product.Id, 2);
+
+                    // Act.
+                    resultAt = sut.CalculateShippingCosts(1, "at");
+                    resultDe = sut.CalculateShippingCosts(1, "de");
+
+                    // Assert
+                    Assert.AreEqual((6.75m + 16 * 1.5m) + (1.1m * 2), resultAt);
+                    Assert.AreEqual((8m + 16 * 2.0m) + (2.2m * 2), resultDe);
+                }
             }
         }
 

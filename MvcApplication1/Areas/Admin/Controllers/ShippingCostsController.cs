@@ -37,13 +37,15 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         /// <returns></returns>
         public virtual ActionResult Index() 
         {
-            var db = new Entities();
-            var vm = new ShippingCostIndex
+            using (var db = new Entities())
             {
-                Countries = Mapper.Map<ShippingCostIndex.Country[]>(db.Countries),
-                ShippingCategories = Mapper.Map<ShippingCostIndex.ShippingCategory[]>(db.ShippingCategories)
-            };
-            return View(vm);
+                var vm = new ShippingCostIndex
+                {
+                    Countries = Mapper.Map<ShippingCostIndex.Country[]>(db.Countries),
+                    ShippingCategories = Mapper.Map<ShippingCostIndex.ShippingCategory[]>(db.ShippingCategories)
+                };
+                return View(vm);
+            }
         }
 
         /// <summary>
