@@ -1,0 +1,51 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@ assembly name="$(TargetDir)TypeLite.dll" #>
+<#@ assembly name="$(TargetDir)TypeLite.Net4.dll" #>
+<#@ assembly name="$(TargetDir)$(TargetFileName)" #>
+
+<#@ import namespace="TypeLite" #> 
+<#@ import namespace="TypeLite.Net4" #> 
+<#@ import namespace="TypeLite.TsModels" #> 
+<#@output extension=".d.ts"#>
+
+<#@include file="Manager.ttinclude"#>
+<# var manager = Manager.Create(Host, GenerationEnvironment); #>
+
+<# var tsKo = TypeScript.Definitions()
+	.ForLoadedAssemblies()
+	.WithFormatter(KnockoutMemberTypeConverter)
+	.WithModuleNameFormatter((f) => f.Name + ".Ko")
+	.WithMemberFormatter((identifier) => 
+       Char.ToLower(identifier.Name[0]) + identifier.Name.Substring(1)
+   );
+#>
+<# var ts = TypeScript.Definitions()
+	.ForLoadedAssemblies()
+	.WithMemberFormatter((identifier) => 
+       Char.ToLower(identifier.Name[0]) + identifier.Name.Substring(1)
+   );
+#>
+
+<#= ts.Generate(TsGeneratorOutput.Properties) #>
+<#= tsKo.Generate(TsGeneratorOutput.Properties) #>
+
+<# manager.StartNewFile("Enums.ts"); #>
+<#= ts.Generate(TsGeneratorOutput.Enums) #>
+<# manager.EndBlock(); #>
+<# manager.Process(true); #>
+
+
+
+<#+
+public string KnockoutMemberTypeConverter(string memberTypeName, bool isMemberCollection, int dimension = 1)
+{ 
+  if (isMemberCollection)
+  {
+    return string.Format("KnockoutObservableArray<{0}>", memberTypeName);
+  }
+  else
+  {
+    return string.Format("KnockoutObservable<{0}>", memberTypeName);
+  }
+}
+#>

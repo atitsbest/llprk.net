@@ -44,6 +44,7 @@ namespace T4MVC
         public Llprk.Web.UI.Areas.Admin.Controllers.AccountController Account = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_AccountController();
         public Llprk.Web.UI.Areas.Admin.Controllers.CategoriesController Categories = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_CategoriesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.CountriesController Countries = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_CountriesController();
+        public Llprk.Web.UI.Areas.Admin.Controllers.DashboardController Dashboard = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_DashboardController();
         public Llprk.Web.UI.Areas.Admin.Controllers.OrdersController Orders = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_OrdersController();
         public Llprk.Web.UI.Areas.Admin.Controllers.PagesController Pages = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_PagesController();
         public Llprk.Web.UI.Areas.Admin.Controllers.ParametersController Parameters = new Llprk.Web.UI.Areas.Admin.Controllers.T4MVC_ParametersController();
@@ -120,6 +121,7 @@ namespace Links
         private const string URLPATH = "~/Scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string almond_d_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/almond.d.min.js") ? Url("almond.d.min.js") : Url("almond.d.js");
         public static readonly string almond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/almond.min.js") ? Url("almond.min.js") : Url("almond.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class app {
@@ -552,6 +554,7 @@ namespace Links
             public static readonly string ko_numericValue_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.numericValue.min.js") ? Url("ko.numericValue.min.js") : Url("ko.numericValue.js");
             public static readonly string ko_sorter_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.sorter.min.js") ? Url("ko.sorter.min.js") : Url("ko.sorter.js");
             public static readonly string ko_stopBubble_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.stopBubble.min.js") ? Url("ko.stopBubble.min.js") : Url("ko.stopBubble.js");
+            public static readonly string ko_valueNumber_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ko.valueNumber.min.js") ? Url("ko.valueNumber.min.js") : Url("ko.valueNumber.js");
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -712,6 +715,7 @@ namespace Links
         
         }
     
+        public static readonly string underscore_d_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/underscore.d.min.js") ? Url("underscore.d.min.js") : Url("underscore.d.js");
         public static readonly string underscore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/underscore.min.js") ? Url("underscore.min.js") : Url("underscore.js");
         public static readonly string underscore_min_js = Url("underscore.min.js");
         public static readonly string underscore_min_map = Url("underscore.min.map");
@@ -906,7 +910,7 @@ namespace Links
                         private const string URLPATH = "~/Areas/Admin/Scripts/app/taxes";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string taxes_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/taxes.index.min.js") ? Url("taxes.index.min.js") : Url("taxes.index.js");
+                        public static readonly string taxes_index_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/taxes.index.min.js") ? Url("taxes.index.min.js") : Url("taxes.index.js");
                     }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -1601,6 +1605,7 @@ namespace Links
                     public const string ko_numericValue_js = "~/Scripts/ko.bindings/ko.numericValue.js"; 
                     public const string ko_sorter_js = "~/Scripts/ko.bindings/ko.sorter.js"; 
                     public const string ko_stopBubble_js = "~/Scripts/ko.bindings/ko.stopBubble.js"; 
+                    public const string ko_valueNumber_js = "~/Scripts/ko.bindings/ko.valueNumber.js"; 
                 }
             }
             public static partial class ko_extenders 

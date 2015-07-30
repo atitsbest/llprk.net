@@ -49,10 +49,9 @@
 @section scripts {
     <script type="text/javascript">
         require(["app/taxes/index"], function (main) {
-            main({
-                changeCountryTaxUrl: '@Url.Action(MVC.Admin.Taxes.Update())',
-                countries: @Html.Raw(JsonConvert.SerializeObject(Model.Countries, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
-            });
+            main(
+                @Html.Raw(JsonConvert.SerializeObject(Model.Countries, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
+            );
         });
     </script>
 }

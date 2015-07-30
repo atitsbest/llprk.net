@@ -9,13 +9,6 @@ namespace Llprk.Web.UI.Areas.Admin.Models
 {
     public class ShippingCostIndex : UpdateShippingCostsRequest
     {
-        public class ShippingCategory
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
-
-        public Country[] Countries { get; set; }
         public ShippingCategory[] ShippingCategories { get; set; }
 
         public string UpdateShippingCategoryUrl;

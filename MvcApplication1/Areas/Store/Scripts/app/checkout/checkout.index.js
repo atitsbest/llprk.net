@@ -1,4 +1,4 @@
-﻿define("app/checkout/index", ["knockout", "underscore", "app/BaseViewModel"], function (ko, _, BaseViewModel) {
+﻿define("app/checkout/index", ["jquery", "knockout", "underscore", "app/BaseViewModel"], function ($, ko, _, BaseViewModel) {
     function Address() {
         var self = this;
         self.salutation = ko.observable().extend({ required: true });
@@ -56,7 +56,7 @@
                 self.total(data.total);
             })
             .fail(function() {
-                alert('Beim Berechnen der Versandkosten ist ein Fehler passiert.\nDie Seite wird neu geladen.');
+                alert('Beim Berechnen der Versandkosten ist ein Fehler passiert.');
                 //window.location.reload();
             });
 
