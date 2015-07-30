@@ -48,6 +48,13 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                 return RedirectToAction(MVC.Store.Cart.Index());
             }
             var cart = _CartService.GetCart((int)Session["cartId"]);
+
+            // Cart empty?
+            if (cart.LineItems.Count() == 0) { 
+                return RedirectToAction(MVC.Store.Cart.Index());
+            }
+
+
             var vm = Mapper.Map<CheckoutIndex>(cart);
             vm.Countries = Mapper.Map<CheckoutIndex.Country[]>(db.Countries);
 
