@@ -26,25 +26,29 @@ namespace Llprk.Application.Services
     {
         public void UpdateShippingCategory(int id, string name)
         {
-            var db = new Entities();
-            var category = db.ShippingCategories.Single(c => c.Id == id);
-            category.Name = name;
-            db.Entry(category).State = EntityState.Modified;
-            db.SaveChanges();
+            using (var db = new Entities())
+            {
+                var category = db.ShippingCategories.Single(c => c.Id == id);
+                category.Name = name;
+                db.Entry(category).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         public ShippingCategory CreateShippingCategory(string name)
         {
-            var db = new Entities();
-            var cat = new ShippingCategory
+            using (var db = new Entities())
             {
-                Name = name
-            };
+                var cat = new ShippingCategory
+                {
+                    Name = name
+                };
 
-            db.ShippingCategories.Add(cat);
-            db.SaveChanges();
+                db.ShippingCategories.Add(cat);
+                db.SaveChanges();
 
-            return cat;
+                return cat;
+            }
         }
 
 
@@ -52,10 +56,12 @@ namespace Llprk.Application.Services
         {
             try
             {
-                var db = new Entities();
-                var cat = db.ShippingCategories.Single(c => c.Id == id);
-                db.ShippingCategories.Remove(cat);
-                db.SaveChanges();
+                using (var db = new Entities())
+                {
+                    var cat = db.ShippingCategories.Single(c => c.Id == id);
+                    db.ShippingCategories.Remove(cat);
+                    db.SaveChanges();
+                }
             }
             catch (DbUpdateException)
             {
@@ -66,33 +72,37 @@ namespace Llprk.Application.Services
 
         public void UpdateShippingCosts(UpdateShippingCostsRequest data)
         {
-            var db = new Entities();
-
-            foreach (var country in data.Countries)
+            using (var db = new Entities())
             {
-                foreach (var cost in country.ShippingCosts) {
-                    var shippingCost = db.ShippingCosts.SingleOrDefault(sc => sc.CountryId == country.Id && sc.ShippingCategoryId == cost.ShippingCategoryId);
-                    if (shippingCost != null)
-                    {
-                        shippingCost.Amount = cost.Amount;
-                        shippingCost.AdditionalAmount = cost.AdditionalAmount;
-                        db.Entry(shippingCost).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        shippingCost = new ShippingCost {
-                            CountryId = country.Id,
-                            ShippingCategoryId = cost.ShippingCategoryId,
-                            Amount = cost.Amount,
-                            AdditionalAmount = cost.AdditionalAmount
-                        };
 
-                        db.ShippingCosts.Add(shippingCost);
+                foreach (var country in data.Countries)
+                {
+                    foreach (var cost in country.ShippingCosts)
+                    {
+                        var shippingCost = db.ShippingCosts.SingleOrDefault(sc => sc.CountryId == country.Id && sc.ShippingCategoryId == cost.ShippingCategoryId);
+                        if (shippingCost != null)
+                        {
+                            shippingCost.Amount = cost.Amount;
+                            shippingCost.AdditionalAmount = cost.AdditionalAmount;
+                            db.Entry(shippingCost).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            shippingCost = new ShippingCost
+                            {
+                                CountryId = country.Id,
+                                ShippingCategoryId = cost.ShippingCategoryId,
+                                Amount = cost.Amount,
+                                AdditionalAmount = cost.AdditionalAmount
+                            };
+
+                            db.ShippingCosts.Add(shippingCost);
+                        }
                     }
                 }
-            }
 
-            db.SaveChanges();
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -105,22 +115,23 @@ namespace Llprk.Application.Services
         /// <returns></returns>
         public decimal CalculateShippingCosts(int cartId, string countryCode)
         {
-            var db = new Entities();
-            var cart = db.Carts
-                .Include("LineItems")
-                .Include("LineItems.Product")
-                .Include("LineItems.Product.ShippingCategory")
-                .Include("LineItems.Product.ShippingCategory.ShippingCosts")
-                .Single(c => c.Id == cartId);
+            using (var db = new Entities())
+            {
+                var cart = db.Carts
+                    .Include(x => x.LineItems.Select(l => l.Product.ShippingCategory.ShippingCosts))
+                    //.Include("LineItems.Product.ShippingCategory.ShippingCosts")
+                    .Single(c => c.Id == cartId);
 
-            var highest = cart.LineItems.Max(l => {
-                if (l.Product.ShippingCategory == null) throw new ApplicationException("Product has no shipping category. Cannot calculate shipping costs!");
-                var cost = l.Product.ShippingCategory.ShippingCosts.Single(sc => sc.CountryId == countryCode);
-                return cost.Amount - cost.AdditionalAmount;
-            });
-            var additional = cart.LineItems.Sum(l => l.Product.ShippingCategory.ShippingCosts.Single(sc => sc.CountryId == countryCode).AdditionalAmount * l.Qty);
+                var highest = cart.LineItems.Max(l =>
+                {
+                    if (l.Product.ShippingCategory == null) throw new ApplicationException("Product has no shipping category. Cannot calculate shipping costs!");
+                    var cost = l.Product.ShippingCategory.ShippingCosts.Single(sc => sc.CountryId == countryCode);
+                    return cost.Amount - cost.AdditionalAmount;
+                });
+                var additional = cart.LineItems.Sum(l => l.Product.ShippingCategory.ShippingCosts.Single(sc => sc.CountryId == countryCode).AdditionalAmount * l.Qty);
 
-            return highest + additional;
+                return highest + additional;
+            }
         }
     }
 }

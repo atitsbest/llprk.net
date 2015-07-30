@@ -24,12 +24,14 @@ namespace Llprk.Application.Services
         /// <param name="info"></param>
         public void CreatePage(NewPageResponse info)
         {
-            var db = new Llprk.DataAccess.Models.Entities();
-            var page = Mapper.Map<Page>(info);
-            page.CreatedAt = DateTime.Now;
+            using (var db = new Entities())
+            {
+                var page = Mapper.Map<Page>(info);
+                page.CreatedAt = DateTime.Now;
 
-            db.Pages.Add(page);
-            db.SaveChanges();
+                db.Pages.Add(page);
+                db.SaveChanges();
+            }
 
         }
 
@@ -40,10 +42,11 @@ namespace Llprk.Application.Services
         /// <returns></returns>
         public EditPageRequest GetPageForEdit(int id)
         {
-            var db = new Llprk.DataAccess.Models.Entities();
-            var page = _GetPage(db, id);
+            using(var db = new Llprk.DataAccess.Models.Entities()) {
+                var page = _GetPage(db, id);
 
-            return Mapper.Map<EditPageRequest>(page);
+                return Mapper.Map<EditPageRequest>(page);
+            }
         }
 
         /// <summary>
@@ -54,13 +57,15 @@ namespace Llprk.Application.Services
         {
             if (info == null) throw new ArgumentNullException("info");
 
-            var db = new Llprk.DataAccess.Models.Entities();
-            var page = _GetPage(db, info.Id);
+            using (var db = new Llprk.DataAccess.Models.Entities())
+            {
+                var page = _GetPage(db, info.Id);
 
-            Mapper.Map(info, page);
-            db.Entry(page).State = System.Data.Entity.EntityState.Modified;
+                Mapper.Map(info, page);
+                db.Entry(page).State = System.Data.Entity.EntityState.Modified;
 
-            db.SaveChanges();
+                db.SaveChanges();
+            }
         }
 
 

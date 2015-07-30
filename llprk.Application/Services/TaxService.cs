@@ -3,6 +3,7 @@ using Llprk.Application.DTOs.Requests;
 using Llprk.Application.DTOs.Responses;
 using Llprk.DataAccess.Models;
 using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Llprk.Application.Services
@@ -23,46 +24,51 @@ namespace Llprk.Application.Services
         /// <param name="percent"></param>
         public void UpdateCountryTax(string country, int percent)
         {
-            var db = new Entities();
-            var tax = db.Taxes.SingleOrDefault(t => t.CountryId == country);
-
-            if (tax == null)
+            using (var db = new Entities())
             {
-                tax = new Tax
-                {
-                    CountryId = country,
-                    Percent = percent
-                };
-                db.Taxes.Add(tax);
-            }
-            else {
-                tax.Percent = percent;
-            }
+                var tax = db.Taxes.SingleOrDefault(t => t.CountryId == country);
 
-            db.SaveChanges();
+                if (tax == null)
+                {
+                    tax = new Tax
+                    {
+                        CountryId = country,
+                        Percent = percent
+                    };
+                    db.Taxes.Add(tax);
+                }
+                else
+                {
+                    tax.Percent = percent;
+                }
+
+                db.SaveChanges();
+            }
         }
 
         public decimal TaxForCountry(int cartId, string country)
         {
-            var db = new Entities();
-            var cart = db.Carts
-                .Include("LineItems")
-                .Include("LineItems.Product")
-                .Single(c => c.Id == cartId);
-            var cnt = db.Countries
-                .Include("taxes")
-                .Single(c => c.Id == country);
+            using (var db = new Entities())
+            {
+                var cart = db.Carts
+                    .Include(i => i.LineItems.Select(l => l.Product))
+                    .Single(c => c.Id == cartId);
+                var cnt = db.Countries
+                    .Include(i => i.Taxes)
+                    .Single(c => c.Id == country);
 
-            return cart.LineItems.Sum(li => {
-                if (li.Product.ChargeTaxes)
+                return cart.LineItems.Sum(li =>
                 {
-                    return li.Subtotal - (li.Subtotal / ((100.0m + cnt.Taxes.First().Percent) / 100.0m));
-                }
-                else
-                {
-                    return 0;
-                }
-            });
+                    if (li.Product.ChargeTaxes)
+                    {
+                        return li.Subtotal - (li.Subtotal / ((100.0m + cnt.Taxes.First().Percent) / 100.0m));
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                });
+            }
         }
     }
 }
