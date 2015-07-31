@@ -39,12 +39,12 @@
                 <div class="row">
                     <h4 style="display:inline-block;margin-right:2em;">Rechnungsadresse</h4>
                     <span>
-                        <input type="checkbox" data-bind="checked:model.sameAddress" />
+                        <input type="checkbox" data-bind="checked:sameAddress" />
                         Wie Lieferadresse
                     </span>
                 </div>
                 @*<radiobuttons params="options:['Wie Lieferadresse', 'Andere Adresse verwenden']"></radiobuttons>*@
-                <!-- ko ifnot: model.sameAddress() -->
+                <!-- ko ifnot: sameAddress -->
                 <div data-bind="template: { name: 'address-template', data: model.billingAddress }"></div>
                 <!-- /ko -->
             </div>
@@ -62,20 +62,20 @@
                 </ul>
                 <p class="sub-total">
                     Zwischensumme:
-                    <span>@Model.SubTotal.ToString("C")</span>
+                    <span>@Model.SubTotal</span>
                 </p>
                 <p class="shipping-cost">
                     Versand:
-                    <span data-bind="text:shippingCosts">@Model.ShippingCosts.ToString("C")</span>
+                    <span data-bind="text:model.shippingCosts">@Model.ShippingCosts</span>
                 </p>
                 <p class="taxes">
                     Steuern:
-                    <span data-bind="text:tax">@Model.Tax.ToString("C")</span>
+                    <span data-bind="text:model.tax">@Model.Tax</span>
                 </p>
                 <p class="total">
                     <h4>
                         Gesamt:
-                        <span data-bind="text:total">@Model.Total.ToString("C")</span>
+                        <span data-bind="text:model.total">@Model.Total</span>
                     </h4>
                 </p>
             </div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-xs-12">
                     <p class="row" style="padding-top: 20px;">
-                    <button type="submit" class="btn btn-primary" data-bind="enable: isValid">Bestellung abschicken</button>
+                    <button type="submit" class="btn btn-primary">Bestellung abschicken</button>
                     </p>
                 </div>
             </div>
@@ -158,14 +158,9 @@
         var culture = '@cultureName';
         Globalize.culture(culture);
 
-        index({
-            lineItems: @Html.Raw(JsonConvert.SerializeObject(Model.LineItems, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings)),
-            subTotal: @JsonConvert.SerializeObject(@Model.SubTotal),
-            tax: @JsonConvert.SerializeObject(@Model.Tax),
-            shippingCosts: @JsonConvert.SerializeObject(@Model.ShippingCosts),
-            total: @JsonConvert.SerializeObject(@Model.Total),
-            checkoutShippingCostsUrl: '@Url.Action(MVC.Store.Checkout.VariableCosts())'
-        });
+        index(
+            @Html.Raw(JsonConvert.SerializeObject(Model, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
+        );
     });
 </script>
 

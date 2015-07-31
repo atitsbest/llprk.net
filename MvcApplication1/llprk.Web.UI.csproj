@@ -353,6 +353,7 @@
     <Compile Include="Areas\Store\Controllers\Helpers\RenderViewHelper.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
     <Compile Include="Areas\Store\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Store\Models\CheckoutVariableCosts.cs" />
     <Compile Include="Areas\Store\Models\CartIndex.cs" />
     <Compile Include="Areas\Store\Models\CartUpdate.cs" />
     <Compile Include="Areas\Store\Models\ProductIndex.cs" />
@@ -480,6 +481,10 @@
       <LastGenOutput>DTOs.d.ts</LastGenOutput>
     </Content>
     <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
+    <Content Include="Areas\Store\Scripts\app\DTOs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DTOs.d.ts</LastGenOutput>
+    </Content>
     <Content Include="Scripts\almond.d.ts" />
     <Content Include="Scripts\app\BaseViewModel.js" />
     <Content Include="Areas\Admin\Scripts\app\main.js" />
@@ -515,7 +520,7 @@
       <DependentUpon>table.less</DependentUpon>
     </Content>
     <Content Include="Areas\Store\Scripts\app\main.js" />
-    <Content Include="Areas\Store\Scripts\app\checkout\checkout.index.js" />
+    <Content Include="Areas\Store\Scripts\app\checkout\_checkout.index.js" />
     <Content Include="Areas\Store\Scripts\knockout.validation.js" />
     <Content Include="Areas\Store\Scripts\ko.components.js" />
     <Content Include="Scripts\bootstrap\alert.js" />
@@ -1166,7 +1171,7 @@
     <Content Include="Scripts\rx.min.js.map">
       <DependentUpon>rx.js</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Scripts\app\Manager.ttinclude" />
+    <Content Include="Scripts\Manager.ttinclude" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
@@ -1291,6 +1296,15 @@
     <TypeScriptCompile Include="Areas\Admin\Scripts\app\DTOs.d.ts">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DTOs.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Areas\Store\Scripts\app\checkout\checkout.index.ts" />
+    <TypeScriptCompile Include="Areas\Store\Scripts\app\DTOs.d.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTOs.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Areas\Store\Scripts\app\Enums.ts">
       <DependentUpon>DTOs.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Scripts\knockout.d.ts" />

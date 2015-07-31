@@ -12,15 +12,18 @@
 <# var manager = Manager.Create(Host, GenerationEnvironment); #>
 
 <# var tsKo = TypeScript.Definitions()
-	.ForLoadedAssemblies()
+	.For<Llprk.Web.UI.Areas.Store.Models.CheckoutIndex>()
+	.For<Llprk.Web.UI.Areas.Store.Models.CheckoutVariableCosts>()
 	.WithFormatter(KnockoutMemberTypeConverter)
-	.WithModuleNameFormatter((f) => f.Name + ".Ko")
+	.WithModuleNameFormatter((f) => "Store.DTOs.Ko")
 	.WithMemberFormatter((identifier) => 
        Char.ToLower(identifier.Name[0]) + identifier.Name.Substring(1)
    );
 #>
 <# var ts = TypeScript.Definitions()
-	.ForLoadedAssemblies()
+	.For<Llprk.Web.UI.Areas.Store.Models.CheckoutIndex>()
+	.For<Llprk.Web.UI.Areas.Store.Models.CheckoutVariableCosts>()
+	.WithModuleNameFormatter((f) => "Store.DTOs")
 	.WithMemberFormatter((identifier) => 
        Char.ToLower(identifier.Name[0]) + identifier.Name.Substring(1)
    );

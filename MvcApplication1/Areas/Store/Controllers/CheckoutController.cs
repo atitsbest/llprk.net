@@ -159,8 +159,7 @@ namespace Llprk.Web.UI.Areas.Store.Controllers
                 //       geliefert.
                 //       Es sollen nicht Server und Client dem Benutzer Preise berechnen,
                 //       denn die können auseinander liegen.
-                return JsonNet(new
-                {
+                return JsonNet(new CheckoutVariableCosts {
                     ShippingCosts = shippingCosts.ToString("C"),
                     Tax = tax.ToString("C"),
                     Total = (cart.Subtotal + tax + shippingCosts).ToString("C")
