@@ -35,6 +35,9 @@ namespace llprk.Application.Test.Services
 
                 using (new TransactionScope())
                 {
+                    // Set Tax.
+                    setTaxForCountry(db, "at", 20);
+
                     var cartService = new CartService();
                     var cart = cartService.CreateCart();
                     var product = db.Products.First(p => p.ChargeTaxes);
@@ -42,14 +45,27 @@ namespace llprk.Application.Test.Services
                     product.Price = 10;
                     product2.Price = 10;
                     db.SaveChanges();
+
                     cartService.AddProduct(cart.Id, product.Id, 2);
                     cartService.AddProduct(cart.Id, product2.Id, 2);
 
-                    var tax = sut.TaxForCountry(cart.Id, "at");
+                    var result = sut.TaxForCountry(cart.Id, "at");
 
-                    Assert.AreEqual(3.3f, (float)tax, 0.04f);
+                    Assert.AreEqual(3.3f, (float)result, 0.04f);
                 }
             }
+        }
+
+        private void setTaxForCountry(Entities db, string v1, int v2)
+        {
+            var tax = db.Taxes.SingleOrDefault(t => t.CountryId == "at");
+            tax.Percent = 20;
+            if (tax == null)
+            {
+                tax.CountryId = "at";
+                db.Taxes.Add(tax);
+            }
+            db.SaveChanges();
         }
 
         private TaxService _createSut()

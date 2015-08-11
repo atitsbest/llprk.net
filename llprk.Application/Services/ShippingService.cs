@@ -119,7 +119,6 @@ namespace Llprk.Application.Services
             {
                 var cart = db.Carts
                     .Include(x => x.LineItems.Select(l => l.Product.ShippingCategory.ShippingCosts))
-                    //.Include("LineItems.Product.ShippingCategory.ShippingCosts")
                     .Single(c => c.Id == cartId);
 
                 var highest = cart.LineItems.Max(l =>
