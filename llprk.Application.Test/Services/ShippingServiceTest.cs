@@ -123,6 +123,7 @@ namespace llprk.Application.Test.Services
                     Assert.AreEqual(6.75m + 16 * 1.5m, resultAt);
                     Assert.AreEqual(8m + 16 * 2.0m, resultDe);
 
+                    // ------------------------------------------------------
                     // Add another product with a different shipping category.
                     product = db.Products.First(p => p.ShippingCategoryId != product.ShippingCategoryId);
                     cartService.AddProduct(cart.Id, product.Id, 2);

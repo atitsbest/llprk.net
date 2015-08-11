@@ -57,7 +57,7 @@ namespace llprk.Application.Test.Services
                     var lineItemId = sut.AddProduct(cart.Id, product.Id, 17);
 
                     // Assert
-                    cart = sut.GetCart(1);
+                    cart = sut.GetCart(cart.Id);
                     Assert.AreEqual(1, cart.LineItems.Count());
                     Assert.AreEqual(product.Id, cart.LineItems.First().ProductId);
                     Assert.AreEqual(17, cart.LineItems.First().Qty);
@@ -83,7 +83,7 @@ namespace llprk.Application.Test.Services
                     var lineItem2Id = sut.AddProduct(cart.Id, product.Id, 1);
 
                     // Assert
-                    cart = sut.GetCart(1);
+                    cart = sut.GetCart(cart.Id);
                     Assert.AreEqual(1, cart.LineItems.Count());
                     Assert.AreEqual(product.Id, cart.LineItems.First().ProductId);
                     Assert.AreEqual(18, cart.LineItems.First().Qty);
