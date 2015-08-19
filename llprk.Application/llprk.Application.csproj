@@ -70,12 +70,14 @@
     <Compile Include="AutoMapperProfile.cs" />
     <Compile Include="DependencyInjectionConfig.cs" />
     <Compile Include="DTOs\Requests\CreateOrderRequest.cs" />
+    <Compile Include="DTOs\Requests\UpdateProductRequest.cs" />
     <Compile Include="DTOs\Requests\UpdateShippingCostsRequest.cs" />
     <Compile Include="DTOs\Requests\UpdateLineItemQtyRequest.cs" />
     <Compile Include="DTOs\Requests\EditThemeRequest.cs" />
     <Compile Include="DTOs\Requests\ThemesRequest.cs" />
     <Compile Include="DTOs\Requests\EditPageRequest.cs" />
     <Compile Include="DTOs\Responses\EditPageResponse.cs" />
+    <Compile Include="DTOs\Responses\EditProductResponse.cs" />
     <Compile Include="DTOs\Responses\NewPageResponse.cs" />
     <Compile Include="IQueryable+OrderByName.cs" />
     <Compile Include="Parameters\QueryParams.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ShippingService.cs" />
     <Compile Include="Services\SmtpMailProvider.cs" />
     <Compile Include="Services\TaxService.cs" />

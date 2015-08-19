@@ -3,21 +3,33 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Llprk.DataAccess.Models;
 using AutoMapper;
 using Llprk.Web.UI.Controllers;
 using Llprk.Web.UI.Areas.Admin.Models;
+using Llprk.Application.Services;
+using Llprk.Web.UI.Controllers.Results;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
     [Authorize]
     public partial class ProductsController : ApplicationController
     {
+        private IProductService _ProductService;
+
+
+        /// <summary>
+        /// CTR
+        /// </summary>
+        /// <param name="products"></param>
+        public ProductsController(IProductService products)
+        {
+            _ProductService = products;
+        }
+
         //
         // GET: /Products/
-
         public virtual ActionResult Index(string q)
         {
             var products = db.Products.Include(p => p.Category)
@@ -55,8 +67,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public virtual ActionResult Create()
         {
             var viewModel = new ProductCreate();
-            viewModel.AllPictures = db.Pictures.ToArray();
-            viewModel.AllTags = db.Tags.ToArray();
+            //viewModel.AllTags = db.Tags.ToArray();
             _PopulateCategoriesDropDownList();
             _PopulateShippingCategoriesDropDownList();
             ViewBag.Title = "New Product";
@@ -89,56 +100,49 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
 
         public virtual ActionResult Edit(int id = 0)
         {
-            Product product = db.Products
-                .Include(i => i.Pictures)
-                .Where(x => x.Id == id)
-                .Single();
-            if (product == null) {
-                return HttpNotFound();
-            }
-
-            var viewModel = new ProductEdit();
-            Mapper.Map(product, viewModel);
-            viewModel.AllPictures = db.Pictures.ToArray();
-            viewModel.AllTags = db.Tags.ToArray();
-
-            _PopulateCategoriesDropDownList(product.CategoryId);
-            _PopulateShippingCategoriesDropDownList(product.ShippingCategoryId);
-            ViewBag.Title = "Edit";
-            return View(viewModel);
+            var vm = _ProductService.GetProductForEdit(id);
+            return View(Mapper.Map<ProductEdit>(vm));
         }
 
         //
         // POST: /Products/Edit/5
 
         [HttpPost, ValidateInput(false)]
-        public virtual ActionResult Edit(Product product, string pictureIds, int[] tagIds)
+        public virtual ActionResult Update(int id, ProductUpdate data)
         {
-            if (ModelState.IsValid) {
-                var p = db.Products
-                    .Where(x => x.Id == product.Id)
-                    .Single();
-
-                p.CategoryId = product.CategoryId;
-                p.ShippingCategoryId = product.ShippingCategoryId;
-                p.Description = product.Description;
-                p.IsPublished = product.IsPublished;
-                p.Name = product.Name;
-                p.Price = product.Price;
-                p.Available = product.Available;
-
-                var guids = _stringToGuids(pictureIds);
-
-                _SetProductPictures(p, guids);
-                _SetProductTags(p, tagIds);
-
-                db.Entry(p).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _ProductService.UpdateProduct(id, data);
+                return new EntityResult(MVC.Admin.Products.Index(), "Product saved.");
             }
-            _PopulateCategoriesDropDownList(product.CategoryId);
-            _PopulateShippingCategoriesDropDownList(product.ShippingCategoryId);
-            return View(product);
+            else {
+                return new Http400Result(ModelState);
+            }
+            //if (ModelState.IsValid) {
+            //    var p = db.Products
+            //        .Where(x => x.Id == product.Id)
+            //        .Single();
+
+            //    p.CategoryId = product.CategoryId;
+            //    p.ShippingCategoryId = product.ShippingCategoryId;
+            //    p.Description = product.Description;
+            //    p.IsPublished = product.IsPublished;
+            //    p.Name = product.Name;
+            //    p.Price = product.Price;
+            //    p.Available = product.Available;
+
+            //    var guids = _stringToGuids(pictureIds);
+
+            //    _SetProductPictures(p, guids);
+            //    _SetProductTags(p, tagIds);
+
+            //    db.Entry(p).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //_PopulateCategoriesDropDownList(product.CategoryId);
+            //_PopulateShippingCategoriesDropDownList(product.ShippingCategoryId);
+            return View();
         }
 
         //

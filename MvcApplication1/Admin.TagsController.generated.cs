@@ -56,6 +56,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RenderTemplate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public TagsController Actions { get { return MVC.Admin.Tags; } }
@@ -72,14 +78,25 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string RenderTemplate = "RenderTemplate";
         }
 
 
+        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RenderTemplate
+        {
+            public readonly string layout = "layout";
+            public readonly string templateHtml = "templateHtml";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -106,6 +123,19 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
     public partial class T4MVC_TagsController : Llprk.Web.UI.Areas.Admin.Controllers.TagsController
     {
         public T4MVC_TagsController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
+            RenderTemplateOverride(callInfo, layout, templateHtml);
+            return callInfo;
+        }
 
     }
 }

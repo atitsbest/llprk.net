@@ -74,6 +74,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateShippingCategory);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RenderTemplate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ShippingCostsController Actions { get { return MVC.Admin.ShippingCosts; } }
@@ -94,6 +100,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string Update = "Update";
             public readonly string UpdateShippingCategory = "UpdateShippingCategory";
             public readonly string CreateShippingCategory = "CreateShippingCategory";
+            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,6 +110,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public const string Update = "Update";
             public const string UpdateShippingCategory = "UpdateShippingCategory";
             public const string CreateShippingCategory = "CreateShippingCategory";
+            public const string RenderTemplate = "RenderTemplate";
         }
 
 
@@ -130,6 +138,15 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionParamsClass_CreateShippingCategory
         {
             public readonly string name = "name";
+        }
+        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RenderTemplate
+        {
+            public readonly string layout = "layout";
+            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -203,6 +220,19 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateShippingCategory);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
             CreateShippingCategoryOverride(callInfo, name);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
+            RenderTemplateOverride(callInfo, layout, templateHtml);
             return callInfo;
         }
 

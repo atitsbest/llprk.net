@@ -28,9 +28,6 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
     public partial class ProductsController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ProductsController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ProductsController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -67,9 +64,21 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Update()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult DeleteConfirmed()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RenderTemplate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -91,8 +100,10 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string Details = "Details";
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
+            public readonly string Update = "Update";
             public readonly string Delete = "Delete";
             public readonly string DeleteConfirmed = "Delete";
+            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -102,8 +113,10 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public const string Details = "Details";
             public const string Create = "Create";
             public const string Edit = "Edit";
+            public const string Update = "Update";
             public const string Delete = "Delete";
             public const string DeleteConfirmed = "Delete";
+            public const string RenderTemplate = "RenderTemplate";
         }
 
 
@@ -140,9 +153,15 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string product = "product";
-            public readonly string pictureIds = "pictureIds";
-            public readonly string tagIds = "tagIds";
+        }
+        static readonly ActionParamsClass_Update s_params_Update = new ActionParamsClass_Update();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Update UpdateParams { get { return s_params_Update; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Update
+        {
+            public readonly string id = "id";
+            public readonly string data = "data";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -159,6 +178,15 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         public class ActionParamsClass_DeleteConfirmed
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RenderTemplate
+        {
+            public readonly string layout = "layout";
+            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -253,16 +281,15 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Llprk.DataAccess.Models.Product product, string pictureIds, int[] tagIds);
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, Llprk.Web.UI.Areas.Admin.Models.ProductUpdate data);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Llprk.DataAccess.Models.Product product, string pictureIds, int[] tagIds)
+        public override System.Web.Mvc.ActionResult Update(int id, Llprk.Web.UI.Areas.Admin.Models.ProductUpdate data)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "product", product);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "pictureIds", pictureIds);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tagIds", tagIds);
-            EditOverride(callInfo, product, pictureIds, tagIds);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "data", data);
+            UpdateOverride(callInfo, id, data);
             return callInfo;
         }
 
@@ -287,6 +314,19 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DeleteConfirmedOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
+            RenderTemplateOverride(callInfo, layout, templateHtml);
             return callInfo;
         }
 

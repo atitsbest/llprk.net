@@ -62,6 +62,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RenderTemplate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public TaxesController Actions { get { return MVC.Admin.Taxes; } }
@@ -80,6 +86,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Update = "Update";
+            public readonly string RenderTemplate = "RenderTemplate";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,6 +94,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string Update = "Update";
+            public const string RenderTemplate = "RenderTemplate";
         }
 
 
@@ -98,6 +106,15 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public readonly string country = "country";
             public readonly string percent = "percent";
+        }
+        static readonly ActionParamsClass_RenderTemplate s_params_RenderTemplate = new ActionParamsClass_RenderTemplate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RenderTemplate RenderTemplateParams { get { return s_params_RenderTemplate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RenderTemplate
+        {
+            public readonly string layout = "layout";
+            public readonly string templateHtml = "templateHtml";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,6 +158,19 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "country", country);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "percent", percent);
             UpdateOverride(callInfo, country, percent);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RenderTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DotLiquid.Template layout, string templateHtml);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RenderTemplate(DotLiquid.Template layout, string templateHtml)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RenderTemplate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "layout", layout);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "templateHtml", templateHtml);
+            RenderTemplateOverride(callInfo, layout, templateHtml);
             return callInfo;
         }
 

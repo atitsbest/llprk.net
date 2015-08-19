@@ -542,6 +542,7 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string knockout_3_3_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-3.3.0.min.js") ? Url("knockout-3.3.0.min.js") : Url("knockout-3.3.0.js");
+        public static readonly string knockout_d_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.d.min.js") ? Url("knockout.d.min.js") : Url("knockout.d.js");
         public static readonly string knockout_mapping_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.mapping.min.js") ? Url("knockout.mapping.min.js") : Url("knockout.mapping.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class ko_bindings {
@@ -573,6 +574,7 @@ namespace Links
             public static readonly string en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en.min.js") ? Url("en.min.js") : Url("en.js");
         }
     
+        public static readonly string Manager_ttinclude = Url("Manager.ttinclude");
         public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class plugins {
@@ -876,6 +878,9 @@ namespace Links
                     private const string URLPATH = "~/Areas/Admin/Scripts/app";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string DTOs_tt = Url("DTOs.tt");
+                    public static readonly string DTOs_d_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DTOs.d.min.js") ? Url("DTOs.d.min.js") : Url("DTOs.d.js");
+                    public static readonly string Enums_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Enums.min.js") ? Url("Enums.min.js") : Url("Enums.js");
                     public static readonly string main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.js") ? Url("main.min.js") : Url("main.js");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class orders {
@@ -897,6 +902,15 @@ namespace Links
                     }
                 
                     public static readonly string PicturesCtrl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PicturesCtrl.min.js") ? Url("PicturesCtrl.min.js") : Url("PicturesCtrl.js");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class products {
+                        private const string URLPATH = "~/Areas/Admin/Scripts/app/products";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string products_edit_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/products.edit.min.js") ? Url("products.edit.min.js") : Url("products.edit.js");
+                        public static readonly string products_form_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/products.form.min.js") ? Url("products.form.min.js") : Url("products.form.js");
+                    }
+                
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class shippingcosts {
                         private const string URLPATH = "~/Areas/Admin/Scripts/app/shippingcosts";
@@ -1185,9 +1199,13 @@ namespace Links
                         private const string URLPATH = "~/Areas/Store/Scripts/app/checkout";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string checkout_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/checkout.index.min.js") ? Url("checkout.index.min.js") : Url("checkout.index.js");
+                        public static readonly string _checkout_index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/_checkout.index.min.js") ? Url("_checkout.index.min.js") : Url("_checkout.index.js");
+                        public static readonly string checkout_index_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/checkout.index.min.js") ? Url("checkout.index.min.js") : Url("checkout.index.js");
                     }
                 
+                    public static readonly string DTOs_tt = Url("DTOs.tt");
+                    public static readonly string DTOs_d_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DTOs.d.min.js") ? Url("DTOs.d.min.js") : Url("DTOs.d.js");
+                    public static readonly string Enums_ts = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Enums.min.js") ? Url("Enums.min.js") : Url("Enums.js");
                     public static readonly string main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.js") ? Url("main.min.js") : Url("main.js");
                 }
             

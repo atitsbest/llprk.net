@@ -12,6 +12,14 @@ namespace llprk.Application.Test
     public class TestBase
     {
         /// <summary>
+        /// CTR
+        /// </summary>
+        public TestBase()
+        {
+            AutoMapper.Mapper.AddProfile<Llprk.Application.AutoMapperProfile>();
+        }
+
+        /// <summary>
         /// hier kann in einer Transaction (ohne commit) in der Datenbank gearbeitet werden.
         /// Wirft eine Exception wenn, das angegebene IQueryable sich nicht um <paramref name="amount"/> geändert hat.
         /// </summary>

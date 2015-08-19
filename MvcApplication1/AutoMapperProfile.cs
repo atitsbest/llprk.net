@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Llprk.Application.DTOs.Responses;
 using Llprk.DataAccess.Models;
 using Llprk.Web.UI.Areas.Admin.Models;
 using Llprk.Web.UI.Areas.Store.Models;
@@ -48,6 +49,9 @@ namespace Llprk.Web.UI
                 .ForMember(d => d.ShippingCosts, o => o.MapFrom(s => Mapper.Map<ShippingCostIndex.ShippingCost[]>(s.ShippingCosts)));
             Mapper.CreateMap<ShippingCategory, ShippingCostIndex.ShippingCategory>();
             Mapper.CreateMap<ShippingCost, ShippingCostIndex.ShippingCost>();
+
+            Mapper.CreateMap<EditProductResponse, ProductEdit>()
+                .ForMember(d => d.Model, o => o.MapFrom(s => s));
 
         }
 

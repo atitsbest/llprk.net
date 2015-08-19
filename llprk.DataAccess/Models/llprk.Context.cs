@@ -32,12 +32,12 @@ namespace Llprk.DataAccess.Models
         public DbSet<Page> Pages { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
         public DbSet<Picture> Pictures { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<ShippingCost> ShippingCosts { get; set; }
         public DbSet<ShippingCategory> ShippingCategories { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

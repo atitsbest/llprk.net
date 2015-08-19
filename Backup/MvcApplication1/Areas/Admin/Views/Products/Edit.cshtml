@@ -1,0 +1,33 @@
+﻿@model Llprk.Web.UI.Areas.Admin.Models.ProductEdit
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+<div ng-controller="PicturesCtrl" class="col-xs-12">
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            @Html.HiddenFor(model => model.Id)
+
+            @Html.Partial("_Form", Model)
+        </fieldset>
+    }
+
+    @Html.Partial("_PictureDlg")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var allPictures = @(Html.Raw(Json.Encode(Model.AllPictures)));
+        var assignedPictureIds = @Html.Raw(Json.Encode(Model.AssignedPictureIds))
+
+        $('ul.thumbnails').sortable();
+
+        angular.bootstrap($('html'));
+    </script>
+}

@@ -333,6 +333,7 @@
     <Compile Include="Areas\Admin\Controllers\Results\JsonNetResult.cs" />
     <Compile Include="Areas\Admin\Controllers\SourcesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductUpdate.cs" />
     <Compile Include="Areas\Admin\Models\ShippingCostUpdate.cs" />
     <Compile Include="Areas\Admin\Models\ShippingCostIndex.cs" />
     <Compile Include="Areas\Admin\Models\TaxIndex.cs" />
@@ -475,6 +476,7 @@
     <Content Include="Areas\Admin\Content\toastr.min.css">
       <DependentUpon>toastr.less</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Scripts\app\products\products.edit.js" />
     <Content Include="Areas\Admin\Scripts\app\shippingcosts\shippingcosts.index.js" />
     <Content Include="Areas\Admin\Scripts\app\DTOs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1289,6 +1291,7 @@
     <Folder Include="Areas\Admin\Scripts\ko.components\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Areas\Admin\Scripts\app\products\products.form.ts" />
     <TypeScriptCompile Include="Areas\Admin\Scripts\app\taxes\taxes.index.ts" />
     <TypeScriptCompile Include="Areas\Admin\Scripts\app\Enums.ts">
       <DependentUpon>DTOs.tt</DependentUpon>
@@ -1324,7 +1327,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60795</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

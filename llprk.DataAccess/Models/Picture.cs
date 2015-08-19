@@ -27,17 +27,6 @@ namespace Llprk.DataAccess.Models
         /// <summary>
         /// Vergleich!
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            return this.Id == ((Picture)obj).Id;
-        }
-
-        /// <summary>
-        /// Vergleich!
-        /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {

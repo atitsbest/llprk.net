@@ -2,7 +2,7 @@
 @using Newtonsoft.Json.Converters
 @using Newtonsoft.Json
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Taxes";
 }
 <div class="row">
     <div class="col-xs-3">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-xs-2">
                         <div class="input-group">
-                            <input type="text" class="form-control text-right" placeholder="0,00" data-bind="value:taxPercent">
+                            <input type="text" class="form-control text-right" placeholder="0,00" data-bind="value:taxPercent" readonly>
                             <div class="input-group-addon"> % </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
     <script type="text/javascript">
         require(["app/taxes/index"], function (main) {
             main(
-                @Html.Raw(JsonConvert.SerializeObject(Model.Countries, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
+                @Html.Raw(JsonConvert.SerializeObject(Model, System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings))
             );
         });
     </script>
