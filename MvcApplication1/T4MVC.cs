@@ -1014,6 +1014,8 @@ namespace Links
                 
                 }
             
+                public static readonly string dropzone_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dropzone.min.js") ? Url("dropzone.min.js") : Url("dropzone.js");
+                public static readonly string jquery_ui_sortable_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.ui.sortable.min.js") ? Url("jquery.ui.sortable.min.js") : Url("jquery.ui.sortable.js");
                 public static readonly string knockout_validation_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.validation.min.js") ? Url("knockout.validation.min.js") : Url("knockout.validation.js");
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class ko_components {

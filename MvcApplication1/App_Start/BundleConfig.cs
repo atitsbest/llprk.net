@@ -11,10 +11,8 @@ namespace Llprk.Web.UI
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/globalize/globalize.js",
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/knockout-3.3.0.js",
                         "~/Scripts/knockout.mapping.js",
-                        "~/Areas/Admin/Scripts/knockout.validation.js",
                         "~/Scripts/underscore.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/toastr.js",

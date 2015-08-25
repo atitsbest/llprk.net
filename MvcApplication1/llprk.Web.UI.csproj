@@ -461,7 +461,7 @@
       <DependentUpon>admin.less</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\admin.min.css">
-      <DependentUpon>admin.less</DependentUpon>
+      <DependentUpon>admin.css</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\bootstrap\variables.css">
       <DependentUpon>variables.less</DependentUpon>
@@ -483,6 +483,8 @@
       <LastGenOutput>DTOs.d.ts</LastGenOutput>
     </Content>
     <Content Include="Areas\Admin\Scripts\codemirror\addons\modes\overlay.js" />
+    <Content Include="Areas\Admin\Scripts\dropzone.js" />
+    <Content Include="Areas\Admin\Scripts\jquery.ui.sortable.js" />
     <Content Include="Areas\Store\Scripts\app\DTOs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DTOs.d.ts</LastGenOutput>
@@ -546,7 +548,7 @@
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\bootstrap\bootstrap.min.css">
-      <DependentUpon>bootstrap.less</DependentUpon>
+      <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\bootstrap\mixins\buttons.css" />
     <Content Include="Areas\Admin\Content\bootstrap\mixins\buttons.min.css" />
@@ -760,6 +762,7 @@
     <Content Include="Areas\Admin\Content\toastr.less" />
     <Content Include="Areas\Store\Views\Checkout\Index_old.cshtml" />
     <Content Include="Areas\Admin\Views\Taxes\Index.cshtml" />
+    <None Include="compilerconfig.json" />
     <None Include="Properties\PublishProfiles\llprk2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\ko.extenders\ko.withPrevious.js" />

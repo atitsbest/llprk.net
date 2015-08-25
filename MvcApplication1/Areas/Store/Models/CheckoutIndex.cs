@@ -1,25 +1,15 @@
-﻿using System;
+﻿using Llprk.Application.DTOs.Requests;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Llprk.Web.UI.Areas.Store.Models
 {
     public class CheckoutIndex
     {
-        public class Address
-        {
-            public string Anrede { get; set; }
-            public string Vorname { get; set; }
-            public string Nachname { get; set; }
-            public string Adresszusatz { get; set; }
-            public string StrasseNr { get; set; }
-            public string Plz { get; set; }
-            public string Ort { get; set; }
-            public int LandId { get; set; }
-            public string Email { get; set; }
-        }
-
         public class LineItem 
         {
             public string Name { get; set; }
@@ -34,24 +24,18 @@ namespace Llprk.Web.UI.Areas.Store.Models
             public string Name { get; set; }
         }
 
-        public Address Lieferadresse { get; set; }
-        public Address Rechnungsadresse { get; set; }
-        public bool RechnungsLieferungsAdresseGleich { get; set; }
+        public CreateOrderRequest.Address DeliveryAddress { get; set; }
+        public CreateOrderRequest.Address BillingAddress { get; set; }
         public LineItem[] LineItems { get; set; }
         public Country[] Countries { get; set; }
 
-        public decimal SubTotal { get; set; }
-        public decimal Tax { get; set; }
-        public decimal ShippingCosts { get; set; }
-        public decimal Total
-        {
-            get
-            {
-                return SubTotal
-                    + Tax
-                    + ShippingCosts;
-            }
-        }
+        public string SubTotal { get; set; }
+        public string Tax { get; set; }
+        public string ShippingCosts { get; set; }
+        public string Total { get; set; }
+
+        public string CheckoutShippingCostsUrl { get; set; }
+
 
         /// <summary>
         /// CTR
@@ -59,6 +43,10 @@ namespace Llprk.Web.UI.Areas.Store.Models
         public CheckoutIndex()
         {
             LineItems = new LineItem[] { };
+            Countries = new Country[] { };
+            DeliveryAddress = new CreateOrderRequest.Address();
+            var url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            CheckoutShippingCostsUrl = url.Action(MVC.Store.Checkout.VariableCosts());
         }
     }
 }

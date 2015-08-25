@@ -10,6 +10,7 @@ using Llprk.Web.UI.Controllers;
 using Llprk.Web.UI.Areas.Admin.Models;
 using Llprk.Application.Services;
 using Llprk.Web.UI.Controllers.Results;
+using System.Web;
 
 namespace Llprk.Web.UI.Areas.Admin.Controllers
 {
@@ -143,6 +144,11 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             //_PopulateCategoriesDropDownList(product.CategoryId);
             //_PopulateShippingCategoriesDropDownList(product.ShippingCategoryId);
             return View();
+        }
+
+        public virtual ActionResult NewImage(HttpPostedFileBase[] file)
+        {
+            return Content("");
         }
 
         //

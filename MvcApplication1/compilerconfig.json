@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Areas/Admin/Content/bootstrap/bootstrap.css",
+    "inputFile": "Areas/Admin/Content/bootstrap/bootstrap.less"
+  },
+  {
+    "outputFile": "Areas/Admin/Content/admin.css",
+    "inputFile": "Areas/Admin/Content/admin.less"
+  }
+]

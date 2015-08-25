@@ -70,6 +70,12 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult NewImage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NewImage);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult DeleteConfirmed()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
@@ -101,6 +107,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Update = "Update";
+            public readonly string NewImage = "NewImage";
             public readonly string Delete = "Delete";
             public readonly string DeleteConfirmed = "Delete";
             public readonly string RenderTemplate = "RenderTemplate";
@@ -114,6 +121,7 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Update = "Update";
+            public const string NewImage = "NewImage";
             public const string Delete = "Delete";
             public const string DeleteConfirmed = "Delete";
             public const string RenderTemplate = "RenderTemplate";
@@ -162,6 +170,14 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
         {
             public readonly string id = "id";
             public readonly string data = "data";
+        }
+        static readonly ActionParamsClass_NewImage s_params_NewImage = new ActionParamsClass_NewImage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NewImage NewImageParams { get { return s_params_NewImage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NewImage
+        {
+            public readonly string file = "file";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -290,6 +306,18 @@ namespace Llprk.Web.UI.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "data", data);
             UpdateOverride(callInfo, id, data);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NewImageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase[] file);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult NewImage(System.Web.HttpPostedFileBase[] file)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NewImage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
+            NewImageOverride(callInfo, file);
             return callInfo;
         }
 

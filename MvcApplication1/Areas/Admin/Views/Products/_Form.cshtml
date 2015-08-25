@@ -11,26 +11,22 @@
     <textbox params="label:'Description',value:model.description,rows:10"></textbox>
 </div>
 <hr />
-<div class="col-md-3">
-    <h3>Pictures</h3>
-    <p class="text-muted">
-        Upload and order images.
-        First image will be the featured image.
-    </p>
-</div>
-<div class="col-md-9">
-
-    <div class="form-group">
-        <label class="control-label">Pictures</label>
-        <div class="controls">
-            <ul class="thumbnails" data-bind="foreach: model.pictures">
-                <li class="span1">
-                    <div>
-                        <img data-bind="attr: { src: url }" alt="" class="img-polaroid">
-                    </div>
-                </li>
-            </ul>
-            <span class="help-block muted">Drag images to change their position.</span>
+<div class="row">
+    <div class="col-md-3">
+        <h3>Pictures</h3>
+        <p class="text-muted">
+            Upload and order images.
+            First image will be the featured image.
+        </p>
+    </div>
+    <div class="col-md-9">
+        <div class="form-group">
+            <label class="control-label">Pictures</label>
+            <div class="controls">
+                <ul id="images" class="list list-unstyled list-inline">
+                    <li class="dz-default dz-message"><span>Drop files here to upload</span></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -73,7 +69,7 @@
     <textbox params="label:'Url handle',value:model.urlHandle"></textbox>
 </div>
 
-<hr />  
+<hr />
 <div class="col-md-9 col-md-offset-3 form-actions">
     <input type="submit" value="Save" class="btn btn-small btn-success" />
     <small class="muted">or</small>
